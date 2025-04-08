@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
 
-@export var SPEED: float = 300.0
+@export var SPEED: float = 150
 
 func _ready() -> void:
 	PlayerObserver.player = self
+
+func _process(delta: float) -> void:
+	if velocity != Vector2.ZERO:
+		$Sprite2D/AnimationPlayer.play("walk")
 
 func _physics_process(delta: float) -> void:
 	var direction: Vector2i
