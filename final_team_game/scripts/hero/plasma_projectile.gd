@@ -6,17 +6,21 @@ extends RigidBody2D
 # Variables for stats
 var speed: int
 var damage: int
+var direction: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 300
+	self.position = get_tree().current_scene.find_child("Hero").position
 
-
+func _physics_process(delta: float) -> void:
+	self.move_and_collide((direction * delta).normalized() * speed)
+	
+	
 # Function to set direction of movement
-func setDirection(direction: Vector2) -> void:
-	self.set_rotation(self.get_angle_to(direction))
-	self.add_constant_force(Vector2(speed,0))
+func setDirection(d: Vector2) -> void:
+	direction = d
 
 ## Functions for stats
 # Function for adjusting speed

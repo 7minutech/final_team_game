@@ -5,7 +5,7 @@ const PLASMA_PROJ = preload("res://scenes/hero/PlasmaProjectile.tscn")
 
 ## Constants
 # Constants for initial stats
-const INITIAL_PROJECTILE_SPEED: int = 800
+const INITIAL_PROJECTILE_SPEED: int = 5
 const INITIAL_FIRE_RATE: int = 1
 const INITIAL_DAMAGE: int = 10
 const INITIAL_HEALTH: int = 100
@@ -65,11 +65,11 @@ func aim() -> Vector2:
 # Function to shoot based on mouse position
 func shoot(mousePos: Vector2) -> void:
 	var projectile = PLASMA_PROJ.instantiate()
-	self.add_child(projectile)
-	projectile.position = $AimLine.position
+	get_tree().current_scene.add_child(projectile)
 	projectile.setDamage(damage)
 	projectile.setSpeed(projectile_speed)
-	projectile.setDirection(mousePos)
+	var direction: Vector2 = mousePos - self.position
+	projectile.setDirection(direction)
 ##
 # Function to turn shooting off if the mouse is resting on the hero
 func _on_mouse_entered() -> void:
