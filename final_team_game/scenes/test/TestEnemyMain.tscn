@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdx2fx0wdmxtb"]
+
+[ext_resource type="Script" path="res://scripts/test/enemy/player.gd" id="1_6qjd7"]
+[ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_r87pw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_syc1r"]
+radius = 27.074
+
+[node name="TestEnemyMain" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(536, 283)
+script = ExtResource("1_6qjd7")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_syc1r")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_r87pw")
