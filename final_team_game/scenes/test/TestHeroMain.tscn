@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://yi1bypdp1g20"]
+
+[ext_resource type="Script" path="res://scripts/test/main/test_hero_main.gd" id="1_mv2h7"]
+[ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="2_wth4l"]
+
+[node name="TestHeroMain" type="Node2D"]
+script = ExtResource("1_mv2h7")
+
+[node name="Hero" parent="." instance=ExtResource("2_wth4l")]
+position = Vector2(586, 278)
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294901761

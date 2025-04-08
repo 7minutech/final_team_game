@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://drnlo0u0nbpq8"]
+
+[ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
+[ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ab42n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
+radius = 17.0
+height = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4hh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_loxkn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Hero" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_ib4fp")
+
+[node name="AimLine" type="Node2D" parent="."]
+
+[node name="LineAsset" type="Sprite2D" parent="AimLine"]
+self_modulate = Color(1, 1, 1, 0.305882)
+position = Vector2(61.25, 0.25)
+scale = Vector2(117.5, 3.5)
+texture = SubResource("CanvasTexture_ab42n")
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qw7bj")
+
+[node name="Skin" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.0413232, 0.0529505)
+sprite_frames = SubResource("SpriteFrames_t4hh1")
+animation = &"Idle"
+
+[node name="HeroCamera" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2.5, 2.5)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
