@@ -16,7 +16,7 @@ func _ready() -> void:
 	pass
 		
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if PlayerObserver.player != null:
 		$Sprite2D/AnimationPlayer.play("walk")
 		var direction = PlayerObserver.player.global_position - global_position

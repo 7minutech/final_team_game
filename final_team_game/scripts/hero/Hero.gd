@@ -12,6 +12,8 @@ const INITIAL_HEALTH: int = 100
 const INITIAL_SPEED: int = 300
 
 ## Variables
+# Variable for movement logic
+var canMove: bool = true
 # Variables for shooting logic
 var time_tracker: float = 0.0
 var canShoot: bool = true
@@ -31,6 +33,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Check to see if player died
 	if health <= 0:
+		canShoot = false
+		canMove = false
 		get_tree().reload_current_scene()
 		
 	# Shoot towards mouse position if possible
@@ -47,7 +51,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle the hero's movement.
 	handleMovement()
-	move_and_slide()
+	if canMove:
+		move_and_slide()
 
 ### Functions for stats ###
 ## Functions for health changes
