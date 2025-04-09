@@ -13,7 +13,8 @@ var direction: Vector2
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 300
-	self.position = get_tree().current_scene.find_child("Hero").position
+	if get_tree().current_scene.find_child("Hero"):
+		self.position = get_tree().current_scene.find_child("Hero").position
 
 # Called every physics process frame
 func _physics_process(delta: float) -> void:

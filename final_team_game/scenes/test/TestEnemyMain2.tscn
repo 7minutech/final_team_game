@@ -20,5 +20,6 @@ autostart = true
 
 [node name="Enemy1" parent="." instance=ExtResource("4_vac2u")]
 position = Vector2(219, 151)
+slide_on_ceiling = false
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
