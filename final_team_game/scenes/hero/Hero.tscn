@@ -79,8 +79,7 @@ frame = 3
 frame_progress = 0.02931
 
 [node name="HeroCamera" type="Camera2D" parent="."]
-enabled = false
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(1.5, 1.5)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

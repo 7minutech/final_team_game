@@ -22,6 +22,10 @@ var damage: int = INITIAL_DAMAGE
 var health: int = INITIAL_HEALTH
 var speed: int = INITIAL_SPEED
 
+func _ready() -> void:
+	PlayerObserver.player = self
+	
+
 func _physics_process(delta: float) -> void:
 	# Shoot towards mouse position if possible
 	if canShoot:
