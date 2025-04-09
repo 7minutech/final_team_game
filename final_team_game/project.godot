@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 PlayerObserver="*res://scripts/global/PlayerObserver.gd"
 
+[global_group]
+
+enemies=""
+
 [input]
 
 move_up={

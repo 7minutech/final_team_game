@@ -10,10 +10,9 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("spawn"):
 		spawn_enemies()
-	pass
 
 
 func spawn_enemies():
@@ -30,7 +29,6 @@ func spawn_enemies():
 			spawner.spawn_robot(get_spawn_right(camera_edges, offset))
 		LEFT:
 			spawner.spawn_robot(get_spawn_left(camera_edges, offset))
-	pass
 
 func get_camera_edges(camera: Camera2D) -> Dictionary:
 	var viewport_size = get_viewport().get_visible_rect().size
@@ -51,26 +49,21 @@ func get_spawn_left(camera_positions: Dictionary, offset: float) -> Vector2:
 	var x_pos: float = camera_positions["left"]
 	var y_pos: float = PlayerObserver.player.position.y + offset
 	return Vector2(x_pos, y_pos)
-	pass
 	
 func get_spawn_right(camera_positions: Dictionary, offset: float) -> Vector2:
 	var x_pos: float = camera_positions["right"]
 	var y_pos: float = PlayerObserver.player.position.y + offset
 	return Vector2(x_pos, y_pos)
-	pass
 
 func get_spawn_top(camera_positions: Dictionary, offset: float) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
 	var y_pos: float = camera_positions["top"]
 	return Vector2(x_pos, y_pos)
-	pass
 	
 func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
 	var y_pos: float = camera_positions["bottom"]
 	return Vector2(x_pos, y_pos)
-	pass
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawn_enemies()
-	pass # Replace with function body.

@@ -24,9 +24,15 @@ var speed: int = INITIAL_SPEED
 
 func _ready() -> void:
 	PlayerObserver.player = self
+	$HealthBar.set_max(INITIAL_HEALTH)
+	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	
 
 func _physics_process(delta: float) -> void:
+	# Check to see if player died
+	if health <= 0:
+		get_tree().reload_current_scene()
+		
 	# Shoot towards mouse position if possible
 	if canShoot:
 		var mousePos = aim()
@@ -43,13 +49,28 @@ func _physics_process(delta: float) -> void:
 	handleMovement()
 	move_and_slide()
 
+### Functions for stats ###
+## Functions for health changes
+# Function to lose health
+func loseHealth(dmg: int) -> void:
+	health -= dmg
+	updateHealthBar()
+# Function to restore health
+func restoreHealth(hp: int) -> void:
+	health += hp
+	updateHealthBar()
+# Function to update HealthBar
+func updateHealthBar() -> void:
+	$HealthBar.set_value_no_signal(health)
+##
+
+
 # Function to determine the direction that the hero should be facing based on movement
 func setFacing() -> void:
 	if velocity.x > 0:
 		$Skin.flip_h = false
 	elif velocity.x < 0:
 		$Skin.flip_h = true
-	
 
 # Function to determine how the hero should move based on input
 func handleMovement() -> void:
@@ -74,7 +95,7 @@ func handleMovement() -> void:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	setFacing()
 
-## Functions to handle shooting logic
+## Functions to handle shooting logic ##
 # Function to aim based on the mouse
 func aim() -> Vector2:
 	var mousePos: Vector2 = get_global_mouse_position()

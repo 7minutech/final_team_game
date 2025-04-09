@@ -41,3 +41,4 @@ func _on_despawn_timeout() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("enemies"):
 		self.queue_free()
+		body.loseHealth(damage)

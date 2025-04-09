@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=13 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
 [ext_resource type="Texture2D" uid="uid://crshn8i2od14f" path="res://assets/player/heroWalking1-sheet.png" id="3_negf0"]
+[ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="4_enxk8"]
+[ext_resource type="Texture2D" uid="uid://bq0dp27jqosu3" path="res://assets/hud/health_and_exp_bar/healthBarFill.png" id="5_3krd2"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ab42n"]
 
@@ -54,7 +56,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Hero" type="CharacterBody2D"]
+[node name="Hero" type="CharacterBody2D" groups=["Hero"]]
 z_index = 1
 collision_layer = 2
 input_pickable = true
@@ -79,7 +81,15 @@ frame = 3
 frame_progress = 0.02931
 
 [node name="HeroCamera" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -24.0
+offset_top = 15.0
+offset_right = 1256.0
+offset_bottom = 1295.0
+scale = Vector2(0.0454274, 0.0403327)
+texture_under = ExtResource("4_enxk8")
+texture_progress = ExtResource("5_3krd2")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
