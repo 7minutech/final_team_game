@@ -1,13 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=11 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
+[ext_resource type="Texture2D" uid="uid://crshn8i2od14f" path="res://assets/player/heroWalking1-sheet.png" id="3_negf0"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ab42n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
 radius = 17.0
 height = 58.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga2gs"]
+atlas = ExtResource("3_negf0")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w7rv"]
+atlas = ExtResource("3_negf0")
+region = Rect2(1280, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7q07"]
+atlas = ExtResource("3_negf0")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip5k3"]
+atlas = ExtResource("3_negf0")
+region = Rect2(3840, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t4hh1"]
 animations = [{
@@ -17,6 +34,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga2gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w7rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7q07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip5k3")
+}],
+"loop": true,
+"name": &"Walking",
 "speed": 5.0
 }]
 
@@ -40,7 +74,9 @@ shape = SubResource("CapsuleShape2D_qw7bj")
 [node name="Skin" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.0413232, 0.0529505)
 sprite_frames = SubResource("SpriteFrames_t4hh1")
-animation = &"Idle"
+animation = &"Walking"
+frame = 3
+frame_progress = 0.02931
 
 [node name="HeroCamera" type="Camera2D" parent="."]
 enabled = false

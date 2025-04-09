@@ -39,21 +39,36 @@ func _physics_process(delta: float) -> void:
 	handleMovement()
 	move_and_slide()
 
-
+# Function to determine the direction that the hero should be facing based on movement
+func setFacing() -> void:
+	if velocity.x > 0:
+		$Skin.flip_h = false
+	elif velocity.x < 0:
+		$Skin.flip_h = true
+	
 
 # Function to determine how the hero should move based on input
 func handleMovement() -> void:
+	# Determine which animation to play
+	if velocity.x == 0 && velocity.y == 0:
+		$Skin.play("Idle")
+	else:
+		$Skin.play("Walking")
+
+	# Determine left/right movement
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
+	# Determine up/down movement
 	direction = Input.get_axis("move_up", "move_down")
 	if direction:
 		velocity.y = direction * speed
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
+	setFacing()
 
 ## Functions to handle shooting logic
 # Function to aim based on the mouse
