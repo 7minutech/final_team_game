@@ -83,13 +83,15 @@ frame_progress = 0.02931
 [node name="HeroCamera" type="Camera2D" parent="."]
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = -24.0
-offset_top = 15.0
-offset_right = 1256.0
-offset_bottom = 1295.0
-scale = Vector2(0.0454274, 0.0403327)
+offset_left = -30.0
+offset_top = 17.0
+offset_right = 1250.0
+offset_bottom = 1297.0
+scale = Vector2(0.0498226, 0.0362236)
+value = 100.0
 texture_under = ExtResource("4_enxk8")
 texture_progress = ExtResource("5_3krd2")
+texture_progress_offset = Vector2(-15, -60)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
