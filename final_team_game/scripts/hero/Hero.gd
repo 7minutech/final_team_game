@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 ## Preloads
 const PLASMA_PROJ = preload("res://scenes/hero/PlasmaProjectile.tscn")
 
@@ -41,7 +43,6 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	give_xp()
 	if has_level_up():
 		level_up()
 
@@ -169,20 +170,14 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	if parent.has_method("xp_orb"):
 		var xp_orb: XPOrb = parent
-		xp_orb_queue.push_front(xp_orb)
-		return
+		give_xp(xp_orb)
+		xp_orb.player_pick_up()
 	pass # Replace with function body.
 
-func give_xp() -> void:
-	remove_duplicates()
-	print(xp_orb_queue)
-	if xp_orb_queue.size() > 1:
-		for xp_orb: XPOrb in xp_orb_queue:
-			player_current_xp += xp_orb.xp_value
-			$XPBar.value = player_current_xp
-			xp_orb.player_pick_up()
-			PlayerObserver.current_xp = player_current_xp
-			xp_orb_queue.pop_front()
+func give_xp(xp_orb: XPOrb):
+	player_current_xp += xp_orb.xp_value
+	$XPBar.value = player_current_xp
+	PlayerObserver.current_xp = player_current_xp
 
 func remove_duplicates() -> void:
 	var seen = {}

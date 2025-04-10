@@ -35,6 +35,10 @@ func loseHealth(dmg: int) -> void:
 	$LostHeatlhSound.play()
 	flash_white()
 	health -= dmg
+	if health <= 0:
+		drop_xp_orb(10)
+		await get_tree().create_timer(0.15).timeout
+		self.queue_free()
 ##
 
 # Function to attack player
@@ -89,6 +93,9 @@ func drop_xp_orb(xp_value: int) -> void:
 	get_parent().add_child(xp_orb_instance)
 	
 	
-
+func died() -> void:
+	drop_xp_orb(10)
+	await get_tree().create_timer(0.15).timeout
+	self.queue_free()
 	
 	
