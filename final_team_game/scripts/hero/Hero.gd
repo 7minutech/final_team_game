@@ -10,6 +10,11 @@ const INITIAL_FIRE_RATE: int = 1
 const INITIAL_DAMAGE: int = 10
 const INITIAL_HEALTH: int = 100
 const INITIAL_SPEED: int = 300
+const INITIAL_MAX_XP: int = 100
+var player_current_xp: int = 0
+var player_max_xp: int = INITIAL_MAX_XP
+var player_level: int = 0
+@export var xp_timer: float
 
 ## Variables
 # Variable for movement logic
@@ -25,10 +30,18 @@ var health: int = INITIAL_HEALTH
 var speed: int = INITIAL_SPEED
 
 func _ready() -> void:
+	$LevelLabel.text = "Level: " + str(player_level)
+	$XPGiver.wait_time = xp_timer
 	PlayerObserver.player = self
+	PlayerObserver.max_xp = INITIAL_MAX_XP
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
+	$XPBar.max_value = INITIAL_MAX_XP
 	
+
+func _process(delta: float) -> void:
+	if has_level_up():
+		level_up()
 
 func _physics_process(delta: float) -> void:
 	# Check to see if player died
@@ -131,3 +144,21 @@ func _on_mouse_exited() -> void:
 	## Code for confirming functionality
 	#print("Mouse exited")
 	#print(canShoot)
+
+func level_up() -> void:
+	player_max_xp *= 1.5
+	player_current_xp = 0
+	player_level += 1
+	$LevelLabel.text = "Level: " + str(player_level)
+	$XPBar.max_value = player_max_xp
+	PlayerObserver.current_xp = player_current_xp
+	PlayerObserver.max_xp = player_max_xp
+
+func has_level_up() -> bool:
+	return player_current_xp >= player_max_xp
+
+func _on_xp_giver_timeout() -> void:
+	player_current_xp += 10
+	$XPBar.value = player_current_xp
+	PlayerObserver.current_xp = player_current_xp
+	pass # Replace with function body.
