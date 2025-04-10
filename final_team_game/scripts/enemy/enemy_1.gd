@@ -16,7 +16,6 @@ var off_screen: bool = false
 func _ready() -> void:
 	set_max_health()
 	health = max_health
-	print(max_health)
 	pass
 		
 
