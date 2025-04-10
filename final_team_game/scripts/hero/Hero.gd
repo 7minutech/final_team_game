@@ -17,7 +17,7 @@ var player_current_xp: int = 0
 var player_max_xp: int = INITIAL_MAX_XP
 var player_level: int = 0
 @export var xp_timer: float
-var xp_orb_queue: Array[XPOrb] =[]
+
 
 ## Variables
 # Variable for movement logic
@@ -167,38 +167,11 @@ func _on_xp_giver_timeout() -> void:
 	PlayerObserver.current_xp = player_current_xp
 	pass # Replace with function body.
 
-#func _on_pick_up_range_area_entered(area: Area2D) -> void:
-	#var parent = area.get_parent()
-	#if parent.has_method("xp_orb"):
-		#var xp_orb: XPOrb = parent
-		#give_xp(xp_orb)
-		#xp_orb.player_pick_up()
-	#pass # Replace with function body.
 
 func give_xp(xp_orb: XPOrb2):
 	player_current_xp += xp_orb.xp_value
 	$XPBar.value = player_current_xp
 	PlayerObserver.current_xp = player_current_xp
 
-func remove_duplicates() -> void:
-	var seen = {}
-	var result: Array[XPOrb] = []
-
-	for orb:XPOrb in xp_orb_queue:
-		if not seen.has(orb):
-			seen[orb] = true
-			result.append(orb)
-	xp_orb_queue.clear()
-	xp_orb_queue = result
-
 func player() -> void:
 	pass
-
-#func _on_pick_up_range_body_entered(body: Node2D) -> void:
-	#if body.has_method("xp_orb"):
-		#var xp_orb: XPOrb = body
-		#player_current_xp += xp_orb.xp_value
-		#$XPBar.value = player_current_xp
-		#PlayerObserver.current_xp = player_current_xp
-		#xp_orb.player_pick_up()
-	#pass # Replace with function body.
