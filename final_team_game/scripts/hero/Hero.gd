@@ -9,7 +9,7 @@ const PLASMA_PROJ = preload("res://scenes/hero/PlasmaProjectile.tscn")
 # Constants for initial stats
 const INITIAL_PROJECTILE_SPEED: int = 5
 const INITIAL_FIRE_RATE: int = 1
-const INITIAL_DAMAGE: int = 10
+const INITIAL_DAMAGE: int = 20
 const INITIAL_HEALTH: int = 100
 const INITIAL_SPEED: int = 300
 const INITIAL_MAX_XP: int = 100
@@ -154,6 +154,7 @@ func level_up() -> void:
 	player_level += 1
 	$LevelLabel.text = "Level: " + str(player_level)
 	$XPBar.max_value = player_max_xp
+	$XPBar.value = player_current_xp
 	PlayerObserver.current_xp = player_current_xp
 	PlayerObserver.max_xp = player_max_xp
 
@@ -166,15 +167,15 @@ func _on_xp_giver_timeout() -> void:
 	PlayerObserver.current_xp = player_current_xp
 	pass # Replace with function body.
 
-func _on_pick_up_range_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
-	if parent.has_method("xp_orb"):
-		var xp_orb: XPOrb = parent
-		give_xp(xp_orb)
-		xp_orb.player_pick_up()
-	pass # Replace with function body.
+#func _on_pick_up_range_area_entered(area: Area2D) -> void:
+	#var parent = area.get_parent()
+	#if parent.has_method("xp_orb"):
+		#var xp_orb: XPOrb = parent
+		#give_xp(xp_orb)
+		#xp_orb.player_pick_up()
+	#pass # Replace with function body.
 
-func give_xp(xp_orb: XPOrb):
+func give_xp(xp_orb: XPOrb2):
 	player_current_xp += xp_orb.xp_value
 	$XPBar.value = player_current_xp
 	PlayerObserver.current_xp = player_current_xp
@@ -190,6 +191,8 @@ func remove_duplicates() -> void:
 	xp_orb_queue.clear()
 	xp_orb_queue = result
 
+func player() -> void:
+	pass
 
 #func _on_pick_up_range_body_entered(body: Node2D) -> void:
 	#if body.has_method("xp_orb"):

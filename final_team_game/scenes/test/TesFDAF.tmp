@@ -22,6 +22,7 @@ autostart = true
 [node name="Enemy1" parent="." instance=ExtResource("4_vac2u")]
 position = Vector2(219, 151)
 slide_on_ceiling = false
+speed = null
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_g3k2j")
