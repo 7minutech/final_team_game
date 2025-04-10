@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerObserver="*res://scripts/global/PlayerObserver.gd"
+TimeObserver="*res://scripts/global/TimeObserver.gd"
 
 [global_group]
 
