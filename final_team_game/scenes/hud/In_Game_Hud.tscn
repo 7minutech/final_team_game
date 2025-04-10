@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=12 format=3 uid="uid://qb10brngodal"]
 
 [ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="1_f6wqm"]
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
 [ext_resource type="Texture2D" uid="uid://bp8ku47gxtdta" path="res://assets/hud/health_and_exp_bar/expBarFill.png" id="3_6lmn7"]
+[ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
 
 [sub_resource type="SystemFont" id="SystemFont_viaug"]
 font_names = PackedStringArray("Rockwell")
@@ -69,3 +70,5 @@ offset_right = 419.0
 offset_bottom = -214.0
 text = "100"
 label_settings = SubResource("LabelSettings_roxam")
+
+[node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
