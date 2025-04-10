@@ -7,12 +7,19 @@
 [node name="PauseScreen" type="Node2D"]
 script = ExtResource("1_cr7hm")
 
-[node name="AbilityBG" type="Sprite2D" parent="."]
+[node name="TopBackground" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 1, 0.603922)
 position = Vector2(-414.5, -124.5)
 rotation = 3.14159
 scale = Vector2(248, -206)
 texture = SubResource("CanvasTexture_h3c0f")
+
+[node name="AbilityBG" type="RichTextLabel" parent="."]
+offset_left = -531.0
+offset_top = -220.0
+offset_right = -298.0
+offset_bottom = -32.0
+fit_content = true
 
 [node name="Ability" type="RichTextLabel" parent="."]
 offset_left = -531.0
