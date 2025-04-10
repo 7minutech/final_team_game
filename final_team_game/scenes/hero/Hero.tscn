@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=15 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
@@ -57,6 +57,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpcay"]
+radius = 73.2462
+
 [node name="Hero" type="CharacterBody2D" groups=["Hero"]]
 z_index = 1
 collision_layer = 2
@@ -113,7 +116,6 @@ texture_progress = ExtResource("6_ruyen")
 texture_progress_offset = Vector2(-17, -62)
 
 [node name="XPGiver" type="Timer" parent="."]
-autostart = true
 
 [node name="LevelLabel" type="Label" parent="."]
 offset_left = 247.0
@@ -121,6 +123,12 @@ offset_top = -320.0
 offset_right = 368.0
 offset_bottom = -285.0
 
+[node name="PickUpRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpRange"]
+shape = SubResource("CircleShape2D_jpcay")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="timeout" from="XPGiver" to="." method="_on_xp_giver_timeout"]
+[connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]

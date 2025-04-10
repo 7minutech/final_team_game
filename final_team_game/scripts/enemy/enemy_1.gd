@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 		velocity = direction.normalized() * speed
 		
 		if health <= 0:
-			drop_xp_orb()
+			drop_xp_orb(10)
 			await get_tree().create_timer(0.15).timeout
 			self.queue_free()
 		move_and_slide()
@@ -81,9 +81,10 @@ func set_pitch_scale() -> void:
 	var pitch := randf_range(1.2,1.5)
 	$LostHeatlhSound.pitch_scale = pitch
 
-func drop_xp_orb() -> void:
+func drop_xp_orb(xp_value: int) -> void:
 	var xp_orb: PackedScene = preload("res://scenes/item/xp_orb.tscn")
 	var xp_orb_instance: XPOrb = xp_orb.instantiate()	
+	xp_orb_instance.set_xp_value(xp_value)
 	xp_orb_instance.position = self.position
 	get_parent().add_child(xp_orb_instance)
 	
