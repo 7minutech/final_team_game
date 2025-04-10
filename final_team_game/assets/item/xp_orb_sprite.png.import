@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpxn5661ud7lw"
-path="res://.godot/imported/xp_orb_sprite.png-d94e667af2a28f343b56728cd1bc09de.ctex"
+path="res://.godot/imported/xp_orb_sprite.png-b656a0f7a151c4ebde5c7d2a2011a6e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/xp_orb_sprite.png"
-dest_files=["res://.godot/imported/xp_orb_sprite.png-d94e667af2a28f343b56728cd1bc09de.ctex"]
+source_file="res://assets/item/xp_orb_sprite.png"
+dest_files=["res://.godot/imported/xp_orb_sprite.png-b656a0f7a151c4ebde5c7d2a2011a6e5.ctex"]
 
 [params]
 

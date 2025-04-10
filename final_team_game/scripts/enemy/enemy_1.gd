@@ -79,8 +79,8 @@ func flash_white() -> void:
 func set_pitch_scale() -> void:
 	var pitch := randf_range(1.2,1.5)
 	$LostHeatlhSound.pitch_scale = pitch
-	
-	
+
+
 	
 	
 
