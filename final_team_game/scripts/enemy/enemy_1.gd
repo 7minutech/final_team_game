@@ -14,7 +14,9 @@ var max_health: int = INITIAL_HEALTH
 var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 func _ready() -> void:
+	set_max_health()
 	health = max_health
+	print(max_health)
 	pass
 		
 
@@ -94,7 +96,8 @@ func drop_xp_orb(xp_value: int) -> void:
 	xp_orb_instance.position = self.position
 	get_parent().add_child(xp_orb_instance)
 	
-	
+func set_max_health() -> void:
+	max_health += (TimeObserver.total_time / 60) * 10
 
 	
 	
