@@ -44,6 +44,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
+	update_debug_label()
 	if has_level_up():
 		level_up()
 
@@ -181,4 +182,12 @@ func player() -> void:
 	pass
 	
 func set_player_max_hp() -> void:
-	max_health *= 1 + (player_level / 10)
+	max_health *= 1.1
+
+func update_debug_label() -> void:
+	var text: String = "max health: " + str(max_health)
+	text += "\ncurrent health: " + str(health)
+	text += "\nlevel: " + str(player_level)
+	text += "\nmax xp: " + str(player_max_xp)
+	text += "\ncurrent xp: " + str(player_current_xp)
+	$DebuggingLabel.text = text
