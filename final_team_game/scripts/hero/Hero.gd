@@ -31,6 +31,7 @@ var fireRate: int = INITIAL_FIRE_RATE
 var damage: int = INITIAL_DAMAGE
 var health: int = INITIAL_HEALTH
 var speed: int = INITIAL_SPEED
+var max_health: int = INITIAL_HEALTH
 
 func _ready() -> void:
 	$LevelLabel.text = "Level: " + str(player_level)
@@ -152,6 +153,9 @@ func level_up() -> void:
 	player_max_xp *= 1.5
 	player_current_xp = 0
 	player_level += 1
+	set_player_max_hp()
+	health = max_health
+	updateHealthBar()
 	$LevelLabel.text = "Level: " + str(player_level)
 	$XPBar.max_value = player_max_xp
 	$XPBar.value = player_current_xp
@@ -175,3 +179,6 @@ func give_xp(xp_orb: XPOrb2):
 
 func player() -> void:
 	pass
+	
+func set_player_max_hp() -> void:
+	max_health *= 1 + (player_level / 10)
