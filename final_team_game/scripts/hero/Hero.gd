@@ -175,6 +175,7 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 
 func give_xp() -> void:
 	remove_duplicates()
+	print(xp_orb_queue)
 	if xp_orb_queue.size() > 1:
 		for xp_orb: XPOrb in xp_orb_queue:
 			player_current_xp += xp_orb.xp_value
@@ -191,6 +192,7 @@ func remove_duplicates() -> void:
 		if not seen.has(orb):
 			seen[orb] = true
 			result.append(orb)
+	xp_orb_queue.clear()
 	xp_orb_queue = result
 
 
