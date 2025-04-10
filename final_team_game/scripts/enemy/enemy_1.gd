@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 ## Constants
 # Constants for stats
-const INITIAL_HEALTH: int = 10
+const INITIAL_HEALTH: int = 20.0
 const INITIAL_SPEED: float = 50.0
 const INITIAL_DAMAGE: int = 10
 
@@ -23,12 +23,16 @@ func _physics_process(_delta: float) -> void:
 		velocity = direction.normalized() * speed
 		
 		if health <= 0:
+			await get_tree().create_timer(0.15).timeout
 			self.queue_free()
 		move_and_slide()
 		
 ### Functions for stats ###
 # Function to lose health
 func loseHealth(dmg: int) -> void:
+	set_pitch_scale()
+	$LostHeatlhSound.play()
+	flash_white()
 	health -= dmg
 ##
 
@@ -62,3 +66,23 @@ func _on_queue_free_timer_timeout() -> void:
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hero") && $AttackTimer.is_stopped():
 		attack(body)
+
+func flash_white() -> void:
+	var original_color: Color = $Sprite2D.modulate
+	var white: Color = Color(1.5, 1.5, 1.5, 1)
+	#creat a tween for half a second white half a second original
+	var tween := get_tree().create_tween()
+	tween.tween_property($Sprite2D, "modulate", white, 0.05)
+	tween.tween_interval(0.05)
+	tween.tween_property($Sprite2D, "modulate", original_color, 0.1)
+
+func set_pitch_scale() -> void:
+	var pitch := randf_range(1.2,1.5)
+	$LostHeatlhSound.pitch_scale = pitch
+	
+	
+	
+	
+
+	
+	
