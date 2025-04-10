@@ -86,7 +86,7 @@ func set_pitch_scale() -> void:
 	$LostHeatlhSound.pitch_scale = pitch
 
 func drop_xp_orb(xp_value: int) -> void:
-	var xp_orb: PackedScene = preload("res://scenes/item/xp_orb_2.tscn")
+	var xp_orb: PackedScene = preload("res://scenes/item/xp_orb.tscn")
 	var xp_orb_instance: XPOrb2 = xp_orb.instantiate()	
 	xp_orb_instance.set_xp_value(xp_value)
 	xp_orb_instance.position = self.position
