@@ -9,10 +9,12 @@ const INITIAL_DAMAGE: int = 10
 ## Variables
 # Variables for stats
 var health: int = INITIAL_HEALTH
+var max_health: int = INITIAL_HEALTH
 @export var speed: float = INITIAL_SPEED
 var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 func _ready() -> void:
+	health = max_health
 	pass
 		
 
