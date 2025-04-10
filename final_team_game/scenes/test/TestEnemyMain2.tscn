@@ -27,4 +27,9 @@ slide_on_ceiling = false
 stream = ExtResource("5_g3k2j")
 parameters/looping = true
 
+[node name="BraizerSpawnTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]

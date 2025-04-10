@@ -4,6 +4,7 @@ class_name Spawner
 
 @onready var pos: Marker2D = $Marker2D
 var enemy = preload("res://scenes/enemy/enemy_1.tscn")
+var braizer = preload("res://scenes/item/braizer.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -24,6 +25,11 @@ func spawn_robot(spawn_position):
 	var new_spawn: CharacterBody2D = enemy.instantiate()
 	add_child(new_spawn)
 	new_spawn.global_position = spawn_position
+
+func spawn_braizer(spawn_position):
+	var braizer: Braizer = braizer.instantiate()
+	add_child(braizer)
+	braizer.global_position = spawn_position
 	
 
 func _on_spawn_timer_timeout() -> void:
