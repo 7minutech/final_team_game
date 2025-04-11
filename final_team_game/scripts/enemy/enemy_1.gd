@@ -24,11 +24,6 @@ func _physics_process(_delta: float) -> void:
 		$Sprite2D/AnimationPlayer.play("walk")
 		var direction = PlayerObserver.player.global_position - global_position
 		velocity = direction.normalized() * speed
-		
-		if health <= 0:
-			#drop_xp_orb(10)
-			await get_tree().create_timer(0.15).timeout
-			self.queue_free()
 		move_and_slide()
 		
 ### Functions for stats ###
@@ -40,6 +35,8 @@ func loseHealth(dmg: int) -> void:
 	health -= dmg
 	if health <= 0:
 		drop_xp_orb(20)
+		if PlayerObserver.player != null:
+			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
 		self.queue_free()
 ##
@@ -96,7 +93,9 @@ func drop_xp_orb(xp_value: int) -> void:
 	get_parent().add_child(xp_orb_instance)
 	
 func set_max_health() -> void:
-	max_health += (TimeObserver.total_time / 60) * 10
+	max_health += (TimeObserver.total_time / 60.0) * 10
+	#print(str((TimeObserver.total_time / 60.0) * 10))
+	#print(max_health)
 
 	
 	

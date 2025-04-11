@@ -8,11 +8,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func set_xp_value(xp_value: int) -> void:
-	self.xp_value = xp_value
+func set_xp_value(value: int) -> void:
+	self.xp_value = value
 
 
 

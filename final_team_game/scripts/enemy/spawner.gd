@@ -29,9 +29,9 @@ func spawn_robot(spawn_position):
 	new_spawn.global_position = spawn_position
 
 func spawn_braizer(spawn_position):
-	var braizer: Braizer = braizer.instantiate()
-	add_child(braizer)
-	braizer.global_position = spawn_position
+	var new_braizer: Braizer = braizer.instantiate()
+	get_tree().current_scene.add_child(new_braizer)
+	new_braizer.global_position = spawn_position
 	
 
 func _on_spawn_timer_timeout() -> void:

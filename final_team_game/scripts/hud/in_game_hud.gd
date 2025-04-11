@@ -4,7 +4,6 @@ extends Node2D
 # Variables for time calculation
 var startTime: float
 var timeCheck: float
-var updateTimer: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,14 +12,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 
 ### Functions to handle kill label logic ###
 
 ### Functions to handle time label logic ###
-# Function to get current time and convert it into label output
+# Function to get current time
 func getTime() -> void:
 	timeCheck = Time.get_unix_time_from_system()
 ##
@@ -28,18 +27,18 @@ func getTime() -> void:
 func convertTime() -> String:
 	var subtractedTime: float = timeCheck - startTime
 	var dict: Dictionary = Time.get_time_dict_from_unix_time(subtractedTime)
-	var min = dict.get("minute")
+	var minute = dict.get("minute")
 	var sec = dict.get("second")
-	if min < 10:
+	if minute < 10:
 		if sec < 10:
-			return str(0) + str(min) + ":" + str(0) + str(sec)
+			return str(0) + str(minute) + ":" + str(0) + str(sec)
 		else:
-			return str(0) + str(min) + ":" + str(sec)
+			return str(0) + str(minute) + ":" + str(sec)
 	else:
 		if sec < 10:
-			return str(min) + ":" + str(0) + str(sec)
+			return str(minute) + ":" + str(0) + str(sec)
 		else:
-			return str(min) + ":" + str(sec)
+			return str(minute) + ":" + str(sec)
 ##
 # Function to update the TimeLabel
 func updateTime() -> void:
@@ -49,3 +48,4 @@ func updateTime() -> void:
 # Function to update the TimeLabel every second
 func _on_update_time_label_timeout() -> void:
 	updateTime()
+	TimeObserver.addOneToTotalTime()

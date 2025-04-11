@@ -12,7 +12,7 @@ func _ready() -> void:
 	addAbility(image3, str(3))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.f
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 # Function to add ability images to the label

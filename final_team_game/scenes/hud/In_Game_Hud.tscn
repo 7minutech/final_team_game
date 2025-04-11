@@ -62,7 +62,7 @@ offset_bottom = -206.0
 text = "06:30"
 label_settings = SubResource("LabelSettings_ekby6")
 
-[node name="KillLabel" type="Label" parent="."]
+[node name="KillCounter" type="Label" parent="."]
 offset_left = 370.0
 offset_top = -250.0
 offset_right = 419.0
