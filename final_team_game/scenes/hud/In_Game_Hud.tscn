@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=11 format=3 uid="uid://qb10brngodal"]
 
-[ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="1_f6wqm"]
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
 [ext_resource type="Texture2D" uid="uid://bp8ku47gxtdta" path="res://assets/hud/health_and_exp_bar/expBarFill.png" id="3_6lmn7"]
@@ -8,6 +7,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_viaug"]
 font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_7143a"]
 font = SubResource("SystemFont_viaug")
@@ -17,6 +17,7 @@ outline_color = Color(0, 0, 1, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_f85ld"]
 font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
 font = SubResource("SystemFont_f85ld")
@@ -24,6 +25,7 @@ font_size = 30
 
 [sub_resource type="SystemFont" id="SystemFont_rccnp"]
 font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_roxam"]
 font = SubResource("SystemFont_rccnp")
@@ -31,8 +33,6 @@ font_size = 30
 
 [node name="Hud" type="Node2D"]
 script = ExtResource("1_i6a3x")
-
-[node name="Hero" parent="." instance=ExtResource("1_f6wqm")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -42,7 +42,6 @@ offset_top = -446.0
 offset_right = 670.0
 offset_bottom = 834.0
 scale = Vector2(0.96654, 0.285201)
-value = 100.0
 texture_under = ExtResource("2_8uarb")
 texture_progress = ExtResource("3_6lmn7")
 texture_progress_offset = Vector2(-15, -60)

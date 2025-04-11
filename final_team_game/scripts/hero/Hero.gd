@@ -34,13 +34,13 @@ var speed: int = INITIAL_SPEED
 var max_health: int = INITIAL_HEALTH
 
 func _ready() -> void:
-	$LevelLabel.text = "Level: " + str(player_level)
+	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
 	PlayerObserver.player = self
 	PlayerObserver.max_xp = INITIAL_MAX_XP
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
-	$XPBar.max_value = INITIAL_MAX_XP
+	$Hud/XpBar.max_value = INITIAL_MAX_XP
 	
 
 func _process(delta: float) -> void:
@@ -74,6 +74,10 @@ func _physics_process(delta: float) -> void:
 
 ### Functions for stats ###
 ## Functions for health changes
+# Function to increase players max health
+func raise_player_max_hp() -> void:
+	max_health *= 1.1
+	$HealthBar.set_max(max_health)
 # Function to lose health
 func loseHealth(dmg: int) -> void:
 	health -= dmg
@@ -118,7 +122,7 @@ func handleMovement() -> void:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	setFacing()
 
-## Functions to handle shooting logic ##
+### Functions to handle shooting logic ###
 # Function to aim based on the mouse
 func aim() -> Vector2:
 	var mousePos: Vector2 = get_global_mouse_position()
@@ -150,40 +154,47 @@ func _on_mouse_exited() -> void:
 	#print("Mouse exited")
 	#print(canShoot)
 
-func level_up() -> void:
-	player_max_xp *= 1.5
-	player_current_xp = 0
-	player_level += 1
-	set_player_max_hp()
-	health = max_health
-	updateHealthBar()
-	$LevelLabel.text = "Level: " + str(player_level)
-	$XPBar.max_value = player_max_xp
-	$XPBar.value = player_current_xp
-	PlayerObserver.current_xp = player_current_xp
-	PlayerObserver.max_xp = player_max_xp
-
+### Functions to handle logic for player leveling ###
+# Function to determine if the player has leveled up
 func has_level_up() -> bool:
 	return player_current_xp >= player_max_xp
-
+##
+# Function to increase player's level by one and adjust stats/labels accordingly
+func level_up() -> void:
+	raise_player_max_xp()
+	player_current_xp = 0
+	updateXpBar()
+	raise_player_max_hp()
+	health = max_health
+	updateHealthBar()
+	player_level += 1
+	$Hud/LevelLabel.text = "Level: " + str(player_level)
+	PlayerObserver.current_xp = player_current_xp
+	PlayerObserver.max_xp = player_max_xp
+##
+# Function to raise the player's max xp
+func raise_player_max_xp() -> void:
+	player_max_xp *= 1.5
+	$Hud/XpBar.set_max(player_max_xp)
+# Function to give the player xp on a timer
 func _on_xp_giver_timeout() -> void:
 	player_current_xp += 0
-	$XPBar.value = player_current_xp
 	PlayerObserver.current_xp = player_current_xp
-	pass # Replace with function body.
-
-
+	updateXpBar()
+##
+# Function to give the player xp when they pick up an orb
 func give_xp(xp_orb: XPOrb2):
 	player_current_xp += xp_orb.xp_value
-	$XPBar.value = player_current_xp
 	PlayerObserver.current_xp = player_current_xp
+	updateXpBar()
+##
+# Function to update the player xp bar
+func updateXpBar() -> void:
+	$Hud/XpBar.value = player_current_xp
 
 func player() -> void:
 	pass
 	
-func set_player_max_hp() -> void:
-	max_health *= 1.1
-
 func update_debug_label() -> void:
 	var text: String = "max health: " + str(max_health)
 	text += "\ncurrent health: " + str(health)
