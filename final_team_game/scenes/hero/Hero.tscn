@@ -76,9 +76,8 @@ shape = SubResource("CapsuleShape2D_qw7bj")
 [node name="Skin" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.0413232, 0.0529505)
 sprite_frames = SubResource("SpriteFrames_t4hh1")
-animation = &"Walking"
-frame = 3
-frame_progress = 0.02931
+animation = &"Idle"
+frame_progress = 0.711188
 
 [node name="HeroCamera" type="Camera2D" parent="."]
 

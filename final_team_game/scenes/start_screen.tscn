@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://12tkw3pf520q"]
+
+[ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_jkuks"]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 15.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jkuks")
+
+[node name="BackGround" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1164.0
+offset_bottom = 661.0
+color = Color(0, 0, 0, 1)
+
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1164.0
+offset_bottom = 655.0
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="VolumeSlider" type="HSlider" parent="UI"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.5
