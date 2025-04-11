@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c267pqok2wgav"]
+[gd_scene load_steps=9 format=3 uid="uid://c267pqok2wgav"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_1.gd" id="1_2myvj"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_swn7e"]
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_ii3l0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
 radius = 25.02
@@ -50,6 +51,10 @@ radius = 26.0192
 position = Vector2(502, 301)
 collision_layer = 8
 collision_mask = 3
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_block_on_wall = false
+safe_margin = 0.1
 script = ExtResource("1_2myvj")
 metadata/_edit_group_ = true
 
@@ -82,7 +87,12 @@ shape = SubResource("CircleShape2D_pw3hx")
 wait_time = 0.5
 one_shot = true
 
+[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ii3l0")
+
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
 [connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="area_shape_entered" from="DamageArea" to="." method="_on_damage_area_area_shape_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

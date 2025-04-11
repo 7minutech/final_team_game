@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://qb10brngodal"]
+
+[ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
+[ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
+[ext_resource type="Texture2D" uid="uid://bp8ku47gxtdta" path="res://assets/hud/health_and_exp_bar/expBarFill.png" id="3_6lmn7"]
+[ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
+
+[sub_resource type="SystemFont" id="SystemFont_viaug"]
+font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7143a"]
+font = SubResource("SystemFont_viaug")
+font_size = 25
+outline_size = 3
+outline_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_f85ld"]
+font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
+font = SubResource("SystemFont_f85ld")
+font_size = 30
+
+[sub_resource type="SystemFont" id="SystemFont_rccnp"]
+font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_roxam"]
+font = SubResource("SystemFont_rccnp")
+font_size = 30
+
+[node name="Hud" type="Node2D"]
+script = ExtResource("1_i6a3x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="XpBar" type="TextureProgressBar" parent="."]
+offset_left = -610.0
+offset_top = -446.0
+offset_right = 670.0
+offset_bottom = 834.0
+scale = Vector2(0.96654, 0.285201)
+texture_under = ExtResource("2_8uarb")
+texture_progress = ExtResource("3_6lmn7")
+texture_progress_offset = Vector2(-15, -60)
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 366.0
+offset_top = -297.0
+offset_right = 479.0
+offset_bottom = -255.0
+text = "Level: "
+label_settings = SubResource("LabelSettings_7143a")
+
+[node name="TimeLabel" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -248.0
+offset_right = 39.0
+offset_bottom = -206.0
+text = "06:30"
+label_settings = SubResource("LabelSettings_ekby6")
+
+[node name="KillCounter" type="Label" parent="."]
+offset_left = 370.0
+offset_top = -250.0
+offset_right = 419.0
+offset_bottom = -214.0
+text = "100"
+label_settings = SubResource("LabelSettings_roxam")
+
+[node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
+
+[node name="UpdateTimeLabel" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

@@ -31,6 +31,21 @@ func spawn_enemies():
 		LEFT:
 			spawner.spawn_robot(get_spawn_left(camera_edges, offset))
 
+func spawn_braizer():
+	var spawner: Spawner = $Spawner
+	var random_number = randi_range(1, 4)
+	var camera_edges: Dictionary = get_camera_edges($Hero/HeroCamera)
+	var offset: float = randf_range(-500.0, 500.0)
+	match random_number:	
+		TOP:
+			spawner.spawn_braizer(get_spawn_top_offscreen(camera_edges, offset))
+		BOTTOM:
+			spawner.spawn_braizer(get_spawn_bottom_offscreen(camera_edges, offset))
+		RIGHT:
+			spawner.spawn_braizer(get_spawn_right_offscreen(camera_edges, offset))
+		LEFT:
+			spawner.spawn_braizer(get_spawn_left_offscreen(camera_edges, offset))
+
 func get_camera_edges(camera: Camera2D) -> Dictionary:
 	var viewport_size = get_viewport().get_visible_rect().size
 	var zoom = camera.zoom
@@ -66,5 +81,36 @@ func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
 	var y_pos: float = camera_positions["bottom"]
 	return Vector2(x_pos, y_pos)
 
+func get_spawn_left_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = camera_positions["left"] - 100
+	var y_pos: float = PlayerObserver.player.position.y + offset
+	return Vector2(x_pos, y_pos)
+	
+func get_spawn_right_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = camera_positions["right"] + 100
+	var y_pos: float = PlayerObserver.player.position.y + offset
+	return Vector2(x_pos, y_pos)
+
+func get_spawn_top_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = PlayerObserver.player.position.x + offset
+	var y_pos: float = camera_positions["top"] - 100
+	return Vector2(x_pos, y_pos)
+	
+func get_spawn_bottom_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = PlayerObserver.player.position.x + offset
+	var y_pos: float = camera_positions["bottom"] + 100
+	return Vector2(x_pos, y_pos)
+
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawn_enemies()
+
+
+func _on_braizer_spawn_timer_timeout() -> void:
+	spawn_braizer()
+	pass # Replace with function body.
+
+	
+
+func _on_game_music_finished() -> void:
+	$GameMusic.play()
+	pass # Replace with function body.
