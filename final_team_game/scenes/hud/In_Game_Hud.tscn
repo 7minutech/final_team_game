@@ -71,3 +71,8 @@ text = "100"
 label_settings = SubResource("LabelSettings_roxam")
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
+
+[node name="UpdateTimeLabel" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]
