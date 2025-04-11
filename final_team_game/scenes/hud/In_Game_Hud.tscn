@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
 [ext_resource type="Texture2D" uid="uid://bp8ku47gxtdta" path="res://assets/hud/health_and_exp_bar/expBarFill.png" id="3_6lmn7"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_ct54g"]
 [ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
 
 [sub_resource type="SystemFont" id="SystemFont_viaug"]
@@ -15,12 +16,8 @@ font_size = 25
 outline_size = 3
 outline_color = Color(0, 0, 1, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_f85ld"]
-font_names = PackedStringArray("Rockwell")
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
-font = SubResource("SystemFont_f85ld")
+font = ExtResource("4_ct54g")
 font_size = 30
 
 [sub_resource type="SystemFont" id="SystemFont_rccnp"]

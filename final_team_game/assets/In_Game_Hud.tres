@@ -1,0 +1,5 @@
+[gd_resource type="SystemFont" format=3 uid="uid://dth5n6d8288l3"]
+
+[resource]
+font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
