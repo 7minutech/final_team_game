@@ -16,7 +16,6 @@ var off_screen: bool = false
 func _ready() -> void:
 	set_max_health()
 	health = max_health
-	pass
 		
 
 func _physics_process(_delta: float) -> void:
@@ -90,7 +89,7 @@ func drop_xp_orb(xp_value: int) -> void:
 	var xp_orb_instance: XPOrb2 = xp_orb.instantiate()	
 	xp_orb_instance.set_xp_value(xp_value)
 	xp_orb_instance.position = self.position
-	get_parent().add_child(xp_orb_instance)
+	get_parent().call_deferred("add_child", xp_orb_instance)
 	
 func set_max_health() -> void:
 	max_health += (TimeObserver.total_time / 60.0) * 10

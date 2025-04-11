@@ -64,6 +64,10 @@ animations = [{
 z_index = 1
 collision_layer = 2
 input_pickable = true
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_block_on_wall = false
+safe_margin = 0.1
 script = ExtResource("1_ib4fp")
 xp_timer = 0.25
 

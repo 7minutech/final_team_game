@@ -51,6 +51,10 @@ radius = 26.0192
 position = Vector2(502, 301)
 collision_layer = 8
 collision_mask = 3
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_block_on_wall = false
+safe_margin = 0.1
 script = ExtResource("1_2myvj")
 metadata/_edit_group_ = true
 

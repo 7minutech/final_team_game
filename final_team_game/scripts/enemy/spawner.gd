@@ -23,9 +23,9 @@ func spawn(spawn_type , spawn_position):
 
 func spawn_robot(spawn_position):
 	var new_spawn: CharacterBody2D = enemy.instantiate()
-	add_child(new_spawn)
+	get_tree().current_scene.call_deferred("add_child", new_spawn)
 	if !new_spawn.is_inside_tree():
-		await new_spawn.ready
+		await new_spawn.tree_entered
 	new_spawn.global_position = spawn_position
 
 func spawn_braizer(spawn_position):
