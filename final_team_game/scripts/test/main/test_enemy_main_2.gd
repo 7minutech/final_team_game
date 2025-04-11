@@ -6,7 +6,6 @@ const RIGHT: int = 3
 const LEFT: int = 4
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$GameMusic.play()
 	#test
 	pass # Replace with function body.
 
@@ -108,4 +107,10 @@ func _on_enemy_spawn_timer_timeout() -> void:
 
 func _on_braizer_spawn_timer_timeout() -> void:
 	spawn_braizer()
+	pass # Replace with function body.
+
+	
+
+func _on_game_music_finished() -> void:
+	$GameMusic.play()
 	pass # Replace with function body.
