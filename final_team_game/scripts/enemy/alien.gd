@@ -16,6 +16,7 @@ var off_screen: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
 		

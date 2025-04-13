@@ -66,7 +66,7 @@ shape = SubResource("CapsuleShape2D_uri46")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
 [node name="QueueFreeTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 60.0
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
