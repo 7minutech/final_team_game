@@ -40,6 +40,8 @@ func _ready() -> void:
 	$XPGiver.wait_time = xp_timer
 	PlayerObserver.player = self
 	PlayerObserver.max_xp = INITIAL_MAX_XP
+	PlayerObserver.player_camera = $HeroCamera
+	CameraObserver.player_camera = $HeroCamera
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP

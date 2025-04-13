@@ -1,18 +1,11 @@
-extends Node
+extends Node2D
 
-var player: Player
-var max_xp: int 
-var current_xp: int
-var player_camera: Camera2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	pass
-
-
-		
-		

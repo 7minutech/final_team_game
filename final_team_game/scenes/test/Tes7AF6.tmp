@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6v60glumomfy"]
+[gd_scene load_steps=5 format=3 uid="uid://c6v60glumomfy"]
 
 [ext_resource type="Script" path="res://scripts/test/main/test_enemy_main_2.gd" id="1_ab874"]
 [ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="3_go7pr"]
+[ext_resource type="AudioStream" uid="uid://cciydgc7d8jui" path="res://assets/sound/Knights_of_neon_v2.mp3" id="4_xu51t"]
 [ext_resource type="PackedScene" uid="uid://bdyu27f5oox4s" path="res://scenes/enemy/Spawner.tscn" id="5_l4qc1"]
 
 [node name="TestEnemyMain2" type="Node2D"]
@@ -17,18 +18,21 @@ position = Vector2(184, 337)
 wait_time = 0.5
 autostart = true
 
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xu51t")
+volume_db = -10.0
+autoplay = true
+parameters/looping = false
+
 [node name="BraizerSpawnTimer" type="Timer" parent="."]
 wait_time = 15.0
+autostart = true
 
 [node name="BlueDroneTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[node name="RobotBossTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="finished" from="GameMusic" to="." method="_on_game_music_finished"]
 [connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
 [connection signal="timeout" from="BlueDroneTimer" to="." method="_on_blue_drone_timer_timeout"]
-[connection signal="timeout" from="RobotBossTimer" to="." method="_on_robot_boss_timer_timeout"]

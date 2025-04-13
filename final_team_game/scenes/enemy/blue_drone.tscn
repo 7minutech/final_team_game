@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://cf0hx34n0hgc5"]
+
+[ext_resource type="Script" path="res://scripts/enemy/blue_drone.gd" id="1_dwopl"]
+[ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/Drones-sheet.png" id="2_yu07y"]
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_hfnst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6sme"]
+atlas = ExtResource("2_yu07y")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlynk"]
+atlas = ExtResource("2_yu07y")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wpw6"]
+atlas = ExtResource("2_yu07y")
+region = Rect2(1280, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sxhh"]
+atlas = ExtResource("2_yu07y")
+region = Rect2(1280, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2010"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6sme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlynk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wpw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sxhh")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pw3hx"]
+radius = 26.0192
+
+[node name="BlueDrone" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(504, 301)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_dwopl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 15)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_j2010")
+animation = &"walk"
+frame_progress = 0.915777
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cvu14")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="DamageCollider" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_pw3hx")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hfnst")
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="area_shape_entered" from="DamageArea" to="." method="_on_damage_area_area_shape_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
