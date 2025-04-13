@@ -51,24 +51,24 @@ func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
 	var y_pos: float = camera_positions["bottom"]
 	return Vector2(x_pos, y_pos)
 
-func get_spawn_left_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
-	var x_pos: float = camera_positions["left"] - 100
+func get_spawn_left_offscreen(camera_positions: Dictionary, offset: float, offset_offscreen: float) -> Vector2:
+	var x_pos: float = camera_positions["left"] - offset_offscreen
 	var y_pos: float = PlayerObserver.player.position.y + offset
 	return Vector2(x_pos, y_pos)
 	
-func get_spawn_right_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
-	var x_pos: float = camera_positions["right"] + 100
+func get_spawn_right_offscreen(camera_positions: Dictionary, offset: float, offset_offscreen) -> Vector2:
+	var x_pos: float = camera_positions["right"] + offset_offscreen
 	var y_pos: float = PlayerObserver.player.position.y + offset
 	return Vector2(x_pos, y_pos)
 
-func get_spawn_top_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
+func get_spawn_top_offscreen(camera_positions: Dictionary, offset: float, offset_offscreen) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
-	var y_pos: float = camera_positions["top"] - 100
+	var y_pos: float = camera_positions["top"] - offset_offscreen
 	return Vector2(x_pos, y_pos)
 	
-func get_spawn_bottom_offscreen(camera_positions: Dictionary, offset: float) -> Vector2:
+func get_spawn_bottom_offscreen(camera_positions: Dictionary, offset: float, offset_offscreen) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
-	var y_pos: float = camera_positions["bottom"] + 100
+	var y_pos: float = camera_positions["bottom"] + offset_offscreen
 	return Vector2(x_pos, y_pos)
 
 func get_random_spawn_position() -> Vector2:
