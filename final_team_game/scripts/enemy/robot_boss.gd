@@ -16,15 +16,21 @@ var off_screen: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
 		
 
 func _physics_process(_delta: float) -> void:
+	var current_speed: float
+	if off_screen:
+		current_speed = speed * 2
+	else:
+		current_speed = INITIAL_SPEED
 	if PlayerObserver.player != null:
 		sprite_animation.play("walk")
 		var direction = PlayerObserver.player.global_position - global_position
-		velocity = direction.normalized() * speed
+		velocity = direction.normalized() * current_speed	
 		move_and_slide()
 		
 ### Functions for stats ###

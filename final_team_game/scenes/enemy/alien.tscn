@@ -53,14 +53,12 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.223529, 1, 0.0784314, 1)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_mjf8p")
 animation = &"walk"
 frame = 3
 frame_progress = 0.621645
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_uri46")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

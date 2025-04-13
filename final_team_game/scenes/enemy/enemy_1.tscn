@@ -56,7 +56,6 @@ floor_constant_speed = true
 floor_block_on_wall = false
 safe_margin = 0.1
 script = ExtResource("1_2myvj")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvu14")
