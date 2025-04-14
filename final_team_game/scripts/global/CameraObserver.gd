@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	camera_positions = get_camera_edges(player_camera)
 
 func get_camera_edges(camera: Camera2D) -> Dictionary:
