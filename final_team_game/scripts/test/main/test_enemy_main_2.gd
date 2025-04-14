@@ -18,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
 	if Input.is_action_just_pressed("spawn"):
-		spawner.spawn("robot_boss")
+		spawner.spawn_group_red_drones(10)
 		#spawner.spawn_ring_aliens(60)
 
 
@@ -90,4 +90,9 @@ func _on_spawn_blue_drone_pressed() -> void:
 
 func _on_ring_alien_timer_timeout() -> void:
 	spawner.spawn_ring_aliens(60)
+	pass # Replace with function body.
+
+
+func _on_red_drone_timer_timeout() -> void:
+	spawner.spawn_group_red_drones(10)
 	pass # Replace with function body.

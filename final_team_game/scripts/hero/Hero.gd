@@ -33,6 +33,7 @@ var max_health: int = INITIAL_HEALTH
 var player_current_xp: int = 0
 var player_max_xp: int = INITIAL_MAX_XP
 var player_level: int = 0
+var luck: int = 5
 @export var xp_timer: float
 
 func _ready() -> void:
@@ -150,8 +151,8 @@ func aim() -> Vector2:
 func shoot(mousePos: Vector2) -> void:
 	var projectile = PLASMA_PROJ.instantiate()
 	get_tree().current_scene.add_child(projectile)
-	projectile.setDamage(damage)
-	projectile.setSpeed(projectile_speed)
+	projectile.setDamage(DamageObserver.weapon_damage_dict["plasma_projectile_damage"])
+	projectile.setSpeed(DamageObserver.weapon_damage_dict["plasma_projectile_speed"])
 	var direction: Vector2 = mousePos - self.position
 	projectile.setDirection(direction)
 ##

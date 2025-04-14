@@ -3,7 +3,7 @@ extends CharacterBody2D
 ## Constants
 # Constants for stats
 const INITIAL_HEALTH: int = 20.0
-const INITIAL_SPEED: float = 50.0
+const INITIAL_SPEED: float = 250.0
 const INITIAL_DAMAGE: int = 10
 
 ## Variables
@@ -15,18 +15,22 @@ var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
+var direction: Vector2
+var target_position: Vector2
+
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
-		
+	if PlayerObserver.player != null:
+		direction = PlayerObserver.player.global_position - global_position
+		direction = direction.normalized()
 
 func _physics_process(_delta: float) -> void:
-	if PlayerObserver.player != null:
-		sprite_animation.play("walk")
-		var direction = PlayerObserver.player.global_position - global_position
-		velocity = direction.normalized() * speed
-		move_and_slide()
-		
+	sprite_animation.play("walk")
+	velocity = direction * speed
+	move_and_slide()
+
 ### Functions for stats ###
 # Function to lose health
 func loseHealth(dmg: int) -> void:

@@ -1,25 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbh6q2emxbjw0"]
+[gd_scene load_steps=11 format=3 uid="uid://bbh6q2emxbjw0"]
 
 [ext_resource type="Script" path="res://scripts/enemy/red_drone.gd" id="1_edoaj"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="2_e1m65"]
 [ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/Drones-sheet.png" id="2_em7en"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lin42"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kedv"]
 atlas = ExtResource("2_em7en")
-region = Rect2(0, 0, 1040, 324)
+region = Rect2(0, 0, 1280, 1280)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8iah4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbo4t"]
 atlas = ExtResource("2_em7en")
-region = Rect2(2080, 0, 1040, 324)
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7q5p"]
+atlas = ExtResource("2_em7en")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtdbf"]
+atlas = ExtResource("2_em7en")
+region = Rect2(2560, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_urqo6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lin42")
+"texture": SubResource("AtlasTexture_8kedv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8iah4")
+"texture": SubResource("AtlasTexture_lbo4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7q5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtdbf")
 }],
 "loop": true,
 "name": &"walk",
@@ -37,9 +51,10 @@ position = Vector2(502, 301)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_edoaj")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 18)
+scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_urqo6")
 animation = &"walk"
 
@@ -49,7 +64,7 @@ shape = SubResource("CircleShape2D_cvu14")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
 [node name="QueueFreeTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 5.0
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0

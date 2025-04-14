@@ -8,7 +8,8 @@ var entity_dict: Dictionary = {
  	"blue_drone": "res://scenes/enemy/blue_drone.tscn",
 	"braizer": "res://scenes/item/braizer.tscn",
 	"robot_boss": "res://scenes/enemy/robot_boss.tscn",
-	"alien": "res://scenes/enemy/alien.tscn"
+	"alien": "res://scenes/enemy/alien.tscn",
+	"red_drone": "res://scenes/enemy/red_drone.tscn"
 	}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,3 +50,12 @@ func spawn_ring_aliens(num_aliens:int):
 		var y = k + radius * sin(angle)
 		var point = Vector2(x, y)
 		spawn_with_position("alien", point)
+
+func spawn_group_red_drones(num_drones:int):
+	var center_position: Vector2 = CameraObserver.get_random_spawn_position()
+
+	for i in range(num_drones):
+		var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100)) 
+		var spawn_position = center_position + offset
+		spawn_with_position("red_drone", spawn_position)
+	
