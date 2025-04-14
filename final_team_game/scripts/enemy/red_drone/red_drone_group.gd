@@ -21,6 +21,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	self.move_and_collide((direction * delta).normalized() * speed)
+	if !$Visibility.is_on_screen() && $QueueFreeTimer.is_stopped():
+		self.call_deferred("queue_free")
 
 ### Functions for spawn logic ###
 # Function to spawn red drones randomly around origin
@@ -31,4 +33,11 @@ func spawn_drones_randomly() -> void:
 		drone.position = Vector2(randi_range(radius, abs(radius)), randi_range(radius, abs(radius)))
 		
 		
-		
+
+func _on_queue_free_timer_timeout() -> void:
+	'''
+	for child in get_children():
+		child.call_deferred("queue_free")
+	self.queue_free()
+	'''
+	pass

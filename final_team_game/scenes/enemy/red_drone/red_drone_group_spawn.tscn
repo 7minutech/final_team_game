@@ -8,5 +8,6 @@ script = ExtResource("1_iib25")
 [node name="RemoveSelfTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+autostart = true
 
 [connection signal="timeout" from="RemoveSelfTimer" to="." method="_on_remove_self_timer_timeout"]

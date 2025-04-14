@@ -13,3 +13,12 @@ script = ExtResource("1_dtkah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nqtli")
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.1, 0.1)
+
+[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
