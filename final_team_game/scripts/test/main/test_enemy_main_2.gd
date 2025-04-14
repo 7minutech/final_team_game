@@ -49,40 +49,5 @@ func _on_blue_drone_timer_timeout() -> void:
 ##
 func _on_red_drone_timer_timeout() -> void:
 	if spawn_red_drones:
-		spawner.spawn("red_drone_group")
+		spawner.spawn("red_drones")
 ##
-
-
-### Functions for debug menu buttons logic ###
-func _on_hide_button_pressed() -> void:
-	var hide_button: Button = $CanvasLayer/HideButton
-	var buttons = $CanvasLayer.get_children()
-	if hide_button.text == "Hide":
-		for button: Button in buttons:
-			if button != hide_button:
-				button.hide()
-	else:
-		for button: Button in buttons:
-			button.show()	
-	if hide_button.text == "Hide":
-		hide_button.text = "Show"
-	else:
-		hide_button.text = "Hide"
-##
-func _on_spawn_robot_pressed() -> void:
-	spawner.spawn("robot")
-##
-func _on_spawn_robot_boss_pressed() -> void:
-	spawner.spawn("robot_boss")
-##
-func _on_spawn_alien_pressed() -> void:
-	spawner.spawn("alien")
-##
-func _on_spawn_ring_alien_pressed() -> void:
-	spawner.spawn_ring_aliens(60)
-##
-func _on_spawn_blue_drone_pressed() -> void:
-	spawner.spawn("blue_drone")
-##
-func _on_spawn_red_drones_pressed() -> void:
-	spawner.spawn_group_red_drones()
