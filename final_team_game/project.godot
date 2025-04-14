@@ -20,6 +20,7 @@ PlayerObserver="*res://scripts/global/PlayerObserver.gd"
 TimeObserver="*res://scripts/global/TimeObserver.gd"
 CameraObserver="*res://scripts/global/CameraObserver.gd"
 DamageObserver="*res://scripts/global/DamageObserver.gd"
+EnemyOberver="*res://scripts/global/EnemyOberver.gd"
 
 [global_group]
 

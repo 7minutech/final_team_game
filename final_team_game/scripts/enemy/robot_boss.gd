@@ -15,6 +15,8 @@ var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
+var health_key: String = "robot_boss_health"
+var damage_key: String = "robot_boss_damage"
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
@@ -90,11 +92,6 @@ func drop_chest() -> void:
 	var chest_instance: Chest = chest_scene.instantiate()	
 	chest_instance.position = self.position
 	get_parent().call_deferred("add_child", chest_instance)
-	
-func set_max_health() -> void:
-	max_health += (TimeObserver.total_time / 60.0) * 10
-	#print(str((TimeObserver.total_time / 60.0) * 10))
-	#print(max_health)
 
 func is_off_screen(position: Vector2, camera: Camera2D) -> bool:
 	var screen_rect := Rect2(
@@ -137,3 +134,9 @@ func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
 	var y_pos: float = camera_positions["bottom"]
 	return Vector2(x_pos, y_pos)
+
+func set_max_health() -> void:
+	max_health += EnemyOberver.entity_health_dict[health_key]
+
+func set_damage_health() -> void:
+	damage += EnemyOberver.entity_damage_dict[damage_key]

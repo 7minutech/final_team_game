@@ -23,12 +23,15 @@ var damage: int = INITIAL_DAMAGE
 # Health variables
 var health: int = INITIAL_HEALTH
 var max_health: int = INITIAL_HEALTH
+var health_key: String = "turret_health"
+var damage_key: String = "turret_damage"
 # Variables for sprite management
 @onready var sprite: Sprite2D = $BaseSkin
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_max_health()
 	pass # Replace with function body.
 
 
@@ -113,3 +116,9 @@ func flash_white() -> void:
 	tween.tween_property(sprite, "modulate", white, 0.05)
 	tween.tween_interval(0.05)
 	tween.tween_property(sprite, "modulate", original_color, 0.1)
+
+func set_max_health() -> void:
+	max_health += EnemyOberver.entity_health_dict[health_key]
+
+func set_damage_health() -> void:
+	damage += EnemyOberver.entity_damage_dict[damage_key]
