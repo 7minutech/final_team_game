@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu6xbdbt6j6u3"]
+
+[ext_resource type="Script" path="res://scripts/enemy/red_drone/red_drone_group.gd" id="1_dtkah"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqtli"]
+size = Vector2(2, 2)
+
+[node name="RedDroneGroup" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_dtkah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nqtli")

@@ -1,9 +1,9 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 ## Constants
 # Constants for stats
 const INITIAL_HEALTH: int = 20.0
-const INITIAL_SPEED: float = 250.0
+const INITIAL_SPEED: int = 7
 const INITIAL_DAMAGE: int = 10
 
 ## Variables
@@ -12,24 +12,21 @@ var health: int = INITIAL_HEALTH
 var max_health: int = INITIAL_HEALTH
 @export var speed: float = INITIAL_SPEED
 var damage: int = INITIAL_DAMAGE
-var off_screen: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
 var direction: Vector2
-var target_position: Vector2
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	#process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
-	if PlayerObserver.player != null:
-		direction = PlayerObserver.player.global_position - global_position
-		direction = direction.normalized()
+	direction = PlayerObserver.player.position - self.position
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	sprite_animation.play("walk")
-	velocity = direction * speed
-	move_and_slide()
+	self.move_and_collide((direction * delta).normalized() * speed)
+	if $QueueFreeTimer.is_stopped() && !$Visibility.is_on_screen():
+		self.queue_free()
 
 ### Functions for stats ###
 # Function to lose health
@@ -51,27 +48,6 @@ func attack(hero: CharacterBody2D) -> void:
 	$AttackTimer.start()
 	hero.loseHealth(damage)
 
-func player_is_to_left() -> bool:
-	return position.x > PlayerObserver.player.postion.x
-
-func player_is_to_right() -> bool:
-	return position.x < PlayerObserver.player.postion.x
-
-
-func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
-	off_screen = false
-	$QueueFreeTimer.stop()
-	pass # Replace with function body.
-
-func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	off_screen = true
-	$QueueFreeTimer.start()
-	pass # Replace with function body.
-
-func _on_queue_free_timer_timeout() -> void:
-	if off_screen:
-		queue_free()
-	pass # Replace with function body.
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hero") && $AttackTimer.is_stopped():

@@ -46,8 +46,7 @@ radius = 25.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_pw3hx"]
 radius = 26.0192
 
-[node name="RedDrone" type="CharacterBody2D" groups=["enemies"]]
-position = Vector2(502, 301)
+[node name="RedDrone" type="RigidBody2D" groups=["enemies"]]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_edoaj")
@@ -61,10 +60,13 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvu14")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="Visibility" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-1.19209e-07, 1)
+scale = Vector2(0.7, 0.4)
 
 [node name="QueueFreeTimer" type="Timer" parent="."]
-wait_time = 5.0
+one_shot = true
+autostart = true
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -80,9 +82,4 @@ one_shot = true
 [node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_e1m65")
 
-[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
-[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
-[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
-[connection signal="area_shape_entered" from="DamageArea" to="." method="_on_damage_area_area_shape_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

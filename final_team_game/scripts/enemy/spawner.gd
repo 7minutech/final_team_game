@@ -9,7 +9,7 @@ var entity_dict: Dictionary = {
 	"braizer": "res://scenes/item/braizer.tscn",
 	"robot_boss": "res://scenes/enemy/robot_boss.tscn",
 	"alien": "res://scenes/enemy/alien.tscn",
-	"red_drone": "res://scenes/enemy/red_drone.tscn"
+	"red_drone_group": "res://scenes/enemy/red_drone/red_drone_group_spawn.tscn"
 	}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,13 +25,13 @@ func _process(_delta: float) -> void:
 func spawn(entity_key: String):
 	var new_spawn_scene = load(entity_dict[entity_key])
 	var new_spawn = new_spawn_scene.instantiate()
-	add_child(new_spawn)
+	get_tree().current_scene.add_child(new_spawn)
 	new_spawn.global_position = CameraObserver.get_random_spawn_position()
 
 func spawn_with_position(entity_key: String, spawn_position: Vector2):
 	var new_spawn_scene = load(entity_dict[entity_key])
 	var new_spawn = new_spawn_scene.instantiate()
-	add_child(new_spawn)
+	get_tree().current_scene.add_child(new_spawn)
 	new_spawn.global_position = spawn_position
 func spawn_ring_aliens(num_aliens:int):
 	#equation for circle (x - h)² + (y - k)² = r² 
@@ -51,11 +51,6 @@ func spawn_ring_aliens(num_aliens:int):
 		var point = Vector2(x, y)
 		spawn_with_position("alien", point)
 
-func spawn_group_red_drones(num_drones:int):
-	var center_position: Vector2 = CameraObserver.get_random_spawn_position()
-
-	for i in range(num_drones):
-		var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100)) 
-		var spawn_position = center_position + offset
-		spawn_with_position("red_drone", spawn_position)
+func spawn_group_red_drones():
+	spawn("red_drone_group")
 	

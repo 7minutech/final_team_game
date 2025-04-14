@@ -73,7 +73,6 @@ func get_spawn_bottom_offscreen(offset: float, offset_offscreen) -> Vector2:
 
 func get_random_spawn_position() -> Vector2:
 	var random_number = randi_range(1, 4)
-	var camera_edges: Dictionary = get_camera_edges(player_camera)
 	var offset: float = randf_range(-500.0, 500.0)
 	match random_number:	
 		TOP:

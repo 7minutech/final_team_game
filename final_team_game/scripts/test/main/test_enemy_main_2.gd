@@ -3,10 +3,11 @@ extends Node2D
 
 @onready var spawner: Spawner = $Spawner
 @export var spawn_robots: bool = true
-@export var spawn_braizers: bool = true
 @export var spawn_robot_boss: bool = true
 @export var spawn_drones: bool = true
 @export var spawn_alien: bool = true
+@export var red_drone_group: bool = true
+@export var spawn_braizers: bool = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +19,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
 	if Input.is_action_just_pressed("spawn"):
-		spawner.spawn_group_red_drones(10)
+		spawner.spawn_group_red_drones()
 		#spawner.spawn_ring_aliens(60)
 
 
@@ -86,4 +87,4 @@ func _on_ring_alien_timer_timeout() -> void:
 
 
 func _on_red_drone_timer_timeout() -> void:
-	spawner.spawn_group_red_drones(10)
+	spawner.spawn("red_drone_group")

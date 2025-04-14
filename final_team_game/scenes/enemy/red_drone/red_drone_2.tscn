@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2v04xafx2cpm"]
+
+[ext_resource type="Script" path="res://scripts/enemy/red_drone/red_drone_2.gd" id="1_xf7jx"]
+[ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/Drones-sheet.png" id="2_24fo6"]
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_ll2rn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5h3lt"]
+size = Vector2(14, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3jbj"]
+atlas = ExtResource("2_24fo6")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iadsd"]
+atlas = ExtResource("2_24fo6")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha7wf"]
+atlas = ExtResource("2_24fo6")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7le8s"]
+atlas = ExtResource("2_24fo6")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3jpb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3jbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iadsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha7wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7le8s")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrspi"]
+size = Vector2(20, 16)
+
+[node name="RedDrone2" type="RigidBody2D" groups=["enemies"]]
+collision_layer = 8
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_xf7jx")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_5h3lt")
+
+[node name="Skin" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.99999, 6.25002)
+scale = Vector2(0.0746586, 0.0779091)
+sprite_frames = SubResource("SpriteFrames_e3jpb")
+animation = &"walk"
+frame = 3
+frame_progress = 0.329924
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DamageArea2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_qrspi")
+
+[node name="LostHealthSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ll2rn")
+
+[connection signal="body_entered" from="DamageArea2" to="." method="_on_damage_area_2_body_entered"]
