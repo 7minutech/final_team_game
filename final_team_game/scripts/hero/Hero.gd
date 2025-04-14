@@ -7,9 +7,7 @@ const PLASMA_PROJ = preload("res://scenes/hero/PlasmaProjectile.tscn")
 
 ### Constants ###
 # Constants for initial stats
-const INITIAL_PROJECTILE_SPEED: int = 5
 const INITIAL_FIRE_RATE: int = 1
-const INITIAL_DAMAGE: int = 20
 const INITIAL_SPEED: int = 300
 const INITIAL_HEALTH: int = 100
 const INITIAL_MAX_XP: int = 100
@@ -22,9 +20,7 @@ var time_tracker: float = 0.0
 var canShoot: bool = true
 ## Variables for stats
 var killCount: int = 0
-var projectile_speed: int = INITIAL_PROJECTILE_SPEED
 var fireRate: int = INITIAL_FIRE_RATE
-var damage: int = INITIAL_DAMAGE
 var speed: int = INITIAL_SPEED
 # Health variables
 var health: int = INITIAL_HEALTH
@@ -33,6 +29,7 @@ var max_health: int = INITIAL_HEALTH
 var player_current_xp: int = 0
 var player_max_xp: int = INITIAL_MAX_XP
 var player_level: int = 0
+var luck: int = 5
 @export var xp_timer: float
 
 func _ready() -> void:
@@ -40,6 +37,8 @@ func _ready() -> void:
 	$XPGiver.wait_time = xp_timer
 	PlayerObserver.player = self
 	PlayerObserver.max_xp = INITIAL_MAX_XP
+	PlayerObserver.player_camera = $HeroCamera
+	CameraObserver.player_camera = $HeroCamera
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
@@ -148,8 +147,6 @@ func aim() -> Vector2:
 func shoot(mousePos: Vector2) -> void:
 	var projectile = PLASMA_PROJ.instantiate()
 	get_tree().current_scene.add_child(projectile)
-	projectile.setDamage(damage)
-	projectile.setSpeed(projectile_speed)
 	var direction: Vector2 = mousePos - self.position
 	projectile.setDirection(direction)
 ##

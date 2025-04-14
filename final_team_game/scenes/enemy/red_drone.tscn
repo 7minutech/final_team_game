@@ -1,7 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf0hx34n0hgc5"]
+[gd_scene load_steps=11 format=3 uid="uid://bbh6q2emxbjw0"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy_1.gd" id="1_ih5on"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_hfnst"]
+[ext_resource type="Script" path="res://scripts/enemy/red_drone.gd" id="1_edoaj"]
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="2_e1m65"]
+[ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/Drones-sheet.png" id="2_em7en"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kedv"]
+atlas = ExtResource("2_em7en")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbo4t"]
+atlas = ExtResource("2_em7en")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7q5p"]
+atlas = ExtResource("2_em7en")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtdbf"]
+atlas = ExtResource("2_em7en")
+region = Rect2(2560, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urqo6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kedv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbo4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7q5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtdbf")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
 radius = 25.02
@@ -9,14 +46,17 @@ radius = 25.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_pw3hx"]
 radius = 26.0192
 
-[node name="Drone" type="CharacterBody2D" groups=["enemies"]]
+[node name="RedDrone" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(502, 301)
 collision_layer = 8
 collision_mask = 3
-script = ExtResource("1_ih5on")
-metadata/_edit_group_ = true
+script = ExtResource("1_edoaj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 18)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_urqo6")
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvu14")
@@ -24,7 +64,7 @@ shape = SubResource("CircleShape2D_cvu14")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
 [node name="QueueFreeTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 5.0
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -38,7 +78,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_hfnst")
+stream = ExtResource("2_e1m65")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c267pqok2wgav"]
+[gd_scene load_steps=9 format=3 uid="uid://7l1ml4cm4lb2"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy_1.gd" id="1_2myvj"]
-[ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_swn7e"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_ii3l0"]
+[ext_resource type="Script" path="res://scripts/enemy/robot_boss.gd" id="1_160wv"]
+[ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_pelfv"]
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_twx50"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
-radius = 15.1327
+radius = 33.0606
 
 [sub_resource type="Animation" id="Animation_574dt"]
 length = 0.001
@@ -45,9 +45,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pw3hx"]
-radius = 26.0192
+radius = 45.0111
 
-[node name="Enemy1" type="CharacterBody2D" groups=["enemies"]]
+[node name="RobotBoss" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(502, 301)
 collision_layer = 8
 collision_mask = 11
@@ -55,15 +55,16 @@ floor_stop_on_slope = false
 floor_constant_speed = true
 floor_block_on_wall = false
 safe_margin = 0.1
-script = ExtResource("1_2myvj")
+script = ExtResource("1_160wv")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvu14")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0.275554, 0.19815, 1)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_swn7e")
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("2_pelfv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
@@ -87,7 +88,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ii3l0")
+stream = ExtResource("3_twx50")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

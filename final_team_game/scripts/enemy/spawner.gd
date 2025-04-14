@@ -3,8 +3,14 @@ extends Node2D
 class_name Spawner
 
 @onready var pos: Marker2D = $Marker2D
-var enemy = preload("res://scenes/enemy/enemy_1.tscn")
-var braizer = preload("res://scenes/item/braizer.tscn")
+var entity_dict: Dictionary = {
+	"robot": "res://scenes/enemy/enemy_1.tscn",
+ 	"blue_drone": "res://scenes/enemy/blue_drone.tscn",
+	"braizer": "res://scenes/item/braizer.tscn",
+	"robot_boss": "res://scenes/enemy/robot_boss.tscn",
+	"alien": "res://scenes/enemy/alien.tscn",
+	"red_drone": "res://scenes/enemy/red_drone.tscn"
+	}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,23 +22,40 @@ func _process(_delta: float) -> void:
 		#spawn(enemy, pos)
 	pass
 
-func spawn(spawn_type , spawn_position):
-	var new_spawn: CharacterBody2D = spawn_type.instantiate()
+func spawn(entity_key: String):
+	var new_spawn_scene = load(entity_dict[entity_key])
+	var new_spawn = new_spawn_scene.instantiate()
 	add_child(new_spawn)
-	new_spawn.global_position = spawn_position.global_position
+	new_spawn.global_position = CameraObserver.get_random_spawn_position()
 
-func spawn_robot(spawn_position):
-	var new_spawn: CharacterBody2D = enemy.instantiate()
-	get_tree().current_scene.call_deferred("add_child", new_spawn)
-	if !new_spawn.is_inside_tree():
-		await new_spawn.tree_entered
+func spawn_with_position(entity_key: String, spawn_position: Vector2):
+	var new_spawn_scene = load(entity_dict[entity_key])
+	var new_spawn = new_spawn_scene.instantiate()
+	add_child(new_spawn)
 	new_spawn.global_position = spawn_position
+func spawn_ring_aliens(num_aliens:int):
+	#equation for circle (x - h)² + (y - k)² = r² 
+	var player_position = PlayerObserver.player.position
+	var offset: float = 0
+	var right_camera_position: Vector2 = CameraObserver.get_spawn_right(offset)
 
-func spawn_braizer(spawn_position):
-	var new_braizer: Braizer = braizer.instantiate()
-	get_tree().current_scene.add_child(new_braizer)
-	new_braizer.global_position = spawn_position
+	var center_of_circle = player_position
+	var h: float = center_of_circle.x
+	var k: float = center_of_circle.y
+	var radius: float = right_camera_position.x - player_position.x
+		
+	for i in range(num_aliens):
+		var angle = (TAU / num_aliens) * i  # TAU = 2 * PI
+		var x = h + radius * cos(angle)
+		var y = k + radius * sin(angle)
+		var point = Vector2(x, y)
+		spawn_with_position("alien", point)
+
+func spawn_group_red_drones(num_drones:int):
+	var center_position: Vector2 = CameraObserver.get_random_spawn_position()
+
+	for i in range(num_drones):
+		var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100)) 
+		var spawn_position = center_position + offset
+		spawn_with_position("red_drone", spawn_position)
 	
-
-func _on_spawn_timer_timeout() -> void:
-	pass # Replace with function body.

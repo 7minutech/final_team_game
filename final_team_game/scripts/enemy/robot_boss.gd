@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 ## Constants
 # Constants for stats
-const INITIAL_HEALTH: int = 20.0
+const INITIAL_HEALTH: int = 200.0
 const INITIAL_SPEED: float = 50.0
-const INITIAL_DAMAGE: int = 10
+const INITIAL_DAMAGE: int = 25
 
 ## Variables
 # Variables for stats
@@ -16,15 +16,21 @@ var off_screen: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
 		
 
 func _physics_process(_delta: float) -> void:
+	var current_speed: float
+	if off_screen:
+		current_speed = speed * 2
+	else:
+		current_speed = INITIAL_SPEED
 	if PlayerObserver.player != null:
 		sprite_animation.play("walk")
 		var direction = PlayerObserver.player.global_position - global_position
-		velocity = direction.normalized() * speed
+		velocity = direction.normalized() * current_speed	
 		move_and_slide()
 		
 ### Functions for stats ###
@@ -35,7 +41,7 @@ func loseHealth(dmg: int) -> void:
 	flash_white()
 	health -= dmg
 	if health <= 0:
-		drop_xp_orb(20)
+		drop_chest()
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
@@ -56,17 +62,10 @@ func player_is_to_right() -> bool:
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	off_screen = false
-	$QueueFreeTimer.stop()
 	pass # Replace with function body.
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	off_screen = true
-	$QueueFreeTimer.start()
-	pass # Replace with function body.
-
-func _on_queue_free_timer_timeout() -> void:
-	if off_screen:
-		queue_free()
 	pass # Replace with function body.
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
@@ -86,17 +85,55 @@ func set_pitch_scale() -> void:
 	var pitch := randf_range(1.2,1.5)
 	$LostHeatlhSound.pitch_scale = pitch
 
-func drop_xp_orb(xp_value: int) -> void:
-	var xp_orb: PackedScene = preload("res://scenes/item/xp_orb.tscn")
-	var xp_orb_instance: XPOrb2 = xp_orb.instantiate()	
-	xp_orb_instance.set_xp_value(xp_value)
-	xp_orb_instance.position = self.position
-	get_parent().call_deferred("add_child", xp_orb_instance)
+func drop_chest() -> void:
+	var chest_scene: PackedScene = preload("res://scenes/item/chest.tscn")
+	var chest_instance: Chest = chest_scene.instantiate()	
+	chest_instance.position = self.position
+	get_parent().call_deferred("add_child", chest_instance)
 	
 func set_max_health() -> void:
 	max_health += (TimeObserver.total_time / 60.0) * 10
 	#print(str((TimeObserver.total_time / 60.0) * 10))
 	#print(max_health)
 
+func is_off_screen(position: Vector2, camera: Camera2D) -> bool:
+	var screen_rect := Rect2(
+		camera.global_position - (get_viewport_rect().size * 0.5) * camera.zoom,
+		get_viewport_rect().size * camera.zoom
+	)
+	return not screen_rect.has_point(position)
 	
+func get_camera_edges(camera: Camera2D) -> Dictionary:
+	var viewport_size = get_viewport().get_visible_rect().size
+	var zoom = camera.zoom
+	var half_width = (viewport_size.x * 0.5) * zoom.x
+	var half_height = (viewport_size.y * 0.5) * zoom.y
 	
+	var cam_pos = camera.global_position
+
+	return {
+		"left": cam_pos.x - half_width,
+		"right": cam_pos.x + half_width,
+		"top": cam_pos.y - half_height,
+		"bottom": cam_pos.y + half_height
+	}
+
+func get_spawn_left(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = camera_positions["left"]
+	var y_pos: float = PlayerObserver.player.position.y + offset
+	return Vector2(x_pos, y_pos)
+	
+func get_spawn_right(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = camera_positions["right"]
+	var y_pos: float = PlayerObserver.player.position.y + offset
+	return Vector2(x_pos, y_pos)
+
+func get_spawn_top(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = PlayerObserver.player.position.x + offset
+	var y_pos: float = camera_positions["top"]
+	return Vector2(x_pos, y_pos)
+	
+func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
+	var x_pos: float = PlayerObserver.player.position.x + offset
+	var y_pos: float = camera_positions["bottom"]
+	return Vector2(x_pos, y_pos)

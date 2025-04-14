@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://vxsu18akowvg"]
+
+[ext_resource type="Script" path="res://scripts/enemy/orb_turret/orb_turret.gd" id="1_084eo"]
+[ext_resource type="Texture2D" uid="uid://cjltrlfrqvrhs" path="res://icon.svg" id="2_hwq6p"]
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="4_pearo"]
+
+[sub_resource type="Animation" id="Animation_574dt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_27yjj"]
+resource_name = "walk"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.174533, 0.0, 0.174533, 0.0, -0.174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxq07"]
+_data = {
+"RESET": SubResource("Animation_574dt"),
+"walk": SubResource("Animation_27yjj")
+}
+
+[sub_resource type="Gradient" id="Gradient_asjdi"]
+offsets = PackedFloat32Array(0, 0.433735, 0.777108, 0.825301, 0.843373)
+colors = PackedColorArray(1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a1xx4"]
+gradient = SubResource("Gradient_asjdi")
+
+[sub_resource type="Gradient" id="Gradient_6rq1u"]
+offsets = PackedFloat32Array(0, 0.402597, 0.727273)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_smh3t"]
+gradient = SubResource("Gradient_6rq1u")
+fill = 1
+fill_from = Vector2(0.490826, 0.518349)
+fill_to = Vector2(0.53211, 0.995413)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhpsd"]
+size = Vector2(38, 36)
+
+[node name="OrbTurret" type="StaticBody2D" groups=["enemies"]]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("1_084eo")
+
+[node name="BaseSkin" type="Sprite2D" parent="."]
+scale = Vector2(0.315171, 0.303967)
+texture = ExtResource("2_hwq6p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BaseSkin"]
+libraries = {
+"": SubResource("AnimationLibrary_sxq07")
+}
+
+[node name="Laser" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.356863)
+
+[node name="LaserSkin" type="Sprite2D" parent="Laser"]
+position = Vector2(65.5, 0.25)
+scale = Vector2(0.488281, 2.5)
+texture = SubResource("GradientTexture1D_a1xx4")
+
+[node name="OrbSkin" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_smh3t")
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rhpsd")
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.3, 0.3)
+
+[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pearo")

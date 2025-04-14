@@ -5,29 +5,25 @@ extends RigidBody2D
 
 ## Variables
 # Variables for stats
-var speed: int = 5
-var damage: int = 20
+var speed: int
+var damage: int
 
 var direction: Vector2
-var damage_key: String = "plasma_projectile_damage"
-var speed_key: String = "plasma_projectile_speed"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 300
-	DamageObserver.weapon_damage_dict[damage_key] = damage
-	DamageObserver.weapon_damage_dict[speed_key] = speed
-	if get_tree().current_scene.find_child("Hero"):
-		self.position = get_tree().current_scene.find_child("Hero").position
 
 # Called every physics process frame
 func _physics_process(delta: float) -> void:
 	self.move_and_collide((direction * delta).normalized() * speed)
+	
 
-func _process(delta: float) -> void:
-	update()
-	
-	
+# Function to set spawn position
+func setSpawn(spawnPos: Vector2) -> void:
+	position = spawnPos
+
 # Function to set direction of movement
 func setDirection(d: Vector2) -> void:
 	direction = d
@@ -47,13 +43,9 @@ func _on_despawn_timeout() -> void:
 
 # Function to determine what to do if a body is hit
 func _on_body_entered(body: Node) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("Hero"):
 		self.queue_free()
 		body.loseHealth(damage)
 
 func bullet() -> void:
 	pass
-
-func update() -> void:
-	damage = DamageObserver.weapon_damage_dict[damage_key]
-	speed = DamageObserver.weapon_damage_dict[speed_key]

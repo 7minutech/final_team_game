@@ -13,8 +13,8 @@ var max_health: int = INITIAL_HEALTH
 @export var speed: float = INITIAL_SPEED
 var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
 func _ready() -> void:
 	set_max_health()
 	health = max_health
