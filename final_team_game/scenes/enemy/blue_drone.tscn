@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cf0hx34n0hgc5"]
 
 [ext_resource type="Script" path="res://scripts/enemy/blue_drone.gd" id="1_dwopl"]
-[ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/Drones-sheet.png" id="2_yu07y"]
+[ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/drone/Drones-sheet.png" id="2_yu07y"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_hfnst"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6sme"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pxmtm3a424cp"
-path="res://.godot/imported/Drones-sheet.png-17abb431163a9ca810d0fae0c7d3fc47.ctex"
+uid="uid://dbxr4wai4omck"
+path="res://.godot/imported/Shield.png-65140549bc85d4cae8436c322a8f4772.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/Drones-sheet.png"
-dest_files=["res://.godot/imported/Drones-sheet.png-17abb431163a9ca810d0fae0c7d3fc47.ctex"]
+source_file="res://assets/ability_icons/Shield.png"
+dest_files=["res://.godot/imported/Shield.png-65140549bc85d4cae8436c322a8f4772.ctex"]
 
 [params]
 
