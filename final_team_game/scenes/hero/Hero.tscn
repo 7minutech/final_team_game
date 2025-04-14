@@ -66,6 +66,7 @@ animations = [{
 
 [node name="Hero" type="CharacterBody2D" groups=["Hero"]]
 z_index = 1
+z_as_relative = false
 collision_layer = 2
 input_pickable = true
 floor_stop_on_slope = false

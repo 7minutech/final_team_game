@@ -20,6 +20,8 @@ font = SubResource("SystemFont_rccnp")
 font_size = 30
 
 [node name="Hud" type="Node2D"]
+z_index = 10
+z_as_relative = false
 script = ExtResource("1_i6a3x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

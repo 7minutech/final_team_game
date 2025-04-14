@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6v60glumomfy"]
+[gd_scene load_steps=6 format=3 uid="uid://c6v60glumomfy"]
 
 [ext_resource type="Script" path="res://scripts/test/main/test_enemy_main_2.gd" id="1_ab874"]
 [ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="3_go7pr"]
+[ext_resource type="PackedScene" uid="uid://vxsu18akowvg" path="res://scenes/enemy/orb_turret/orb_turret.tscn" id="4_0vv3h"]
 [ext_resource type="PackedScene" uid="uid://bdyu27f5oox4s" path="res://scenes/enemy/Spawner.tscn" id="5_l4qc1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fb66u"]
@@ -83,6 +84,9 @@ text = "Hide"
 [node name="RingAlienTimer" type="Timer" parent="."]
 wait_time = 60.0
 autostart = true
+
+[node name="OrbTurret" parent="." instance=ExtResource("4_0vv3h")]
+position = Vector2(251, 456)
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]

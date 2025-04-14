@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkx1rnm3klsxy"]
+
+[ext_resource type="Script" path="res://scripts/enemy/orb_turret/orb_turret_projectile.gd" id="1_g6sc5"]
+
+[sub_resource type="Gradient" id="Gradient_sflar"]
+offsets = PackedFloat32Array(0.149351, 0.272727, 0.350649)
+colors = PackedColorArray(0, 1, 1, 1, 0.458824, 0, 1, 1, 0.984314, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8x52k"]
+gradient = SubResource("Gradient_sflar")
+fill = 1
+fill_from = Vector2(0.486239, 0.454128)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ympc6"]
+radius = 9.0
+height = 20.0
+
+[node name="OrbTurretProjectile" type="RigidBody2D" groups=["enemy_projectiles"]]
+z_as_relative = false
+collision_layer = 16
+collision_mask = 3
+gravity_scale = 0.0
+script = ExtResource("1_g6sc5")
+
+[node name="Skin" type="Sprite2D" parent="."]
+scale = Vector2(0.738456, 0.648393)
+texture = SubResource("GradientTexture2D_8x52k")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ympc6")
+
+[node name="Despawn" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]

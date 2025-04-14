@@ -24,6 +24,7 @@ CameraObserver="*res://scripts/global/CameraObserver.gd"
 [global_group]
 
 enemies=""
+enemy_projectiles=""
 
 [input]
 
