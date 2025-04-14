@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 
 PlayerObserver="*res://scripts/global/PlayerObserver.gd"
 TimeObserver="*res://scripts/global/TimeObserver.gd"
-GameMusic="*res://scenes/hud/GameMusic.tscn"
 CameraObserver="*res://scripts/global/CameraObserver.gd"
 DamageObserver="*res://scripts/global/DamageObserver.gd"
 

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvhe3q6rs6608"]
-
-[ext_resource type="AudioStream" uid="uid://cciydgc7d8jui" path="res://assets/sound/Knights_of_neon_v2.mp3" id="1_x6dmy"]
-[ext_resource type="Script" path="res://scenes/hud/game_music.gd" id="2_oiej0"]
-
-[node name="GameMusic" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_x6dmy")
-parameters/looping = true
-script = ExtResource("2_oiej0")
