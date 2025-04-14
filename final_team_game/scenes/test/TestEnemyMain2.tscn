@@ -25,22 +25,36 @@ position = Vector2(1154, 206)
 wait_time = 0.5
 autostart = true
 
-[node name="BraizerSpawnTimer" type="Timer" parent="."]
-wait_time = 15.0
+[node name="RobotBossTimer" type="Timer" parent="."]
+wait_time = 60.0
 autostart = true
 
 [node name="BlueDroneTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[node name="RobotBossTimer" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
-
 [node name="AlienTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="RingAlienTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[node name="RedDroneTimer" type="Timer" parent="."]
+wait_time = 0.218
+
+[node name="BraizerSpawnTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HideButton" type="Button" parent="CanvasLayer"]
+offset_left = 982.0
+offset_top = 120.0
+offset_right = 1026.0
+offset_bottom = 151.0
+text = "Hide"
 
 [node name="SpawnRobot" type="Button" parent="CanvasLayer"]
 offset_left = 982.0
@@ -79,33 +93,19 @@ offset_right = 1139.0
 offset_bottom = 310.0
 text = "Spawn Ring of Aliens"
 
-[node name="HideButton" type="Button" parent="CanvasLayer"]
-offset_left = 982.0
-offset_top = 120.0
-offset_right = 1026.0
-offset_bottom = 151.0
-text = "Hide"
-
-[node name="RingAlienTimer" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
-
 [node name="OrbTurret" parent="." instance=ExtResource("4_0vv3h")]
 position = Vector2(251, 456)
 
-[node name="RedDroneTimer" type="Timer" parent="."]
-wait_time = 0.218
-
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
-[connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
-[connection signal="timeout" from="BlueDroneTimer" to="." method="_on_blue_drone_timer_timeout"]
 [connection signal="timeout" from="RobotBossTimer" to="." method="_on_robot_boss_timer_timeout"]
+[connection signal="timeout" from="BlueDroneTimer" to="." method="_on_blue_drone_timer_timeout"]
 [connection signal="timeout" from="AlienTimer" to="." method="_on_alien_timer_timeout"]
+[connection signal="timeout" from="RingAlienTimer" to="." method="_on_ring_alien_timer_timeout"]
+[connection signal="timeout" from="RedDroneTimer" to="." method="_on_red_drone_timer_timeout"]
+[connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/HideButton" to="." method="_on_hide_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpawnRobot" to="." method="_on_spawn_robot_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpawnRobotBoss" to="." method="_on_spawn_robot_boss_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpawnBlueDrone" to="." method="_on_spawn_blue_drone_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpawnAlien" to="." method="_on_spawn_alien_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpawnRingAlien" to="." method="_on_spawn_ring_alien_pressed"]
-[connection signal="pressed" from="CanvasLayer/HideButton" to="." method="_on_hide_button_pressed"]
-[connection signal="timeout" from="RingAlienTimer" to="." method="_on_ring_alien_timer_timeout"]
-[connection signal="timeout" from="RedDroneTimer" to="." method="_on_red_drone_timer_timeout"]

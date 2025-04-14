@@ -29,7 +29,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 func _on_braizer_spawn_timer_timeout() -> void:
 	if spawn_braizers:
 		spawner.spawn("braizer")
-	pass # Replace with function body.
+	
 
 func _on_blue_drone_timer_timeout() -> void:
 	if spawn_drones:
@@ -38,32 +38,27 @@ func _on_blue_drone_timer_timeout() -> void:
 func _on_robot_boss_timer_timeout() -> void:
 	if spawn_robot_boss:
 		spawner.spawn("robot_boss")
-	pass # Replace with function body.
 
 
 func _on_alien_timer_timeout() -> void:
 	if spawn_alien:
 		spawner.spawn("alien")
-	pass # Replace with function body.
 
 
 func _on_spawn_robot_pressed() -> void:
 	spawner.spawn("robot")
-	pass # Replace with function body.
 
 
 func _on_spawn_robot_boss_pressed() -> void:
 	spawner.spawn("robot_boss")
-	pass # Replace with function body.
+	
 
 func _on_spawn_alien_pressed() -> void:
 	spawner.spawn("alien")
-	pass # Replace with function body.
 
 
 func _on_spawn_ring_alien_pressed() -> void:
 	spawner.spawn_ring_aliens(60)
-	pass # Replace with function body.
 
 
 func _on_hide_button_pressed() -> void:
@@ -80,19 +75,15 @@ func _on_hide_button_pressed() -> void:
 		hide_button.text = "Show"
 	else:
 		hide_button.text = "Hide"
-	pass # Replace with function body.
 
 
 func _on_spawn_blue_drone_pressed() -> void:
 	spawner.spawn("blue_drone")
-	pass # Replace with function body.
 
 
 func _on_ring_alien_timer_timeout() -> void:
 	spawner.spawn_ring_aliens(60)
-	pass # Replace with function body.
 
 
 func _on_red_drone_timer_timeout() -> void:
 	spawner.spawn_group_red_drones(10)
-	pass # Replace with function body.
