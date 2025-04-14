@@ -15,6 +15,8 @@ var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
+var health_key: String = "robot_health"
+var damage_key: String = "robot_damage"
 func _ready() -> void:
 	set_max_health()
 	health = max_health
@@ -94,9 +96,8 @@ func drop_xp_orb(xp_value: int) -> void:
 	get_parent().call_deferred("add_child", xp_orb_instance)
 	
 func set_max_health() -> void:
-	max_health += (TimeObserver.total_time / 60.0) * 10
-	#print(str((TimeObserver.total_time / 60.0) * 10))
-	#print(max_health)
+	max_health += EnemyOberver.entity_health_dict[health_key]
 
-	
+func set_damage_health() -> void:
+	damage += EnemyOberver.entity_damage_dict[damage_key]
 	
