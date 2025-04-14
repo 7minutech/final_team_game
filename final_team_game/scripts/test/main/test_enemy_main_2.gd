@@ -4,9 +4,9 @@ extends Node2D
 @onready var spawner: Spawner = $Spawner
 @export var spawn_robots: bool = true
 @export var spawn_robot_boss: bool = true
-@export var spawn_drones: bool = true
+@export var spawn_blue_drones: bool = true
+@export var spawn_red_drones: bool = true
 @export var spawn_alien: bool = true
-@export var red_drone_group: bool = true
 @export var spawn_braizers: bool = true
 
 
@@ -19,49 +19,41 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
 	if Input.is_action_just_pressed("spawn"):
-		spawner.spawn_group_red_drones()
+		spawner.spawn("red_drones")
 		#spawner.spawn_ring_aliens(60)
 
-
-func _on_enemy_spawn_timer_timeout() -> void:
-	if spawn_robots:
-		spawner.spawn("robot")
-
+### Functions for timer logic ###
 func _on_braizer_spawn_timer_timeout() -> void:
 	if spawn_braizers:
 		spawner.spawn("braizer")
-	
-
-func _on_blue_drone_timer_timeout() -> void:
-	if spawn_drones:
-		spawner.spawn("blue_drone")
-
+##
+func _on_enemy_spawn_timer_timeout() -> void:
+	if spawn_robots:
+		spawner.spawn("robot")
+##
 func _on_robot_boss_timer_timeout() -> void:
 	if spawn_robot_boss:
 		spawner.spawn("robot_boss")
-
-
+##
 func _on_alien_timer_timeout() -> void:
 	if spawn_alien:
 		spawner.spawn("alien")
+##
+func _on_ring_alien_timer_timeout() -> void:
+	if spawn_alien:
+		spawner.spawn_ring_aliens(60)
+##
+func _on_blue_drone_timer_timeout() -> void:
+	if spawn_blue_drones:
+		spawner.spawn("blue_drone")
+##
+func _on_red_drone_timer_timeout() -> void:
+	if spawn_red_drones:
+		spawner.spawn("red_drone_group")
+##
 
 
-func _on_spawn_robot_pressed() -> void:
-	spawner.spawn("robot")
-
-
-func _on_spawn_robot_boss_pressed() -> void:
-	spawner.spawn("robot_boss")
-	
-
-func _on_spawn_alien_pressed() -> void:
-	spawner.spawn("alien")
-
-
-func _on_spawn_ring_alien_pressed() -> void:
-	spawner.spawn_ring_aliens(60)
-
-
+### Functions for debug menu buttons logic ###
 func _on_hide_button_pressed() -> void:
 	var hide_button: Button = $CanvasLayer/HideButton
 	var buttons = $CanvasLayer.get_children()
@@ -76,15 +68,21 @@ func _on_hide_button_pressed() -> void:
 		hide_button.text = "Show"
 	else:
 		hide_button.text = "Hide"
-
-
+##
+func _on_spawn_robot_pressed() -> void:
+	spawner.spawn("robot")
+##
+func _on_spawn_robot_boss_pressed() -> void:
+	spawner.spawn("robot_boss")
+##
+func _on_spawn_alien_pressed() -> void:
+	spawner.spawn("alien")
+##
+func _on_spawn_ring_alien_pressed() -> void:
+	spawner.spawn_ring_aliens(60)
+##
 func _on_spawn_blue_drone_pressed() -> void:
 	spawner.spawn("blue_drone")
-
-
-func _on_ring_alien_timer_timeout() -> void:
-	spawner.spawn_ring_aliens(60)
-
-
-func _on_red_drone_timer_timeout() -> void:
-	spawner.spawn("red_drone_group")
+##
+func _on_spawn_red_drones_pressed() -> void:
+	spawner.spawn_group_red_drones()

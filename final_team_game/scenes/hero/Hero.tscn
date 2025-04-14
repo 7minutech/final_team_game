@@ -65,6 +65,7 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_l1d1y"]
 
 [node name="Hero" type="CharacterBody2D" groups=["Hero"]]
+process_mode = 1
 z_index = 1
 z_as_relative = false
 collision_layer = 2

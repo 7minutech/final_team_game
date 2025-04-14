@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=11 format=3 uid="uid://qb10brngodal"]
 
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://bvenivlr7pitl" path="res://assets/small_font.tres" id="4_5rsm6"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_ct54g"]
 [ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
+[ext_resource type="PackedScene" uid="uid://dtprdwix3bkxn" path="res://scenes/hud/debug_and_cheats_menu.tscn" id="7_ogj2b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
 font = ExtResource("4_ct54g")
@@ -20,6 +21,7 @@ font = SubResource("SystemFont_rccnp")
 font_size = 30
 
 [node name="Hud" type="Node2D"]
+process_mode = 1
 z_index = 10
 z_as_relative = false
 script = ExtResource("1_i6a3x")
@@ -61,8 +63,12 @@ text = "100"
 label_settings = SubResource("LabelSettings_roxam")
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
+process_mode = 2
 
 [node name="UpdateTimeLabel" type="Timer" parent="."]
 autostart = true
+
+[node name="DebugAndCheatsMenu" parent="." instance=ExtResource("7_ogj2b")]
+position = Vector2(377, -208)
 
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

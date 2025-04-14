@@ -24,7 +24,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	self.move_and_collide((direction * delta).normalized() * speed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update()
 	
 	

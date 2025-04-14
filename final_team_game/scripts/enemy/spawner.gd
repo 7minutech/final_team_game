@@ -9,7 +9,7 @@ var entity_dict: Dictionary = {
 	"braizer": "res://scenes/item/braizer.tscn",
 	"robot_boss": "res://scenes/enemy/robot_boss.tscn",
 	"alien": "res://scenes/enemy/alien.tscn",
-	"red_drone_group": "res://scenes/enemy/red_drone/red_drone_group_spawn.tscn"
+	"red_drones": "res://scenes/enemy/red_drone/red_drone_group_spawn.tscn"
 	}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,6 +33,7 @@ func spawn_with_position(entity_key: String, spawn_position: Vector2):
 	var new_spawn = new_spawn_scene.instantiate()
 	get_tree().current_scene.add_child(new_spawn)
 	new_spawn.global_position = spawn_position
+
 func spawn_ring_aliens(num_aliens:int):
 	#equation for circle (x - h)² + (y - k)² = r² 
 	var player_position = PlayerObserver.player.position
@@ -50,7 +51,3 @@ func spawn_ring_aliens(num_aliens:int):
 		var y = k + radius * sin(angle)
 		var point = Vector2(x, y)
 		spawn_with_position("alien", point)
-
-func spawn_group_red_drones():
-	spawn("red_drone_group")
-	

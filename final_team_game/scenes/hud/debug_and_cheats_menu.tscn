@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtprdwix3bkxn"]
+
+[ext_resource type="Script" path="res://scripts/hud/debug_and_cheats_menu.gd" id="1_6s3ig"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="1_m5r4p"]
+
+[node name="DebugAndCheatsMenu" type="Node2D"]
+script = ExtResource("1_6s3ig")
+
+[node name="Show_Hide_Spawners" type="Button" parent="."]
+offset_left = -161.0
+offset_right = -1.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Show Spawner Menu"
+
+[node name="Show_Hide_Cheats" type="Button" parent="."]
+offset_left = -161.0
+offset_top = 33.0
+offset_right = -14.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Show Cheats Menu"
+
+[node name="SpawnerMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="SpawnRobot" type="Button" parent="SpawnerMenu"]
+offset_right = 103.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Robot"
+
+[node name="SpawnRobotBoss" type="Button" parent="SpawnerMenu"]
+offset_top = 33.0
+offset_right = 141.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Robot Boss"
+
+[node name="SpawnAlien" type="Button" parent="SpawnerMenu"]
+offset_top = 66.0
+offset_right = 103.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Alien"
+
+[node name="SpawnAlienRing" type="Button" parent="SpawnerMenu"]
+offset_top = 99.0
+offset_right = 162.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Ring of Aliens"
+
+[node name="SpawnBlueDrone" type="Button" parent="SpawnerMenu"]
+offset_top = 132.0
+offset_right = 142.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Blue Drone"
+
+[node name="SpawnRedDroneGroup" type="Button" parent="SpawnerMenu"]
+offset_top = 166.0
+offset_right = 189.0
+offset_bottom = 194.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Red Drone Group
+"
+
+[node name="CheatsMenu" type="Node2D" parent="."]
+
+[node name="Invincibility" type="Button" parent="CheatsMenu"]
+offset_left = 1.0
+offset_right = 98.0
+offset_bottom = 31.0
+text = "Invincibility"
+
+[connection signal="pressed" from="Show_Hide_Spawners" to="." method="_on_show_hide_debug_pressed"]
+[connection signal="pressed" from="Show_Hide_Cheats" to="." method="_on_show_hide_cheats_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnRobot" to="." method="_on_spawn_robot_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnRobotBoss" to="." method="_on_spawn_robot_boss_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnAlien" to="." method="_on_spawn_alien_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnAlienRing" to="." method="_on_spawn_alien_ring_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnBlueDrone" to="." method="_on_spawn_blue_drone_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnRedDroneGroup" to="." method="_on_spawn_red_drone_group_pressed"]
+[connection signal="pressed" from="CheatsMenu/Invincibility" to="." method="_on_invincibility_pressed"]

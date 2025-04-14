@@ -93,12 +93,12 @@ func drop_chest() -> void:
 	chest_instance.position = self.position
 	get_parent().call_deferred("add_child", chest_instance)
 
-func is_off_screen(position: Vector2, camera: Camera2D) -> bool:
+func is_off_screen(spawnPos: Vector2, camera: Camera2D) -> bool:
 	var screen_rect := Rect2(
 		camera.global_position - (get_viewport_rect().size * 0.5) * camera.zoom,
 		get_viewport_rect().size * camera.zoom
 	)
-	return not screen_rect.has_point(position)
+	return not screen_rect.has_point(spawnPos)
 	
 func get_camera_edges(camera: Camera2D) -> Dictionary:
 	var viewport_size = get_viewport().get_visible_rect().size

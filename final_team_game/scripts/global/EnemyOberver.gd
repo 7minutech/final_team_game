@@ -26,11 +26,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var default_health_scale: float = ((TimeObserver.total_time / 60.0) * 10)
 	for key in entity_health_dict.keys():
 		entity_health_dict[key] = default_health_scale
-	pass
 	
 
 func set_health_value(key: String, value):
