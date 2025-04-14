@@ -22,6 +22,10 @@ CameraObserver="*res://scripts/global/CameraObserver.gd"
 DamageObserver="*res://scripts/global/DamageObserver.gd"
 EnemyOberver="*res://scripts/global/EnemyOberver.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 enemies=""
