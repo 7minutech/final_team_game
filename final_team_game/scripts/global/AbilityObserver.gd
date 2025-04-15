@@ -5,6 +5,7 @@ var ability_path:Dictionary = {
 	"garlic": "res://scenes/ability/passive/garlic.tscn"
 }
 var movement_speed_buff: float = 0.05
+var max_health_buff: float = 0.05
 var player: Player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +31,8 @@ func give_passive_boost(ability_name: String):
 	match ability_name:
 		"movement_speed":
 			set_movement_speed_buff()
+		"max_health":
+			set_max_health_buff()
 			
 
 func give_active_ability(ability_key: String) -> void:
@@ -50,6 +53,11 @@ func set_movement_speed_buff() -> void:
 	var new_speed = (player.INITIAL_SPEED * multiplier)
 	player.set_speed(new_speed)
 
+func set_max_health_buff() -> void:
+	var multiplier = 1 + (max_health_buff * player.ability_qty["max_health"])
+	var new_health = (player.INITIAL_MAX_XP * multiplier)
+	player.set_max_health(new_health)
+
 func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
@@ -58,6 +66,11 @@ func give_movement_speeds():
 	for i in range(player.movement_speed_level):
 		AbilityObserver.give_passive_ability("movement_speed")
 
+func give_max_healths():
+	for i in range(player.max_health_level):
+		AbilityObserver.give_passive_ability("max_health")
+
 func give_init_abilities():
 	give_garlics()
 	give_movement_speeds()
+	give_max_healths()

@@ -36,6 +36,7 @@ var movement_buff = 0.05
 @export var xp_timer: float
 @export var garlic_level: int
 @export var movement_speed_level: int
+@export var max_health_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -180,6 +181,7 @@ func has_level_up() -> bool:
 ##
 # Function to increase player's level by one and adjust stats/labels accordingly
 func level_up() -> void:
+	print(max_health)
 	raise_player_max_xp()
 	current_xp = 0
 	updateXpBar()
@@ -212,7 +214,6 @@ func updateXpBar() -> void:
 	$Hud/XpBar.value = current_xp
 ##
 
-
 # Function to update player observer with all of the player's stats
 func updateAllStats() -> void:
 	PlayerObserver.max_hp = max_health
@@ -227,3 +228,6 @@ func _on_ability_tester_timeout() -> void:
 	
 func set_speed(new_speed: float) -> void:
 	speed = new_speed
+
+func set_max_health(new_health: int) -> void:
+	max_health = new_health
