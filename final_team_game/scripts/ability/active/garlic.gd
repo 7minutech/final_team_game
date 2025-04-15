@@ -6,10 +6,20 @@ var max_qty: float = 6
 var radius: float
 var damage: int = 20
 var damage_targets = []
+var TICK_INTERVAL: float = 1.0
+var tick_timer: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	radius = $CollisionShape2D.shape.radius
 	update_sprite_scale()
+
+func _process(delta: float) -> void:
+	tick_timer += delta
+	if tick_timer >= TICK_INTERVAL:
+		tick_timer = 0
+		for target in damage_targets:
+			if is_instance_valid(target) and target.has_method("loseHealth"):
+				target.loseHealth(damage)
 
 func update_sprite_scale():
 	var circle:CircleShape2D = $CollisionShape2D.shape 
@@ -34,7 +44,7 @@ func update_stat(qty:float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		#body.loseHealth(damage)
-		damage_targets.push_back(body)
+		damage_targets.append(body)
 	pass # Replace with function body.
 
 
@@ -42,3 +52,10 @@ func _on_damage_ticker_timeout() -> void:
 	for target in damage_targets:	
 		if is_instance_valid(target) and target.health > 0:
 			target.loseHealth(damage)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		#body.loseHealth(damage)
+		damage_targets.erase(body)
+	pass # Replace with function body.
