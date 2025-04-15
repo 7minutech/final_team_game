@@ -47,7 +47,7 @@ func _ready() -> void:
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
-	give_init_abilities()
+	AbilityObserver.give_init_abilities()
 	
 func _process(_delta: float) -> void:
 	if has_level_up():
@@ -221,36 +221,9 @@ func updateAllStats() -> void:
 	PlayerObserver.current_xp = current_xp
 	PlayerObserver.current_level = player_level
 	
-func give_active_ability(ability_key: String) -> void:
-	if not abilities.has(ability_key) or not abilities[ability_key]:
-		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
-		var ability_instance = ability_scene.instantiate()
-		add_child(ability_instance)
-		abilities[ability_key] = ability_instance
-		ability_qty[ability_key] = 1
-	else:
-		ability_qty[ability_key] += 1
-	var ability = abilities[ability_key]
-	if ability.has_method("update_stat"):
-		ability.update_stat(ability_qty[ability_key])
-		print(abilities[ability_key].radius)
-
-
 func _on_ability_tester_timeout() -> void:
-	give_active_ability("garlic")
+	AbilityObserver.give_active_ability("garlic")
 	pass # Replace with function body.
-
-func give_garlics() -> void:
-	for i in range(garlic_level):
-		give_active_ability("garlic")
-
-func give_movement_speeds():
-	for i in range(movement_speed_level):
-		AbilityObserver.give_passive_ability("movement_speed")
-
-func give_init_abilities():
-	give_garlics()
-	give_movement_speeds()
 	
 func set_speed(new_speed: float) -> void:
 	speed = new_speed
