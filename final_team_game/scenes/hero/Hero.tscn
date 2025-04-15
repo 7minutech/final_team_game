@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=16 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://crshn8i2od14f" path="res://assets/player/heroWalking1-sheet.png" id="3_negf0"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="4_enxk8"]
 [ext_resource type="Texture2D" uid="uid://bq0dp27jqosu3" path="res://assets/hud/health_and_exp_bar/healthBarFill.png" id="5_3krd2"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="7_aj0gs"]
 [ext_resource type="AudioStream" uid="uid://cciydgc7d8jui" path="res://assets/sound/Knights_of_neon_v2.mp3" id="8_bcq0s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
@@ -62,8 +61,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_l1d1y"]
-
 [node name="Hero" type="CharacterBody2D" groups=["Hero"]]
 process_mode = 1
 z_index = 1
@@ -116,14 +113,6 @@ texture_progress = ExtResource("5_3krd2")
 texture_progress_offset = Vector2(-15, -60)
 
 [node name="XPGiver" type="Timer" parent="."]
-
-[node name="DebuggingLabel" type="Label" parent="."]
-offset_left = -527.0
-offset_top = 5.0
-offset_right = -420.0
-offset_bottom = 72.0
-theme_override_fonts/font = ExtResource("7_aj0gs")
-label_settings = SubResource("LabelSettings_l1d1y")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_bcq0s")

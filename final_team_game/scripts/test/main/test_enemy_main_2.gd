@@ -18,9 +18,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
-	if Input.is_action_just_pressed("spawn"):
+	#spawner.spawn_ring_aliens(60)
+	pass
+
+# Function that checks for input events
+func _input(event: InputEvent) -> void:
+	if event.is_action("pause_game"):
+		PlayerObserver.player.updateAllStats()
+		get_tree().set_pause(true)
+	if event.is_action("spawn"):
 		spawner.spawn("red_drones")
-		#spawner.spawn_ring_aliens(60)
+
 
 ### Functions for timer logic ###
 func _on_braizer_spawn_timer_timeout() -> void:

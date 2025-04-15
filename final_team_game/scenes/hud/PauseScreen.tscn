@@ -1,29 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://cltujlk1ryjm1"]
+[gd_scene load_steps=4 format=3 uid="uid://cltujlk1ryjm1"]
 
 [ext_resource type="Script" path="res://scripts/hud/pause_screen.gd" id="1_cr7hm"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="2_al6gt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3c0f"]
 
 [node name="PauseScreen" type="Node2D"]
+visible = false
 script = ExtResource("1_cr7hm")
 
-[node name="TopBackground" type="Sprite2D" parent="."]
+[node name="ButtonsBG" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.702842, 0.773495, 0.603922)
+position = Vector2(1.50028, -11.6358)
+rotation = 3.14159
+scale = Vector2(248, -431.728)
+texture = SubResource("CanvasTexture_h3c0f")
+
+[node name="AbilityBG" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 1, 0.603922)
 position = Vector2(-414.5, -124.5)
 rotation = 3.14159
 scale = Vector2(248, -206)
 texture = SubResource("CanvasTexture_h3c0f")
 
-[node name="AbilityBG" type="RichTextLabel" parent="."]
+[node name="AbilityIconBG" type="RichTextLabel" parent="."]
 offset_left = -531.0
 offset_top = -220.0
 offset_right = -298.0
 offset_bottom = -32.0
 fit_content = true
 
-[node name="Ability" type="RichTextLabel" parent="."]
+[node name="AbilityIcon" type="RichTextLabel" parent="."]
 offset_left = -531.0
 offset_top = -220.0
 offset_right = -298.0
 offset_bottom = -32.0
 fit_content = true
+
+[node name="StatsBG" type="Sprite2D" parent="."]
+self_modulate = Color(0.34902, 0, 1, 0.603922)
+position = Vector2(-414.5, 96.5)
+rotation = 3.14159
+scale = Vector2(248, -206)
+texture = SubResource("CanvasTexture_h3c0f")
+
+[node name="StatsLabel" type="Label" parent="."]
+offset_left = -528.0
+offset_right = -298.0
+offset_bottom = 193.0
+text = "Temp Text"
+
+[node name="ButtonHolder" type="Node2D" parent="."]
+position = Vector2(-64, -64)
+
+[node name="Resume" type="Button" parent="ButtonHolder"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("2_al6gt")
+theme_override_font_sizes/font_size = 0
+text = "Resume Game"
+
+[connection signal="pressed" from="ButtonHolder/Resume" to="." method="_on_resume_pressed"]
