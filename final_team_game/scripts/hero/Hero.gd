@@ -12,6 +12,7 @@ const INITIAL_SPEED: int = 300
 const INITIAL_HEALTH: int = 100
 const INITIAL_MAX_XP: int = 100
 const INITIAL_HEALTH_REGEN: int = 0 
+const INITIAL_PICK_UP_RANGE: float = 73.25
 
 ### Variables ###
 # Variable for movement logic
@@ -35,11 +36,13 @@ var ability_qty: Dictionary
 var abilities: Dictionary
 var movement_buff = 0.05
 var health_regen: float 
+var pick_up_range: float
 @export var xp_timer: float
 @export var garlic_level: int
 @export var movement_speed_level: int
 @export var max_health_level: int
 @export var health_regen_level: int
+@export var pick_up_range_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -237,6 +240,12 @@ func set_max_health(new_health: int) -> void:
 
 func set_health_regen(regen: int) -> void:
 	health_regen = regen
+
+func set_pick_up_range(new_radius: float) -> void:
+	pick_up_range = new_radius
+	$PickUpRange/CollisionShape2D.shape.radius = pick_up_range
+	var f = $PickUpRange/CollisionShape2D.shape.radius
+	print()
 
 func _on_health_regen_timer_timeout() -> void:
 	if health < max_health:
