@@ -13,6 +13,9 @@ const INITIAL_HEALTH: int = 100
 const INITIAL_MAX_XP: int = 100
 const INITIAL_HEALTH_REGEN: int = 0 
 const INITIAL_PICK_UP_RANGE: float = 73.25
+const INITIAL_SHIELD_DURATION: float = 0
+const INITIAL_SHIELD_CD: float = 5
+const ORIGINAL_COLOR: Color = Color("ffffff")
 
 ### Variables ###
 # Variable for movement logic
@@ -37,12 +40,16 @@ var abilities: Dictionary
 var movement_buff = 0.05
 var health_regen: float 
 var pick_up_range: float
+var shield_active: bool = false
+var shield_duration: float = INITIAL_SHIELD_DURATION
+var shield_cd: float = INITIAL_SHIELD_CD
 @export var xp_timer: float
 @export var garlic_level: int
 @export var movement_speed_level: int
 @export var max_health_level: int
 @export var health_regen_level: int
 @export var pick_up_range_level: int
+@export var shield_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -55,6 +62,8 @@ func _ready() -> void:
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
 	AbilityObserver.give_init_abilities()
+	$ShieldTimerCD.wait_time = INITIAL_SHIELD_CD
+	$ShieldDuration.wait_time = INITIAL_SHIELD_DURATION
 	
 func _process(_delta: float) -> void:
 	if has_level_up():
@@ -92,7 +101,8 @@ func raise_player_max_hp() -> void:
 	$HealthBar.set_max(max_health)
 # Function to lose health
 func loseHealth(dmg: int) -> void:
-	health -= dmg
+	if not shield_active:
+		health -= dmg
 	updateHealthBar()
 # Function to restore health
 func restoreHealth(hp: int) -> void:
@@ -244,11 +254,41 @@ func set_health_regen(regen: int) -> void:
 func set_pick_up_range(new_radius: float) -> void:
 	pick_up_range = new_radius
 	$PickUpRange/CollisionShape2D.shape.radius = pick_up_range
-	var f = $PickUpRange/CollisionShape2D.shape.radius
-	print()
+
+func set_shield_duration(time: float) -> void:
+	shield_duration = time
+	$ShieldDuration.wait_time = shield_duration
+
+func set_shield_cd(time: float) -> void:
+	if time >= 0:
+		shield_cd = time
+		$ShieldTimerCD.wait_time = shield_cd
 
 func _on_health_regen_timer_timeout() -> void:
 	if health < max_health:
 		health += health_regen
 		updateHealthBar()
 	pass # Replace with function body.
+
+
+func _on_shield_timer_cd_timeout() -> void:
+	$ShieldTimerCD.stop()
+	if abilities.has("shield"):
+		shield_active = true
+	show_shield()
+	$ShieldDuration.start()
+	pass # Replace with function body.
+
+
+func _on_shield_duration_timeout() -> void:
+	$ShieldDuration.stop()
+	shield_active = false
+	show_shield()
+	$ShieldTimerCD.start()
+	pass # Replace with function body.
+
+func show_shield() -> void:
+	if shield_active:
+		$Skin.modulate = Color("#4ad2ff")
+	else:
+		$Skin.modulate = ORIGINAL_COLOR

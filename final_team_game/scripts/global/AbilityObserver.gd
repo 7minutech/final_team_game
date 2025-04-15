@@ -8,6 +8,8 @@ var movement_speed_buff: float = 0.05
 var max_health_buff: float = 0.05
 var health_regen_buff: float = 0.2
 var pick_up_buff: float = 0.2
+var shield_duration_buff: float = 0.2
+var shield_cd_buff: float = 0.3
 var player: Player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,6 +41,9 @@ func give_passive_boost(ability_name: String):
 			set_health_regen_buff()
 		"pick_up_range":
 			set_pick_up_buff()
+		"shield":
+			set_shield_duration_buff()
+			set_shield_cd_buff()
 			
 
 func give_active_ability(ability_key: String) -> void:
@@ -74,6 +79,14 @@ func set_pick_up_buff() -> void:
 	var new_range = (player.INITIAL_PICK_UP_RANGE * multiplier)
 	player.set_pick_up_range(new_range)
 
+func set_shield_duration_buff() -> void:
+	var new_duration = (player.shield_duration + shield_duration_buff)
+	player.set_shield_duration(new_duration)
+
+func set_shield_cd_buff() -> void:
+	var new_cd = (player.shield_cd - shield_duration_buff)
+	player.set_shield_cd(new_cd)
+
 func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
@@ -94,9 +107,19 @@ func give_pick_up_ranges():
 	for i in range(player.pick_up_range_level):
 		AbilityObserver.give_passive_ability("pick_up_range")
 
+func give_shield_durations():
+	for i in range(player.shield_level):
+		AbilityObserver.give_passive_ability("shield")
+
+func give_shield_cds():
+	for i in range(player.shield_level):
+		AbilityObserver.give_passive_ability("shield")
+
 func give_init_abilities():
 	give_garlics()
 	give_movement_speeds()
 	give_max_healths()
 	give_health_regens()
 	give_pick_up_ranges()
+	give_shield_cds()
+	give_shield_durations()
