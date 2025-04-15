@@ -25,6 +25,8 @@ var health: int = INITIAL_HEALTH
 var max_health: int = INITIAL_HEALTH
 var health_key: String = "turret_health"
 var damage_key: String = "turret_damage"
+@onready var hit_label: Label = $DamageLabel
+@onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 # Variables for sprite management
 @onready var sprite: Sprite2D = $BaseSkin
 
@@ -88,6 +90,7 @@ func shoot() -> void:
 func loseHealth(dmg: int) -> void:
 	set_pitch_scale()
 	$LostHeatlhSound.play()
+	show_hit_number(dmg)
 	flash_white()
 	health -= dmg
 	if health <= 0:
@@ -123,3 +126,10 @@ func set_max_health() -> void:
 
 func set_damage_health() -> void:
 	damage += EnemyOberver.entity_damage_dict[damage_key]
+
+func show_hit_number(dmg: int) -> void:
+	hit_label_animation.play("hit")
+	hit_label.text = str(dmg)
+	hit_label.show()
+	await get_tree().create_timer(0.2).timeout
+	hit_label.hide()

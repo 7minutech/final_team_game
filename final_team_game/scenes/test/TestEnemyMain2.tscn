@@ -7,6 +7,7 @@
 [node name="TestEnemyMain2" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_ab874")
+spawn_robots = false
 spawn_robot_boss = false
 spawn_blue_drones = false
 spawn_red_drones = false
