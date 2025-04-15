@@ -9,6 +9,7 @@ var timeCheck: float
 func _ready() -> void:
 	startTime = Time.get_unix_time_from_system()
 	updateTime()
+	$KillCounter.set_text("0")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

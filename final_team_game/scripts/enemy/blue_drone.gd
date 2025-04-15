@@ -15,6 +15,10 @@ var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
+var health_key: String = "blue_drone_health"
+var damage_key: String = "blue_drone_damage"
+@onready var hit_label: Label = $DamageLabel
+@onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 func _ready() -> void:
 	set_max_health()
 	health = max_health
@@ -32,6 +36,7 @@ func _physics_process(_delta: float) -> void:
 func loseHealth(dmg: int) -> void:
 	set_pitch_scale()
 	$LostHeatlhSound.play()
+	show_hit_number(dmg)
 	flash_white()
 	health -= dmg
 	if health <= 0:
@@ -94,9 +99,14 @@ func drop_xp_orb(xp_value: int) -> void:
 	get_parent().call_deferred("add_child", xp_orb_instance)
 	
 func set_max_health() -> void:
-	max_health += (TimeObserver.total_time / 60.0) * 10
-	#print(str((TimeObserver.total_time / 60.0) * 10))
-	#print(max_health)
+	max_health += EnemyOberver.entity_health_dict[health_key]
 
+func set_damage_health() -> void:
+	damage += EnemyOberver.entity_damage_dict[damage_key]
 	
-	
+func show_hit_number(dmg: int) -> void:
+	hit_label_animation.play("hit")
+	hit_label.text = str(dmg)
+	hit_label.show()
+	await get_tree().create_timer(0.2).timeout
+	hit_label.hide()

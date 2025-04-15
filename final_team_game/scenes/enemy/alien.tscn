@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cavsp5515qht1"]
+[gd_scene load_steps=13 format=3 uid="uid://cavsp5515qht1"]
 
 [ext_resource type="Script" path="res://scripts/enemy/alien.gd" id="1_26lnl"]
 [ext_resource type="Texture2D" uid="uid://krgpfr3scb2o" path="res://assets/enemy/Alien-sheet.png" id="3_106wd"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_phs0u"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_lephc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14i5d"]
 atlas = ExtResource("3_106wd")
@@ -38,6 +39,67 @@ height = 1120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_08i3j"]
 radius = 113.529
+
+[sub_resource type="Animation" id="Animation_wehhc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, -49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l74q6"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-17, -49), Vector2(-17, -60)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b31ty"]
+_data = {
+"RESET": SubResource("Animation_wehhc"),
+"hit": SubResource("Animation_l74q6")
+}
 
 [node name="Alien" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(503, 301)
@@ -80,6 +142,19 @@ one_shot = true
 
 [node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_phs0u")
+
+[node name="DamageLabel" type="Label" parent="."]
+offset_left = -140.0
+offset_top = -800.0
+offset_right = 137.0
+offset_bottom = -648.0
+theme_override_fonts/font = ExtResource("4_lephc")
+theme_override_font_sizes/font_size = 128
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_b31ty")
+}
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://x7fprqp42vcs"]
+
+[ext_resource type="Script" path="res://scripts/hud/damage_number.gd" id="1_wxcq0"]
+
+[sub_resource type="SystemFont" id="SystemFont_aq0av"]
+font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
+
+[sub_resource type="Animation" id="Animation_wehhc"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-420, -900), Vector2(-420, -950)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l74q6"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-420, -1000), Vector2(-420, -1100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b31ty"]
+_data = {
+"RESET": SubResource("Animation_wehhc"),
+"hit": SubResource("Animation_l74q6")
+}
+
+[node name="DamageLabel" type="Label"]
+offset_left = -17.0
+offset_top = -49.0
+offset_right = 23.0
+offset_bottom = -20.0
+theme_override_fonts/font = SubResource("SystemFont_aq0av")
+theme_override_font_sizes/font_size = 24
+script = ExtResource("1_wxcq0")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b31ty")
+}

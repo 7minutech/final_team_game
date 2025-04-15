@@ -15,6 +15,10 @@ var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
+@onready var hit_label: Label = $DamageLabel
+@onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
+var health_key: String = "robot_boss_health"
+var damage_key: String = "robot_boss_damage"
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
@@ -38,6 +42,7 @@ func _physics_process(_delta: float) -> void:
 func loseHealth(dmg: int) -> void:
 	set_pitch_scale()
 	$LostHeatlhSound.play()
+	show_hit_number(dmg)
 	flash_white()
 	health -= dmg
 	if health <= 0:
@@ -90,18 +95,13 @@ func drop_chest() -> void:
 	var chest_instance: Chest = chest_scene.instantiate()	
 	chest_instance.position = self.position
 	get_parent().call_deferred("add_child", chest_instance)
-	
-func set_max_health() -> void:
-	max_health += (TimeObserver.total_time / 60.0) * 10
-	#print(str((TimeObserver.total_time / 60.0) * 10))
-	#print(max_health)
 
-func is_off_screen(position: Vector2, camera: Camera2D) -> bool:
+func is_off_screen(spawnPos: Vector2, camera: Camera2D) -> bool:
 	var screen_rect := Rect2(
 		camera.global_position - (get_viewport_rect().size * 0.5) * camera.zoom,
 		get_viewport_rect().size * camera.zoom
 	)
-	return not screen_rect.has_point(position)
+	return not screen_rect.has_point(spawnPos)
 	
 func get_camera_edges(camera: Camera2D) -> Dictionary:
 	var viewport_size = get_viewport().get_visible_rect().size
@@ -137,3 +137,16 @@ func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
 	var y_pos: float = camera_positions["bottom"]
 	return Vector2(x_pos, y_pos)
+
+func set_max_health() -> void:
+	max_health += EnemyOberver.entity_health_dict[health_key]
+
+func set_damage_health() -> void:
+	damage += EnemyOberver.entity_damage_dict[damage_key]
+
+func show_hit_number(dmg: int) -> void:
+	hit_label_animation.play("hit")
+	hit_label.text = str(dmg)
+	hit_label.show()
+	await get_tree().create_timer(0.2).timeout
+	hit_label.hide()

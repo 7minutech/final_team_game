@@ -25,13 +25,17 @@ var speed: int = INITIAL_SPEED
 # Health variables
 var health: int = INITIAL_HEALTH
 var max_health: int = INITIAL_HEALTH
-# Xp variables
-var player_current_xp: int = 0
-var player_max_xp: int = INITIAL_MAX_XP
+# Xp variables	
+var current_xp: int = 0
+var max_xp: int = INITIAL_MAX_XP
 var player_level: int = 0
 var luck: int = 5
+var ability_qty: Dictionary
+var abilities: Dictionary
+var movement_buff = 0.05
 @export var xp_timer: float
-
+@export var garlic_level: int
+@export var movement_speed_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -39,12 +43,13 @@ func _ready() -> void:
 	PlayerObserver.max_xp = INITIAL_MAX_XP
 	PlayerObserver.player_camera = $HeroCamera
 	CameraObserver.player_camera = $HeroCamera
+	AbilityObserver.player = self
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
+	give_init_abilities()
 	
 func _process(_delta: float) -> void:
-	update_debug_label()
 	if has_level_up():
 		level_up()
 
@@ -124,7 +129,7 @@ func handleMovement() -> void:
 	setFacing()
 ##
 
-### Functions to handle kill conunter logic ###
+### Functions to handle kill counter logic ###
 # Function to add 1 kill to the kill count
 func addOneToKillCounter() -> void:
 	killCount += 1
@@ -171,50 +176,81 @@ func _on_mouse_exited() -> void:
 ### Functions to handle logic for player leveling ###
 # Function to determine if the player has leveled up
 func has_level_up() -> bool:
-	return player_current_xp >= player_max_xp
+	return current_xp >= max_xp
 ##
 # Function to increase player's level by one and adjust stats/labels accordingly
 func level_up() -> void:
 	raise_player_max_xp()
-	player_current_xp = 0
+	current_xp = 0
 	updateXpBar()
 	raise_player_max_hp()
 	health = max_health
 	updateHealthBar()
 	player_level += 1
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
-	PlayerObserver.current_xp = player_current_xp
-	PlayerObserver.max_xp = player_max_xp
+	PlayerObserver.current_xp = current_xp
+	PlayerObserver.max_xp = max_xp
 ##
 # Function to raise the player's max xp
 func raise_player_max_xp() -> void:
-	player_max_xp *= 1.5
-	$Hud/XpBar.set_max(player_max_xp)
+	max_xp *= 1.5
+	$Hud/XpBar.set_max(max_xp)
 # Function to give the player xp on a timer
 func _on_xp_giver_timeout() -> void:
-	player_current_xp += 0
-	PlayerObserver.current_xp = player_current_xp
+	current_xp += 0
+	PlayerObserver.current_xp = current_xp
 	updateXpBar()
 ##
 # Function to give the player xp when they pick up an orb
 func give_xp(xp_orb: XPOrb2):
-	player_current_xp += xp_orb.xp_value
-	PlayerObserver.current_xp = player_current_xp
+	current_xp += xp_orb.xp_value
+	PlayerObserver.current_xp = current_xp
 	updateXpBar()
 ##
 # Function to update the player xp bar
 func updateXpBar() -> void:
-	$Hud/XpBar.value = player_current_xp
+	$Hud/XpBar.value = current_xp
 ##
 
 
-func player() -> void:
-	pass
+# Function to update player observer with all of the player's stats
+func updateAllStats() -> void:
+	PlayerObserver.max_hp = max_health
+	PlayerObserver.current_hp = health
+	PlayerObserver.max_xp = max_xp
+	PlayerObserver.current_xp = current_xp
+	PlayerObserver.current_level = player_level
 	
-func update_debug_label() -> void:
-	var text: String = "max health: " + str(max_health)
-	text += "\ncurrent health: " + str(health)
-	text += "\nlevel: " + str(player_level)
-	text += "\nmax xp: " + str(player_max_xp)
-	text += "\ncurrent xp: " + str(player_current_xp)
-	$DebuggingLabel.text = text
+func give_active_ability(ability_key: String) -> void:
+	if not abilities.has(ability_key) or not abilities[ability_key]:
+		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
+		var ability_instance = ability_scene.instantiate()
+		add_child(ability_instance)
+		abilities[ability_key] = ability_instance
+		ability_qty[ability_key] = 1
+	else:
+		ability_qty[ability_key] += 1
+	var ability = abilities[ability_key]
+	if ability.has_method("update_stat"):
+		ability.update_stat(ability_qty[ability_key])
+		print(abilities[ability_key].radius)
+
+
+func _on_ability_tester_timeout() -> void:
+	give_active_ability("garlic")
+	pass # Replace with function body.
+
+func give_garlics() -> void:
+	for i in range(garlic_level):
+		give_active_ability("garlic")
+
+func give_movement_speeds():
+	for i in range(movement_speed_level):
+		AbilityObserver.give_passive_ability("movement_speed")
+
+func give_init_abilities():
+	give_garlics()
+	give_movement_speeds()
+	
+func set_speed(new_speed: float) -> void:
+	speed = new_speed

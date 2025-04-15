@@ -6,20 +6,18 @@
 [ext_resource type="LabelSettings" uid="uid://bvenivlr7pitl" path="res://assets/small_font.tres" id="4_5rsm6"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_ct54g"]
 [ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
+[ext_resource type="PackedScene" uid="uid://dtprdwix3bkxn" path="res://scenes/hud/debug_and_cheats_menu.tscn" id="7_ogj2b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
 font = ExtResource("4_ct54g")
 font_size = 30
 
-[sub_resource type="SystemFont" id="SystemFont_rccnp"]
-font_names = PackedStringArray("Rockwell")
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_roxam"]
-font = SubResource("SystemFont_rccnp")
+font = ExtResource("4_ct54g")
 font_size = 30
 
 [node name="Hud" type="Node2D"]
+process_mode = 1
 z_index = 10
 z_as_relative = false
 script = ExtResource("1_i6a3x")
@@ -53,16 +51,20 @@ text = "06:30"
 label_settings = SubResource("LabelSettings_ekby6")
 
 [node name="KillCounter" type="Label" parent="."]
-offset_left = 370.0
+offset_left = 411.0
 offset_top = -250.0
-offset_right = 419.0
+offset_right = 460.0
 offset_bottom = -214.0
-text = "100"
+text = "9999999999"
 label_settings = SubResource("LabelSettings_roxam")
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
+process_mode = 2
 
 [node name="UpdateTimeLabel" type="Timer" parent="."]
 autostart = true
+
+[node name="DebugAndCheatsMenu" parent="." instance=ExtResource("7_ogj2b")]
+position = Vector2(411, -208)
 
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]
