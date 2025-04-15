@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://vxsu18akowvg"]
+[gd_scene load_steps=9 format=3 uid="uid://vxsu18akowvg"]
 
-[ext_resource type="Script" path="res://scripts/enemy/orb_turret/orb_turret.gd" id="1_084eo"]
-[ext_resource type="Texture2D" uid="uid://cjltrlfrqvrhs" path="res://icon.svg" id="2_hwq6p"]
+[ext_resource type="Script" path="res://scripts/enemy/bullet_turret/bullet_turret.gd" id="1_084eo"]
+[ext_resource type="Texture2D" uid="uid://s5ivm5caeuan" path="res://assets/enemy/turret/TurretBody.png" id="2_f4oxk"]
+[ext_resource type="Texture2D" uid="uid://lk2e14jhttr3" path="res://assets/enemy/turret/TurretLaser.png" id="3_mspdg"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="4_pearo"]
 
 [sub_resource type="Animation" id="Animation_574dt"]
@@ -41,34 +42,17 @@ _data = {
 "walk": SubResource("Animation_27yjj")
 }
 
-[sub_resource type="Gradient" id="Gradient_asjdi"]
-offsets = PackedFloat32Array(0, 0.433735, 0.777108, 0.825301, 0.843373)
-colors = PackedColorArray(1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_a1xx4"]
-gradient = SubResource("Gradient_asjdi")
-
-[sub_resource type="Gradient" id="Gradient_6rq1u"]
-offsets = PackedFloat32Array(0, 0.402597, 0.727273)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_smh3t"]
-gradient = SubResource("Gradient_6rq1u")
-fill = 1
-fill_from = Vector2(0.490826, 0.518349)
-fill_to = Vector2(0.53211, 0.995413)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhpsd"]
-size = Vector2(38, 36)
+size = Vector2(38, 57)
 
-[node name="OrbTurret" type="StaticBody2D" groups=["enemies"]]
+[node name="BulletTurret" type="StaticBody2D" groups=["enemies"]]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_084eo")
 
 [node name="BaseSkin" type="Sprite2D" parent="."]
-scale = Vector2(0.315171, 0.303967)
-texture = ExtResource("2_hwq6p")
+scale = Vector2(0.0617275, 0.0714406)
+texture = ExtResource("2_f4oxk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BaseSkin"]
 libraries = {
@@ -76,17 +60,16 @@ libraries = {
 }
 
 [node name="Laser" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0.356863)
+position = Vector2(0, -22)
 
 [node name="LaserSkin" type="Sprite2D" parent="Laser"]
-position = Vector2(65.5, 0.25)
-scale = Vector2(0.488281, 2.5)
-texture = SubResource("GradientTexture1D_a1xx4")
-
-[node name="OrbSkin" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_smh3t")
+modulate = Color(0.686275, 0, 0, 1)
+position = Vector2(128.5, -8.59987)
+scale = Vector2(0.202344, 0.232187)
+texture = ExtResource("3_mspdg")
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_rhpsd")
 
 [node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]

@@ -2,7 +2,7 @@ extends Node2D
 
 ### Constants ###
 # Constants for preloads
-const PROJECTILE = preload("res://scenes/enemy/orb_turret/orb_turret_projectile.tscn")
+const PROJECTILE = preload("res://scenes/enemy/bullet_turret/bullet_turret_projectile.tscn")
 # Constants for initial stats
 const INITIAL_PROJECTILE_SPEED: int = 7
 const INITIAL_BURST_SIZE: int = 3
@@ -78,6 +78,7 @@ func shoot() -> void:
 	projectile.setSpeed(projectile_speed)
 	projectile.position = self.global_position
 	var direction: Vector2 = playerPos - self.position
+	projectile.look_at(playerPos)
 	projectile.setDirection(direction)
 	shots_fired += 1
 ##

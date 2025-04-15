@@ -61,6 +61,10 @@ func _on_spawn_blue_drone_pressed() -> void:
 ##
 func _on_spawn_red_drone_group_pressed() -> void:
 	spawner.spawn("red_drones")
+##
+func _on_spawn_turret_pressed() -> void:
+	spawner.spawn("bullet_turret")
+
 
 
 ### Functions for cheats menu logic ###

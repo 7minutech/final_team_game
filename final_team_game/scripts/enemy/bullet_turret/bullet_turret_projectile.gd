@@ -12,8 +12,7 @@ var direction: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	contact_monitor = true
-	max_contacts_reported = 300
+	pass
 
 # Called every physics process frame
 func _physics_process(delta: float) -> void:
@@ -42,10 +41,7 @@ func _on_despawn_timeout() -> void:
 	self.queue_free()
 
 # Function to determine what to do if a body is hit
-func _on_body_entered(body: Node) -> void:
+func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hero"):
 		self.queue_free()
 		body.loseHealth(damage)
-
-func bullet() -> void:
-	pass
