@@ -11,6 +11,7 @@ const INITIAL_FIRE_RATE: int = 1
 const INITIAL_SPEED: int = 300
 const INITIAL_HEALTH: int = 100
 const INITIAL_MAX_XP: int = 100
+const INITIAL_HEALTH_REGEN: int = 0 
 
 ### Variables ###
 # Variable for movement logic
@@ -33,10 +34,12 @@ var luck: int = 5
 var ability_qty: Dictionary
 var abilities: Dictionary
 var movement_buff = 0.05
+var health_regen: float 
 @export var xp_timer: float
 @export var garlic_level: int
 @export var movement_speed_level: int
 @export var max_health_level: int
+@export var health_regen_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -231,3 +234,12 @@ func set_speed(new_speed: float) -> void:
 
 func set_max_health(new_health: int) -> void:
 	max_health = new_health
+
+func set_health_regen(regen: int) -> void:
+	health_regen = regen
+
+func _on_health_regen_timer_timeout() -> void:
+	if health < max_health:
+		health += health_regen
+		updateHealthBar()
+	pass # Replace with function body.
