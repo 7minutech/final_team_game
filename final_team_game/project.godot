@@ -30,6 +30,7 @@ window/stretch/mode="canvas_items"
 
 enemies=""
 enemy_projectiles=""
+friendly_projectiles=""
 
 [input]
 
