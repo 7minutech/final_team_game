@@ -15,6 +15,8 @@ var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
+@onready var hit_label: Label = $DamageLabel
+@onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 var health_key: String = "robot_boss_health"
 var damage_key: String = "robot_boss_damage"
 func _ready() -> void:
@@ -40,6 +42,7 @@ func _physics_process(_delta: float) -> void:
 func loseHealth(dmg: int) -> void:
 	set_pitch_scale()
 	$LostHeatlhSound.play()
+	show_hit_number(dmg)
 	flash_white()
 	health -= dmg
 	if health <= 0:
@@ -140,3 +143,10 @@ func set_max_health() -> void:
 
 func set_damage_health() -> void:
 	damage += EnemyOberver.entity_damage_dict[damage_key]
+
+func show_hit_number(dmg: int) -> void:
+	hit_label_animation.play("hit")
+	hit_label.text = str(dmg)
+	hit_label.show()
+	await get_tree().create_timer(0.2).timeout
+	hit_label.hide()
