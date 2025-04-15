@@ -32,8 +32,10 @@ var player_level: int = 0
 var luck: int = 5
 var ability_qty: Dictionary
 var abilities: Dictionary
+var movement_buff = 0.05
 @export var xp_timer: float
 @export var garlic_level: int
+@export var movement_speed_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -44,7 +46,7 @@ func _ready() -> void:
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
-	give_garlics()
+	give_init_abilities()
 	
 func _process(_delta: float) -> void:
 	if has_level_up():
@@ -218,7 +220,7 @@ func updateAllStats() -> void:
 	PlayerObserver.current_xp = current_xp
 	PlayerObserver.current_level = player_level
 	
-func give_ability(ability_key: String) -> void:
+func give_active_ability(ability_key: String) -> void:
 	if not abilities.has(ability_key) or not abilities[ability_key]:
 		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
 		var ability_instance = ability_scene.instantiate()
@@ -232,11 +234,39 @@ func give_ability(ability_key: String) -> void:
 		ability.update_stat(ability_qty[ability_key])
 		print(abilities[ability_key].radius)
 
+func give_passive_ability(ability_key: String) -> void:
+	if not abilities.has(ability_key) or not abilities[ability_key]:
+		ability_qty[ability_key] = 1
+	else:
+		ability_qty[ability_key] += 1
+	abilities[ability_key] = "passive"
+	update_passive(ability_key)
 
 func _on_ability_tester_timeout() -> void:
-	give_ability("garlic")
+	give_active_ability("garlic")
 	pass # Replace with function body.
 
 func give_garlics() -> void:
 	for i in range(garlic_level):
-		give_ability("garlic")
+		give_active_ability("garlic")
+
+func update_passive(key: String):
+	var ability_name = key
+	var ability_level = ability_qty[key]
+	if ability_name == "movement_speed":
+		give_movement_speed(ability_name)
+
+func give_movement_speed(key: String) -> void:
+	var ability_level = ability_qty[key]
+	#lvl 2 would be a multiplier of 1.1 of their intial speed not current
+	var multiplier = 1 + (ability_level * movement_buff)
+	speed = multiplier * INITIAL_SPEED
+
+func give_movement_speeds():
+	for i in range(movement_speed_level):
+		give_passive_ability("movement_speed")
+
+func give_init_abilities():
+	give_garlics()
+	give_movement_speeds()
+	

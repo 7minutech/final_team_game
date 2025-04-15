@@ -8,6 +8,7 @@ var damage: int = 20
 var damage_targets = []
 var TICK_INTERVAL: float = 1.0
 var tick_timer: float = 0.0
+var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	radius = $CollisionShape2D.shape.radius
