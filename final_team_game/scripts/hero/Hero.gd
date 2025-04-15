@@ -33,7 +33,7 @@ var luck: int = 5
 var ability_qty: Dictionary
 var abilities: Dictionary
 @export var xp_timer: float
-
+@export var garlic_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -44,6 +44,7 @@ func _ready() -> void:
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
+	give_garlics()
 	
 func _process(_delta: float) -> void:
 	if has_level_up():
@@ -226,11 +227,16 @@ func give_ability(ability_key: String) -> void:
 		ability_qty[ability_key] = 1
 	else:
 		ability_qty[ability_key] += 1
-	if abilities[ability_key].has_method("update_stat"):
-		abilities[ability_key].update_stat(ability_qty[ability_key])
+	var ability = abilities[ability_key]
+	if ability.has_method("update_stat"):
+		ability.update_stat(ability_qty[ability_key])
 		print(abilities[ability_key].radius)
 
 
 func _on_ability_tester_timeout() -> void:
 	give_ability("garlic")
 	pass # Replace with function body.
+
+func give_garlics() -> void:
+	for i in range(garlic_level):
+		give_ability("garlic")

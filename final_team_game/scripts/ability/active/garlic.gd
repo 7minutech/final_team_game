@@ -2,8 +2,10 @@ extends Area2D
 
 class_name Garlic
 
-var max_qty: int = 6
-var radius: int
+var max_qty: float = 6
+var radius: float
+var damage: int = 20
+var damage_targets = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	radius = $CollisionShape2D.shape.radius
@@ -19,10 +21,24 @@ func update_sprite_scale():
 	#scale sprite to match circle's diameter
 	$Sprite2D.scale = Vector2(radius * 2, radius * 2) / tex_size
 
-func update_stat(qty:int) -> void:
+func update_stat(qty:float) -> void:
 	# if qty is 2 then multiplier is 1.2
-	var multiplier: float = 1 + (qty / 10) * 2
+	var multiplier: float = 1 + (qty / 10)
 	radius *= multiplier
 	$CollisionShape2D.shape.radius = radius
 	update_sprite_scale()
+
 	
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		#body.loseHealth(damage)
+		damage_targets.push_back(body)
+	pass # Replace with function body.
+
+
+func _on_damage_ticker_timeout() -> void:
+	for target in damage_targets:	
+		if is_instance_valid(target) and target.health > 0:
+			target.loseHealth(damage)
