@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=10 format=3 uid="uid://qb10brngodal"]
 
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
@@ -12,12 +12,8 @@
 font = ExtResource("4_ct54g")
 font_size = 30
 
-[sub_resource type="SystemFont" id="SystemFont_rccnp"]
-font_names = PackedStringArray("Rockwell")
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_roxam"]
-font = SubResource("SystemFont_rccnp")
+font = ExtResource("4_ct54g")
 font_size = 30
 
 [node name="Hud" type="Node2D"]
@@ -55,9 +51,9 @@ text = "06:30"
 label_settings = SubResource("LabelSettings_ekby6")
 
 [node name="KillCounter" type="Label" parent="."]
-offset_left = 370.0
+offset_left = 411.0
 offset_top = -250.0
-offset_right = 419.0
+offset_right = 460.0
 offset_bottom = -214.0
 text = "100"
 label_settings = SubResource("LabelSettings_roxam")
