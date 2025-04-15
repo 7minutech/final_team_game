@@ -14,7 +14,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	camera_positions = get_camera_edges(player_camera)
+	if player_camera != null:	
+		camera_positions = get_camera_edges(player_camera)
 
 func get_camera_edges(camera: Camera2D) -> Dictionary:
 	var viewport_size = get_viewport().get_visible_rect().size

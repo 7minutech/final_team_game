@@ -25,11 +25,13 @@ var speed: int = INITIAL_SPEED
 # Health variables
 var health: int = INITIAL_HEALTH
 var max_health: int = INITIAL_HEALTH
-# Xp variables
+# Xp variables	
 var current_xp: int = 0
 var max_xp: int = INITIAL_MAX_XP
 var player_level: int = 0
 var luck: int = 5
+var ability_qty: Dictionary
+var abilities: Dictionary
 @export var xp_timer: float
 
 func _ready() -> void:
@@ -215,3 +217,20 @@ func updateAllStats() -> void:
 	PlayerObserver.current_xp = current_xp
 	PlayerObserver.current_level = player_level
 	
+func give_ability(ability_key: String) -> void:
+	if not abilities.has(ability_key) or not abilities[ability_key]:
+		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
+		var ability_instance = ability_scene.instantiate()
+		add_child(ability_instance)
+		abilities[ability_key] = ability_instance
+		ability_qty[ability_key] = 1
+	else:
+		ability_qty[ability_key] += 1
+	if abilities[ability_key].has_method("update_stat"):
+		abilities[ability_key].update_stat(ability_qty[ability_key])
+		print(abilities[ability_key].radius)
+
+
+func _on_ability_tester_timeout() -> void:
+	give_ability("garlic")
+	pass # Replace with function body.

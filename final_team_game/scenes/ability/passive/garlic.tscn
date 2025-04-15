@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://uq2mye38jhvf"]
+
+[ext_resource type="Script" path="res://scripts/ability/active/garlic.gd" id="1_gh4mo"]
+[ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="1_iu3bb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onv62"]
+radius = 50.0
+
+[node name="Garlic" type="Area2D"]
+script = ExtResource("1_gh4mo")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onv62")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.249711, 0.522121, 0, 0.105882)
+texture = ExtResource("1_iu3bb")

@@ -21,6 +21,7 @@ TimeObserver="*res://scripts/global/TimeObserver.gd"
 CameraObserver="*res://scripts/global/CameraObserver.gd"
 DamageObserver="*res://scripts/global/DamageObserver.gd"
 EnemyOberver="*res://scripts/global/EnemyOberver.gd"
+AbilityObserver="*res://scripts/global/AbilityObserver.gd"
 
 [display]
 
