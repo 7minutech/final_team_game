@@ -55,7 +55,7 @@ offset_left = 411.0
 offset_top = -250.0
 offset_right = 460.0
 offset_bottom = -214.0
-text = "100"
+text = "9999999999"
 label_settings = SubResource("LabelSettings_roxam")
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
@@ -65,6 +65,6 @@ process_mode = 2
 autostart = true
 
 [node name="DebugAndCheatsMenu" parent="." instance=ExtResource("7_ogj2b")]
-position = Vector2(377, -208)
+position = Vector2(411, -208)
 
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

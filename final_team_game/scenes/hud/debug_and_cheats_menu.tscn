@@ -7,23 +7,22 @@
 script = ExtResource("1_6s3ig")
 
 [node name="Show_Hide_Spawners" type="Button" parent="."]
-offset_left = 34.0
-offset_right = 194.0
+offset_left = 2.0
+offset_right = 162.0
 offset_bottom = 28.0
 theme_override_fonts/font = ExtResource("1_m5r4p")
 text = "Show Spawner Menu"
 
 [node name="Show_Hide_Cheats" type="Button" parent="."]
-offset_left = 34.0
+offset_left = 2.0
 offset_top = 33.0
-offset_right = 181.0
+offset_right = 149.0
 offset_bottom = 61.0
 theme_override_fonts/font = ExtResource("1_m5r4p")
 text = "Show Cheats Menu"
 
 [node name="SpawnerMenu" type="Node2D" parent="."]
 visible = false
-position = Vector2(32, 0)
 
 [node name="SpawnRobot" type="Button" parent="SpawnerMenu"]
 offset_left = -107.0
@@ -81,7 +80,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CheatsMenu" type="Node2D" parent="."]
 visible = false
-position = Vector2(32, 0)
 
 [node name="Invincibility" type="Button" parent="CheatsMenu"]
 offset_left = -100.0

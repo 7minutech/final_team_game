@@ -44,7 +44,7 @@ func _ready() -> void:
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
 	
 func _process(_delta: float) -> void:
-	update_debug_label()
+	update_stats_label()
 	if has_level_up():
 		level_up()
 
@@ -124,7 +124,7 @@ func handleMovement() -> void:
 	setFacing()
 ##
 
-### Functions to handle kill conunter logic ###
+### Functions to handle kill counter logic ###
 # Function to add 1 kill to the kill count
 func addOneToKillCounter() -> void:
 	killCount += 1
@@ -211,7 +211,7 @@ func updateXpBar() -> void:
 func player() -> void:
 	pass
 	
-func update_debug_label() -> void:
+func update_stats_label() -> void:
 	var text: String = "max health: " + str(max_health)
 	text += "\ncurrent health: " + str(health)
 	text += "\nlevel: " + str(player_level)
