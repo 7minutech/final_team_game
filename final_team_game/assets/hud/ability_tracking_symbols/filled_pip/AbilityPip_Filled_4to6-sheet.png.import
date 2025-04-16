@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djbj10eic81jy"
-path="res://.godot/imported/Magnet.png-6cc0bd803df49459f313004551690dcb.ctex"
+uid="uid://d1ykgjxxwpfyi"
+path="res://.godot/imported/AbilityPip_Filled_4to6-sheet.png-2160b1f0fdc20f67c45a0b58c7ba3554.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ability_icons/Magnet.png"
-dest_files=["res://.godot/imported/Magnet.png-6cc0bd803df49459f313004551690dcb.ctex"]
+source_file="res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled_4to6-sheet.png"
+dest_files=["res://.godot/imported/AbilityPip_Filled_4to6-sheet.png-2160b1f0fdc20f67c45a0b58c7ba3554.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbxr4wai4omck"
-path="res://.godot/imported/Shield.png-65140549bc85d4cae8436c322a8f4772.ctex"
+uid="uid://clufwwkxfqgn"
+path="res://.godot/imported/AbilityPip_Filled_7to9-sheet.png-81799adc0931cfe1e7002e07a0573014.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ability_icons/Shield.png"
-dest_files=["res://.godot/imported/Shield.png-65140549bc85d4cae8436c322a8f4772.ctex"]
+source_file="res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled_7to9-sheet.png"
+dest_files=["res://.godot/imported/AbilityPip_Filled_7to9-sheet.png-81799adc0931cfe1e7002e07a0573014.ctex"]
 
 [params]
 

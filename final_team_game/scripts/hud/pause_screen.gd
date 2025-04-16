@@ -1,8 +1,8 @@
 extends Node2D
 
 const iconBG = preload("res://icon.svg")
-const image2 = preload("res://assets/hud/ability_symbols/filled_pip/AbilityPip_Filled.png")
-const image3 = preload("res://assets/hud/ability_symbols/empty_pip/AbilityPip_Empty.png")
+const image2 = preload("res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled.png")
+const image3 = preload("res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty.png")
 const message: String = "Pretyped Text"
 
 
@@ -14,16 +14,21 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if get_tree().paused && !self.is_visible():
 		self.show()
+		get_parent().find_child("AbilityIcons").hide()
+		get_parent().find_child("AbilityIconsBG").hide()
 		update_stats_label()
 		clearAbilities()
-		addAbility(image2, "Image2")
-		addAbility(image3, message)
+		addAbilities()
 		#print(PlayerObserver.toString())
 
 
 # Function to add ability images to the ability label
-func addAbility(image, tooltip: String) -> void:
-	for i in range(4):
+func addAbilities() -> void:
+	var player = AbilityObserver.player
+	for key in player.abilities:
+		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(key)
+		var image = load(path)
+		var tooltip: String = AbilityObserver.ABILITY_DESCRIPTIONS.get(key)
 		$AbilityIcon.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 		$AbilityIconBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER)
 # Function to clear the ability label for redrawing
@@ -43,4 +48,6 @@ func update_stats_label() -> void:
 
 func _on_resume_pressed() -> void:
 	self.hide()
+	get_parent().find_child("AbilityIcons").show()
+	get_parent().find_child("AbilityIconsBG").show()
 	get_tree().set_pause(false)

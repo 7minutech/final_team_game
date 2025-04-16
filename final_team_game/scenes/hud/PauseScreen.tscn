@@ -29,6 +29,7 @@ offset_top = -220.0
 offset_right = -298.0
 offset_bottom = -32.0
 fit_content = true
+scroll_active = false
 
 [node name="AbilityIcon" type="RichTextLabel" parent="."]
 offset_left = -531.0
@@ -36,6 +37,7 @@ offset_top = -220.0
 offset_right = -298.0
 offset_bottom = -32.0
 fit_content = true
+scroll_active = false
 
 [node name="StatsBG" type="Sprite2D" parent="."]
 self_modulate = Color(0.34902, 0, 1, 0.603922)

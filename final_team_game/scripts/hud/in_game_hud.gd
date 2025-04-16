@@ -14,16 +14,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if $AbilityIcons.get_total_character_count() <= 0:
+		AbilityObserver.give_passive_ability("health_regen")
+		addAbility("health_regen")
 	
 ### Functions to handle ability icon logic ###
 # Function to add ability images to the ability label
 func addAbility(ability: String) -> void:
-	var path: String = PlayerObserver.ABILITY_ASSET_PATH.get(ability)
-	var image = load(path)
-	var tooltip: String = PlayerObserver.ABILITY_DESCRIPTIONS.get(ability)
-	for i in range(4):
-		$AbilityIcon.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+	if PlayerObserver.player.abilities.has(ability):
+		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(ability)
+		var image = load(path)
+		$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 ##
 # Function to clear the ability label for redrawing
 func clearAbilities() -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d02mb2t7ybkeu"
-path="res://.godot/imported/AbilityPip_Empty_7to9-sheet.png-690dbeacedce7be73aa7ce9202b91b73.ctex"
+uid="uid://ffhwgjofgjr4"
+path="res://.godot/imported/Heart.png-9d658f9b23c5d0a1805ddd51db639108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/ability_symbols/empty_pip/AbilityPip_Empty_7to9-sheet.png"
-dest_files=["res://.godot/imported/AbilityPip_Empty_7to9-sheet.png-690dbeacedce7be73aa7ce9202b91b73.ctex"]
+source_file="res://assets/hud/ability_icons/Heart.png"
+dest_files=["res://.godot/imported/Heart.png-9d658f9b23c5d0a1805ddd51db639108.ctex"]
 
 [params]
 

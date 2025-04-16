@@ -12,18 +12,18 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
 	
 	# Non-damaging abilitites
-	"heart": "res://assets/ability_icons/Heart.png",
-	"heartWithGreenPlus": "res://assets/ability_icons/HeartWithGreenPlus.png",
-	"magnet": "res://assets/ability_icons/Magnet.png",
-	"shield": "res://assets/ability_icons/Shield.png"
+	"max_health": "res://assets/hud/ability_icons/Heart.png",
+	"health_regen": "res://assets/hud/ability_icons/HeartWithGreenPlus.png",
+	"magnet": "res://assets/hud/ability_icons/Magnet.png",
+	"shield": "res://assets/hud/ability_icons/Shield.png"
 }
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"garlic": "Adds a damaging area around the player",
 	
 	# Non-damaging abilities
-	"heart": "Provides a boost to max health",
-	"heartWithGreenPlus": "Provides health regen over time",
+	"max_health": "Provides a boost to max health",
+	"health_regen": "Provides health regen over time",
 	"magnet": "Increases the radius that the player can pick up items",
 	"shield": "Provides temporary invulnerability after taking damage"
 }

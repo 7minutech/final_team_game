@@ -58,9 +58,6 @@ offset_bottom = -214.0
 text = "9999999999"
 label_settings = SubResource("LabelSettings_roxam")
 
-[node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
-process_mode = 2
-
 [node name="UpdateTimeLabel" type="Timer" parent="."]
 autostart = true
 
@@ -72,11 +69,16 @@ offset_left = -565.0
 offset_top = -243.0
 offset_right = -354.0
 offset_bottom = -203.0
+scroll_active = false
 
 [node name="AbilityIconsBG" type="RichTextLabel" parent="."]
 offset_left = -565.0
 offset_top = -243.0
 offset_right = -354.0
 offset_bottom = -203.0
+scroll_active = false
+
+[node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
+process_mode = 2
 
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

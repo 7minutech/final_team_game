@@ -35,8 +35,8 @@ var current_xp: int = 0
 var max_xp: int = INITIAL_MAX_XP
 var player_level: int = 0
 var luck: int = 5
-var ability_qty: Dictionary
-var abilities: Dictionary
+var ability_qty: Dictionary = {}
+var abilities: Dictionary = {}
 var movement_buff = 0.05
 var health_regen: float 
 var pick_up_range: float

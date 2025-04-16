@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clufwwkxfqgn"
-path="res://.godot/imported/AbilityPip_Filled_7to9-sheet.png-fb573c277514f2b337b6c2c9a5855494.ctex"
+uid="uid://cq224tm1w0w6s"
+path="res://.godot/imported/AbilityPip_Filled_1to3-sheet.png-ab5e8c5825a4ab0d46169d2ae5b350bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/ability_symbols/filled_pip/AbilityPip_Filled_7to9-sheet.png"
-dest_files=["res://.godot/imported/AbilityPip_Filled_7to9-sheet.png-fb573c277514f2b337b6c2c9a5855494.ctex"]
+source_file="res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled_1to3-sheet.png"
+dest_files=["res://.godot/imported/AbilityPip_Filled_1to3-sheet.png-ab5e8c5825a4ab0d46169d2ae5b350bc.ctex"]
 
 [params]
 
