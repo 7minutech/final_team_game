@@ -29,6 +29,7 @@ scale = Vector2(0.738456, 0.648393)
 texture = SubResource("GradientTexture2D_8x52k")
 
 [node name="CollisionArea" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ympc6")
@@ -39,6 +40,7 @@ one_shot = true
 autostart = true
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 

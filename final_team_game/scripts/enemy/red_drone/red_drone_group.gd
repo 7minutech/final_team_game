@@ -20,7 +20,8 @@ func _ready() -> void:
 	var playerPos: Vector2 = PlayerObserver.player.global_position
 	#look_at(playerPos)
 	direction = playerPos - self.global_position
-	print(str(global_position))
+	print(str(direction))
+	#print(str(global_position))
 
 
 func _physics_process(delta: float) -> void:
