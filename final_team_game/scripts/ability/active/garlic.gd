@@ -24,13 +24,13 @@ func _process(delta: float) -> void:
 
 func update_sprite_scale():
 	var circle:CircleShape2D = $CollisionShape2D.shape 
-	var radius = circle.radius
+	var newRadius = circle.radius
 
 	#size of sprite
 	var tex_size = $Sprite2D.texture.get_size()
 
 	#scale sprite to match circle's diameter
-	$Sprite2D.scale = Vector2(radius * 2, radius * 2) / tex_size
+	$Sprite2D.scale = Vector2(newRadius * 2, newRadius * 2) / tex_size
 
 func update_stat(qty:float) -> void:
 	# if qty is 2 then multiplier is 1.2
