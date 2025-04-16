@@ -15,15 +15,20 @@ func _process(_delta: float) -> void:
 	if get_tree().paused && !self.is_visible():
 		self.show()
 		update_stats_label()
+		clearAbilities()
 		addAbility(image2, "Image2")
 		addAbility(image3, message)
 		#print(PlayerObserver.toString())
 
-# Function to add ability images to the label
+# Function to add ability images to the ability label
 func addAbility(image, tooltip: String) -> void:
 	for i in range(4):
 		$AbilityIcon.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 		$AbilityIconBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER)
+# Function to clear the ability label for redrawing
+func clearAbilities() -> void:
+	$AbilityIcon.clear()
+	$AbilityIconBG.clear()
 
 # Function to update the current stats label	
 func update_stats_label() -> void:
