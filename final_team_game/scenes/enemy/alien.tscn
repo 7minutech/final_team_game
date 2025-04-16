@@ -40,7 +40,7 @@ height = 1120.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_08i3j"]
 radius = 113.529
 
-[sub_resource type="Animation" id="Animation_wehhc"]
+[sub_resource type="Animation" id="Animation_g8jts"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-17, -49)]
+"values": [Vector2(-160, -750)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -67,7 +67,7 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_l74q6"]
+[sub_resource type="Animation" id="Animation_8xpyd"]
 resource_name = "hit"
 length = 0.2
 tracks/0/type = "value"
@@ -80,7 +80,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-17, -49), Vector2(-17, -60)]
+"values": [Vector2(-240, -1180), Vector2(-240, -1400)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -95,14 +95,14 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b31ty"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8i47"]
 _data = {
-"RESET": SubResource("Animation_wehhc"),
-"hit": SubResource("Animation_l74q6")
+"RESET": SubResource("Animation_g8jts"),
+"hit": SubResource("Animation_8xpyd")
 }
 
 [node name="Alien" type="CharacterBody2D" groups=["enemies"]]
-position = Vector2(503, 301)
+position = Vector2(503, 300)
 scale = Vector2(0.05, 0.05)
 collision_layer = 8
 collision_mask = 11
@@ -111,7 +111,6 @@ floor_constant_speed = true
 floor_block_on_wall = false
 safe_margin = 0.1
 script = ExtResource("1_26lnl")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.223529, 1, 0.0784314, 1)
@@ -144,16 +143,16 @@ one_shot = true
 stream = ExtResource("3_phs0u")
 
 [node name="DamageLabel" type="Label" parent="."]
-offset_left = -140.0
-offset_top = -800.0
-offset_right = 137.0
-offset_bottom = -648.0
+offset_left = -240.0
+offset_top = -1400.0
+offset_right = 1161.0
+offset_bottom = -798.0
 theme_override_fonts/font = ExtResource("4_lephc")
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 379
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
 libraries = {
-"": SubResource("AnimationLibrary_b31ty")
+"": SubResource("AnimationLibrary_e8i47")
 }
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
