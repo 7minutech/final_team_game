@@ -15,14 +15,18 @@ var speed: int = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global_position = CameraObserver.get_random_spawn_position()
 	spawn_drones_randomly()
-	direction = PlayerObserver.player.global_position - self.global_position
+	var playerPos: Vector2 = PlayerObserver.player.global_position
+	#look_at(playerPos)
+	direction = playerPos - self.global_position
+	print(str(global_position))
 
 
 func _physics_process(delta: float) -> void:
-	self.move_and_collide((direction * delta).normalized() * speed)
-	if !$Visibility.is_on_screen() && $QueueFreeTimer.is_stopped():
-		self.call_deferred("queue_free")
+	move_and_collide((direction * delta).normalized() * speed)
+	if self.get_child_count() <= 1:
+		self.queue_free()
 
 ### Functions for spawn logic ###
 # Function to spawn red drones randomly around origin
@@ -32,12 +36,3 @@ func spawn_drones_randomly() -> void:
 		self.add_child(drone)
 		drone.position = Vector2(randi_range(radius, abs(radius)), randi_range(radius, abs(radius)))
 		
-		
-
-func _on_queue_free_timer_timeout() -> void:
-	'''
-	for child in get_children():
-		child.call_deferred("queue_free")
-	self.queue_free()
-	'''
-	pass

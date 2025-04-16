@@ -12,6 +12,10 @@ var health: int = max_health
 func _ready() -> void:
 	pass
 
+func _physics_process(delta: float) -> void:
+	if !$Visibility.is_on_screen() && $QueueFreeTimer.is_stopped():
+		self.call_deferred("queue_free")
+
 ### Functions for stats ###
 # Function to lose health
 func loseHealth(dmg: int) -> void:
