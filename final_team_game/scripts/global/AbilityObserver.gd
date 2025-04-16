@@ -14,7 +14,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	# Non-damaging abilitites
 	"max_health": "res://assets/hud/ability_icons/Heart.png",
 	"health_regen": "res://assets/hud/ability_icons/HeartWithGreenPlus.png",
-	"magnet": "res://assets/hud/ability_icons/Magnet.png",
+	"pick_up_range": "res://assets/hud/ability_icons/Magnet.png",
 	"shield": "res://assets/hud/ability_icons/Shield.png"
 }
 const ABILITY_DESCRIPTIONS: Dictionary = {
@@ -24,7 +24,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Non-damaging abilities
 	"max_health": "Provides a boost to max health",
 	"health_regen": "Provides health regen over time",
-	"magnet": "Increases the radius that the player can pick up items",
+	"pick_up_range": "Increases the radius that the player can pick up items",
 	"shield": "Provides temporary invulnerability after taking damage"
 }
 
@@ -37,6 +37,7 @@ var pick_up_buff: float = 0.2
 var shield_duration_buff: float = 0.2
 var shield_cd_buff: float = 0.3
 var player: Player
+var hud: Hud 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -60,6 +61,7 @@ func give_passive_ability(ability_key: String) -> void:
 	give_passive_boost(ability_key)
 
 func give_passive_boost(ability_name: String):
+	hud.addAbility(ability_name)
 	match ability_name:
 		"movement_speed":
 			set_movement_speed_buff()
@@ -75,6 +77,7 @@ func give_passive_boost(ability_name: String):
 			
 
 func give_active_ability(ability_key: String) -> void:
+	hud.addAbility(ability_key)
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:
 		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
 		var ability_instance = ability_scene.instantiate()
