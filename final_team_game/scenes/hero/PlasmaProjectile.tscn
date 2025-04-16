@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://curr26f3cjpby"]
+[gd_scene load_steps=5 format=3 uid="uid://curr26f3cjpby"]
 
 [ext_resource type="Script" path="res://scripts/hero/plasma_projectile.gd" id="1_nso74"]
-
-[sub_resource type="Gradient" id="Gradient_sflar"]
-offsets = PackedFloat32Array(0.149351, 0.272727, 0.350649)
-colors = PackedColorArray(0, 1, 1, 1, 0.458824, 0, 1, 1, 0.984314, 0, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8x52k"]
-gradient = SubResource("Gradient_sflar")
-fill = 1
-fill_from = Vector2(0.486239, 0.454128)
+[ext_resource type="Texture2D" uid="uid://b28ns6qil206b" path="res://assets/weapon/Orb.png" id="2_ncavl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ympc6"]
 radius = 6.0
@@ -25,8 +17,8 @@ gravity_scale = 0.0
 script = ExtResource("1_nso74")
 
 [node name="Skin" type="Sprite2D" parent="."]
-scale = Vector2(0.738456, 0.648393)
-texture = SubResource("GradientTexture2D_8x52k")
+scale = Vector2(0.032856, 0.0314848)
+texture = ExtResource("2_ncavl")
 
 [node name="CollisionArea" type="CollisionShape2D" parent="."]
 visible = false
