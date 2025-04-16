@@ -1,9 +1,35 @@
 extends Node
 
-
-var ability_path:Dictionary = {
+### Constants ###
+const ABILITY_SCENE_PATH:Dictionary = {
+	# Damaging abilities
 	"garlic": "res://scenes/ability/passive/garlic.tscn"
+	
+	# Non-damaging abilities
+	
 }
+const ABILITY_ASSET_PATH: Dictionary = {
+	# Damaging abilities
+	
+	# Non-damaging abilitites
+	"heart": "res://assets/ability_icons/Heart.png",
+	"heartWithGreenPlus": "res://assets/ability_icons/HeartWithGreenPlus.png",
+	"magnet": "res://assets/ability_icons/Magnet.png",
+	"shield": "res://assets/ability_icons/Shield.png"
+}
+const ABILITY_DESCRIPTIONS: Dictionary = {
+	# Damaging abilities
+	"garlic": "Adds a damaging area around the player",
+	
+	# Non-damaging abilities
+	"heart": "Provides a boost to max health",
+	"heartWithGreenPlus": "Provides health regen over time",
+	"magnet": "Increases the radius that the player can pick up items",
+	"shield": "Provides temporary invulnerability after taking damage"
+}
+
+
+### Variables ###
 var movement_speed_buff: float = 0.05
 var max_health_buff: float = 0.05
 var health_regen_buff: float = 0.2
@@ -11,6 +37,8 @@ var pick_up_buff: float = 0.2
 var shield_duration_buff: float = 0.2
 var shield_cd_buff: float = 0.3
 var player: Player
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -21,7 +49,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func get_ability_path(key):
-	return ability_path[key]
+	return ABILITY_SCENE_PATH[key]
 
 func give_passive_ability(ability_key: String) -> void:
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:

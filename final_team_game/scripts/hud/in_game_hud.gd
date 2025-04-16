@@ -16,6 +16,20 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 	
+### Functions to handle ability icon logic ###
+# Function to add ability images to the ability label
+func addAbility(ability: String) -> void:
+	var path: String = PlayerObserver.ABILITY_ASSET_PATH.get(ability)
+	var image = load(path)
+	var tooltip: String = PlayerObserver.ABILITY_DESCRIPTIONS.get(ability)
+	for i in range(4):
+		$AbilityIcon.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+##
+# Function to clear the ability label for redrawing
+func clearAbilities() -> void:
+	$AbilityIcons.clear()
+	$AbilityIconBG.clear()
+	
 
 ### Functions to handle kill label logic ###
 

@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 		addAbility(image3, message)
 		#print(PlayerObserver.toString())
 
+
 # Function to add ability images to the ability label
 func addAbility(image, tooltip: String) -> void:
 	for i in range(4):
