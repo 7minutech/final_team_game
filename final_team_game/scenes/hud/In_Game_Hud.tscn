@@ -64,14 +64,14 @@ autostart = true
 [node name="DebugAndCheatsMenu" parent="." instance=ExtResource("7_ogj2b")]
 position = Vector2(411, -208)
 
-[node name="AbilityIcons" type="RichTextLabel" parent="."]
+[node name="AbilityIconsBG" type="RichTextLabel" parent="."]
 offset_left = -565.0
 offset_top = -243.0
 offset_right = -354.0
-offset_bottom = -203.0
+offset_bottom = -136.0
 scroll_active = false
 
-[node name="AbilityIconsBG" type="RichTextLabel" parent="."]
+[node name="AbilityIcons" type="RichTextLabel" parent="."]
 offset_left = -565.0
 offset_top = -243.0
 offset_right = -354.0

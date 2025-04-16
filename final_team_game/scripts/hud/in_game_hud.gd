@@ -1,6 +1,10 @@
 extends Node2D
 
-## Variables
+### Constants ###
+# Constants for preloads
+const iconBG = preload("res://icon.svg")
+
+### Variables ###
 # Variables for time calculation
 var startTime: float
 var timeCheck: float
@@ -25,6 +29,7 @@ func addAbility(ability: String) -> void:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(ability)
 		var image = load(path)
 		$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+		$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 ##
 # Function to clear the ability label for redrawing
 func clearAbilities() -> void:
