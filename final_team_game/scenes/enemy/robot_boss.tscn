@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://7l1ml4cm4lb2"]
+[gd_scene load_steps=13 format=3 uid="uid://f8m0ntc5v12o"]
 
 [ext_resource type="Script" path="res://scripts/enemy/robot_boss.gd" id="1_160wv"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_pelfv"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_twx50"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_tu7b1"]
+[ext_resource type="SystemFont" path="res://assets/In_Game_Hud.tres" id="4_tu7b1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
 radius = 33.0606

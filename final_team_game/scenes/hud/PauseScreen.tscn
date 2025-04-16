@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cltujlk1ryjm1"]
 
 [ext_resource type="Script" path="res://scripts/hud/pause_screen.gd" id="1_cr7hm"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="2_al6gt"]
+[ext_resource type="SystemFont" path="res://assets/In_Game_Hud.tres" id="2_al6gt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3c0f"]
 

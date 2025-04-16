@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbh6q2emxbjw0"]
+[gd_scene load_steps=11 format=3 uid="uid://c7osrevhmgcij"]
 
 [ext_resource type="Script" path="res://scripts/enemy/red_drone.gd" id="1_edoaj"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="2_e1m65"]

@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	if health <= 0:
 		canShoot = false
 		canMove = false
-		get_tree().reload_current_scene()
+		die()
 		
 	# Shoot towards mouse position if possible
 	if canShoot:
@@ -292,3 +292,6 @@ func show_shield() -> void:
 		$Skin.modulate = Color("#4ad2ff")
 	else:
 		$Skin.modulate = ORIGINAL_COLOR
+
+func die():
+	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
