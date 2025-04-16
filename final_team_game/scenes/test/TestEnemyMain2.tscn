@@ -16,11 +16,6 @@ spawn_braizers = false
 
 [node name="Hero" parent="." instance=ExtResource("3_go7pr")]
 position = Vector2(524, 276)
-garlic_level = 0
-movement_speed_level = 0
-max_health_level = 0
-health_regen_level = 0
-pick_up_range_level = 0
 
 [node name="Spawner" parent="." instance=ExtResource("5_l4qc1")]
 position = Vector2(1098, 206)
