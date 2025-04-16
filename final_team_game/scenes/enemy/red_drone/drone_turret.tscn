@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0bbmxluoxajc"]
+
+[ext_resource type="Script" path="res://scripts/enemy/red_drone/drone_turret.gd" id="1_tt1hw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhpsd"]
+size = Vector2(38, 57)
+
+[node name="DroneTurret" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("1_tt1hw")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_rhpsd")
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]

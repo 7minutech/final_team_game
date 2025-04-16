@@ -9,7 +9,7 @@ var entity_dict: Dictionary = {
 	"braizer": "res://scenes/item/braizer.tscn",
 	"robot_boss": "res://scenes/enemy/robot_boss.tscn",
 	"alien": "res://scenes/enemy/alien.tscn",
-	"red_drones": "res://scenes/enemy/red_drone/red_drone_group.tscn",
+	"red_drones": "res://scenes/enemy/red_drone/drone_turret.tscn",
 	"bullet_turret": "res://scenes/enemy/bullet_turret/bullet_turret.tscn"
 	}
 # Called when the node enters the scene tree for the first time.

@@ -17,12 +17,7 @@ var speed: int = 7
 func _ready() -> void:
 	global_position = CameraObserver.get_random_spawn_position()
 	spawn_drones_randomly()
-	var playerPos: Vector2 = PlayerObserver.player.global_position
-	#look_at(playerPos)
-	direction = playerPos - self.global_position
-	print(str(direction))
-	#print(str(global_position))
-
+	
 
 func _physics_process(delta: float) -> void:
 	move_and_collide((direction * delta).normalized() * speed)
@@ -36,4 +31,7 @@ func spawn_drones_randomly() -> void:
 		var drone = red_drone.instantiate()
 		self.add_child(drone)
 		drone.position = Vector2(randi_range(radius, abs(radius)), randi_range(radius, abs(radius)))
-		
+
+# Function to set the direction that the drones will follow
+func setDirection(d: Vector2) -> void:
+	direction = d
