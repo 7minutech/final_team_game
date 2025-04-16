@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Hud
+
 ### Constants ###
 # Constants for preloads
 const iconBG = preload("res://icon.svg")
@@ -18,14 +20,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if $AbilityIcons.get_total_character_count() <= 0:
-		AbilityObserver.give_passive_ability("health_regen")
-		addAbility("health_regen")
+	pass
 	
 ### Functions to handle ability icon logic ###
 # Function to add ability images to the ability label
 func addAbility(ability: String) -> void:
-	if PlayerObserver.player.abilities.has(ability):
+	var ability_qty = PlayerObserver.player.ability_qty
+	if PlayerObserver.player.abilities.has(ability) and ability_qty[ability] == 1:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(ability)
 		var image = load(path)
 		$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)

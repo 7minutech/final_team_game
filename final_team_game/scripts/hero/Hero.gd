@@ -58,6 +58,7 @@ func _ready() -> void:
 	PlayerObserver.player_camera = $HeroCamera
 	CameraObserver.player_camera = $HeroCamera
 	AbilityObserver.player = self
+	AbilityObserver.hud = $Hud
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
@@ -164,8 +165,7 @@ func aim() -> Vector2:
 	var mousePos: Vector2 = get_global_mouse_position()
 	$AimLine.look_at(mousePos)
 	return mousePos
-##
-# Function to shoot based on mouse position
+##F
 func shoot(mousePos: Vector2) -> void:
 	var projectile = PLASMA_PROJ.instantiate()
 	get_tree().current_scene.add_child(projectile)
