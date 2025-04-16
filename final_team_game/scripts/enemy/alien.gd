@@ -3,7 +3,7 @@ extends CharacterBody2D
 ## Constants
 # Constants for stats
 const INITIAL_HEALTH: int = 20.0
-const INITIAL_SPEED: float = 25.0
+const INITIAL_SPEED: float = 15.0
 const INITIAL_DAMAGE: int = 10
 
 ## Variables
