@@ -17,6 +17,7 @@ var off_screen: bool = false
 @onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
 @onready var hit_label: Label = $DamageLabel
 @onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
+var screen_exited_at: String
 var health_key: String = "robot_boss_health"
 var damage_key: String = "robot_boss_damage"
 func _ready() -> void:
@@ -27,15 +28,15 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var current_speed: float
-	if off_screen:
-		current_speed = speed * 2
+	if is_off_screen(position, CameraObserver.player_camera) and PlayerObserver.player:
+		pass
 	else:
 		current_speed = INITIAL_SPEED
 	if PlayerObserver.player != null:
 		sprite_animation.play("walk")
 		var direction = PlayerObserver.player.global_position - global_position
 		velocity = direction.normalized() * current_speed	
-		move_and_slide()
+	move_and_slide()
 		
 ### Functions for stats ###
 # Function to lose health
@@ -59,18 +60,53 @@ func attack(hero: CharacterBody2D) -> void:
 	hero.loseHealth(damage)
 
 func player_is_to_left() -> bool:
-	return position.x > PlayerObserver.player.postion.x
+	return position.x > PlayerObserver.player.position.x
 
 func player_is_to_right() -> bool:
-	return position.x < PlayerObserver.player.postion.x
+	return position.x < PlayerObserver.player.position.x
 
+func player_is_up() -> bool:
+	return position.y > PlayerObserver.player.position.y
+
+func player_is_down() -> bool:
+	return position.y < PlayerObserver.player.position.y
+
+func teleport_to_player() -> void:
+	var offset: float = randf_range(-100,100)
+	var new_position: Vector2
+	if screen_exited_at == "left":
+		new_position = CameraObserver.get_spawn_left_offscreen(offset,-50)
+		position = new_position
+	elif screen_exited_at == "right":
+		new_position = CameraObserver.get_spawn_right_offscreen(offset,-50)
+		position = new_position
+	elif screen_exited_at == "top":
+		new_position = CameraObserver.get_spawn_bottom_offscreen(offset,-50)
+		position = new_position
+	elif screen_exited_at == "down":
+		new_position = CameraObserver.get_spawn_top_offscreen(offset,-50)
+		position = new_position
+	else:
+		new_position = CameraObserver.get_spawn_right_offscreen(offset,-50)
+		position = new_position
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	off_screen = false
+	$OffScreenTimer.stop()
 	pass # Replace with function body.
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	var closest_position = INF
+	var screen_exited_at = ""
+	for key in CameraObserver.camera_positions:
+		var offset_x = CameraObserver.camera_positions[key]
+		var cam_pos = Vector2(offset_x, position.y)  # Create a full Vector2
+		var distance = position.distance_to(cam_pos)
+		if distance < closest_position:
+			closest_position = distance
+			screen_exited_at = key
 	off_screen = true
+	$OffScreenTimer.start()
 	pass # Replace with function body.
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
@@ -150,3 +186,8 @@ func show_hit_number(dmg: int) -> void:
 	hit_label.show()
 	await get_tree().create_timer(0.2).timeout
 	hit_label.hide()
+
+
+func _on_off_screen_timer_timeout() -> void:
+	teleport_to_player()
+	pass # Replace with function body.
