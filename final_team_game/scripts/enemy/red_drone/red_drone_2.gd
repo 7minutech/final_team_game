@@ -12,8 +12,9 @@ var health: int = max_health
 func _ready() -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !$Visibility.is_on_screen() && $QueueFreeTimer.is_stopped():
+		#print("drone freed")
 		self.call_deferred("queue_free")
 
 ### Functions for stats ###

@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if canShoot:
 		shoot()
 		canShoot = false
@@ -35,3 +35,4 @@ func shoot() -> void:
 
 func _on_queue_free_timer_timeout() -> void:
 	self.queue_free()
+	#print("turret freed")
