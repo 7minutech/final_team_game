@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=11 format=3 uid="uid://qb10brngodal"]
 
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
@@ -15,6 +15,8 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_roxam"]
 font = ExtResource("4_ct54g")
 font_size = 30
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2h83r"]
 
 [node name="Hud" type="Node2D"]
 process_mode = 1
@@ -70,12 +72,13 @@ offset_top = -243.0
 offset_right = -354.0
 offset_bottom = -136.0
 scroll_active = false
+custom_effects = [SubResource("RichTextEffect_2h83r")]
 
 [node name="AbilityIcons" type="RichTextLabel" parent="."]
 offset_left = -565.0
 offset_top = -243.0
 offset_right = -354.0
-offset_bottom = -203.0
+offset_bottom = -134.0
 scroll_active = false
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]

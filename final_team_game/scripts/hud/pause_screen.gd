@@ -1,10 +1,13 @@
 extends Node2D
 
+### Constants ###
 const iconBG = preload("res://icon.svg")
 const image2 = preload("res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled.png")
 const image3 = preload("res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty.png")
 const message: String = "Pretyped Text"
 
+### Variables ###
+var numAbilities: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,12 +32,25 @@ func addAbilities() -> void:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(key)
 		var image = load(path)
 		var tooltip: String = AbilityObserver.ABILITY_DESCRIPTIONS.get(key)
-		$AbilityIcon.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
-		$AbilityIconBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER)
+		if numAbilities < 4:
+			$AbilityIcon_Top.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+			$AbilityIconBG_Top.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+			$AbilityIcon_Top.append_text("  ")
+			$AbilityIconBG_Top.append_text("  ")
+		elif numAbilities < 8:
+			$AbilityIcon_Bottom.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+			$AbilityIconBG_Bottom.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+			$AbilityIcon_Bottom.append_text("  ")
+			$AbilityIconBG_Bottom.append_text("  ")
+		numAbilities += 1
+	numAbilities = 0
+
 # Function to clear the ability label for redrawing
 func clearAbilities() -> void:
-	$AbilityIcon.clear()
-	$AbilityIconBG.clear()
+	$AbilityIcon_Top.clear()
+	$AbilityIconBG_Top.clear()
+	$AbilityIcon_Bottom.clear()
+	$AbilityIconBG_Bottom.clear()
 
 # Function to update the current stats label	
 func update_stats_label() -> void:

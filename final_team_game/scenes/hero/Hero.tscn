@@ -73,6 +73,11 @@ floor_block_on_wall = false
 safe_margin = 0.1
 script = ExtResource("1_ib4fp")
 xp_timer = 0.25
+movement_speed_level = 1
+max_health_level = 1
+health_regen_level = 1
+pick_up_range_level = 1
+shield_level = 1
 
 [node name="HurtBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qw7bj")

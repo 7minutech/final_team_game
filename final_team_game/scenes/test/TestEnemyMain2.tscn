@@ -11,7 +11,6 @@ script = ExtResource("1_ab874")
 spawn_robots = false
 spawn_robot_boss = false
 spawn_blue_drones = false
-spawn_red_drones = false
 spawn_alien = false
 spawn_braizers = false
 
@@ -50,7 +49,7 @@ autostart = true
 [node name="RedDroneTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
 texture = ExtResource("4_8imot")
 

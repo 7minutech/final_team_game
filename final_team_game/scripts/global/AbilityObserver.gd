@@ -15,7 +15,8 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	"max_health": "res://assets/hud/ability_icons/Heart.png",
 	"health_regen": "res://assets/hud/ability_icons/HeartWithGreenPlus.png",
 	"pick_up_range": "res://assets/hud/ability_icons/Magnet.png",
-	"shield": "res://assets/hud/ability_icons/Shield.png"
+	"shield": "res://assets/hud/ability_icons/Shield.png",
+	"movement_speed": "res://assets/hud/ability_icons/MovementSpeed.png"
 }
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
@@ -25,9 +26,19 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"max_health": "Provides a boost to max health",
 	"health_regen": "Provides health regen over time",
 	"pick_up_range": "Increases the radius that the player can pick up items",
-	"shield": "Provides temporary invulnerability after taking damage"
+	"shield": "Provides temporary invulnerability after taking damage",
+	"movement_speed": "Increases player movement speed"
 }
-
+const MAX_ABILITY_QTY: Dictionary = {
+	# Damaging abilities
+	
+	# Non-damaging abilities
+	"max_health": 9,
+	"health_regen": 4,
+	"pick_up_range": 7,
+	"shield": 5,
+	"movement_speed": 4
+}
 
 ### Variables ###
 var movement_speed_buff: float = 0.05

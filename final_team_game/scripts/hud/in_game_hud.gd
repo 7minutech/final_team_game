@@ -29,8 +29,20 @@ func addAbility(ability: String) -> void:
 	if PlayerObserver.player.abilities.has(ability) and ability_qty[ability] == 1:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(ability)
 		var image = load(path)
-		$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-		$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+		var numAbilities: int = PlayerObserver.player.abilities.size()
+		if numAbilities < 4:
+			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+			$AbilityIcons.append_text("  ")
+			$AbilityIconsBG.append_text("  ")
+		elif numAbilities == 4:
+			$AbilityIcons.append_text("\n ")
+			$AbilityIconsBG.append_text("\n ")
+		elif numAbilities < 8:
+			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+			$AbilityIcons.append_text("  ")
+			$AbilityIconsBG.append_text("  ")
 ##
 # Function to clear the ability label for redrawing
 func clearAbilities() -> void:
