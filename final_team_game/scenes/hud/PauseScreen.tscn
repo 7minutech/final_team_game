@@ -70,6 +70,7 @@ animations = [{
 }]
 
 [node name="PauseScreen" type="Node2D"]
+visible = false
 script = ExtResource("1_cr7hm")
 
 [node name="ButtonsBG" type="Sprite2D" parent="."]

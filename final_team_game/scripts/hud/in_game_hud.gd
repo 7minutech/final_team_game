@@ -35,9 +35,11 @@ func addAbility(ability: String) -> void:
 			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 			$AbilityIcons.append_text("  ")
 			$AbilityIconsBG.append_text("  ")
-		elif numAbilities == 4:
-			$AbilityIcons.append_text("\n ")
-			$AbilityIconsBG.append_text("\n ")
+		elif numAbilities == 5:
+			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+			$AbilityIcons.append_text("  ")
+			$AbilityIconsBG.append_text("  ")
 		elif numAbilities < 8:
 			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)

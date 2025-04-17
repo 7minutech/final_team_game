@@ -67,18 +67,19 @@ autostart = true
 position = Vector2(411, -208)
 
 [node name="AbilityIconsBG" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.572549)
 offset_left = -565.0
 offset_top = -243.0
-offset_right = -354.0
-offset_bottom = -136.0
+offset_right = -312.0
+offset_bottom = -142.0
 scroll_active = false
 custom_effects = [SubResource("RichTextEffect_2h83r")]
 
 [node name="AbilityIcons" type="RichTextLabel" parent="."]
 offset_left = -565.0
 offset_top = -243.0
-offset_right = -354.0
-offset_bottom = -134.0
+offset_right = -312.0
+offset_bottom = -142.0
 scroll_active = false
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
