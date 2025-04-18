@@ -31,18 +31,24 @@ func addAbilities() -> void:
 	for key in player.abilities:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(key)
 		var image = load(path)
+		var upgradeQTY: int = AbilityObserver.MAX_ABILITY_QTY.get(key)
 		var tooltip: String = AbilityObserver.ABILITY_DESCRIPTIONS.get(key)
-		if numAbilities < 4:
+		numAbilities += 1
+		var child: String = "AbilityPips_" + str(numAbilities)
+		if numAbilities < 5:
 			$AbilityIcon_Top.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 			$AbilityIconBG_Top.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 			$AbilityIcon_Top.append_text("  ")
 			$AbilityIconBG_Top.append_text("  ")
-		elif numAbilities < 8:
+			self.find_child(child).set_animation("Pips_4to9")
+			self.find_child(child).set_frame((upgradeQTY - 4))
+		elif numAbilities < 9:
 			$AbilityIcon_Bottom.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 			$AbilityIconBG_Bottom.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 			$AbilityIcon_Bottom.append_text("  ")
 			$AbilityIconBG_Bottom.append_text("  ")
-		numAbilities += 1
+			self.find_child(child).set_animation("Pips_4to9")
+			self.find_child(child).set_frame((upgradeQTY - 4))
 	numAbilities = 0
 
 # Function to clear the ability label for redrawing

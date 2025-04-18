@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cltujlk1ryjm1"]
+[gd_scene load_steps=13 format=3 uid="uid://cltujlk1ryjm1"]
 
 [ext_resource type="Script" path="res://scripts/hud/pause_screen.gd" id="1_cr7hm"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="2_al6gt"]
@@ -6,10 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dt22foddkt2fn" path="res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty_4to6-sheet.png" id="4_biv83"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3c0f"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kv8wc"]
-atlas = ExtResource("3_u3gsb")
-region = Rect2(7680, 0, 3840, 2560)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3jyt"]
 atlas = ExtResource("4_biv83")
@@ -39,14 +35,6 @@ region = Rect2(7680, 0, 3840, 2560)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kv8wc")
-}],
-"loop": true,
-"name": &"All_9_Empty",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_g3jyt")
 }, {
 "duration": 1.0,
@@ -67,10 +55,17 @@ animations = [{
 "loop": true,
 "name": &"Pips_4to9",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [node name="PauseScreen" type="Node2D"]
-visible = false
 script = ExtResource("1_cr7hm")
 
 [node name="ButtonsBG" type="Sprite2D" parent="."]
@@ -143,52 +138,44 @@ offset_bottom = -58.0
 fit_content = true
 scroll_active = false
 
-[node name="AbilityPips_1" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_1" type="AnimatedSprite2D" parent="."]
 position = Vector2(-507, -143)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"All_9_Empty"
 
-[node name="AbilityPips_2" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-449, -143)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"Pips_4to9"
 
-[node name="AbilityPips_3" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-390, -143)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"Pips_4to9"
 
-[node name="AbilityPips_4" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_4" type="AnimatedSprite2D" parent="."]
 position = Vector2(-332, -143)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"Pips_4to9"
 
-[node name="AbilityPips_5" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_5" type="AnimatedSprite2D" parent="."]
 position = Vector2(-507, -23)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"All_9_Empty"
 
-[node name="AbilityPips_6" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_6" type="AnimatedSprite2D" parent="."]
 position = Vector2(-449, -23)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"Pips_4to9"
 
-[node name="AbilityPips_7" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_7" type="AnimatedSprite2D" parent="."]
 position = Vector2(-390, -23)
 scale = Vector2(0.0231717, 0.026557)
 sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"Pips_4to9"
 
-[node name="AbilityPips_8" type="AnimatedSprite2D" parent="."]
+[node name="EmptyPips_8" type="AnimatedSprite2D" parent="."]
 position = Vector2(-332, -23)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
-animation = &"Pips_4to9"
+animation = &"ZeroPips"
 
 [connection signal="pressed" from="ButtonHolder/Resume" to="." method="_on_resume_pressed"]

@@ -33,6 +33,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 }
 const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
+	"garlic": 9,
 	
 	# Non-damaging abilities
 	"max_health": 9,
