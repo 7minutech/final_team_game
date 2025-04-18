@@ -1,3 +1,74 @@
-[gd_scene format=3 uid="uid://cok63k0oxpvfe"]
+[gd_scene load_steps=5 format=3 uid="uid://cok63k0oxpvfe"]
+
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cj056"]
+
+[sub_resource type="SystemFont" id="SystemFont_csp6x"]
+font_names = PackedStringArray("Rockwell")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uft8p"]
+font = SubResource("SystemFont_csp6x")
+font_size = 15
+outline_size = 3
+outline_color = Color(0, 0.380392, 0, 1)
 
 [node name="AbilityChoice" type="Node2D"]
+process_mode = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.588235, 0.454902, 0.172549, 1)
+position = Vector2(-2.00001, 55)
+scale = Vector2(214, 560)
+texture = SubResource("CanvasTexture_cj056")
+
+[node name="Choice_1" type="Button" parent="."]
+offset_left = -96.0
+offset_top = -208.0
+offset_right = 91.0
+offset_bottom = -117.0
+theme_override_fonts/font = ExtResource("10_noge5")
+text = "First Choice"
+
+[node name="Description_1" type="Label" parent="."]
+offset_left = -94.0
+offset_top = -111.0
+offset_right = 90.0
+offset_bottom = -39.0
+text = "Description:
+"
+label_settings = SubResource("LabelSettings_uft8p")
+
+[node name="Choice_2" type="Button" parent="."]
+offset_left = -96.0
+offset_top = -32.0
+offset_right = 91.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("10_noge5")
+text = "First Choice"
+
+[node name="Description_2" type="Label" parent="."]
+offset_left = -94.0
+offset_top = 66.0
+offset_right = 90.0
+offset_bottom = 138.0
+text = "Description:
+"
+label_settings = SubResource("LabelSettings_uft8p")
+
+[node name="Choice_3" type="Button" parent="."]
+offset_left = -96.0
+offset_top = 147.0
+offset_right = 91.0
+offset_bottom = 238.0
+theme_override_fonts/font = ExtResource("10_noge5")
+text = "First Choice"
+
+[node name="Description_3" type="Label" parent="."]
+offset_left = -94.0
+offset_top = 246.0
+offset_right = 90.0
+offset_bottom = 318.0
+text = "Description:
+"
+label_settings = SubResource("LabelSettings_uft8p")

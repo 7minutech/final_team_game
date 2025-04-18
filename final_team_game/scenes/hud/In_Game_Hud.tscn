@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=13 format=3 uid="uid://qb10brngodal"]
 
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
 [ext_resource type="PackedScene" uid="uid://dx7yufxdxnh7m" path="res://scenes/hud/debug_and_cheats_menu.tscn" id="7_ogj2b"]
 [ext_resource type="PackedScene" uid="uid://jos7dfgt1e75" path="res://scenes/hud/ChestRewardScreen.tscn" id="8_nj5f8"]
+[ext_resource type="PackedScene" uid="uid://cok63k0oxpvfe" path="res://scenes/hud/AbilityChoice.tscn" id="9_vxu8t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
 font = ExtResource("4_ct54g")
@@ -86,6 +87,9 @@ scroll_active = false
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
 process_mode = 2
 
-[node name="AbilityChoice" parent="." instance=ExtResource("8_nj5f8")]
+[node name="ChestReward" parent="." instance=ExtResource("8_nj5f8")]
+
+[node name="AbilityChoice" parent="." instance=ExtResource("9_vxu8t")]
+position = Vector2(0, -20)
 
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

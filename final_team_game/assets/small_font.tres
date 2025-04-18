@@ -1,11 +1,10 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://by8fmymku153u"]
 
-[sub_resource type="SystemFont" id="SystemFont_viaug"]
+[sub_resource type="SystemFont" id="SystemFont_a7dmh"]
 font_names = PackedStringArray("Rockwell")
-subpixel_positioning = 0
 
 [resource]
-font = SubResource("SystemFont_viaug")
+font = SubResource("SystemFont_a7dmh")
 font_size = 25
 outline_size = 3
-outline_color = Color(0, 0, 1, 1)
+outline_color = Color(0, 0.0980392, 0.796078, 1)
