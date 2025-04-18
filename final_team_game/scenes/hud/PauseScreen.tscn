@@ -1,56 +1,57 @@
-[gd_scene load_steps=13 format=3 uid="uid://cltujlk1ryjm1"]
+[gd_scene load_steps=14 format=3 uid="uid://cltujlk1ryjm1"]
 
 [ext_resource type="Script" path="res://scripts/hud/pause_screen.gd" id="1_cr7hm"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="2_al6gt"]
-[ext_resource type="Texture2D" uid="uid://d02mb2t7ybkeu" path="res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty_7to9-sheet.png" id="3_u3gsb"]
-[ext_resource type="Texture2D" uid="uid://dt22foddkt2fn" path="res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty_4to6-sheet.png" id="4_biv83"]
+[ext_resource type="SpriteFrames" uid="uid://bulnwy1p7jjrs" path="res://scenes/hud/EmptyPips.tres" id="3_3ecpf"]
+[ext_resource type="Texture2D" uid="uid://d1ykgjxxwpfyi" path="res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled_4to6-sheet.png" id="4_c8f8j"]
+[ext_resource type="Texture2D" uid="uid://clufwwkxfqgn" path="res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled_7to9-sheet.png" id="5_kq5e1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3c0f"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g3jyt"]
-atlas = ExtResource("4_biv83")
+[sub_resource type="AtlasTexture" id="AtlasTexture_aryto"]
+atlas = ExtResource("4_c8f8j")
 region = Rect2(0, 0, 3840, 2560)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8u1t"]
-atlas = ExtResource("4_biv83")
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3w37"]
+atlas = ExtResource("4_c8f8j")
 region = Rect2(3840, 0, 3840, 2560)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i8mnk"]
-atlas = ExtResource("4_biv83")
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1yvp"]
+atlas = ExtResource("4_c8f8j")
 region = Rect2(7680, 0, 3840, 2560)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qdmg"]
-atlas = ExtResource("3_u3gsb")
-region = Rect2(0, 0, 3840, 2560)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj50b"]
+atlas = ExtResource("5_kq5e1")
+region = Rect2(0, 0, 3840, 3840)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_41fhc"]
-atlas = ExtResource("3_u3gsb")
-region = Rect2(3840, 0, 3840, 2560)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oco75"]
+atlas = ExtResource("5_kq5e1")
+region = Rect2(3840, 0, 3840, 3840)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ojpt0"]
-atlas = ExtResource("3_u3gsb")
-region = Rect2(7680, 0, 3840, 2560)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwmkk"]
+atlas = ExtResource("5_kq5e1")
+region = Rect2(7680, 0, 3840, 3840)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_on4y5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gr4k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g3jyt")
+"texture": SubResource("AtlasTexture_aryto")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u8u1t")
+"texture": SubResource("AtlasTexture_h3w37")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i8mnk")
+"texture": SubResource("AtlasTexture_s1yvp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5qdmg")
+"texture": SubResource("AtlasTexture_lj50b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_41fhc")
+"texture": SubResource("AtlasTexture_oco75")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ojpt0")
+"texture": SubResource("AtlasTexture_qwmkk")
 }],
 "loop": true,
 "name": &"Pips_4to9",
@@ -141,41 +142,50 @@ scroll_active = false
 [node name="EmptyPips_1" type="AnimatedSprite2D" parent="."]
 position = Vector2(-507, -143)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
+animation = &"Pips_4to9"
+frame = 5
+
+[node name="FilledPips_1" type="AnimatedSprite2D" parent="."]
+position = Vector2(-507, -143)
+scale = Vector2(0.0231717, 0.026557)
+sprite_frames = SubResource("SpriteFrames_2gr4k")
+animation = &"Pips_4to9"
+frame = 5
 
 [node name="EmptyPips_2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-449, -143)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
 
 [node name="EmptyPips_3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-390, -143)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
 
 [node name="EmptyPips_4" type="AnimatedSprite2D" parent="."]
 position = Vector2(-332, -143)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
 
 [node name="EmptyPips_5" type="AnimatedSprite2D" parent="."]
 position = Vector2(-507, -23)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
 
 [node name="EmptyPips_6" type="AnimatedSprite2D" parent="."]
 position = Vector2(-449, -23)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
 
 [node name="EmptyPips_7" type="AnimatedSprite2D" parent="."]
 position = Vector2(-390, -23)
 scale = Vector2(0.0231717, 0.026557)
-sprite_frames = SubResource("SpriteFrames_on4y5")
+sprite_frames = ExtResource("3_3ecpf")
 
 [node name="EmptyPips_8" type="AnimatedSprite2D" parent="."]
 position = Vector2(-332, -23)
 scale = Vector2(0.0231717, 0.026557)
-animation = &"ZeroPips"
+sprite_frames = ExtResource("3_3ecpf")
 
 [connection signal="pressed" from="ButtonHolder/Resume" to="." method="_on_resume_pressed"]
