@@ -96,7 +96,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"rotation",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1iw2j"]
