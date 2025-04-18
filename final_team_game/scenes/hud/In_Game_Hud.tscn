@@ -86,10 +86,13 @@ scroll_active = false
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
 process_mode = 2
+visible = false
 
 [node name="ChestReward" parent="." instance=ExtResource("8_nj5f8")]
+visible = false
 
 [node name="AbilityChoice" parent="." instance=ExtResource("9_vxu8t")]
+visible = false
 position = Vector2(0, -20)
 
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

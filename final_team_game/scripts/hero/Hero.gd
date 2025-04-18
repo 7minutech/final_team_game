@@ -45,6 +45,7 @@ var shield_duration: float = INITIAL_SHIELD_DURATION
 var shield_cd: float = INITIAL_SHIELD_CD
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
+@export var default_weapon_level: int = 1
 @export var garlic_level: int
 @export var movement_speed_level: int
 @export var max_health_level: int
@@ -65,6 +66,7 @@ func _ready() -> void:
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
+	AbilityObserver.give_default_gun()
 	AbilityObserver.give_init_abilities()
 	$ShieldTimerCD.wait_time = INITIAL_SHIELD_CD
 	$ShieldDuration.wait_time = INITIAL_SHIELD_DURATION

@@ -6,6 +6,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_csp6x"]
 font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_uft8p"]
 font = SubResource("SystemFont_csp6x")

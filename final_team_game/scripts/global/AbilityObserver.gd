@@ -11,6 +11,8 @@ const ABILITY_SCENE_PATH:Dictionary = {
 const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
 	"garlic": "res://assets/hud/ability_icons/Heart.png",
+	"default_gun": "res://assets/weapon/blue_laser_gun.png",
+	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
 	"max_health": "res://assets/hud/ability_icons/Heart.png",
@@ -22,6 +24,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"garlic": "Adds a damaging area around the player",
+	"default_gun": "res://assets/weapon/blue_laser_gun.png",
 	
 	# Non-damaging abilities
 	"emp": "Stuns enemies that enter its area",
@@ -34,6 +37,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
 	"garlic": 9,
+	"default_gun": 9,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -164,6 +168,10 @@ func give_shield_durations():
 func give_shield_cds():
 	for i in range(player.shield_level):
 		AbilityObserver.give_passive_ability("shield")
+
+func give_default_gun() -> void:
+	for i in range(player.default_weapon_level):
+		AbilityObserver.give_passive_ability("default_gun")
 
 func give_init_abilities():
 	give_garlics()
