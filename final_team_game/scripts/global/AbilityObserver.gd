@@ -10,7 +10,7 @@ const ABILITY_SCENE_PATH:Dictionary = {
 }
 const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
-	
+	"garlic": "res://assets/hud/ability_icons/Heart.png",
 	# Non-damaging abilitites
 	"max_health": "res://assets/hud/ability_icons/Heart.png",
 	"health_regen": "res://assets/hud/ability_icons/HeartWithGreenPlus.png",
