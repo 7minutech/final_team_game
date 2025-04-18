@@ -1,10 +1,10 @@
 extends Node2D
 
 ### Constants ###
-const iconBG = preload("res://icon.svg")
-const image2 = preload("res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled.png")
-const image3 = preload("res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty.png")
-const message: String = "Pretyped Text"
+const ICON_BG = preload("res://icon.svg")
+const FILLED_PIP = preload("res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled.png")
+const EMPTY_PIP = preload("res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty.png")
+const MESSAGE: String = "Pretyped Text"
 
 ### Variables ###
 var numAbilities: int = 0
@@ -29,26 +29,33 @@ func _process(_delta: float) -> void:
 func addAbilities() -> void:
 	var player = AbilityObserver.player
 	for key in player.abilities:
+		numAbilities += 1
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(key)
 		var image = load(path)
-		var upgradeQTY: int = AbilityObserver.MAX_ABILITY_QTY.get(key)
+		var maxQTY: int = AbilityObserver.MAX_ABILITY_QTY.get(key)
+		var currentQTY: int = AbilityObserver.player.ability_qty.get(key)
 		var tooltip: String = AbilityObserver.ABILITY_DESCRIPTIONS.get(key)
-		numAbilities += 1
-		var child: String = "AbilityPips_" + str(numAbilities)
+		var empty: String = "EmptyPips_" + str(numAbilities)
+		var full: String = "FilledPips_" + str(numAbilities)
 		if numAbilities < 5:
-			$AbilityIcon_Top.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
-			$AbilityIconBG_Top.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
-			$AbilityIcon_Top.append_text("  ")
-			$AbilityIconBG_Top.append_text("  ")
-			self.find_child(child).set_animation("Pips_4to9")
-			self.find_child(child).set_frame((upgradeQTY - 4))
+			var top: bool = true
+			placeIcons(top, image, tooltip, empty, full, currentQTY, maxQTY)
+
+			'''
+			self.find_child(empty).set_animation("Pips_4to9")
+			self.find_child(empty).set_frame((upgradeQTY - 4))
+			self.find_child(full).set_animation("Pips_4to9")
+			self.find_child(full).set_frame((upgradeQTY - 4))
+			'''
 		elif numAbilities < 9:
-			$AbilityIcon_Bottom.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
-			$AbilityIconBG_Bottom.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
-			$AbilityIcon_Bottom.append_text("  ")
-			$AbilityIconBG_Bottom.append_text("  ")
-			self.find_child(child).set_animation("Pips_4to9")
-			self.find_child(child).set_frame((upgradeQTY - 4))
+			var top: bool = false
+			placeIcons(top, image, tooltip, empty, full, currentQTY, maxQTY)
+			'''
+			self.find_child(empty).set_animation("Pips_4to9")
+			self.find_child(empty).set_frame((upgradeQTY - 4))
+			self.find_child(full).set_animation("Pips_4to9")
+			self.find_child(full).set_frame((upgradeQTY - 4))
+			'''
 	numAbilities = 0
 
 # Function to clear the ability label for redrawing
@@ -57,6 +64,25 @@ func clearAbilities() -> void:
 	$AbilityIconBG_Top.clear()
 	$AbilityIcon_Bottom.clear()
 	$AbilityIconBG_Bottom.clear()
+
+# Function to place the correct components on the ability label
+func placeIcons(top: bool, image: Texture2D, tooltip: String, emptyNodeName: String, filledNodeName: String, currentQTY: int, maxQTY: int) -> void:
+	var pipSideLength: int = 17
+	var iconSideLength: int = 50
+	if top:
+		$AbilityIcon_Top.add_image(image, iconSideLength, iconSideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+		$AbilityIconBG_Top.add_image(ICON_BG, iconSideLength, iconSideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+		$AbilityIcon_Top.append_text("  ")
+		$AbilityIconBG_Top.append_text("  ")
+	else:
+		$AbilityIcon_Bottom.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+		$AbilityIconBG_Bottom.add_image(ICON_BG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+		$AbilityIcon_Bottom.append_text("  ")
+		$AbilityIconBG_Bottom.append_text("  ")
+	for i in range(maxQTY):
+		self.find_child(emptyNodeName).add_image(EMPTY_PIP, pipSideLength, pipSideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+	for i in range(currentQTY):
+		self.find_child(filledNodeName).add_image(FILLED_PIP, pipSideLength, pipSideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 
 # Function to update the current stats label	
 func update_stats_label() -> void:

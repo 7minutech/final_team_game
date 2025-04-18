@@ -36,6 +36,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"garlic": 9,
 	
 	# Non-damaging abilities
+	"emp": 8,
 	"max_health": 9,
 	"health_regen": 4,
 	"pick_up_range": 7,
