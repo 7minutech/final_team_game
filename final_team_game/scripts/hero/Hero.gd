@@ -43,6 +43,7 @@ var pick_up_range: float
 var shield_active: bool = false
 var shield_duration: float = INITIAL_SHIELD_DURATION
 var shield_cd: float = INITIAL_SHIELD_CD
+@onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
 @export var garlic_level: int
 @export var movement_speed_level: int
@@ -52,6 +53,7 @@ var shield_cd: float = INITIAL_SHIELD_CD
 @export var shield_level: int
 @export var emp_level: int
 func _ready() -> void:
+	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
 	PlayerObserver.player = self
@@ -104,6 +106,7 @@ func raise_player_max_hp() -> void:
 # Function to lose health
 func loseHealth(dmg: int) -> void:
 	if not shield_active:
+		show_sparks()
 		health -= dmg
 	updateHealthBar()
 # Function to restore health
@@ -296,3 +299,18 @@ func show_shield() -> void:
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
+
+func show_sparks() -> void:
+	set_random_pitch()
+	$HurtSound.play()
+	$HurtAnimation.show()
+	var yellow: Color = Color("#FFD933")
+	$HurtAnimation.play()
+	$Skin.modulate = yellow
+	await get_tree().create_timer(0.5).timeout
+	$Skin.modulate = original_color
+	$HurtAnimation.hide()
+	$HurtSound.stop()
+
+func set_random_pitch() -> void:
+	$HurtSound.pitch_scale = randf_range(1.2,1.4)
