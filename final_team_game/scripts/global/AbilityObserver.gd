@@ -88,7 +88,7 @@ func give_passive_boost(ability_name: String):
 			set_pick_up_buff()
 		"shield":
 			set_shield_duration_buff()
-			set_shield_cd_buff()
+			#set_shield_cd_buff()
 			
 
 func give_active_ability(ability_key: String) -> void:
