@@ -1,3 +1,347 @@
-[gd_scene format=3 uid="uid://jos7dfgt1e75"]
+[gd_scene load_steps=31 format=3 uid="uid://jos7dfgt1e75"]
+
+[ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_ruj8i"]
+[ext_resource type="Texture2D" uid="uid://c18rqsfeckt36" path="res://assets/item/open_chest.png" id="2_i4ua3"]
+[ext_resource type="Texture2D" uid="uid://dttvt22q81qb7" path="res://assets/hud/ability_icons/EMP.png" id="3_bapms"]
+[ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="4_5s22q"]
+[ext_resource type="Texture2D" uid="uid://c3a1s1sos2e6h" path="res://assets/hud/ability_icons/HeartWithGreenPlus.png" id="5_ucfrn"]
+[ext_resource type="Texture2D" uid="uid://djbj10eic81jy" path="res://assets/hud/ability_icons/Magnet.png" id="6_0vfm7"]
+[ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="7_lbe2i"]
+[ext_resource type="Texture2D" uid="uid://cwi1icp4eqh8v" path="res://assets/hud/ability_icons/OrbWithGreenPlus.png" id="8_eyjm1"]
+[ext_resource type="Texture2D" uid="uid://dbxr4wai4omck" path="res://assets/hud/ability_icons/Shield.png" id="9_wt03g"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsirw"]
+atlas = ExtResource("1_ruj8i")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3p08"]
+atlas = ExtResource("2_i4ua3")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pg7oj"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_bsirw")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_q3p08")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_18ha0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6qlt"]
+atlas = ExtResource("3_bapms")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bpud"]
+atlas = ExtResource("4_5s22q")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4awl"]
+atlas = ExtResource("6_0vfm7")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh51e"]
+atlas = ExtResource("7_lbe2i")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pbu6"]
+atlas = ExtResource("8_eyjm1")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogxaa"]
+atlas = ExtResource("5_ucfrn")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i7kt"]
+atlas = ExtResource("9_wt03g")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6l0q"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6qlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bpud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4awl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh51e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pbu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogxaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i7kt")
+}],
+"loop": true,
+"name": &"rotation",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1iw2j"]
+font = ExtResource("10_noge5")
+
+[sub_resource type="Animation" id="Animation_c7ekr"]
+resource_name = "Reward_Rise"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reward:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-14, 48), Vector2(-14, -96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Reward:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Reward:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0823529), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5jeyj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reward:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Reward:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Reward:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o5wdo"]
+_data = {
+"RESET": SubResource("Animation_5jeyj"),
+"Reward_Rise": SubResource("Animation_c7ekr")
+}
+
+[sub_resource type="Animation" id="Animation_76piu"]
+resource_name = "OpenChest"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chest:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0, 0.785398, 0.0, 0.785398, 0.0, 0.785398, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chest/Beam:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chest/Beam:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(719.98, 0), Vector2(719.98, 2806.15)]
+}
+
+[sub_resource type="Animation" id="Animation_5h2k1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chest:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chest/Beam:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chest/Beam:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(719.98, 2806.15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2qhe"]
+_data = {
+"OpenChest": SubResource("Animation_76piu"),
+"RESET": SubResource("Animation_5h2k1")
+}
 
 [node name="AbilityChoice" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0, 0.670588, 0, 1)
+position = Vector2(-0.5, 0.999998)
+scale = Vector2(211, 452)
+texture = SubResource("CanvasTexture_666j6")
+
+[node name="Chest" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 72)
+scale = Vector2(0.10417, 0.091941)
+sprite_frames = SubResource("SpriteFrames_pg7oj")
+frame = 1
+
+[node name="Beam" type="Sprite2D" parent="Chest"]
+self_modulate = Color(0.918327, 0.708485, 0, 0.596078)
+position = Vector2(254.393, 87.0125)
+rotation = 3.14159
+scale = Vector2(719.98, 2806.15)
+texture = SubResource("CanvasTexture_18ha0")
+centered = false
+
+[node name="Reward" type="AnimatedSprite2D" parent="."]
+position = Vector2(-14, 48)
+scale = Vector2(0.0620555, 0.0553901)
+sprite_frames = SubResource("SpriteFrames_d6l0q")
+animation = &"rotation"
+
+[node name="RewardLabel" type="Label" parent="."]
+offset_left = -87.0
+offset_top = 133.0
+offset_right = 87.0
+offset_bottom = 201.0
+text = "Reward Recieved: 
+"
+label_settings = SubResource("LabelSettings_1iw2j")
+horizontal_alignment = 1
+
+[node name="RewardAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o5wdo")
+}
+
+[node name="ChestAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u2qhe")
+}

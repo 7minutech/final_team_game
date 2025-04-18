@@ -8,13 +8,6 @@
 [node name="PauseScreen" type="Node2D"]
 script = ExtResource("1_cr7hm")
 
-[node name="ButtonsBG" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.702842, 0.773495, 0.603922)
-position = Vector2(1.50028, -11.6358)
-rotation = 3.14159
-scale = Vector2(248, -431.728)
-texture = SubResource("CanvasTexture_h3c0f")
-
 [node name="AbilityBG" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 1, 0.603922)
 position = Vector2(-414.5, -108.505)
@@ -36,8 +29,15 @@ offset_right = -298.0
 offset_bottom = 280.0
 text = "Temp Text"
 
+[node name="ButtonsBG" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.702842, 0.773495, 0.603922)
+position = Vector2(449.5, 6.3642)
+rotation = 3.14159
+scale = Vector2(248, -431.728)
+texture = SubResource("CanvasTexture_h3c0f")
+
 [node name="ButtonHolder" type="Node2D" parent="."]
-position = Vector2(-64, -64)
+position = Vector2(384, -46)
 
 [node name="Resume" type="Button" parent="ButtonHolder"]
 offset_right = 8.0
