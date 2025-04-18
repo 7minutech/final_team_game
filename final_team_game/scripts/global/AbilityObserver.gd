@@ -171,6 +171,6 @@ func give_init_abilities():
 	give_max_healths()
 	give_health_regens()
 	give_pick_up_ranges()
-	give_shield_cds()
+	#give_shield_cds()
 	give_shield_durations()
 	give_emps()
