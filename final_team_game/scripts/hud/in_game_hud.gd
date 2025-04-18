@@ -4,7 +4,7 @@ class_name Hud
 
 ### Constants ###
 # Constants for preloads
-const iconBG = preload("res://icon.svg")
+const iconBG = preload("res://assets/hud/ability_icons/IconBG.png")
 
 ### Variables ###
 # Variables for time calculation

@@ -63,18 +63,18 @@ fit_content = true
 scroll_active = false
 
 [node name="AbilityIconBG_Bottom" type="RichTextLabel" parent="."]
-offset_left = -532.0
-offset_top = -105.0
+offset_left = -535.0
+offset_top = -99.0
 offset_right = -295.0
-offset_bottom = -57.0
+offset_bottom = -51.0
 fit_content = true
 scroll_active = false
 
 [node name="AbilityIcon_Bottom" type="RichTextLabel" parent="."]
 offset_left = -535.0
-offset_top = -107.0
+offset_top = -99.0
 offset_right = -295.0
-offset_bottom = -60.0
+offset_bottom = -52.0
 fit_content = true
 scroll_active = false
 

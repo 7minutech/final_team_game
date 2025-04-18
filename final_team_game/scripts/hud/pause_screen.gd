@@ -1,7 +1,7 @@
 extends Node2D
 
 ### Constants ###
-const ICON_BG = preload("res://icon.svg")
+const ICON_BG = preload("res://assets/hud/ability_icons/IconBG.png")
 const FILLED_PIP = preload("res://assets/hud/ability_tracking_symbols/filled_pip/AbilityPip_Filled.png")
 const EMPTY_PIP = preload("res://assets/hud/ability_tracking_symbols/empty_pip/AbilityPip_Empty.png")
 const MESSAGE: String = "Pretyped Text"
@@ -75,8 +75,8 @@ func placeIcons(top: bool, image: Texture2D, tooltip: String, emptyNodeName: Str
 		$AbilityIcon_Top.append_text("  ")
 		$AbilityIconBG_Top.append_text("  ")
 	else:
-		$AbilityIcon_Bottom.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
-		$AbilityIconBG_Bottom.add_image(ICON_BG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+		$AbilityIcon_Bottom.add_image(image, iconSideLength, iconSideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
+		$AbilityIconBG_Bottom.add_image(ICON_BG, iconSideLength, iconSideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, tooltip, false)
 		$AbilityIcon_Bottom.append_text("  ")
 		$AbilityIconBG_Bottom.append_text("  ")
 	for i in range(maxQTY):
