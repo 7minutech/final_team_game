@@ -19,13 +19,15 @@ var health_key: String = "blue_drone_health"
 var damage_key: String = "blue_drone_damage"
 @onready var hit_label: Label = $DamageLabel
 @onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
+@onready var original_color: Color = sprite.modulate
+var frozen: bool = false
 func _ready() -> void:
 	set_max_health()
 	health = max_health
 		
 
 func _physics_process(_delta: float) -> void:
-	if PlayerObserver.player != null:
+	if PlayerObserver.player != null and not frozen:
 		sprite_animation.play("walk")
 		var direction = PlayerObserver.player.global_position - global_position
 		velocity = direction.normalized() * speed
@@ -75,7 +77,7 @@ func _on_queue_free_timer_timeout() -> void:
 	pass # Replace with function body.
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Hero") && $AttackTimer.is_stopped():
+	if body.is_in_group("Hero") && $AttackTimer.is_stopped() and not frozen:
 		attack(body)
 
 func flash_white() -> void:
@@ -110,3 +112,19 @@ func show_hit_number(dmg: int) -> void:
 	hit_label.show()
 	await get_tree().create_timer(0.2).timeout
 	hit_label.hide()
+
+func freeze(freeze_time: float) -> void:
+	if not frozen:
+		var speed_before: float = speed
+		speed = 0
+		frozen = true
+		sprite_animation.stop()
+		turn_blue()
+		await get_tree().create_timer(freeze_time).timeout
+		speed = speed_before
+		frozen = false
+		sprite.modulate = original_color
+
+func turn_blue() -> void:
+	var blue_color: Color = Color("#6699FF")
+	sprite.modulate = blue_color

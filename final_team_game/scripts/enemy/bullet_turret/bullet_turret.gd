@@ -29,7 +29,8 @@ var damage_key: String = "turret_damage"
 @onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 # Variables for sprite management
 @onready var sprite: Sprite2D = $BaseSkin
-
+@onready var original_color: Color = sprite.modulate
+var frozen: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,7 +45,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if $Visibility.is_on_screen():
 		$Laser.show()
-		if canShoot:
+		if canShoot and not frozen:
 			aim()
 			if time_tracker >= fireRate:
 				if shots_fired < burstSize:
@@ -133,3 +134,15 @@ func show_hit_number(dmg: int) -> void:
 	hit_label.show()
 	await get_tree().create_timer(0.2).timeout
 	hit_label.hide()
+
+func freeze(freeze_time: float) -> void:
+	if not frozen:
+		frozen = true
+		turn_blue()
+		await get_tree().create_timer(freeze_time).timeout
+		frozen = false
+		sprite.modulate = original_color
+
+func turn_blue() -> void:
+	var blue_color: Color = Color("#6699FF")
+	sprite.modulate = blue_color

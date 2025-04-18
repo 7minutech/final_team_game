@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmd37ik2jcobs"]
+
+[ext_resource type="Script" path="res://scripts/ability/passive/emp.gd" id="1_rawx2"]
+[ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="2_6wdkv"]
+[ext_resource type="AudioStream" uid="uid://baa8k76s2rf60" path="res://assets/sound/emp_sound.mp3" id="3_mjvwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onv62"]
+radius = 50.0
+
+[node name="EMP" type="Area2D"]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("1_rawx2")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onv62")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.743697, 0.000272324, 0.702979, 0.341176)
+texture = ExtResource("2_6wdkv")
+
+[node name="ExpandTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="BangSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mjvwe")
+volume_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="ExpandTimer" to="." method="_on_expand_timer_timeout"]

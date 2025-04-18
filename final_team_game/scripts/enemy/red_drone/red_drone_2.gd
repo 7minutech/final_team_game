@@ -7,7 +7,8 @@ var damage: int = 3
 # Health variables
 var max_health: int = 10
 var health: int = max_health
-
+@onready var original_color = $Skin.modulate
+var frozen: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -54,6 +55,10 @@ func drop_xp_orb(xp_value: int) -> void:
 
 
 func _on_damage_area_2_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Hero") && $AttackCooldown.is_stopped():
+	if body.is_in_group("Hero") && $AttackCooldown.is_stopped() and not frozen:
 		$AttackCooldown.start()
 		body.loseHealth(damage)
+
+func freeze(freeze_time: float) -> void:
+	frozen = true
+	get_parent().freeze(freeze_time)

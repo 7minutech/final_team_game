@@ -3,15 +3,16 @@ extends Node
 ### Constants ###
 const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
-	"garlic": "res://scenes/ability/passive/garlic.tscn"
-	
+	"garlic": "res://scenes/ability/passive/garlic.tscn",
 	# Non-damaging abilities
+	"emp" : "res://scenes/ability/passive/emp.tscn"
 	
 }
 const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
 	"garlic": "res://assets/hud/ability_icons/Heart.png",
 	# Non-damaging abilitites
+	"emp": "res://assets/hud/ability_icons/EMP.png",
 	"max_health": "res://assets/hud/ability_icons/Heart.png",
 	"health_regen": "res://assets/hud/ability_icons/HeartWithGreenPlus.png",
 	"pick_up_range": "res://assets/hud/ability_icons/Magnet.png",
@@ -23,6 +24,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"garlic": "Adds a damaging area around the player",
 	
 	# Non-damaging abilities
+	"emp": "Stuns enemies that enter its area",
 	"max_health": "Provides a boost to max health",
 	"health_regen": "Provides health regen over time",
 	"pick_up_range": "Increases the radius that the player can pick up items",
@@ -64,6 +66,7 @@ func get_ability_path(key):
 	return ABILITY_SCENE_PATH[key]
 
 func give_passive_ability(ability_key: String) -> void:
+	hud.addAbility(ability_key)
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:
 		player.ability_qty[ability_key] = 1
 	else:
@@ -88,7 +91,6 @@ func give_passive_boost(ability_name: String):
 			
 
 func give_active_ability(ability_key: String) -> void:
-	hud.addAbility(ability_key)
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:
 		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
 		var ability_instance = ability_scene.instantiate()
@@ -97,6 +99,7 @@ func give_active_ability(ability_key: String) -> void:
 		player.ability_qty[ability_key] = 1
 	else:
 		player.ability_qty[ability_key] += 1
+	hud.addAbility(ability_key)
 	var ability = player.abilities[ability_key]
 	if ability.has_method("update_stat"):
 		ability.update_stat(player.ability_qty[ability_key])
@@ -133,6 +136,10 @@ func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
 
+func give_emps() -> void:
+	for i in range(player.emp_level):
+		AbilityObserver.give_active_ability("emp")
+
 func give_movement_speeds():
 	for i in range(player.movement_speed_level):
 		AbilityObserver.give_passive_ability("movement_speed")
@@ -165,3 +172,4 @@ func give_init_abilities():
 	give_pick_up_ranges()
 	give_shield_cds()
 	give_shield_durations()
+	give_emps()

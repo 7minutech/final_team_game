@@ -50,6 +50,7 @@ var shield_cd: float = INITIAL_SHIELD_CD
 @export var health_regen_level: int
 @export var pick_up_range_level: int
 @export var shield_level: int
+@export var emp_level: int
 func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer

@@ -14,6 +14,8 @@ var max_health: int = INITIAL_HEALTH
 var damage: int = INITIAL_DAMAGE
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var original_color: Color = sprite.modulate
+var frozen: bool = false
 var direction: Vector2
 
 func _ready() -> void:
@@ -23,10 +25,11 @@ func _ready() -> void:
 	direction = PlayerObserver.player.position - self.position
 
 func _physics_process(delta: float) -> void:
-	sprite_animation.play("walk")
-	self.move_and_collide((direction * delta).normalized() * speed)
-	if $QueueFreeTimer.is_stopped() && !$Visibility.is_on_screen():
-		self.queue_free()
+	if not frozen:
+		sprite_animation.play("walk")
+		self.move_and_collide((direction * delta).normalized() * speed)
+		if $QueueFreeTimer.is_stopped() && !$Visibility.is_on_screen():
+			self.queue_free()
 
 ### Functions for stats ###
 # Function to lose health
@@ -78,5 +81,24 @@ func set_max_health() -> void:
 	#print(str((TimeObserver.total_time / 60.0) * 10))
 	#print(max_health)
 
+func freeze(freeze_time: float) -> void:
+	if not frozen:
+		var speed_before: float = speed
+		speed = 0
+		frozen = true
+		sprite_animation.stop()
+		turn_blue()
+		await get_tree().create_timer(freeze_time).timeout
+		speed = speed_before
+		frozen = false
+		sprite.modulate = original_color
+		unfreeze_children()
+
+func turn_blue() -> void:
+	var blue_color: Color = Color("#6699FF")
+	sprite.modulate = blue_color
 	
-	
+func unfreeze_children() -> void:
+	for drone in get_children(): 
+		if drone is RedDrone:
+			drone.frozen = false

@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+class_name RedDrone
+
 ### Constants ###
 # Constants for preloads
 const red_drone = preload("res://scenes/enemy/red_drone/red_drone_2.tscn")
@@ -10,6 +12,7 @@ const radius: int = -100
 @export var droneCount: int = 10
 var direction: Vector2
 var speed: int = 7
+var frozen: bool = false
 
 
 
@@ -36,3 +39,25 @@ func spawn_drones_randomly() -> void:
 # Function to set the direction that the drones will follow
 func setDirection(d: Vector2) -> void:
 	direction = d
+
+func freeze(freeze_time: float) -> void:
+	if not frozen:
+		var speed_before: float = speed
+		speed = 0
+		frozen = true
+		turn_blue()
+		await get_tree().create_timer(freeze_time).timeout
+		speed = speed_before
+		frozen = false
+		turn_back()
+
+func turn_blue() -> void:
+	var blue_color: Color = Color("#6699FF")
+	for drone in get_children():
+		if drone is RedDrone:
+			drone.sprite.modulate = blue_color
+
+func turn_back() -> void:
+	for drone in get_children():
+		if drone is RedDrone:
+			drone.sprite.modulate = drone.original_color
