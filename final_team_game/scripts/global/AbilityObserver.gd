@@ -74,10 +74,13 @@ func get_ability_path(key):
 func give_passive_ability(ability_key: String) -> void:
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:
 		player.ability_qty[ability_key] = 1
+		hud.addAbility(ability_key)
+
 	else:
-		player.ability_qty[ability_key] += 1
+		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
+			player.ability_qty[ability_key] += 1
+			hud.addAbility(ability_key)
 	player.abilities[ability_key] = "passive"
-	hud.addAbility(ability_key)
 	give_passive_boost(ability_key)
 
 func give_passive_boost(ability_name: String):
@@ -102,9 +105,11 @@ func give_active_ability(ability_key: String) -> void:
 		player.add_child(ability_instance)
 		player.abilities[ability_key] = ability_instance
 		player.ability_qty[ability_key] = 1
+		hud.addAbility(ability_key)
 	else:
-		player.ability_qty[ability_key] += 1
-	hud.addAbility(ability_key)
+		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
+			player.ability_qty[ability_key] += 1
+			hud.addAbility(ability_key)
 	var ability = player.abilities[ability_key]
 	if ability.has_method("update_stat"):
 		ability.update_stat(player.ability_qty[ability_key])

@@ -108,7 +108,9 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 		if distance < closest_position:
 			closest_position = distance
 			screen_exited_at = key
+	
 	off_screen = true
+	await get_tree().create_timer(0.5).timeout
 	$OffScreenTimer.start()
 	pass # Replace with function body.
 
@@ -192,7 +194,6 @@ func show_hit_number(dmg: int) -> void:
 
 
 func _on_off_screen_timer_timeout() -> void:
-	teleport_to_player()
 	pass # Replace with function body.
 
 func freeze(freeze_time: float) -> void:
