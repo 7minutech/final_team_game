@@ -68,16 +68,15 @@ func get_ability_path(key):
 	return ABILITY_SCENE_PATH[key]
 
 func give_passive_ability(ability_key: String) -> void:
-	hud.addAbility(ability_key)
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:
 		player.ability_qty[ability_key] = 1
 	else:
 		player.ability_qty[ability_key] += 1
 	player.abilities[ability_key] = "passive"
+	hud.addAbility(ability_key)
 	give_passive_boost(ability_key)
 
 func give_passive_boost(ability_name: String):
-	hud.addAbility(ability_name)
 	match ability_name:
 		"movement_speed":
 			set_movement_speed_buff()

@@ -148,4 +148,46 @@ offset_right = -475.0
 offset_bottom = 6.0
 scroll_active = false
 
+[node name="EmptyPips_6" type="RichTextLabel" parent="."]
+offset_left = -473.0
+offset_top = -45.0
+offset_right = -413.0
+offset_bottom = 6.0
+scroll_active = false
+
+[node name="FilledPips_6" type="RichTextLabel" parent="."]
+offset_left = -473.0
+offset_top = -45.0
+offset_right = -413.0
+offset_bottom = 6.0
+scroll_active = false
+
+[node name="EmptyPips_7" type="RichTextLabel" parent="."]
+offset_left = -413.0
+offset_top = -45.0
+offset_right = -353.0
+offset_bottom = 6.0
+scroll_active = false
+
+[node name="FilledPips_7" type="RichTextLabel" parent="."]
+offset_left = -413.0
+offset_top = -45.0
+offset_right = -353.0
+offset_bottom = 6.0
+scroll_active = false
+
+[node name="EmptyPips_8" type="RichTextLabel" parent="."]
+offset_left = -355.0
+offset_top = -45.0
+offset_right = -295.0
+offset_bottom = 6.0
+scroll_active = false
+
+[node name="FilledPips_8" type="RichTextLabel" parent="."]
+offset_left = -355.0
+offset_top = -45.0
+offset_right = -295.0
+offset_bottom = 6.0
+scroll_active = false
+
 [connection signal="pressed" from="ButtonHolder/Resume" to="." method="_on_resume_pressed"]

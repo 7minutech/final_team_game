@@ -26,25 +26,15 @@ func _process(_delta: float) -> void:
 # Function to add ability images to the ability label
 func addAbility(ability: String) -> void:
 	var ability_qty = PlayerObserver.player.ability_qty
+	var sideLength: int = 50
 	if PlayerObserver.player.abilities.has(ability) and ability_qty[ability] == 1:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(ability)
 		var image = load(path)
 		var numAbilities: int = PlayerObserver.player.abilities.size()
-		if numAbilities < 4:
-			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-			$AbilityIcons.append_text("  ")
-			$AbilityIconsBG.append_text("  ")
-		elif numAbilities == 5:
-			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-			$AbilityIcons.append_text("  ")
-			$AbilityIconsBG.append_text("  ")
-		elif numAbilities < 8:
-			$AbilityIcons.add_image(image, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-			$AbilityIconsBG.add_image(iconBG, 50, 50, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
-			$AbilityIcons.append_text("  ")
-			$AbilityIconsBG.append_text("  ")
+		$AbilityIcons.add_image(image, sideLength, sideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+		$AbilityIconsBG.add_image(iconBG, sideLength, sideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
+		$AbilityIcons.append_text("  ")
+		$AbilityIconsBG.append_text("  ")
 ##
 # Function to clear the ability label for redrawing
 func clearAbilities() -> void:

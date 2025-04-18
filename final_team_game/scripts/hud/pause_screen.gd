@@ -64,7 +64,13 @@ func clearAbilities() -> void:
 	$AbilityIconBG_Top.clear()
 	$AbilityIcon_Bottom.clear()
 	$AbilityIconBG_Bottom.clear()
-
+	var count = 1
+	for i: int in range(AbilityObserver.player.abilities.size()):
+		var empty: String = "EmptyPips_" + str(count)
+		var filled: String = "FilledPips_" + str(count)
+		self.find_child(empty).clear()
+		self.find_child(filled).clear()
+		count += 1
 # Function to place the correct components on the ability label
 func placeIcons(top: bool, image: Texture2D, tooltip: String, emptyNodeName: String, filledNodeName: String, currentQTY: int, maxQTY: int) -> void:
 	var pipSideLength: int = 17
