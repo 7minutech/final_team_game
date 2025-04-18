@@ -7,7 +7,7 @@
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_ct54g"]
 [ext_resource type="PackedScene" uid="uid://cltujlk1ryjm1" path="res://scenes/hud/PauseScreen.tscn" id="5_p3jw4"]
 [ext_resource type="PackedScene" uid="uid://dx7yufxdxnh7m" path="res://scenes/hud/debug_and_cheats_menu.tscn" id="7_ogj2b"]
-[ext_resource type="PackedScene" uid="uid://jos7dfgt1e75" path="res://scenes/hud/AbilityChoice.tscn" id="8_nj5f8"]
+[ext_resource type="PackedScene" uid="uid://jos7dfgt1e75" path="res://scenes/hud/ChestRewardScreen.tscn" id="8_nj5f8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
 font = ExtResource("4_ct54g")

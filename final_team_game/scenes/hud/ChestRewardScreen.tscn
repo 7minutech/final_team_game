@@ -1,24 +1,24 @@
 [gd_scene load_steps=31 format=3 uid="uid://jos7dfgt1e75"]
 
-[ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_ruj8i"]
-[ext_resource type="Texture2D" uid="uid://c18rqsfeckt36" path="res://assets/item/open_chest.png" id="2_i4ua3"]
-[ext_resource type="Texture2D" uid="uid://dttvt22q81qb7" path="res://assets/hud/ability_icons/EMP.png" id="3_bapms"]
-[ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="4_5s22q"]
-[ext_resource type="Texture2D" uid="uid://c3a1s1sos2e6h" path="res://assets/hud/ability_icons/HeartWithGreenPlus.png" id="5_ucfrn"]
-[ext_resource type="Texture2D" uid="uid://djbj10eic81jy" path="res://assets/hud/ability_icons/Magnet.png" id="6_0vfm7"]
-[ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="7_lbe2i"]
-[ext_resource type="Texture2D" uid="uid://cwi1icp4eqh8v" path="res://assets/hud/ability_icons/OrbWithGreenPlus.png" id="8_eyjm1"]
-[ext_resource type="Texture2D" uid="uid://dbxr4wai4omck" path="res://assets/hud/ability_icons/Shield.png" id="9_wt03g"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
+[ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_k7vj5"]
+[ext_resource type="Texture2D" uid="uid://c18rqsfeckt36" path="res://assets/item/open_chest.png" id="2_s4w8j"]
+[ext_resource type="Texture2D" uid="uid://dttvt22q81qb7" path="res://assets/hud/ability_icons/EMP.png" id="3_jjxhs"]
+[ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="4_iglw5"]
+[ext_resource type="Texture2D" uid="uid://djbj10eic81jy" path="res://assets/hud/ability_icons/Magnet.png" id="5_twiub"]
+[ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="6_rfont"]
+[ext_resource type="Texture2D" uid="uid://cwi1icp4eqh8v" path="res://assets/hud/ability_icons/OrbWithGreenPlus.png" id="7_c2awc"]
+[ext_resource type="Texture2D" uid="uid://c3a1s1sos2e6h" path="res://assets/hud/ability_icons/HeartWithGreenPlus.png" id="8_yrj4i"]
+[ext_resource type="Texture2D" uid="uid://dbxr4wai4omck" path="res://assets/hud/ability_icons/Shield.png" id="9_mjxxb"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bsirw"]
-atlas = ExtResource("1_ruj8i")
+atlas = ExtResource("1_k7vj5")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q3p08"]
-atlas = ExtResource("2_i4ua3")
+atlas = ExtResource("2_s4w8j")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pg7oj"]
@@ -38,31 +38,31 @@ animations = [{
 [sub_resource type="CanvasTexture" id="CanvasTexture_18ha0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6qlt"]
-atlas = ExtResource("3_bapms")
+atlas = ExtResource("3_jjxhs")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3bpud"]
-atlas = ExtResource("4_5s22q")
+atlas = ExtResource("4_iglw5")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m4awl"]
-atlas = ExtResource("6_0vfm7")
+atlas = ExtResource("5_twiub")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eh51e"]
-atlas = ExtResource("7_lbe2i")
+atlas = ExtResource("6_rfont")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4pbu6"]
-atlas = ExtResource("8_eyjm1")
+atlas = ExtResource("7_c2awc")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogxaa"]
-atlas = ExtResource("5_ucfrn")
+atlas = ExtResource("8_yrj4i")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5i7kt"]
-atlas = ExtResource("9_wt03g")
+atlas = ExtResource("9_mjxxb")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6l0q"]
@@ -100,7 +100,46 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1iw2j"]
-font = ExtResource("10_noge5")
+font = ExtResource("10_eqe6y")
+
+[sub_resource type="Animation" id="Animation_5jeyj"]
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reward:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-14, 48), Vector2(-14, -98)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Reward:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Reward:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.133333), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_c7ekr"]
 resource_name = "Reward_Rise"
@@ -141,45 +180,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.0823529), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5jeyj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reward:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-14, 48)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Reward:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Reward:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5wdo"]
@@ -226,7 +226,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1.3, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0.0705882), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -298,7 +298,7 @@ _data = {
 "RESET": SubResource("Animation_5h2k1")
 }
 
-[node name="AbilityChoice" type="Node2D"]
+[node name="ChestRewardScreen" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0, 0.670588, 0, 1)
@@ -321,6 +321,7 @@ texture = SubResource("CanvasTexture_18ha0")
 centered = false
 
 [node name="Reward" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.133333)
 position = Vector2(-14, 48)
 scale = Vector2(0.0620555, 0.0553901)
 sprite_frames = SubResource("SpriteFrames_d6l0q")
@@ -331,7 +332,7 @@ offset_left = -87.0
 offset_top = 133.0
 offset_right = 87.0
 offset_bottom = 201.0
-text = "Reward Recieved: 
+text = "YOU GOT 
 "
 label_settings = SubResource("LabelSettings_1iw2j")
 horizontal_alignment = 1
