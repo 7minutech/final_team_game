@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://csfdqjw6pfa55"]
+
+[ext_resource type="Script" path="res://scripts/ability/active/plasma_green_gun.gd" id="1_ak23i"]
+[ext_resource type="PackedScene" uid="uid://curr26f3cjpby" path="res://scenes/hero/PlasmaProjectile.tscn" id="2_rxd04"]
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="2_udf8m"]
+
+[node name="PlasmaGreenGun" type="Node2D"]
+script = ExtResource("1_ak23i")
+plasma_proj = ExtResource("2_rxd04")
+
+[node name="LineAsset" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.305882)
+position = Vector2(61.25, 0.25)
+scale = Vector2(117.5, 3.5)
+texture = ExtResource("2_udf8m")

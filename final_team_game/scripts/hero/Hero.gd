@@ -38,16 +38,16 @@ var player_level: int = 0
 var luck: int = 5
 var ability_qty: Dictionary = {}
 var abilities: Dictionary = {}
+var primary_weapon_hash: Dictionary = {}
 var movement_buff = 0.05
 var health_regen: float 
 var pick_up_range: float
 var shield_active: bool = false
 var shield_duration: float = INITIAL_SHIELD_DURATION
 var shield_cd: float = INITIAL_SHIELD_CD
-var primary_weapon
+var primary_weapon: Weapon
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
-@export var default_weapon_level: int = 1
 @export var garlic_level: int
 @export var movement_speed_level: int
 @export var max_health_level: int
@@ -55,7 +55,8 @@ var primary_weapon
 @export var pick_up_range_level: int
 @export var shield_level: int
 @export var emp_level: int
-@export var default_weapon: int
+@export var default_weapon_level: int = 1
+@export var test_gun_level: int
 func _ready() -> void:
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
@@ -72,11 +73,22 @@ func _ready() -> void:
 	AbilityObserver.give_init_abilities()
 	$ShieldTimerCD.wait_time = INITIAL_SHIELD_CD
 	$ShieldDuration.wait_time = INITIAL_SHIELD_DURATION
-	set_primary_weapon(DEFAULT_WEAPON_KEY)
+	AbilityObserver.hide_all_secondary()
+	AbilityObserver.set_primary_weapon(DEFAULT_WEAPON_KEY)
+	pass
 	
 func _process(_delta: float) -> void:
 	if has_level_up():
 		level_up()
+	if Input.is_action_just_pressed("switch_test_gun"):
+		$SwapWeaponSound.pitch_scale = randf_range(1.4,1.6)
+		$SwapWeaponSound.play()
+		if primary_weapon.weapon_name == "plasma_gun":
+			AbilityObserver.set_primary_weapon("test_gun")
+		elif primary_weapon.weapon_name == "test_gun":
+			AbilityObserver.set_primary_weapon("plasma_gun")
+		else:
+			print("Weapon name not in condition for swap hotkey")
 
 func _physics_process(delta: float) -> void:
 	# Check to see if player died

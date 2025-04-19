@@ -5,6 +5,7 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
 	"garlic": "res://scenes/ability/passive/garlic.tscn",
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
+	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
 	# Non-damaging abilities
 	"emp" : "res://scenes/ability/passive/emp.tscn"
 	
@@ -13,6 +14,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
 	"garlic": "res://assets/hud/ability_icons/Heart.png",
 	"plasma_gun": "res://assets/weapon/blue_laser_gun.png",
+	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
 	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
@@ -26,6 +28,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"garlic": "Adds a damaging area around the player",
 	"plasma_gun": "Defulat plasma gun",
+	"test_gun": "Testing gun for testing...",
 	
 	# Non-damaging abilities
 	"emp": "Stuns enemies that enter its area",
@@ -39,6 +42,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
 	"garlic": 9,
 	"plasma_gun": 9,
+	"test_gun": 9,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -116,7 +120,18 @@ func give_active_ability(ability_key: String) -> void:
 		ability.update_stat(player.ability_qty[ability_key])
 
 func set_primary_weapon(ability_key: String) -> void:
+	if player.primary_weapon != null:
+		player.primary_weapon.set_auto(false)
+		player.primary_weapon.hide_aim_line()
+	var i = ability_key
 	player.set_primary_weapon(ability_key)
+	player.primary_weapon.set_auto(true)
+	player.primary_weapon.show_aim_line()
+
+func hide_all_secondary() -> void:
+	for weapon in player.abilities:
+		if weapon is Weapon:
+			weapon.hide_aim_line()
 
 func set_movement_speed_buff() -> void:
 	var multiplier = 1 + (movement_speed_buff * player.ability_qty["movement_speed"])
@@ -182,6 +197,9 @@ func give_default_gun() -> void:
 	for i in range(player.default_weapon_level):
 		AbilityObserver.give_active_ability("plasma_gun")
 	
+func give_test_gun() -> void:
+	for i in range(player.test_gun_level):
+		AbilityObserver.give_active_ability("test_gun")
 
 func give_init_abilities():
 	give_garlics()
@@ -193,3 +211,4 @@ func give_init_abilities():
 	give_shield_durations()
 	give_emps()
 	give_default_gun()
+	give_test_gun()
