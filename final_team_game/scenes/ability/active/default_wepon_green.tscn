@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://g4hteww4k22e"]
+
+[ext_resource type="PackedScene" uid="uid://be54r4hfa0fm" path="res://scenes/ability/active/default_wepon.tscn" id="1_7agv2"]
+
+[node name="DefaultWeponGreen" instance=ExtResource("1_7agv2")]

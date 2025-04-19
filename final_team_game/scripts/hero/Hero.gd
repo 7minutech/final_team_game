@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 		
 	# Shoot towards mouse position if possible
 	if canShoot:
-		var mousePos = aim()
+		var mousePos = primary_weapon.aim()
 		if time_tracker >= fireRate:
 			primary_weapon.shoot(mousePos)
 			#shoot(mousePos)
