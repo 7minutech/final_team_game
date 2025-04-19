@@ -1,14 +1,16 @@
-[gd_scene load_steps=23 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=24 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
 [ext_resource type="PackedScene" uid="uid://qb10brngodal" path="res://scenes/hud/In_Game_Hud.tscn" id="2_jvuw6"]
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="3_goq8x"]
 [ext_resource type="Texture2D" uid="uid://crshn8i2od14f" path="res://assets/player/heroWalking1-sheet.png" id="3_negf0"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="4_enxk8"]
 [ext_resource type="Texture2D" uid="uid://bq0dp27jqosu3" path="res://assets/hud/health_and_exp_bar/healthBarFill.png" id="5_3krd2"]
 [ext_resource type="Texture2D" uid="uid://cjq5j6uekterg" path="res://assets/player/Sparks_animation.png" id="5_he4v0"]
 [ext_resource type="AudioStream" uid="uid://co1snns71le54" path="res://assets/sound/Intro 1 (1).mp3" id="7_5xan0"]
 [ext_resource type="AudioStream" uid="uid://dxvr1jpo6x0mm" path="res://assets/sound/player/electric-90746.mp3" id="9_k05xx"]
+[ext_resource type="PackedScene" uid="uid://be54r4hfa0fm" path="res://scenes/ability/active/default_wepon.tscn" id="10_rkqxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
 radius = 17.0
@@ -16,8 +18,6 @@ height = 58.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpcay"]
 radius = 73.2462
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ab42n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ga2gs"]
 atlas = ExtResource("3_negf0")
@@ -126,12 +126,14 @@ shape = SubResource("CircleShape2D_jpcay")
 [node name="Hud" parent="." instance=ExtResource("2_jvuw6")]
 
 [node name="AimLine" type="Node2D" parent="."]
+visible = false
 
 [node name="LineAsset" type="Sprite2D" parent="AimLine"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(61.25, 0.25)
 scale = Vector2(117.5, 3.5)
-texture = SubResource("CanvasTexture_ab42n")
+texture = ExtResource("3_goq8x")
 
 [node name="Skin" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.0413232, 0.0529505)
@@ -180,6 +182,8 @@ wait_time = 2.0
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_k05xx")
 volume_db = -7.5
+
+[node name="DefaultWepon" parent="." instance=ExtResource("10_rkqxk")]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -4,6 +4,7 @@ extends Node
 const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
 	"garlic": "res://scenes/ability/passive/garlic.tscn",
+	"default_gun": "res://scenes/ability/active/default_wepon.tscn",
 	# Non-damaging abilities
 	"emp" : "res://scenes/ability/passive/emp.tscn"
 	
@@ -24,7 +25,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"garlic": "Adds a damaging area around the player",
-	"default_gun": "res://assets/weapon/blue_laser_gun.png",
+	"default_gun": "Defulat plasma gun",
 	
 	# Non-damaging abilities
 	"emp": "Stuns enemies that enter its area",
@@ -114,6 +115,9 @@ func give_active_ability(ability_key: String) -> void:
 	if ability.has_method("update_stat"):
 		ability.update_stat(player.ability_qty[ability_key])
 
+func set_primary_weapon(ability_key: String) -> void:
+	player.set_primary_weapon(ability_key)
+
 func set_movement_speed_buff() -> void:
 	var multiplier = 1 + (movement_speed_buff * player.ability_qty["movement_speed"])
 	var new_speed = (player.INITIAL_SPEED * multiplier)
@@ -176,7 +180,8 @@ func give_shield_cds():
 
 func give_default_gun() -> void:
 	for i in range(player.default_weapon_level):
-		AbilityObserver.give_passive_ability("default_gun")
+		AbilityObserver.give_active_ability("default_gun")
+	
 
 func give_init_abilities():
 	give_garlics()
@@ -187,3 +192,4 @@ func give_init_abilities():
 	#give_shield_cds()
 	give_shield_durations()
 	give_emps()
+	give_default_gun()

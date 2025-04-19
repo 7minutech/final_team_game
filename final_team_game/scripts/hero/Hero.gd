@@ -16,6 +16,7 @@ const INITIAL_PICK_UP_RANGE: float = 73.25
 const INITIAL_SHIELD_DURATION: float = 0
 const INITIAL_SHIELD_CD: float = 5
 const ORIGINAL_COLOR: Color = Color("ffffff")
+const DEFAULT_WEAPON_KEY = "default_gun"
 
 ### Variables ###
 # Variable for movement logic
@@ -43,6 +44,7 @@ var pick_up_range: float
 var shield_active: bool = false
 var shield_duration: float = INITIAL_SHIELD_DURATION
 var shield_cd: float = INITIAL_SHIELD_CD
+var primary_weapon: Weapon
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
 @export var default_weapon_level: int = 1
@@ -53,6 +55,7 @@ var shield_cd: float = INITIAL_SHIELD_CD
 @export var pick_up_range_level: int
 @export var shield_level: int
 @export var emp_level: int
+@export var default_weapon: int
 func _ready() -> void:
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
@@ -66,10 +69,10 @@ func _ready() -> void:
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
 	$Hud/XpBar.max_value = INITIAL_MAX_XP
-	AbilityObserver.give_default_gun()
 	AbilityObserver.give_init_abilities()
 	$ShieldTimerCD.wait_time = INITIAL_SHIELD_CD
 	$ShieldDuration.wait_time = INITIAL_SHIELD_DURATION
+	set_primary_weapon(DEFAULT_WEAPON_KEY)
 	
 func _process(_delta: float) -> void:
 	if has_level_up():
@@ -86,7 +89,8 @@ func _physics_process(delta: float) -> void:
 	if canShoot:
 		var mousePos = aim()
 		if time_tracker >= fireRate:
-			shoot(mousePos)
+			primary_weapon.shoot(mousePos)
+			#shoot(mousePos)
 			time_tracker = 0.0
 		else:
 			time_tracker += delta
@@ -169,7 +173,7 @@ func updateKillCounter() -> void:
 # Function to aim based on the mouse
 func aim() -> Vector2:
 	var mousePos: Vector2 = get_global_mouse_position()
-	$AimLine.look_at(mousePos)
+	#primary_weapon.look_at(mousePos)
 	return mousePos
 ##F
 func shoot(mousePos: Vector2) -> void:
@@ -269,6 +273,9 @@ func set_shield_cd(time: float) -> void:
 	if time >= 0:
 		shield_cd = time
 		$ShieldTimerCD.wait_time = shield_cd
+
+func set_primary_weapon(abilty_key: String) -> void:
+	primary_weapon = abilities[abilty_key]
 
 func _on_health_regen_timer_timeout() -> void:
 	if health < max_health:

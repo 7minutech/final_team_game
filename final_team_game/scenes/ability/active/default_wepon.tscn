@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://be54r4hfa0fm"]
+
+[ext_resource type="Script" path="res://scripts/ability/active/default_wepon.gd" id="1_pdqpd"]
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="2_ioawy"]
+
+[node name="DefaultWepon" type="Node2D"]
+script = ExtResource("1_pdqpd")
+
+[node name="LineAsset" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.305882)
+position = Vector2(61.25, 0.25)
+scale = Vector2(117.5, 3.5)
+texture = ExtResource("2_ioawy")
