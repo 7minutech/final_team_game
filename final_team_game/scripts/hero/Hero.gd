@@ -16,7 +16,7 @@ const INITIAL_PICK_UP_RANGE: float = 73.25
 const INITIAL_SHIELD_DURATION: float = 0
 const INITIAL_SHIELD_CD: float = 5
 const ORIGINAL_COLOR: Color = Color("ffffff")
-const DEFAULT_WEAPON_KEY = "default_gun"
+const DEFAULT_WEAPON_KEY = "plasma_gun"
 
 ### Variables ###
 # Variable for movement logic
@@ -44,7 +44,7 @@ var pick_up_range: float
 var shield_active: bool = false
 var shield_duration: float = INITIAL_SHIELD_DURATION
 var shield_cd: float = INITIAL_SHIELD_CD
-var primary_weapon: Weapon
+var primary_weapon
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
 @export var default_weapon_level: int = 1
@@ -89,6 +89,7 @@ func _physics_process(delta: float) -> void:
 	if canShoot:
 		var mousePos = primary_weapon.aim()
 		if time_tracker >= fireRate:
+			
 			primary_weapon.shoot(mousePos)
 			#shoot(mousePos)
 			time_tracker = 0.0

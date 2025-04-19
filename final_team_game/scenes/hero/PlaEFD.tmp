@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://curr26f3cjpby"]
+
+[ext_resource type="Script" path="res://scripts/hero/plasma_projectile.gd" id="1_nso74"]
+[ext_resource type="Texture2D" uid="uid://b28ns6qil206b" path="res://assets/weapon/Orb.png" id="2_ncavl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ympc6"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j88cx"]
+radius = 9.0
+
+[node name="PlasmaProjectile" type="RigidBody2D" groups=["friendly_projectiles"]]
+z_as_relative = false
+collision_layer = 4
+gravity_scale = 0.0
+script = ExtResource("1_nso74")
+
+[node name="Skin" type="Sprite2D" parent="."]
+scale = Vector2(0.032856, 0.0314848)
+texture = ExtResource("2_ncavl")
+
+[node name="CollisionArea" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ympc6")
+
+[node name="Despawn" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_j88cx")
+
+[node name="DamageLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

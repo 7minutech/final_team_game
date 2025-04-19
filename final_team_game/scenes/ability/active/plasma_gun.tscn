@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://vxfmsvms48q7"]
+
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="1_f6xjl"]
+
+[sub_resource type="GDScript" id="GDScript_p1mlx"]
+script/source = "extends Weapon
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="PlasmaGun" type="Node2D"]
+script = SubResource("GDScript_p1mlx")
+
+[node name="LineAsset" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.305882)
+position = Vector2(61.25, 0.25)
+scale = Vector2(117.5, 3.5)
+texture = ExtResource("1_f6xjl")

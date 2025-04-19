@@ -11,6 +11,7 @@ var damage: int = 20
 var direction: Vector2
 var damage_key: String = "plasma_projectile_damage"
 var speed_key: String = "plasma_projectile_speed"
+@onready var sprite: Sprite2D = $Skin
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$DamageLabel.text = str(damage)
