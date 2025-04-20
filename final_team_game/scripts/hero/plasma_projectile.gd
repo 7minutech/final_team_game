@@ -14,8 +14,6 @@ var speed_key: String = "plasma_projectile_speed"
 @onready var sprite: Sprite2D = $Skin
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$DamageLabel.text = str(damage)
-	$DamageLabel.hide()
 	DamageObserver.weapon_damage_dict[damage_key] = damage
 	DamageObserver.weapon_damage_dict[speed_key] = speed
 	if get_tree().current_scene.find_child("Hero"):
@@ -56,13 +54,5 @@ func update() -> void:
 # Function to determine what to do when a body is hit
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		#$DamageLabel.show()
-		#await get_tree().create_timer(0.1).timeout
-		#$DamageLabel.hide()
 		self.queue_free()
 		body.loseHealth(damage)
-
-func flash_damage_number() -> void:
-	$DamageLabel.show()
-	await get_tree().create_timer(1).timeout
-	$DamageLabel.hide()

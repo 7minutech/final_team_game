@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://be54r4hfa0fm"]
+[gd_scene load_steps=4 format=3 uid="uid://be54r4hfa0fm"]
 
 [ext_resource type="Script" path="res://scripts/ability/active/default_wepon.gd" id="1_pdqpd"]
 [ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="2_ioawy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d02gt"]
+radius = 100.0
 
 [node name="DefaultWepon" type="Node2D"]
 script = ExtResource("1_pdqpd")
@@ -11,3 +14,17 @@ self_modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(61.25, 0.25)
 scale = Vector2(117.5, 3.5)
 texture = ExtResource("2_ioawy")
+
+[node name="TargetArea" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("CircleShape2D_d02gt")
+
+[node name="AutoShootCd" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
+[connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]
+[connection signal="timeout" from="AutoShootCd" to="." method="_on_auto_shoot_cd_timeout"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://vxfmsvms48q7"]
+[gd_scene load_steps=5 format=3 uid="uid://vxfmsvms48q7"]
 
 [ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="1_f6xjl"]
 [ext_resource type="Script" path="res://scripts/ability/active/plasma_gun.gd" id="1_p6moh"]
 [ext_resource type="PackedScene" uid="uid://curr26f3cjpby" path="res://scenes/hero/PlasmaProjectile.tscn" id="2_g74qo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k4yro"]
+radius = 200.0
 
 [node name="PlasmaGun" type="Node2D"]
 script = ExtResource("1_p6moh")
@@ -13,3 +16,16 @@ self_modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(61.25, 0.25)
 scale = Vector2(117.5, 3.5)
 texture = ExtResource("1_f6xjl")
+
+[node name="TargetArea" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("CircleShape2D_k4yro")
+
+[node name="AutoShootCd" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
+[connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]
