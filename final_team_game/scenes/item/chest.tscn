@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/item/chest.gd" id="1_78w1i"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="2_3tybd"]
-[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_iptpx"]
+[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/item/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_iptpx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_se6xg"]
 radius = 17.0

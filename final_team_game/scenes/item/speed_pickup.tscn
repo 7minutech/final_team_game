@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/item/speed_pickup.gd" id="1_slwwb"]
 [ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="2_kaqne"]
-[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_cjk8f"]
+[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/item/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_cjk8f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bacw8"]
 radius = 33.0606

@@ -88,7 +88,6 @@ text = "Spawn Turret"
 metadata/_edit_use_anchors_ = true
 
 [node name="CheatsMenu" type="Node2D" parent="."]
-visible = false
 
 [node name="Invincibility" type="Button" parent="CheatsMenu"]
 offset_left = -100.0
@@ -96,6 +95,14 @@ offset_right = -3.0
 offset_bottom = 28.0
 theme_override_fonts/font = ExtResource("1_m5r4p")
 text = "Invincibility"
+
+[node name="LevelUp" type="Button" parent="CheatsMenu"]
+offset_left = -78.0
+offset_top = 40.0
+offset_right = -3.0
+offset_bottom = 71.0
+text = "Level Up
+"
 
 [connection signal="pressed" from="Show_Hide_Spawners" to="." method="_on_show_hide_debug_pressed"]
 [connection signal="pressed" from="Show_Hide_Cheats" to="." method="_on_show_hide_cheats_pressed"]
@@ -107,3 +114,4 @@ text = "Invincibility"
 [connection signal="pressed" from="SpawnerMenu/SpawnRedDroneGroup" to="." method="_on_spawn_red_drone_group_pressed"]
 [connection signal="pressed" from="SpawnerMenu/SpawnTurret" to="." method="_on_spawn_turret_pressed"]
 [connection signal="pressed" from="CheatsMenu/Invincibility" to="." method="_on_invincibility_pressed"]
+[connection signal="pressed" from="CheatsMenu/LevelUp" to="." method="_on_level_up_pressed"]

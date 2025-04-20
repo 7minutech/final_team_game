@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://yox6h1qc3ec8"
+path="res://.godot/imported/MP3_Button Clicks & Beeps_15.mp3-e0e47f2ba759bd159bbdfb19f9ef01c4.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3"
+dest_files=["res://.godot/imported/MP3_Button Clicks & Beeps_15.mp3-e0e47f2ba759bd159bbdfb19f9ef01c4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

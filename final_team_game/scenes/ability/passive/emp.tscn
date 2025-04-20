@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ability/passive/emp.gd" id="1_rawx2"]
 [ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="2_6wdkv"]
-[ext_resource type="AudioStream" uid="uid://baa8k76s2rf60" path="res://assets/sound/emp_sound.mp3" id="3_mjvwe"]
+[ext_resource type="AudioStream" uid="uid://baa8k76s2rf60" path="res://assets/sound/ability/emp_sound.mp3" id="3_mjvwe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onv62"]
 radius = 50.0

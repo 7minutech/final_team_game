@@ -93,3 +93,9 @@ func _on_invincibility_pressed() -> void:
 		player.set_collision_layer_value(2, false)
 	else:
 		player.set_collision_layer_value(2, true)
+
+
+func _on_level_up_pressed() -> void:
+	var player = PlayerObserver.player
+	player.level_up()
+	pass # Replace with function body.

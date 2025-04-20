@@ -8,17 +8,26 @@ var targets = []
 @onready var aim_line: Sprite2D =  get_node_or_null("LineAsset")
 var weapon_name: String = "default_gun"
 var auto_shoot_cd: float = 1
-
+var weapon_dmg: int
+var projectile_speed: int
+var base_weapon_dmg: int = 20
+var base_project_speed: int = 5
+var base_shoot_cd: float = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_shoot_cd(base_shoot_cd)
+	set_projectile_speed(base_project_speed)
+	set_weapon_dmg(base_weapon_dmg)
 	var target_area = $TargetArea 
-	
 	target_area.body_entered.connect(_on_target_area_body_entered)
 	target_area.body_exited.connect(_on_target_area_body_exited)
 	target_area.area_entered.connect(_on_target_area_area_entered)
 	target_area.area_exited.connect(_on_target_area_area_exited)
+	
 	var auto_cd = $AutoShootCd
 	auto_cd.timeout.connect(_on_auto_shoot_cd_timeout)
+	var shoot_cd: = $ShootCd
+	shoot_cd.timeout.connect(_on_shoot_cd_timeout)
 
 	var weapon_name: String = "default_gun"
 	pass # Replace with function body.
@@ -38,7 +47,9 @@ func aim() -> Vector2:
 	return mousePos
 ##F
 func shoot(mousePos: Vector2) -> void:
-	var projectile = plasma_proj.instantiate()
+	var projectile: PlasmaProjectile = plasma_proj.instantiate()
+	projectile.setDamage(weapon_dmg)
+	projectile.setSpeed(projectile_speed)
 	get_tree().current_scene.add_child(projectile)
 	var direction: Vector2 = mousePos - global_position
 	projectile.setDirection(direction)
@@ -108,8 +119,21 @@ func display_radius() -> void:
 func set_auto_shoot_cd(new_time: float) -> void:
 	$AutoShootCd.wait_time = new_time
 	
-	
+func set_weapon_dmg(dmg: int) -> void:
+	weapon_dmg = dmg
+
+func set_projectile_speed(speed: int) -> void:
+	projectile_speed = speed
+
+func set_shoot_cd(new_time: float) -> void:
+	$ShootCd.wait_time = new_time
 
 func _on_auto_shoot_cd_timeout() -> void:
 	auto_shoot()
+	pass # Replace with function body.
+
+
+func _on_shoot_cd_timeout() -> void:
+	if not auto:
+		self.shoot(aim())
 	pass # Replace with function body.

@@ -62,10 +62,10 @@ func _ready() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
 	PlayerObserver.player = self
+	AbilityObserver.player = self
 	PlayerObserver.max_xp = INITIAL_MAX_XP
 	PlayerObserver.player_camera = $HeroCamera
 	CameraObserver.player_camera = $HeroCamera
-	AbilityObserver.player = self
 	AbilityObserver.hud = $Hud
 	$HealthBar.set_max(INITIAL_HEALTH)
 	$HealthBar.set_value_no_signal(INITIAL_HEALTH)
@@ -100,18 +100,6 @@ func _physics_process(delta: float) -> void:
 		canMove = false
 		die()
 		
-	# Shoot towards mouse position if possible
-	if canShoot:
-		var mousePos = primary_weapon.aim()
-		if time_tracker >= fireRate:
-			
-			primary_weapon.shoot(mousePos)
-			#shoot(mousePos)
-			time_tracker = 0.0
-		else:
-			time_tracker += delta
-	else:
-		time_tracker = 0.0
 	
 	# Handle the hero's movement.
 	handleMovement()
@@ -185,18 +173,6 @@ func updateKillCounter() -> void:
 ##
 
 
-### Functions to handle shooting logic ###
-# Function to aim based on the mouse
-func aim() -> Vector2:
-	var mousePos: Vector2 = get_global_mouse_position()
-	#primary_weapon.look_at(mousePos)
-	return mousePos
-##F
-func shoot(mousePos: Vector2) -> void:
-	var projectile = PLASMA_PROJ.instantiate()
-	get_tree().current_scene.add_child(projectile)
-	var direction: Vector2 = mousePos - self.position
-	projectile.setDirection(direction)
 ##
 # Function to turn shooting off if the mouse is resting on the hero
 func _on_mouse_entered() -> void:
@@ -223,6 +199,8 @@ func has_level_up() -> bool:
 ##
 # Function to increase player's level by one and adjust stats/labels accordingly
 func level_up() -> void:
+	set_random_pitch($LevelUpSound, 0.9, 1.1)
+	$LevelUpSound.play()
 	print(max_health)
 	raise_player_max_xp()
 	current_xp = 0
@@ -234,6 +212,7 @@ func level_up() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	PlayerObserver.current_xp = current_xp
 	PlayerObserver.max_xp = max_xp
+	AbilityObserver.give_random_ability()
 ##
 # Function to raise the player's max xp
 func raise_player_max_xp() -> void:
@@ -326,7 +305,7 @@ func die():
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
 
 func show_sparks() -> void:
-	set_random_pitch()
+	set_random_pitch($HurtSound, 1.2,1.4)
 	$HurtSound.play()
 	$HurtAnimation.show()
 	var yellow: Color = Color("#FFD933")
@@ -337,8 +316,8 @@ func show_sparks() -> void:
 	$HurtAnimation.hide()
 	$HurtSound.stop()
 
-func set_random_pitch() -> void:
-	$HurtSound.pitch_scale = randf_range(1.2,1.4)
+func set_random_pitch(player: AudioStreamPlayer2D, min, max) -> void:
+	player.pitch_scale = randf_range(min,max)
 
 func give_health_pickup() -> void:
 	var missing_health = max_health - health

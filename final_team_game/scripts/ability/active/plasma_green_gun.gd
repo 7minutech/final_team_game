@@ -3,9 +3,12 @@ extends Weapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_shoot_cd(base_shoot_cd)
 	weapon_name = "test_gun"
 	hide_aim_line()
 	var target_area = $TargetArea 
+	var shoot_cd: Timer = $ShootCd
+	shoot_cd.timeout.connect(_on_shoot_cd_timeout)
 	target_area.body_entered.connect(_on_target_area_body_entered)
 	target_area.body_exited.connect(_on_target_area_body_exited)
 	target_area.area_entered.connect(_on_target_area_area_entered)

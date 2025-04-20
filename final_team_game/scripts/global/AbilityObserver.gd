@@ -53,6 +53,15 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"movement_speed": 4
 }
 
+const PASSIVE_ABILITIES_NAMES: Array = [
+	"max_health", "health_regen", "pick_up_range", "shield", "movement_speed"
+]
+const ACTIVE_ABILITIES_NAMES: Array = [
+	"garlic", "plasma_gun", "test_gun", "emp"
+]
+	
+
+
 ### Variables ###
 var movement_speed_buff: float = 0.05
 var max_health_buff: float = 0.05
@@ -211,3 +220,20 @@ func give_init_abilities():
 	give_emps()
 	give_default_gun()
 	give_test_gun()
+
+func give_random_pasive_abiity() -> void:
+	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()
+	print("Given: " + random_name)
+	give_passive_ability(random_name)
+
+func give_random_active_abiity() -> void:
+	var random_name = ACTIVE_ABILITIES_NAMES.pick_random()
+	print("Given: " + random_name)
+	give_active_ability(random_name)
+
+func give_random_ability() -> void:
+	var rnum = randi_range(1,2)
+	if rnum == 1:
+		give_random_active_abiity()
+	else: 
+		give_random_pasive_abiity()

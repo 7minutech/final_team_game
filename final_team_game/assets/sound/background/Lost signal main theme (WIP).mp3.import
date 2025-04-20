@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blaqsypp1tn72"
+path="res://.godot/imported/Lost signal main theme (WIP).mp3-4cd2a2f988ee193ca60a150799f9b559.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/background/Lost signal main theme (WIP).mp3"
+dest_files=["res://.godot/imported/Lost signal main theme (WIP).mp3-4cd2a2f988ee193ca60a150799f9b559.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

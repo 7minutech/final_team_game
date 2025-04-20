@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpe1nh2wmn3h1"]
 
 [ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_rkxtx"]
-[ext_resource type="AudioStream" uid="uid://blaqsypp1tn72" path="res://assets/sound/Lost signal main theme (WIP).mp3" id="1_taw0p"]
-[ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/MP3_Button Clicks & Beeps_15.mp3" id="3_g0b1w"]
-[ext_resource type="AudioStream" uid="uid://k4crmxfxfc65" path="res://assets/sound/MP3_Button Clicks & Beeps_21.mp3" id="4_tka1m"]
+[ext_resource type="AudioStream" uid="uid://blaqsypp1tn72" path="res://assets/sound/background/Lost signal main theme (WIP).mp3" id="1_taw0p"]
+[ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3" id="3_g0b1w"]
+[ext_resource type="AudioStream" uid="uid://k4crmxfxfc65" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_21.mp3" id="4_tka1m"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

@@ -25,6 +25,10 @@ shape = SubResource("CircleShape2D_d02gt")
 wait_time = 0.25
 autostart = true
 
+[node name="ShootCd" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
 [connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]
 [connection signal="timeout" from="AutoShootCd" to="." method="_on_auto_shoot_cd_timeout"]
+[connection signal="timeout" from="ShootCd" to="." method="_on_shoot_cd_timeout"]

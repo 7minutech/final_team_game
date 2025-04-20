@@ -26,3 +26,6 @@ shape = SubResource("CircleShape2D_6njbh")
 [node name="AutoShootCd" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="ShootCd" type="Timer" parent="."]
+autostart = true
