@@ -121,11 +121,10 @@ func give_active_ability(ability_key: String) -> void:
 
 func set_primary_weapon(ability_key: String) -> void:
 	if player.primary_weapon != null:
-		player.primary_weapon.set_auto(false)
+		player.primary_weapon.set_auto(true)
 		player.primary_weapon.hide_aim_line()
-	var i = ability_key
 	player.set_primary_weapon(ability_key)
-	player.primary_weapon.set_auto(true)
+	player.primary_weapon.set_auto(false)
 	player.primary_weapon.show_aim_line()
 
 func hide_all_secondary() -> void:

@@ -4,7 +4,7 @@ class_name Weapon
 
 @export var plasma_proj: PackedScene
 var targets = []
-@export var auto: bool = false
+@export var auto: bool = true
 @onready var aim_line: Sprite2D =  get_node_or_null("LineAsset")
 var weapon_name: String = "default_gun"
 var auto_shoot_cd: float = 1

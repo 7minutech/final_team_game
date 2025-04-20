@@ -12,6 +12,7 @@ func _ready() -> void:
 	target_area.area_exited.connect(_on_target_area_area_exited)
 	var auto_cd = $AutoShootCd
 	auto_cd.timeout.connect(_on_auto_shoot_cd_timeout)
+	set_auto_shoot_cd(1)
 	pass # Replace with function body.
 
 
@@ -24,3 +25,16 @@ func shoot(mousePos: Vector2) -> void:
 	var direction: Vector2 = mousePos - global_position
 	projectile.sprite.modulate = Color.GREEN
 	projectile.setDirection(direction)
+
+func auto_shoot() -> void:
+	if auto and not targets.is_empty():
+		var projectile = plasma_proj.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		if targets[0] != null:
+			var enemy_position: Vector2 = targets[0].global_position
+			projectile.global_position = self.global_position
+			var direction: Vector2 = enemy_position - self.global_position
+			projectile.sprite.modulate = Color.GREEN
+			projectile.look_at(enemy_position) 
+			projectile.setDirection(direction)
+	pass
