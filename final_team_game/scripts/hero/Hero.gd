@@ -80,6 +80,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if has_level_up():
 		level_up()
+	if Input.is_action_just_pressed("hurt"):
+		loseHealth(20)
 	if Input.is_action_just_pressed("switch_test_gun"):
 		$SwapWeaponSound.pitch_scale = randf_range(1.4,1.6)
 		$SwapWeaponSound.play()
@@ -336,3 +338,7 @@ func show_sparks() -> void:
 
 func set_random_pitch() -> void:
 	$HurtSound.pitch_scale = randf_range(1.2,1.4)
+
+func give_health_pickup() -> void:
+	var missing_health = max_health - health
+	restoreHealth(missing_health)

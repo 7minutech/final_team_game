@@ -1,22 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://du18vd0fy4t1l"]
+[gd_scene load_steps=13 format=3 uid="uid://du18vd0fy4t1l"]
 
 [ext_resource type="Script" path="res://scripts/item/braizer.gd" id="1_44e5v"]
-[ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="1_c7km8"]
+[ext_resource type="Texture2D" uid="uid://s5ivm5caeuan" path="res://assets/enemy/turret/TurretBody.png" id="2_fg08i"]
+[ext_resource type="Texture2D" uid="uid://dttvt22q81qb7" path="res://assets/hud/ability_icons/EMP.png" id="3_vek8u"]
+[ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="4_iidjf"]
+[ext_resource type="Texture2D" uid="uid://djbj10eic81jy" path="res://assets/hud/ability_icons/Magnet.png" id="5_3h53w"]
+[ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="6_6cmf8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_na130"]
 radius = 38.0132
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6qlt"]
+atlas = ExtResource("3_vek8u")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bpud"]
+atlas = ExtResource("4_iidjf")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4awl"]
+atlas = ExtResource("5_3h53w")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh51e"]
+atlas = ExtResource("6_6cmf8")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uabu2"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6qlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bpud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4awl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh51e")
+}],
+"loop": true,
+"name": &"rotation",
+"speed": 10.0
+}]
 
 [node name="Braizer" type="Area2D"]
 collision_mask = 5
 script = ExtResource("1_44e5v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.715278, 0.782628, 0.144845, 1)
+modulate = Color(0.92549, 0.690196, 0, 1)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_c7km8")
+texture = ExtResource("2_fg08i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_na130")
+
+[node name="Reward" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.545098)
+position = Vector2(-2, -36)
+scale = Vector2(0.0208715, 0.0222263)
+sprite_frames = SubResource("SpriteFrames_uabu2")
+animation = &"rotation"
+frame_progress = 0.678163
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

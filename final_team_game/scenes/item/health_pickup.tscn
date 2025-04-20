@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://qbdbht3illr0"]
+
+[ext_resource type="Script" path="res://scripts/item/health_pickup.gd" id="1_rj06p"]
+[ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="2_af3q3"]
+[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_0r32j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bacw8"]
+radius = 33.0606
+
+[node name="HealthPickup" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_rj06p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("2_af3q3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bacw8")
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0r32j")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
