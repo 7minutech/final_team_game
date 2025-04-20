@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=24 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://co1snns71le54" path="res://assets/sound/Intro 1 (1).mp3" id="7_5xan0"]
 [ext_resource type="AudioStream" uid="uid://dxvr1jpo6x0mm" path="res://assets/sound/player/electric-90746.mp3" id="9_k05xx"]
 [ext_resource type="AudioStream" uid="uid://b2usnsxocue6u" path="res://assets/sound/player/swing-whoosh-6-198499.mp3" id="10_wt6tw"]
+[ext_resource type="PackedScene" uid="uid://cmd37ik2jcobs" path="res://scenes/ability/passive/emp.tscn" id="11_lg1d2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
 radius = 17.0
@@ -175,6 +176,8 @@ volume_db = -7.5
 [node name="SwapWeaponSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_wt6tw")
 volume_db = -5.0
+
+[node name="EMP" parent="." instance=ExtResource("11_lg1d2")]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

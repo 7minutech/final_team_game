@@ -12,6 +12,7 @@ var TICK_INTERVAL: float = 1.0
 var tick_timer: float = 0.0
 var active = true
 var freeze_time: float = 1.0
+var boost_flag = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite2D.hide()
@@ -53,6 +54,31 @@ func expand() -> void:
 	$Sprite2D.hide()
 	pass
 
+func expand_boost(new_radius) -> void:
+	set_freeze_time(10.0)
+	$Sprite2D.show()
+	set_random_pitch()
+	$BangSound.play()
+
+	while $CollisionShape2D.shape.radius < new_radius:
+		freeze_enemies()
+		$CollisionShape2D.shape.radius += 4
+		update_sprite_scale()
+		await get_tree().create_timer(0.005).timeout
+
+	freeze_enemies()
+	remove_targets()
+	await get_tree().create_timer(0.05).timeout
+
+	while $CollisionShape2D.shape.radius > radius:
+		$CollisionShape2D.shape.radius -= 4
+		update_sprite_scale()
+		await get_tree().create_timer(0.005).timeout
+
+	$Sprite2D.hide()
+
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		#body.loseHealth(damage)
@@ -66,7 +92,8 @@ func _on_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
 
 func _on_expand_timer_timeout() -> void:
-	expand()
+	if not boost_flag:
+		expand()
 	pass # Replace with function body.
 
 func freeze_enemies() -> void:
@@ -86,3 +113,7 @@ func set_freeze_time(new_time: float):
 func set_random_pitch() -> void:
 	$BangSound.pitch_scale = randf_range(0.9,1.1)
 	pass
+
+func set_boost(flag: bool) -> void:
+	boost_flag = flag
+	

@@ -75,6 +75,7 @@ func _ready() -> void:
 	$ShieldDuration.wait_time = INITIAL_SHIELD_DURATION
 	AbilityObserver.hide_all_secondary()
 	AbilityObserver.set_primary_weapon(DEFAULT_WEAPON_KEY)
+	$EMP.set_boost(true)
 	pass
 	
 func _process(_delta: float) -> void:
@@ -342,3 +343,31 @@ func set_random_pitch() -> void:
 func give_health_pickup() -> void:
 	var missing_health = max_health - health
 	restoreHealth(missing_health)
+
+func give_speed_pickup(multiplier: float) -> void:
+	var original_speed: float = speed
+	var new_speed = speed * multiplier
+	speed = new_speed
+	await  get_tree().create_timer(10.0).timeout
+	speed = original_speed 
+	pass
+
+func give_magnet_pickup(multiplier: float) -> void:
+	var shape = $PickUpRange/CollisionShape2D.shape
+	var original_radius = shape.radius
+	var new_radius = original_radius * multiplier
+
+	var tween = create_tween()
+	tween.tween_property(shape, "radius", new_radius, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await tween.finished
+
+	await get_tree().create_timer(2.0).timeout  
+	
+	var shrink_tween = create_tween()
+	shrink_tween.tween_property(shape, "radius", original_radius, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	await shrink_tween.finished
+
+func give_emp_pickup(multiplier: float) -> void:
+	$EMP.expand_boost($EMP.radius * multiplier)
+	pass
+	

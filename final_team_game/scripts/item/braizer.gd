@@ -4,7 +4,10 @@ class_name Braizer
 
 var drop_item_scene: PackedScene
 var items: Dictionary = {
-	"health": load("res://scenes/item/health_pickup.tscn")
+	"health": load("res://scenes/item/health_pickup.tscn"),
+	"speed": load("res://scenes/item/speed_pickup.tscn"),
+	"magnet": load("res://scenes/item/magnet_pickup.tscn"),
+	"emp": load("res://scenes/item/emp_pickup.tscn")
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
