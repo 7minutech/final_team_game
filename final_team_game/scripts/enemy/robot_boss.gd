@@ -30,15 +30,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not frozen:
-		var current_speed: float
-		if is_off_screen(position, CameraObserver.player_camera) and PlayerObserver.player:
-			pass
-		else:
-			current_speed = INITIAL_SPEED
 		if PlayerObserver.player != null:
 			sprite_animation.play("walk")
 			var direction = PlayerObserver.player.global_position - global_position
-			velocity = direction.normalized() * current_speed	
+			velocity = direction.normalized() * speed	
 		move_and_slide()
 		
 ### Functions for stats ###
@@ -61,18 +56,6 @@ func loseHealth(dmg: int) -> void:
 func attack(hero: CharacterBody2D) -> void:
 	$AttackTimer.start()
 	hero.loseHealth(damage)
-
-func player_is_to_left() -> bool:
-	return position.x > PlayerObserver.player.position.x
-
-func player_is_to_right() -> bool:
-	return position.x < PlayerObserver.player.position.x
-
-func player_is_up() -> bool:
-	return position.y > PlayerObserver.player.position.y
-
-func player_is_down() -> bool:
-	return position.y < PlayerObserver.player.position.y
 
 func teleport_to_player(screen_exit: String) -> void:
 	var offset: float = randf_range(-370,370)
@@ -130,40 +113,6 @@ func is_off_screen(spawnPos: Vector2, camera: Camera2D) -> bool:
 	)
 	return not screen_rect.has_point(spawnPos)
 	
-func get_camera_edges(camera: Camera2D) -> Dictionary:
-	var viewport_size = get_viewport().get_visible_rect().size
-	var zoom = camera.zoom
-	var half_width = (viewport_size.x * 0.5) * zoom.x
-	var half_height = (viewport_size.y * 0.5) * zoom.y
-	
-	var cam_pos = camera.global_position
-
-	return {
-		"left": cam_pos.x - half_width,
-		"right": cam_pos.x + half_width,
-		"top": cam_pos.y - half_height,
-		"bottom": cam_pos.y + half_height
-	}
-
-func get_spawn_left(camera_positions: Dictionary, offset: float) -> Vector2:
-	var x_pos: float = camera_positions["left"]
-	var y_pos: float = PlayerObserver.player.position.y + offset
-	return Vector2(x_pos, y_pos)
-	
-func get_spawn_right(camera_positions: Dictionary, offset: float) -> Vector2:
-	var x_pos: float = camera_positions["right"]
-	var y_pos: float = PlayerObserver.player.position.y + offset
-	return Vector2(x_pos, y_pos)
-
-func get_spawn_top(camera_positions: Dictionary, offset: float) -> Vector2:
-	var x_pos: float = PlayerObserver.player.position.x + offset
-	var y_pos: float = camera_positions["top"]
-	return Vector2(x_pos, y_pos)
-	
-func get_spawn_bottom(camera_positions: Dictionary, offset: float) -> Vector2:
-	var x_pos: float = PlayerObserver.player.position.x + offset
-	var y_pos: float = camera_positions["bottom"]
-	return Vector2(x_pos, y_pos)
 
 func set_max_health() -> void:
 	max_health += EnemyOberver.entity_health_dict[health_key]
