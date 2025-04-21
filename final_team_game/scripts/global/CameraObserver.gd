@@ -5,6 +5,7 @@ const BOTTOM: int = 2
 const RIGHT: int = 3
 const LEFT: int = 4
 
+var offscreen_offset: int = 10
 var player_camera: Camera2D
 var camera_positions: Dictionary
 # Called when the node enters the scene tree for the first time.
@@ -33,23 +34,23 @@ func get_camera_edges(camera: Camera2D) -> Dictionary:
 	}
 
 func get_spawn_left(offset: float) -> Vector2:
-	var x_pos: float = camera_positions["left"]
+	var x_pos: float = camera_positions["left"] + offscreen_offset
 	var y_pos: float = PlayerObserver.player.position.y + offset
 	return Vector2(x_pos, y_pos)
 	
 func get_spawn_right(offset: float) -> Vector2:
-	var x_pos: float = camera_positions["right"]
+	var x_pos: float = camera_positions["right"] - offscreen_offset
 	var y_pos: float = PlayerObserver.player.position.y + offset
 	return Vector2(x_pos, y_pos)
 
 func get_spawn_top(offset: float) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
-	var y_pos: float = camera_positions["top"]
+	var y_pos: float = camera_positions["top"] - offscreen_offset
 	return Vector2(x_pos, y_pos)
 	
 func get_spawn_bottom(offset: float) -> Vector2:
 	var x_pos: float = PlayerObserver.player.position.x + offset
-	var y_pos: float = camera_positions["bottom"]
+	var y_pos: float = camera_positions["bottom"] + offscreen_offset
 	return Vector2(x_pos, y_pos)
 
 func get_spawn_left_offscreen(offset: float, offset_offscreen: float) -> Vector2:
