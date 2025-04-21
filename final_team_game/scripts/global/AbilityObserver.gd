@@ -210,6 +210,7 @@ func give_test_gun() -> void:
 		AbilityObserver.give_active_ability("test_gun")
 
 func give_init_abilities():
+	give_default_gun()
 	give_garlics()
 	give_movement_speeds()
 	give_max_healths()
@@ -218,7 +219,6 @@ func give_init_abilities():
 	#give_shield_cds()
 	give_shield_durations()
 	give_emps()
-	give_default_gun()
 	give_test_gun()
 
 func give_random_pasive_abiity() -> void:
