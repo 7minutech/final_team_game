@@ -8,6 +8,8 @@ extends Node2D
 @export var spawn_red_drones: bool = true
 @export var spawn_alien: bool = true
 @export var spawn_braizers: bool = true
+@export var spwan_drone_boss: bool = true
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,3 +61,9 @@ func _on_red_drone_timer_timeout() -> void:
 	if spawn_red_drones:
 		spawner.spawn("red_drones")
 ##
+
+
+func _on_drone_boss_timeout() -> void:
+	if spwan_drone_boss:
+		spawner.spawn("blue_drone_boss")
+	pass # Replace with function body.

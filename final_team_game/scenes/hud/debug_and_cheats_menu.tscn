@@ -22,7 +22,6 @@ theme_override_fonts/font = ExtResource("1_m5r4p")
 text = "Show Cheats Menu"
 
 [node name="SpawnerMenu" type="Node2D" parent="."]
-visible = false
 
 [node name="SpawnRobot" type="Button" parent="SpawnerMenu"]
 offset_left = -107.0
@@ -87,7 +86,17 @@ theme_override_fonts/font = ExtResource("1_m5r4p")
 text = "Spawn Turret"
 metadata/_edit_use_anchors_ = true
 
+[node name="SpawnDroneBoss" type="Button" parent="SpawnerMenu"]
+offset_left = -145.0
+offset_top = 235.0
+offset_right = -2.0
+offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Drone Boss"
+metadata/_edit_use_anchors_ = true
+
 [node name="CheatsMenu" type="Node2D" parent="."]
+visible = false
 
 [node name="Invincibility" type="Button" parent="CheatsMenu"]
 offset_left = -100.0
@@ -113,5 +122,6 @@ text = "Level Up
 [connection signal="pressed" from="SpawnerMenu/SpawnBlueDrone" to="." method="_on_spawn_blue_drone_pressed"]
 [connection signal="pressed" from="SpawnerMenu/SpawnRedDroneGroup" to="." method="_on_spawn_red_drone_group_pressed"]
 [connection signal="pressed" from="SpawnerMenu/SpawnTurret" to="." method="_on_spawn_turret_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnDroneBoss" to="." method="_on_spawn_drone_boss_pressed"]
 [connection signal="pressed" from="CheatsMenu/Invincibility" to="." method="_on_invincibility_pressed"]
 [connection signal="pressed" from="CheatsMenu/LevelUp" to="." method="_on_level_up_pressed"]

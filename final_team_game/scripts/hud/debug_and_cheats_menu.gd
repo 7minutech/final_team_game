@@ -99,3 +99,8 @@ func _on_level_up_pressed() -> void:
 	var player = PlayerObserver.player
 	player.level_up()
 	pass # Replace with function body.
+
+
+func _on_spawn_drone_boss_pressed() -> void:
+	spawner.spawn("blue_drone_boss")
+	pass # Replace with function body.
