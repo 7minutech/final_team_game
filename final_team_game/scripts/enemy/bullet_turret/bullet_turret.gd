@@ -37,7 +37,6 @@ func _ready() -> void:
 	set_max_health()
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -65,7 +64,6 @@ func _physics_process(delta: float) -> void:
 		$Laser.hide()
 		time_tracker = 0.0
 
-
 ### Functions to handle shooting logic ###
 # Function to aim based on the mouse
 func aim() -> void:
@@ -84,7 +82,6 @@ func shoot() -> void:
 	projectile.look_at(playerPos)
 	projectile.setDirection(direction)
 	shots_fired += 1
-##
 
 ### Functions for stats ###
 # Function to lose health
@@ -100,7 +97,6 @@ func loseHealth(dmg: int) -> void:
 			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
 		self.queue_free()
-##
 
 func set_pitch_scale() -> void:
 	var pitch := randf_range(1.2,1.5)

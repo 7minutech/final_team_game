@@ -22,11 +22,11 @@ var frozen: bool = false
 var screen_exited_at: String
 var health_key: String = "robot_boss_health"
 var damage_key: String = "robot_boss_damage"
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
-		
 
 func _physics_process(_delta: float) -> void:
 	if not frozen:
@@ -50,7 +50,6 @@ func loseHealth(dmg: int) -> void:
 			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
 		self.queue_free()
-##
 
 # Function to attack player
 func attack(hero: CharacterBody2D) -> void:
@@ -105,14 +104,6 @@ func drop_chest() -> void:
 	var chest_instance: Chest = chest_scene.instantiate()	
 	chest_instance.position = self.position
 	get_parent().call_deferred("add_child", chest_instance)
-
-func is_off_screen(spawnPos: Vector2, camera: Camera2D) -> bool:
-	var screen_rect := Rect2(
-		camera.global_position - (get_viewport_rect().size * 0.5) * camera.zoom,
-		get_viewport_rect().size * camera.zoom
-	)
-	return not screen_rect.has_point(spawnPos)
-	
 
 func set_max_health() -> void:
 	max_health += EnemyOberver.entity_health_dict[health_key]

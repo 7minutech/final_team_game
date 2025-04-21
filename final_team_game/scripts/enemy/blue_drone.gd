@@ -21,11 +21,11 @@ var damage_key: String = "blue_drone_damage"
 @onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 @onready var original_color: Color = sprite.modulate
 var frozen: bool = false
+
 func _ready() -> void:
 	set_max_health()
 	health = max_health
 		
-
 func _physics_process(_delta: float) -> void:
 	if PlayerObserver.player != null and not frozen:
 		sprite_animation.play("walk")
@@ -47,19 +47,11 @@ func loseHealth(dmg: int) -> void:
 			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
 		self.queue_free()
-##
 
 # Function to attack player
 func attack(hero: CharacterBody2D) -> void:
 	$AttackTimer.start()
 	hero.loseHealth(damage)
-
-func player_is_to_left() -> bool:
-	return position.x > PlayerObserver.player.postion.x
-
-func player_is_to_right() -> bool:
-	return position.x < PlayerObserver.player.postion.x
-
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	off_screen = false
