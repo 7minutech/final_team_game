@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cok63k0oxpvfe"]
 
 [ext_resource type="Script" path="res://scripts/hud/ability_choice.gd" id="1_cyovb"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
+[ext_resource type="SystemFont" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cj056"]
 

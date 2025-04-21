@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/enemy/alien.gd" id="1_26lnl"]
 [ext_resource type="Texture2D" uid="uid://krgpfr3scb2o" path="res://assets/enemy/Alien-sheet.png" id="3_106wd"]
 [ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_phs0u"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_lephc"]
+[ext_resource type="SystemFont" path="res://assets/In_Game_Hud.tres" id="4_lephc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14i5d"]
 atlas = ExtResource("3_106wd")
