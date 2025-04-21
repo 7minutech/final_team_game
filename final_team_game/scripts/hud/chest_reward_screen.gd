@@ -2,6 +2,7 @@ extends Node2D
 
 ### Variables ###
 var clickable: bool = false
+var rewardAvailable: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,16 +18,29 @@ func _process(_delta: float) -> void:
 		$ChestAnimator.play("OpenChest")
 		$AnimationDelay.start()
 		await $AnimationDelay.timeout
-		$Reward.play("rotation")
-		$RewardAnimator.play("Reward_Rise")
-		await $RewardAnimator.animation_finished
-		###
-		### ADD CODE TO STOP THE SPRITE ON THE CORRECT ABILITY
-		###
-		giveRandomUpgrade()
-		$AnimationDelay.start()
-		await $AnimationDelay.timeout
-		$ButtonAnimator.play("FadeInButton")
+		if rewardAvailable:
+			$Reward.play("rotation")
+			$RewardAnimator.play("Reward_Rise")
+			await $RewardAnimator.animation_finished
+			###
+			### ADD CODE TO STOP THE SPRITE ON THE CORRECT ABILITY
+			###
+			if rewardAvailable:
+				giveRandomUpgrade()
+				$AnimationDelay.start()
+				await $AnimationDelay.timeout
+				$ButtonAnimator.play("FadeInButton")
+		rewardAvailable = true
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("pause_game"):
+		rewardAvailable = false
+		if !$RewardAnimator.is_active():
+			$Reward.self_modulate = Color("WHITE", 100.0)
+			$RewardAnimator.play("End")
+			$ChestAnimator.play("End")
+			giveRandomUpgrade()
+			$ButtonAnimator.play("FadeInButton")
 
 # Function to give the player a random upgrade for an ability they already have
 func giveRandomUpgrade() -> void:
@@ -51,10 +65,23 @@ func giveRandomUpgrade() -> void:
 func setSprite(a_name: String) -> void:
 	$Reward.stop()
 	match a_name:
-		"garlic":
+		"radiation":
 			$Reward.frame = 1
 		"plasma_gun":
 			$Reward.frame = 4
+		"emp":
+			$Reward.frame = 0
+		"max_health":
+			$Reward.frame = 1
+		"health_regen":
+			$Reward.frame = 5
+		"pick_up_range":
+			$Reward.frame = 2
+		"shield":
+			$Reward.frame = 6
+		"movement_speed":
+			$Reward.frame = 3
+		
 # Function to determine what name to add to the reward label
 func setLabel(a_name: String) -> void:
 	$RewardLabel.set_text("YOU GOT" + "\n" + a_name.replace("_", " ").to_upper())

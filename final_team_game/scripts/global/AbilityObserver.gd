@@ -100,7 +100,7 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 
 const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
-	"garlic": "res://scenes/ability/passive/garlic.tscn",
+	"radiation": "res://scenes/ability/passive/radiation.tscn",
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
 	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
 	"ooze": "res://scenes/ability/passive/ooze.tscn",
@@ -111,7 +111,7 @@ const ABILITY_SCENE_PATH:Dictionary = {
 
 const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
-	"garlic": "res://assets/hud/ability_icons/Heart.png",
+	"radiation": "res://assets/hud/ability_icons/Heart.png",
 	"plasma_gun": "res://assets/weapon/blue_laser_gun.png",
 	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
 	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
@@ -128,7 +128,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
-	"garlic": "Adds a damaging area around the player",
+	"radiation": "Adds a damaging area around the player",
 	"plasma_gun": "Defulat plasma gun",
 	"test_gun": "Testing gun for testing...",
 	"orbital_beam": "Orbits player firing a beam",
@@ -145,7 +145,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 
 const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
-	"garlic": 9,
+	"radiation": 9,
 	"plasma_gun": 9,
 	"test_gun": 9,
 	"orbital_beam": 9,
@@ -295,9 +295,9 @@ func upgrade_shield(qty: int) -> void:
 		5: 
 			set_shield_duration_buff()
 
-func give_garlics() -> void:
-	for i in range(player.garlic_level):
-		AbilityObserver.give_active_ability("garlic")
+func give_radiations() -> void:
+	for i in range(player.radiation_level):
+		AbilityObserver.give_active_ability("radiation")
 
 func give_oribital_beams() -> void:
 	for i in range(player.orbital_beam_level):
@@ -349,7 +349,7 @@ func give_test_gun() -> void:
 
 func give_init_abilities():
 	give_default_gun()
-	give_garlics()
+	give_radiations()
 	give_movement_speeds()
 	give_max_healths()
 	give_health_regens()

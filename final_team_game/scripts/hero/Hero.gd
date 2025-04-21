@@ -53,7 +53,7 @@ var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
 
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
-@export var garlic_level: int
+@export var radiation_level: int
 @export var movement_speed_level: int
 @export var max_health_level: int
 @export var health_regen_level: int

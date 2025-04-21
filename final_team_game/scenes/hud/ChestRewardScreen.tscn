@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://jos7dfgt1e75"]
+[gd_scene load_steps=39 format=3 uid="uid://jos7dfgt1e75"]
 
 [ext_resource type="Script" path="res://scripts/hud/chest_reward_screen.gd" id="1_8qhyi"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_k7vj5"]
@@ -220,8 +220,62 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_q573s"]
+resource_name = "End"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reward:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, -96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Reward:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Reward:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RewardLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5wdo"]
 _data = {
+"End": SubResource("Animation_q573s"),
 "RESET": SubResource("Animation_5jeyj"),
 "Reward_Rise": SubResource("Animation_c7ekr")
 }
@@ -318,8 +372,62 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_jtwfr"]
+resource_name = "End"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Chest:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Chest:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Chest/Beam:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chest/Beam:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(719.98, 2806.15)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u2qhe"]
 _data = {
+"End": SubResource("Animation_jtwfr"),
 "OpenChest": SubResource("Animation_76piu"),
 "RESET": SubResource("Animation_5h2k1")
 }
@@ -390,7 +498,7 @@ modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.918327, 0.708485, 0, 0.596078)
 position = Vector2(254.393, 87.0125)
 rotation = 3.14159
-scale = Vector2(719.98, 1e-05)
+scale = Vector2(719.98, 2806.15)
 texture = SubResource("CanvasTexture_18ha0")
 centered = false
 
