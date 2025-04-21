@@ -86,7 +86,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_test_gun"):
 		$SwapWeaponSound.pitch_scale = randf_range(1.4,1.6)
 		$SwapWeaponSound.play()
-		if primary_weapon.weapon_name == "plasma_gun":
+		if primary_weapon.weapon_name == "plasma_gun" and abilities.has("test_gun"):
 			AbilityObserver.set_primary_weapon("test_gun")
 		elif primary_weapon.weapon_name == "test_gun":
 			AbilityObserver.set_primary_weapon("plasma_gun")
