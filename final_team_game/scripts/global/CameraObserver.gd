@@ -8,7 +8,7 @@ const LEFT: int = 4
 var offscreen_offset: int = 10
 var player_camera: Camera2D
 var camera_positions: Dictionary
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters sthe scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 

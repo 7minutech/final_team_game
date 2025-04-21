@@ -61,8 +61,8 @@ position = Vector2(2.99999, 6.25002)
 scale = Vector2(0.0746586, 0.0779091)
 sprite_frames = SubResource("SpriteFrames_e3jpb")
 animation = &"walk"
-frame = 3
-frame_progress = 0.329924
+frame = 1
+frame_progress = 0.785821
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.5
