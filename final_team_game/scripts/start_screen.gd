@@ -9,6 +9,7 @@ extends Control
 var options_open = false
 
 func _ready():
+	$StartScreenMusic.play()
 	play_button.pressed.connect(on_play_pressed)
 	play_button.mouse_entered.connect(on_hover)
 	options_button.pressed.connect(on_options_pressed)

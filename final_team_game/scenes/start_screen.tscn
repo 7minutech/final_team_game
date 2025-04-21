@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://12tkw3pf520q"]
+[gd_scene load_steps=5 format=3 uid="uid://12tkw3pf520q"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_jkuks"]
 [ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3" id="2_qad8o"]
 [ext_resource type="AudioStream" uid="uid://k4crmxfxfc65" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_21.mp3" id="3_44sq3"]
+[ext_resource type="AudioStream" uid="uid://c054icrgex6f0" path="res://assets/sound/background/magic space.mp3" id="4_n516w"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -52,4 +53,6 @@ stream = ExtResource("3_44sq3")
 volume_db = -20.0
 pitch_scale = 2.03
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="StartScreenMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n516w")
+volume_db = 7.5
