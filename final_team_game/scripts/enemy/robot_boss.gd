@@ -75,7 +75,7 @@ func player_is_down() -> bool:
 	return position.y < PlayerObserver.player.position.y
 
 func teleport_to_player(screen_exit: String) -> void:
-	var offset: float = randf_range(-375,375)
+	var offset: float = randf_range(-370,370)
 	var new_position: Vector2
 	if screen_exit == "left":
 		new_position = CameraObserver.get_spawn_left_offscreen(offset,-50)
