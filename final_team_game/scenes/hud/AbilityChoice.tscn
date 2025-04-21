@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cok63k0oxpvfe"]
+[gd_scene load_steps=6 format=3 uid="uid://cok63k0oxpvfe"]
 
+[ext_resource type="Script" path="res://scripts/hud/ability_choice.gd" id="1_cyovb"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cj056"]
@@ -16,6 +17,7 @@ outline_color = Color(0, 0.380392, 0, 1)
 
 [node name="AbilityChoice" type="Node2D"]
 process_mode = 2
+script = ExtResource("1_cyovb")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.588235, 0.454902, 0.172549, 1)
@@ -58,6 +60,7 @@ text = "Description:
 label_settings = SubResource("LabelSettings_uft8p")
 
 [node name="Choice_3" type="Button" parent="."]
+process_mode = 2
 offset_left = -96.0
 offset_top = 147.0
 offset_right = 91.0
@@ -73,3 +76,7 @@ offset_bottom = 318.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")
+
+[connection signal="pressed" from="Choice_1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="Choice_2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="Choice_3" to="." method="_on_choice_3_pressed"]

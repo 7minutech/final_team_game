@@ -16,6 +16,8 @@ func _on_area_entered(area: Area2D) -> void:
 		set_pitch_scale()
 		$PickUpSound.play()
 		print("Player got a chest")
+		PlayerObserver.player.find_child("Hud").setChest()
+		get_tree().set_pause(true)
 		await get_tree().create_timer(0.25).timeout	
 		queue_free()
 

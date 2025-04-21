@@ -6,6 +6,7 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3c0f"]
 
 [node name="PauseScreen" type="Node2D"]
+process_mode = 2
 script = ExtResource("1_cr7hm")
 
 [node name="AbilityBG" type="Sprite2D" parent="."]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://jos7dfgt1e75"]
+[gd_scene load_steps=37 format=3 uid="uid://jos7dfgt1e75"]
 
+[ext_resource type="Script" path="res://scripts/hud/chest_reward_screen.gd" id="1_8qhyi"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_k7vj5"]
 [ext_resource type="Texture2D" uid="uid://c18rqsfeckt36" path="res://assets/item/open_chest.png" id="2_s4w8j"]
 [ext_resource type="Texture2D" uid="uid://dttvt22q81qb7" path="res://assets/hud/ability_icons/EMP.png" id="3_jjxhs"]
@@ -103,6 +104,7 @@ animations = [{
 font = ExtResource("10_eqe6y")
 
 [sub_resource type="Animation" id="Animation_5jeyj"]
+length = 0.01
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -111,10 +113,10 @@ tracks/0/path = NodePath("Reward:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-14, 48), Vector2(-14, -98)]
+"values": [Vector2(-14, 48)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -123,10 +125,10 @@ tracks/1/path = NodePath("Reward:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0, 12.5664]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -135,10 +137,34 @@ tracks/2/path = NodePath("Reward:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.133333), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RewardLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Reward:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
 }
 
 [sub_resource type="Animation" id="Animation_c7ekr"]
@@ -180,6 +206,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.0823529), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RewardLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5wdo"]
@@ -240,21 +278,9 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(719.98, 0), Vector2(719.98, 2806.15)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("RewardLabel:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_5h2k1"]
-length = 0.001
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -265,7 +291,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -289,31 +315,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Chest/Beam:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(719.98, 2806.15)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("RewardLabel:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u2qhe"]
@@ -322,8 +324,55 @@ _data = {
 "RESET": SubResource("Animation_5h2k1")
 }
 
+[sub_resource type="Animation" id="Animation_tjolw"]
+resource_name = "FadeInButton"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClickArea:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(7.99999, 59.714),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ljq42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClickArea:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqhoo"]
+_data = {
+"FadeInButton": SubResource("Animation_tjolw"),
+"RESET": SubResource("Animation_ljq42")
+}
+
+[sub_resource type="Gradient" id="Gradient_0u7xb"]
+offsets = PackedFloat32Array(0.27907, 0.483721, 0.553488, 0.716279)
+colors = PackedColorArray(0, 0, 0, 0.235294, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0.235294)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_spk6p"]
+gradient = SubResource("Gradient_0u7xb")
+fill_from = Vector2(0.461538, 0)
+fill_to = Vector2(0.470085, 0.995726)
+
 [node name="ChestRewardScreen" type="Node2D"]
 process_mode = 2
+script = ExtResource("1_8qhyi")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0, 0.670588, 0, 1)
@@ -335,24 +384,24 @@ texture = SubResource("CanvasTexture_666j6")
 position = Vector2(0, 72)
 scale = Vector2(0.10417, 0.091941)
 sprite_frames = SubResource("SpriteFrames_pg7oj")
-frame = 1
 
 [node name="Beam" type="Sprite2D" parent="Chest"]
+modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.918327, 0.708485, 0, 0.596078)
 position = Vector2(254.393, 87.0125)
 rotation = 3.14159
-scale = Vector2(719.98, 2806.15)
+scale = Vector2(719.98, 1e-05)
 texture = SubResource("CanvasTexture_18ha0")
 centered = false
 
 [node name="Reward" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.133333)
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(-14, 48)
 scale = Vector2(0.0620555, 0.0553901)
 sprite_frames = SubResource("SpriteFrames_d6l0q")
-animation = &"rotation"
 
 [node name="RewardLabel" type="Label" parent="."]
+visible = false
 offset_left = -87.0
 offset_top = 133.0
 offset_right = 87.0
@@ -371,3 +420,29 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_u2qhe")
 }
+
+[node name="ButtonAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lqhoo")
+}
+
+[node name="ClickArea" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -1103.0
+offset_top = -617.0
+offset_right = 1095.0
+offset_bottom = 616.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("10_eqe6y")
+text = "Click To Continue"
+icon = SubResource("GradientTexture2D_spk6p")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="AnimationDelay" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="animation_finished" from="ButtonAnimator" to="." method="_on_button_animator_animation_finished"]
+[connection signal="pressed" from="ClickArea" to="." method="_on_click_area_pressed"]

@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action("pause_game"):
 		PlayerObserver.player.updateAllStats()
+		PlayerObserver.player.find_child("Hud").setPaused()
 		get_tree().set_pause(true)
 	if event.is_action("spawn"):
 		spawner.spawn("red_drones")

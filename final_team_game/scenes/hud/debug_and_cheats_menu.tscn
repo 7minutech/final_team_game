@@ -4,6 +4,7 @@
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="1_m5r4p"]
 
 [node name="DebugAndCheatsMenu" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_6s3ig")
 
 [node name="Show_Hide_Spawners" type="Button" parent="."]

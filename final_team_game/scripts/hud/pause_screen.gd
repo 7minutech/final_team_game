@@ -15,7 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.f
 func _process(_delta: float) -> void:
-	if get_tree().paused && !self.is_visible():
+	if get_tree().paused && get_parent().isPaused && !self.is_visible():
 		self.show()
 		get_parent().find_child("AbilityIcons").hide()
 		get_parent().find_child("AbilityIconsBG").hide()
@@ -102,6 +102,7 @@ func update_stats_label() -> void:
 
 func _on_resume_pressed() -> void:
 	self.hide()
+	get_parent().setPaused()
 	get_parent().find_child("AbilityIcons").show()
 	get_parent().find_child("AbilityIconsBG").show()
 	get_tree().set_pause(false)

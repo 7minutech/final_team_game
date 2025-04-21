@@ -7,6 +7,11 @@ class_name Hud
 const iconBG = preload("res://assets/hud/ability_icons/IconBG.png")
 
 ### Variables ###
+# Variables for determining what screen to display
+var choice: bool = false
+var chest: bool = false
+var isPaused: bool = false
+
 # Variables for time calculation
 var startTime: float
 var timeCheck: float
@@ -42,7 +47,26 @@ func clearAbilities() -> void:
 	$AbilityIconBG.clear()
 	
 
-### Functions to handle kill label logic ###
+### Functions to pop-up screen logic ###
+func setPaused() -> void:
+	if isPaused:
+		isPaused = false
+	else:
+		isPaused = true
+##
+func setChoice() -> void:
+	if choice:
+		choice = false
+	else:
+		choice = true
+##
+func setChest() -> void:
+	if chest:
+		chest = false
+	else:
+		chest = true
+##
+
 
 ### Functions to handle time label logic ###
 # Function to get current time
