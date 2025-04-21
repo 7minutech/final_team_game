@@ -35,7 +35,6 @@ func addAbility(ability: String) -> void:
 	if PlayerObserver.player.abilities.has(ability) and ability_qty[ability] == 1:
 		var path: String = AbilityObserver.ABILITY_ASSET_PATH.get(ability)
 		var image = load(path)
-		var numAbilities: int = PlayerObserver.player.abilities.size()
 		$AbilityIcons.add_image(image, sideLength, sideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 		$AbilityIconsBG.add_image(iconBG, sideLength, sideLength, Color(1,1,1), INLINE_ALIGNMENT_CENTER, Rect2(0,0,0, 0), null, false, "", false)
 		$AbilityIcons.append_text("  ")

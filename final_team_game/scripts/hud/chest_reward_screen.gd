@@ -8,7 +8,7 @@ func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if get_tree().paused && get_parent().chest && !self.is_visible():
 		$ChestAnimator.play("RESET")
 		$RewardAnimator.play("RESET")
@@ -48,16 +48,16 @@ func giveRandomUpgrade() -> void:
 		print("All available abilities are max upgraded")
 
 # Function to determine what sprite to show
-func setSprite(name: String) -> void:
+func setSprite(a_name: String) -> void:
 	$Reward.stop()
-	match name:
+	match a_name:
 		"garlic":
 			$Reward.frame = 1
 		"plasma_gun":
 			$Reward.frame = 4
 # Function to determine what name to add to the reward label
-func setLabel(name: String) -> void:
-	$RewardLabel.set_text("YOU GOT" + "\n" + name.replace("_", " ").to_upper())
+func setLabel(a_name: String) -> void:
+	$RewardLabel.set_text("YOU GOT" + "\n" + a_name.replace("_", " ").to_upper())
 func _on_click_area_pressed() -> void:
 	if clickable:
 		self.hide()

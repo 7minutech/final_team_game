@@ -28,13 +28,11 @@ func _ready() -> void:
 	auto_cd.timeout.connect(_on_auto_shoot_cd_timeout)
 	var shoot_cd: = $ShootCd
 	shoot_cd.timeout.connect(_on_shoot_cd_timeout)
-
-	var weapon_name: String = "default_gun"
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	clera_invalid_targets()
 	aim()
