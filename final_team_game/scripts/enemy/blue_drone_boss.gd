@@ -87,7 +87,6 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		attack(body)
 
 func flash_white() -> void:
-	var original_color: Color = sprite.modulate
 	var white: Color = Color(1.5, 1.5, 1.5, 1)
 	#creat a tween for half a second white half a second original
 	var tween := get_tree().create_tween()
