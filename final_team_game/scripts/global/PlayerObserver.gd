@@ -11,6 +11,7 @@ var current_xp: int
 var current_level: int
 var max_hp: int
 var current_hp: int
+var coins: int = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
