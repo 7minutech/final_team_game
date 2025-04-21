@@ -74,23 +74,20 @@ func player_is_up() -> bool:
 func player_is_down() -> bool:
 	return position.y < PlayerObserver.player.position.y
 
-func teleport_to_player() -> void:
-	var offset: float = randf_range(-100,100)
+func teleport_to_player(screen_exit: String) -> void:
+	var offset: float = randf_range(-375,375)
 	var new_position: Vector2
-	if screen_exited_at == "left":
+	if screen_exit == "left":
 		new_position = CameraObserver.get_spawn_left_offscreen(offset,-50)
 		position = new_position
-	elif screen_exited_at == "right":
+	elif screen_exit == "right":
 		new_position = CameraObserver.get_spawn_right_offscreen(offset,-50)
 		position = new_position
-	elif screen_exited_at == "top":
-		new_position = CameraObserver.get_spawn_bottom_offscreen(offset,-50)
-		position = new_position
-	elif screen_exited_at == "down":
+	elif screen_exit == "top":
 		new_position = CameraObserver.get_spawn_top_offscreen(offset,-50)
 		position = new_position
-	else:
-		new_position = CameraObserver.get_spawn_right_offscreen(offset,-50)
+	elif screen_exit == "bottom":
+		new_position = CameraObserver.get_spawn_bottom_offscreen(offset,-50)
 		position = new_position
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
@@ -98,19 +95,8 @@ func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	$OffScreenTimer.stop()
 	pass # Replace with function body.
 
-func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	var closest_position = INF
-	var screen_exited_at = ""
-	for key in CameraObserver.camera_positions:
-		var offset_x = CameraObserver.camera_positions[key]
-		var cam_pos = Vector2(offset_x, position.y)  # Create a full Vector2
-		var distance = position.distance_to(cam_pos)
-		if distance < closest_position:
-			closest_position = distance
-			screen_exited_at = key
-	
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:	
 	off_screen = true
-	await get_tree().create_timer(0.5).timeout
 	$OffScreenTimer.start()
 	pass # Replace with function body.
 
@@ -194,6 +180,7 @@ func show_hit_number(dmg: int) -> void:
 
 
 func _on_off_screen_timer_timeout() -> void:
+	teleport_to_player(get_screen_exit())
 	pass # Replace with function body.
 
 func freeze(freeze_time: float) -> void:
@@ -211,3 +198,25 @@ func freeze(freeze_time: float) -> void:
 func turn_blue() -> void:
 	var blue_color: Color = Color("#6699FF")
 	sprite.modulate = blue_color
+
+func get_screen_exit() -> String:
+	var closest_position = INF
+	var screen_exited_at = ""
+	var obj_pos = position
+	for key in CameraObserver.camera_positions:
+		var edge_pos
+		match key:
+			"left":
+				edge_pos = Vector2(CameraObserver.camera_positions[key], obj_pos.y)
+			"right":
+				edge_pos = Vector2(CameraObserver.camera_positions[key], obj_pos.y)
+			"top":
+				edge_pos = Vector2(obj_pos.x, CameraObserver.camera_positions[key])
+			"bottom":
+				edge_pos = Vector2(obj_pos.x, CameraObserver.camera_positions[key])
+		var distance = obj_pos.distance_to(edge_pos)
+		if distance < closest_position:
+			closest_position = distance
+			screen_exited_at = key
+	return screen_exited_at
+	

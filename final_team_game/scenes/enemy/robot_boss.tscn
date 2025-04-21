@@ -167,7 +167,7 @@ libraries = {
 
 [node name="OffScreenTimer" type="Timer" parent="."]
 process_mode = 3
-wait_time = 5.0
+wait_time = 3.0
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
