@@ -14,11 +14,11 @@ spawn_robot_boss = false
 spawn_blue_drones = false
 spawn_red_drones = false
 spawn_alien = false
-spawn_braizers = false
 spwan_drone_boss = false
 
 [node name="Hero" parent="." instance=ExtResource("3_go7pr")]
 position = Vector2(524, 276)
+garlic_level = 6
 emp_level = 0
 
 [node name="Spawner" parent="." instance=ExtResource("5_l4qc1")]
