@@ -21,8 +21,12 @@ var damage_key: String = "robot_damage"
 @onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 @onready var original_color: Color = sprite.modulate
 var frozen: bool = false
+var just_spawned := true
+
 
 func _ready() -> void:
+	await get_tree().create_timer(0.1).timeout
+	just_spawned = false
 	set_max_health()
 	health = max_health
 		

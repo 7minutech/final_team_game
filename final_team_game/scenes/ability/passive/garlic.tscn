@@ -3,25 +3,25 @@
 [ext_resource type="Script" path="res://scripts/ability/active/garlic.gd" id="1_gh4mo"]
 [ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="1_iu3bb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_onv62"]
-radius = 50.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqq6s"]
+radius = 535.093
 
-[node name="Garlic" type="Area2D"]
-collision_layer = 8
-collision_mask = 11
+[node name="Garlic" type="Sprite2D"]
+modulate = Color(0.25098, 0.521569, 0, 0.282353)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_iu3bb")
 script = ExtResource("1_gh4mo")
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_onv62")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.25098, 0.521569, 0, 0.282353)
-texture = ExtResource("1_iu3bb")
 
 [node name="DamageTicker" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="GarlicArea" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GarlicArea"]
+shape = SubResource("CircleShape2D_aqq6s")
+
 [connection signal="timeout" from="DamageTicker" to="." method="_on_damage_ticker_timeout"]
+[connection signal="body_entered" from="GarlicArea" to="." method="_on_garlic_area_body_entered"]
+[connection signal="body_exited" from="GarlicArea" to="." method="_on_garlic_area_body_exited"]

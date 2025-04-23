@@ -1,13 +1,51 @@
 extends Node
 
 ### Constants ###
+# garlic level 1 would be ABILITY_UPGRADE_DESC["garlic"][1]
+const ABILITY_UPGRADE_DESC: Dictionary = {
+	"garlic": {
+		1: "Increase damage by 5",
+		2: "Increase garlic area of effect by 25%",
+		3: "Decrease damage cooldown to 0.75s",
+		4: "Increase garlic area of effect by 50%",
+		5: "Increase damage by 10",
+		6: "Decrease damage cooldown to 0.5s",
+		7: "Increase damage by 15",
+		8: "Increase garlic area of effect by 75%",
+		9: "Increase damage by 20"
+	},
+	"orbital_beam": {
+		1: "Increase beam damage by 5",
+		2: "Increase orbit speed by 0.5",
+		3: "Increase beam scale by 25%",
+		4: "Increase orbit speed by 1.0",
+		5: "Increase beam damage by 10",
+		6: "Increase beam scale by 50%",
+		7: "Increase beam damage by 15",
+		8: "Increase orbit speed by 1.5",
+		9: "Increase beam damage by 20"
+	},
+	"plasma_gun": {
+		1: "Increase weapon damage by 5",
+		2: "Double projectile speed",
+		3: "Reduce shooting cooldown by 0.25s",
+		4: "Triple projectile speed",
+		5: "Increase weapon damage by 15",
+		6: "Reduce shooting cooldown by 0.5s",
+		7: "Increase weapon damage by 20",
+		8: "Quadruple projectile speed",
+		9: "Increase weapon damage by 25"
+	}
+}
+
 const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
 	"garlic": "res://scenes/ability/passive/garlic.tscn",
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
 	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
 	# Non-damaging abilities
-	"emp" : "res://scenes/ability/passive/emp.tscn"
+	"emp" : "res://scenes/ability/passive/emp.tscn",
+	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn"
 	
 }
 const ABILITY_ASSET_PATH: Dictionary = {
@@ -15,6 +53,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	"garlic": "res://assets/hud/ability_icons/Heart.png",
 	"plasma_gun": "res://assets/weapon/blue_laser_gun.png",
 	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
+	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
 	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
@@ -29,6 +68,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"garlic": "Adds a damaging area around the player",
 	"plasma_gun": "Defulat plasma gun",
 	"test_gun": "Testing gun for testing...",
+	"orbital_beam": "Orbits player firing a beam",
 	
 	# Non-damaging abilities
 	"emp": "Stuns enemies that enter its area",
@@ -43,6 +83,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"garlic": 9,
 	"plasma_gun": 9,
 	"test_gun": 9,
+	"orbital_beam": 9,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -57,10 +98,11 @@ const PASSIVE_ABILITIES_NAMES: Array = [
 	"max_health", "health_regen", "pick_up_range", "shield", "movement_speed"
 ]
 const ACTIVE_ABILITIES_NAMES: Array = [
-	"garlic", "plasma_gun", "test_gun", "emp"
+	"garlic", "plasma_gun", "test_gun", "emp", "orbital_beam"
 ]
 	
 
+const MINIMUM_SHIELD_CD: float = 0.5
 
 ### Variables ###
 var movement_speed_buff: float = 0.05
@@ -120,6 +162,8 @@ func give_active_ability(ability_key: String) -> void:
 		player.abilities[ability_key] = ability_instance
 		player.ability_qty[ability_key] = 1
 		hud.addAbility(ability_key)
+		if ability_instance is Weapon:
+			player.weapon_slots.append(ability_instance)
 	else:
 		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
 			player.ability_qty[ability_key] += 1
@@ -167,11 +211,16 @@ func set_shield_duration_buff() -> void:
 
 func set_shield_cd_buff() -> void:
 	var new_cd = (player.shield_cd - shield_duration_buff)
-	player.set_shield_cd(new_cd)
+	if new_cd >= MINIMUM_SHIELD_CD:
+		player.set_shield_cd(new_cd)
 
 func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
+
+func give_oribital_beams() -> void:
+	for i in range(player.orbital_beam_level):
+		AbilityObserver.give_active_ability("orbital_beam")
 
 func give_emps() -> void:
 	for i in range(player.emp_level):
@@ -210,6 +259,7 @@ func give_test_gun() -> void:
 		AbilityObserver.give_active_ability("test_gun")
 
 func give_init_abilities():
+	give_default_gun()
 	give_garlics()
 	give_movement_speeds()
 	give_max_healths()
@@ -218,8 +268,8 @@ func give_init_abilities():
 	#give_shield_cds()
 	give_shield_durations()
 	give_emps()
-	give_default_gun()
 	give_test_gun()
+	give_oribital_beams()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()

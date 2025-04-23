@@ -23,11 +23,41 @@ func _process(delta: float) -> void:
 		###
 		### ADD CODE TO STOP THE SPRITE ON THE CORRECT ABILITY
 		###
+		giveRandomUpgrade()
 		$AnimationDelay.start()
 		await $AnimationDelay.timeout
 		$ButtonAnimator.play("FadeInButton")
 
+# Function to give the player a random upgrade for an ability they already have
+func giveRandomUpgrade() -> void:
+	var available: Array[String] = []
+	for key in PlayerObserver.player.ability_qty.keys():
+		var qty = PlayerObserver.player.ability_qty.get(key)
+		if qty < AbilityObserver.MAX_ABILITY_QTY.get(key):
+			available.append(key)
+	if !available.is_empty():
+		var abilityName: String = available.pick_random()
+		var ability = PlayerObserver.player.abilities.get(abilityName)
+		if ability is PackedScene:
+			AbilityObserver.give_active_ability(abilityName)
+		else:
+			AbilityObserver.give_passive_ability(abilityName)
+		setSprite(abilityName)
+		setLabel(abilityName)
+	else:
+		print("All available abilities are max upgraded")
 
+# Function to determine what sprite to show
+func setSprite(name: String) -> void:
+	$Reward.stop()
+	match name:
+		"garlic":
+			$Reward.frame = 1
+		"plasma_gun":
+			$Reward.frame = 4
+# Function to determine what name to add to the reward label
+func setLabel(name: String) -> void:
+	$RewardLabel.set_text("YOU GOT" + "\n" + name.replace("_", " ").to_upper())
 func _on_click_area_pressed() -> void:
 	if clickable:
 		self.hide()

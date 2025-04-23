@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg7yoetghaem5"]
+
+[ext_resource type="Script" path="res://scripts/ability/passive/orbital_beam.gd" id="1_3wr2j"]
+[ext_resource type="Texture2D" uid="uid://cp3e8pmxs1k7s" path="res://assets/enemy/turret/Bullet.png" id="1_n0o4w"]
+[ext_resource type="Texture2D" uid="uid://yb4whrq18e55" path="res://assets/weapon/PizzaOrb.png" id="3_ltxy6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swt3f"]
+size = Vector2(1358.1, 422.408)
+
+[node name="OrbitalBeam" type="Sprite2D"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_n0o4w")
+script = ExtResource("1_3wr2j")
+
+[node name="Beam" type="Sprite2D" parent="."]
+position = Vector2(-615, -25)
+rotation = 0.610865
+scale = Vector2(1.16191, 1.12291)
+texture = ExtResource("3_ltxy6")
+
+[node name="BeamArea" type="Area2D" parent="Beam"]
+scale = Vector2(1, 1)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/BeamArea"]
+position = Vector2(-71.8569, 56.861)
+rotation = 2.522
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_swt3f")
+
+[connection signal="body_entered" from="Beam/BeamArea" to="." method="_on_beam_area_body_entered"]
+[connection signal="body_exited" from="Beam/BeamArea" to="." method="_on_beam_area_body_exited"]

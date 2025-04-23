@@ -41,21 +41,10 @@ func addAbilities() -> void:
 			var top: bool = true
 			placeIcons(top, image, tooltip, empty, full, currentQTY, maxQTY)
 
-			'''
-			self.find_child(empty).set_animation("Pips_4to9")
-			self.find_child(empty).set_frame((upgradeQTY - 4))
-			self.find_child(full).set_animation("Pips_4to9")
-			self.find_child(full).set_frame((upgradeQTY - 4))
-			'''
 		elif numAbilities < 9:
 			var top: bool = false
 			placeIcons(top, image, tooltip, empty, full, currentQTY, maxQTY)
-			'''
-			self.find_child(empty).set_animation("Pips_4to9")
-			self.find_child(empty).set_frame((upgradeQTY - 4))
-			self.find_child(full).set_animation("Pips_4to9")
-			self.find_child(full).set_frame((upgradeQTY - 4))
-			'''
+
 	numAbilities = 0
 
 # Function to clear the ability label for redrawing
@@ -66,11 +55,12 @@ func clearAbilities() -> void:
 	$AbilityIconBG_Bottom.clear()
 	var count = 1
 	for i: int in range(AbilityObserver.player.abilities.size()):
-		var empty: String = "EmptyPips_" + str(count)
-		var filled: String = "FilledPips_" + str(count)
-		self.find_child(empty).clear()
-		self.find_child(filled).clear()
-		count += 1
+		if count < 8:
+			var empty: String = "EmptyPips_" + str(count)
+			var filled: String = "FilledPips_" + str(count)
+			self.find_child(empty).clear()
+			self.find_child(filled).clear()
+			count += 1
 # Function to place the correct components on the ability label
 func placeIcons(top: bool, image: Texture2D, tooltip: String, emptyNodeName: String, filledNodeName: String, currentQTY: int, maxQTY: int) -> void:
 	var pipSideLength: int = 17
