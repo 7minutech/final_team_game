@@ -61,6 +61,7 @@ const ACTIVE_ABILITIES_NAMES: Array = [
 ]
 	
 
+const MINIMUM_SHIELD_CD: float = 0.5
 
 ### Variables ###
 var movement_speed_buff: float = 0.05
@@ -169,7 +170,8 @@ func set_shield_duration_buff() -> void:
 
 func set_shield_cd_buff() -> void:
 	var new_cd = (player.shield_cd - shield_duration_buff)
-	player.set_shield_cd(new_cd)
+	if new_cd >= MINIMUM_SHIELD_CD:
+		player.set_shield_cd(new_cd)
 
 func give_garlics() -> void:
 	for i in range(player.garlic_level):
