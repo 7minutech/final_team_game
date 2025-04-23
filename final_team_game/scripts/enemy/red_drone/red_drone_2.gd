@@ -9,8 +9,13 @@ var max_health: int = 10
 var health: int = max_health
 @onready var original_color = $Skin.modulate
 var frozen: bool = false
+var just_spawned := true
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().create_timer(0.1).timeout
+	just_spawned = false
 	$Skin.play("walk")
 	pass
 

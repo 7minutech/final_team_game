@@ -9,6 +9,7 @@ extends Node2D
 @export var spawn_alien: bool = true
 @export var spawn_braizers: bool = true
 @export var spwan_drone_boss: bool = true
+var just_spawned := true
 
 
 
