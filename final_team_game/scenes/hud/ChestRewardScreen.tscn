@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cwi1icp4eqh8v" path="res://assets/hud/ability_icons/OrbWithGreenPlus.png" id="7_c2awc"]
 [ext_resource type="Texture2D" uid="uid://c3a1s1sos2e6h" path="res://assets/hud/ability_icons/HeartWithGreenPlus.png" id="8_yrj4i"]
 [ext_resource type="Texture2D" uid="uid://dbxr4wai4omck" path="res://assets/hud/ability_icons/Shield.png" id="9_mjxxb"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
+[ext_resource type="SystemFont" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
 

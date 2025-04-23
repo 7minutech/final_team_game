@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://12tkw3pf520q"]
+[gd_scene load_steps=5 format=3 uid="uid://12tkw3pf520q"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_jkuks"]
 [ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3" id="2_qad8o"]
 [ext_resource type="AudioStream" uid="uid://k4crmxfxfc65" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_21.mp3" id="3_44sq3"]
+[ext_resource type="AudioStream" uid="uid://dg027qxqyf8r4" path="res://assets/sound/enchanted tiki 86.mp3" id="4_pso1k"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -29,12 +30,18 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="UI"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Play"
+
+[node name="ShopButton" type="Button" parent="UI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Shop"
 
 [node name="OptionsButton" type="Button" parent="UI"]
 layout_mode = 2
-text = "Options
-"
+theme_override_font_sizes/font_size = 30
+text = "Options"
 
 [node name="VolumeSlider" type="HSlider" parent="UI"]
 layout_mode = 2
@@ -44,20 +51,24 @@ value = 0.5
 
 [node name="Label" type="Label" parent="UI/VolumeSlider"]
 layout_mode = 2
-offset_top = 20.0
+offset_top = 13.0
 offset_right = 1164.0
-offset_bottom = 43.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 15
 text = "Volume"
 horizontal_alignment = 1
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_qad8o")
-volume_db = -20.0
+volume_db = -10.0
 pitch_scale = 3.05
 
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_44sq3")
-volume_db = -20.0
+volume_db = -10.0
 pitch_scale = 2.03
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pso1k")
+volume_db = -5.0
+autoplay = true
