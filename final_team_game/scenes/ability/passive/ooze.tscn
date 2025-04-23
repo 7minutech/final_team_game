@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ybt8ceibx5eu"]
+
+[ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="1_cri1c"]
+[ext_resource type="Script" path="res://scripts/ability/passive/ooze.gd" id="2_s18ax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6hyx"]
+radius = 544.235
+
+[node name="Ooze" type="Sprite2D"]
+modulate = Color(0.352941, 1, 0.4, 0.470588)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cri1c")
+script = ExtResource("2_s18ax")
+
+[node name="OozeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OozeArea"]
+shape = SubResource("CircleShape2D_w6hyx")
+
+[connection signal="body_entered" from="OozeArea" to="." method="_on_ooze_area_body_entered"]
+[connection signal="body_exited" from="OozeArea" to="." method="_on_ooze_area_body_exited"]
