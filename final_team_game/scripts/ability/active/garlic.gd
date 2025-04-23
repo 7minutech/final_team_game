@@ -2,19 +2,6 @@ extends Sprite2D
 
 class_name Garlic
 
-const ability_desc: Dictionary = {
-	1: "Increase damage by 5",
-	2: "Increase garlic area of effect by 25%",
-	3: "Decrease damage cooldown to 0.75s",
-	4: "Increase garlic area of effect by 50%",
-	5: "Increase damage by 10",
-	6: "Decrease damage cooldown to 0.5s",
-	7: "Increase damage by 15",
-	8: "Increase garlic area of effect by 75%",
-	9: "Increase damage by 20"
-}
-
-
 const INITIAL_SCALE: Vector2 = Vector2(0.2,0.2)
 const INITIAL_DAMAGE: int = 20
 const INITAIAL_TICK_INTERVAL: float = 1.0

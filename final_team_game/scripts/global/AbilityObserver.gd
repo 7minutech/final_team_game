@@ -1,6 +1,43 @@
 extends Node
 
 ### Constants ###
+# garlic level 1 would be ABILITY_UPGRADE_DESC["garlic"][1]
+const ABILITY_UPGRADE_DESC: Dictionary = {
+	"garlic": {
+		1: "Increase damage by 5",
+		2: "Increase garlic area of effect by 25%",
+		3: "Decrease damage cooldown to 0.75s",
+		4: "Increase garlic area of effect by 50%",
+		5: "Increase damage by 10",
+		6: "Decrease damage cooldown to 0.5s",
+		7: "Increase damage by 15",
+		8: "Increase garlic area of effect by 75%",
+		9: "Increase damage by 20"
+	},
+	"orbital_beam": {
+		1: "Increase beam damage by 5",
+		2: "Increase orbit speed by 0.5",
+		3: "Increase beam scale by 25%",
+		4: "Increase orbit speed by 1.0",
+		5: "Increase beam damage by 10",
+		6: "Increase beam scale by 50%",
+		7: "Increase beam damage by 15",
+		8: "Increase orbit speed by 1.5",
+		9: "Increase beam damage by 20"
+	},
+	"plasma_gun": {
+		1: "Increase weapon damage by 5",
+		2: "Double projectile speed",
+		3: "Reduce shooting cooldown by 0.25s",
+		4: "Triple projectile speed",
+		5: "Increase weapon damage by 15",
+		6: "Reduce shooting cooldown by 0.5s",
+		7: "Increase weapon damage by 20",
+		8: "Quadruple projectile speed",
+		9: "Increase weapon damage by 25"
+	}
+}
+
 const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
 	"garlic": "res://scenes/ability/passive/garlic.tscn",

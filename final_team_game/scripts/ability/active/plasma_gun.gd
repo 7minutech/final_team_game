@@ -1,17 +1,5 @@
 extends Weapon
 
-const ability_desc: Dictionary = {
-	1: "Increase weapon damage by 5",
-	2: "Double projectile speed",
-	3: "Reduce shooting cooldown by 0.25s",
-	4: "Triple projectile speed",
-	5: "Increase weapon damage by 15",
-	6: "Reduce shooting cooldown by 0.5s",
-	7: "Increase weapon damage by 20",
-	8: "Quadruple projectile speed",
-	9: "Increase weapon damage by 25"
-}
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
