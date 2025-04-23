@@ -35,7 +35,48 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		7: "Increase weapon damage by 20",
 		8: "Quadruple projectile speed",
 		9: "Increase weapon damage by 25"
+	},
+	"shield": {
+		1: "Increase shield duration by 0.2s",
+		2: "Reduce shield cooldown by 0.3s",
+		3: "Increase shield duration by 0.2s",
+		4: "Reduce shield cooldown by 0.3s",
+		5: "Increase shield duration by 0.2s"
+	},
+	"health_regen": {
+		1: "Increase health regeneration by 0.2 HP/s",
+		2: "Increase health regeneration by 0.2 HP/s",
+		3: "Increase health regeneration by 0.2 HP/s",
+		4: "Increase health regeneration by 0.2 HP/s"
+	},
+	"max_health": {
+		1: "Increase max health by 5%",
+		2: "Increase max health by 5%",
+		3: "Increase max health by 5%",
+		4: "Increase max health by 5%",
+		5: "Increase max health by 5%",
+		6: "Increase max health by 5%",
+		7: "Increase max health by 5%",
+		8: "Increase max health by 5%",
+		9: "Increase max health by 5%"
+	},
+	"movement_speed": {
+		1: "Increase movement speed by 5%",
+		2: "Increase movement speed by 5%",
+		3: "Increase movement speed by 5%",
+		4: "Increase movement speed by 5%"
+	},
+	"pick_up_range": {
+		1: "Increase pickup range by 20%",
+		2: "Increase pickup range by 20%",
+		3: "Increase pickup range by 20%",
+		4: "Increase pickup range by 20%",
+		5: "Increase pickup range by 20%",
+		6: "Increase pickup range by 20%",
+		7: "Increase pickup range by 20%"
 	}
+
+
 }
 
 const ABILITY_SCENE_PATH:Dictionary = {
@@ -132,14 +173,15 @@ func give_passive_ability(ability_key: String) -> void:
 		player.abilities[ability_key] = "passive"
 		player.ability_qty[ability_key] = 1
 		hud.addAbility(ability_key)
+		give_passive_boost(ability_key, player.ability_qty[ability_key])
 
 	else:
 		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
 			player.ability_qty[ability_key] += 1
 			#hud.addAbility(ability_key)
-	give_passive_boost(ability_key)
+			give_passive_boost(ability_key, player.ability_qty[ability_key])
 
-func give_passive_boost(ability_name: String):
+func give_passive_boost(ability_name: String, qty: int):
 	match ability_name:
 		"movement_speed":
 			set_movement_speed_buff()
@@ -150,8 +192,7 @@ func give_passive_boost(ability_name: String):
 		"pick_up_range":
 			set_pick_up_buff()
 		"shield":
-			set_shield_duration_buff()
-			#set_shield_cd_buff()
+			upgrade_shield(qty)
 			
 
 func give_active_ability(ability_key: String) -> void:
@@ -214,6 +255,19 @@ func set_shield_cd_buff() -> void:
 	if new_cd >= MINIMUM_SHIELD_CD:
 		player.set_shield_cd(new_cd)
 
+func upgrade_shield(qty: int) -> void:
+	match qty:
+		1:
+			set_shield_duration_buff()
+		2: 
+			set_shield_cd_buff()
+		3:
+			set_shield_duration_buff()
+		4:
+			set_shield_cd_buff()
+		5: 
+			set_shield_duration_buff()
+
 func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
@@ -247,6 +301,10 @@ func give_shield_durations():
 		AbilityObserver.give_passive_ability("shield")
 
 func give_shield_cds():
+	for i in range(player.shield_level):
+		AbilityObserver.give_passive_ability("shield")
+
+func give_shields() -> void:
 	for i in range(player.shield_level):
 		AbilityObserver.give_passive_ability("shield")
 
