@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name Arrow
 var target_node: Node2D = null
-var offset_from_player := Vector2(0, -85)  # 75 pixels above player's head
+var offset_from_player := Vector2(0, -85)  # 85 pixels above player's head
 var current_direction: String = ""
 
 func _process(delta: float) -> void:
