@@ -179,6 +179,7 @@ stream = ExtResource("10_wt6tw")
 volume_db = -5.0
 
 [node name="EMP" parent="." instance=ExtResource("11_lg1d2")]
+visible = false
 
 [node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_6q7qt")

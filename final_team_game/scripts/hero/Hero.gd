@@ -368,3 +368,6 @@ func right_index(arr: Array, index: int) -> int:
 
 func swap_pressed() -> bool:
 	return Input.is_action_just_pressed("swap_left") or Input.is_action_just_pressed("swap_right")
+
+func set_arrow_target(chest: Node2D) -> void:
+	$Arrow.target_node = chest
