@@ -45,6 +45,8 @@ var pick_up_range: float
 var shield_active: bool = false
 var shield_duration: float = INITIAL_SHIELD_DURATION
 var shield_cd: float = INITIAL_SHIELD_CD
+var weapon_slots: Array
+var current_weapon_index: int = 0
 var primary_weapon: Weapon
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
@@ -83,16 +85,16 @@ func _process(_delta: float) -> void:
 		level_up()
 	if Input.is_action_just_pressed("hurt"):
 		loseHealth(20)
-	if Input.is_action_just_pressed("switch_test_gun"):
+	if swap_pressed():
 		$SwapWeaponSound.pitch_scale = randf_range(1.4,1.6)
 		$SwapWeaponSound.play()
-		if primary_weapon.weapon_name == "plasma_gun" and abilities.has("test_gun"):
-			AbilityObserver.set_primary_weapon("test_gun")
-		elif primary_weapon.weapon_name == "test_gun":
-			AbilityObserver.set_primary_weapon("plasma_gun")
-		else:
-			print("Weapon name not in condition for swap hotkey")
-
+		if Input.is_action_just_pressed("swap_left"):
+			current_weapon_index = left_index(weapon_slots, current_weapon_index)
+		elif Input.is_action_just_pressed("swap_right"):
+			current_weapon_index = right_index(weapon_slots, current_weapon_index)
+		var weapon_instance: Weapon = weapon_slots[current_weapon_index]
+		AbilityObserver.set_primary_weapon(weapon_instance.weapon_name)
+		
 func _physics_process(delta: float) -> void:
 	# Check to see if player died
 	if health <= 0:
@@ -350,3 +352,19 @@ func give_emp_pickup(multiplier: float) -> void:
 	$EMP.expand_boost($EMP.radius * multiplier)
 	pass
 	
+func left_index(arr: Array, index: int) -> int:
+	index -= 1
+	# if negative wrap to last element
+	if index < 0:
+		index = arr.size() - 1
+	return index
+	
+func right_index(arr: Array, index: int) -> int:
+	index += 1
+	# if over wrap to first element
+	if index == arr.size():
+		index = 0
+	return index
+
+func swap_pressed() -> bool:
+	return Input.is_action_just_pressed("swap_left") or Input.is_action_just_pressed("swap_right")

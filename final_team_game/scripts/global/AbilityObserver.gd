@@ -120,6 +120,8 @@ func give_active_ability(ability_key: String) -> void:
 		player.abilities[ability_key] = ability_instance
 		player.ability_qty[ability_key] = 1
 		hud.addAbility(ability_key)
+		if ability_instance is Weapon:
+			player.weapon_slots.append(ability_instance)
 	else:
 		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
 			player.ability_qty[ability_key] += 1
