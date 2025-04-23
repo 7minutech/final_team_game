@@ -7,7 +7,8 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
 	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
 	# Non-damaging abilities
-	"emp" : "res://scenes/ability/passive/emp.tscn"
+	"emp" : "res://scenes/ability/passive/emp.tscn",
+	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn"
 	
 }
 const ABILITY_ASSET_PATH: Dictionary = {
@@ -15,6 +16,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	"garlic": "res://assets/hud/ability_icons/Heart.png",
 	"plasma_gun": "res://assets/weapon/blue_laser_gun.png",
 	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
+	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
 	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
@@ -29,6 +31,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"garlic": "Adds a damaging area around the player",
 	"plasma_gun": "Defulat plasma gun",
 	"test_gun": "Testing gun for testing...",
+	"orbital_beam": "Orbits player firing a beam",
 	
 	# Non-damaging abilities
 	"emp": "Stuns enemies that enter its area",
@@ -43,6 +46,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"garlic": 9,
 	"plasma_gun": 9,
 	"test_gun": 9,
+	"orbital_beam": 9,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -57,7 +61,7 @@ const PASSIVE_ABILITIES_NAMES: Array = [
 	"max_health", "health_regen", "pick_up_range", "shield", "movement_speed"
 ]
 const ACTIVE_ABILITIES_NAMES: Array = [
-	"garlic", "plasma_gun", "test_gun", "emp"
+	"garlic", "plasma_gun", "test_gun", "emp", "orbital_beam"
 ]
 	
 
@@ -177,6 +181,10 @@ func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
 
+func give_orbital_lasers() -> void:
+	for i in range(player.orbital_beam_level):
+		AbilityObserver.give_active_ability("orbital_beam")
+
 func give_emps() -> void:
 	for i in range(player.emp_level):
 		AbilityObserver.give_active_ability("emp")
@@ -224,6 +232,7 @@ func give_init_abilities():
 	give_shield_durations()
 	give_emps()
 	give_test_gun()
+	give_orbital_lasers()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()

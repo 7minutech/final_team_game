@@ -59,6 +59,7 @@ var primary_weapon: Weapon
 @export var emp_level: int
 @export var default_weapon_level: int = 1
 @export var test_gun_level: int
+@export var orbital_beam_level: int
 func _ready() -> void:
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
