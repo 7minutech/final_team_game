@@ -123,6 +123,10 @@ shape = SubResource("CapsuleShape2D_qw7bj")
 shape = SubResource("CircleShape2D_jpcay")
 
 [node name="HeroCamera" type="Camera2D" parent="."]
+limit_left = -5000
+limit_top = -5000
+limit_right = 5000
+limit_bottom = 5000
 
 [node name="Hud" parent="." instance=ExtResource("2_jvuw6")]
 

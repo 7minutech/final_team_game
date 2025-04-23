@@ -8,7 +8,7 @@ const PLASMA_PROJ = preload("res://scenes/hero/PlasmaProjectile.tscn")
 ### Constants ###
 # Constants for initial stats
 const INITIAL_FIRE_RATE: int = 1
-const INITIAL_SPEED: int = 300
+const INITIAL_SPEED: int = 1500
 const INITIAL_HEALTH: int = 100
 const INITIAL_MAX_XP: int = 100
 const INITIAL_HEALTH_REGEN: int = 0 
