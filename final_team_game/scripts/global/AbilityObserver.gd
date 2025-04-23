@@ -181,7 +181,7 @@ func give_garlics() -> void:
 	for i in range(player.garlic_level):
 		AbilityObserver.give_active_ability("garlic")
 
-func give_orbital_lasers() -> void:
+func give_oribital_beams() -> void:
 	for i in range(player.orbital_beam_level):
 		AbilityObserver.give_active_ability("orbital_beam")
 
@@ -232,7 +232,7 @@ func give_init_abilities():
 	give_shield_durations()
 	give_emps()
 	give_test_gun()
-	give_orbital_lasers()
+	give_oribital_beams()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()

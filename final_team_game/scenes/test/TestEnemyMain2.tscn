@@ -19,7 +19,7 @@ spwan_drone_boss = false
 [node name="Hero" parent="." instance=ExtResource("3_go7pr")]
 position = Vector2(524, 276)
 emp_level = 0
-orbital_beam_level = 1
+orbital_beam_level = 3
 
 [node name="Spawner" parent="." instance=ExtResource("5_l4qc1")]
 position = Vector2(1098, 206)
