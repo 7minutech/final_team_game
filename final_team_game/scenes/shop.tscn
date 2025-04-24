@@ -13,6 +13,12 @@ offset_right = 1155.0
 offset_bottom = 651.0
 script = ExtResource("1_gtfj6")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1160.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 1)
+
 [node name="CoinLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 349.0

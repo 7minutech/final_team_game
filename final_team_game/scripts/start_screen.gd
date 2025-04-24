@@ -6,6 +6,7 @@ extends Control
 @onready var hover_sound = $Hover
 @onready var click_sound = $ClickSound
 @onready var shop_button = $UI/ShopButton
+@onready var controls_button = $UI/ControlsButton
  
 var options_open = false
 
@@ -15,14 +16,14 @@ func _ready():
 	play_button.mouse_entered.connect(on_hover)
 	options_button.pressed.connect(on_options_pressed)
 	options_button.mouse_entered.connect(on_hover)
-	volume_slider.value_changed.connect(on_volume_changed)
-	volume_slider.visible = false
 	shop_button.pressed.connect(on_shop_pressed)
 	shop_button.mouse_entered.connect(on_hover)
+	controls_button.pressed.connect(on_controls_pressed)
+	controls_button.mouse_entered.connect(on_hover)
 	
 
 func on_play_pressed():
-	$MenuMusic.stop()
+	$StartScreenMusic.stop()
 	click_sound.play()
 	await click_sound.finished
 	get_tree().change_scene_to_file("res://scenes/test/TestEnemyMain2.tscn")
@@ -44,3 +45,8 @@ func on_shop_pressed():
 	click_sound.play()
 	await click_sound.finished
 	get_tree().change_scene_to_file("res://scenes/shop.tscn")
+
+func on_controls_pressed():
+	click_sound.play()
+	await click_sound.finished
+	get_tree().change_scene_to_file("res://scenes/controls_menu.tscn")
