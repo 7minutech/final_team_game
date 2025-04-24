@@ -3,9 +3,10 @@ class_name Arrow
 var target_node: Node2D = null
 var offset_from_player := Vector2(0, -85)  # 85 pixels above player's head
 var current_direction: String = ""
+var hide_flag: bool = true
 
 func _process(delta: float) -> void:
-	if not target_node or not is_instance_valid(target_node):
+	if not target_node or not is_instance_valid(target_node) or hide_flag:
 		hide()
 		return
 	

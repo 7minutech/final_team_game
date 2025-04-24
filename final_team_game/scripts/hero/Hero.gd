@@ -108,6 +108,7 @@ func _process(_delta: float) -> void:
 		$OozeTimer.start()
 		main.add_child(ooze)
 		ooze.update_stat(ability_qty["ooze"])
+	show_only_one_arrow()
 		
 		
 func _physics_process(_delta: float) -> void:
@@ -395,6 +396,14 @@ func swap_pressed() -> bool:
 func set_arrow_target(chest: Node2D) -> void:
 	$Arrow.target_node = chest
 
+func show_only_one_arrow() -> void:
+	var arrow_counter = 0
+	for child in self.get_children():
+		if child is Arrow and arrow_counter == 0:
+			child.hide_flag = false
+			arrow_counter += 1
+	arrow_counter = 0
+		
 
 func _on_ooze_timer_timeout() -> void:
 	can_drop_ooze = true

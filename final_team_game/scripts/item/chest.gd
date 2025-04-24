@@ -20,14 +20,18 @@ func _process(_delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
+	var arrow = parent.get_node("Arrow")
 	if parent is Player:
+		if arrow != null:
+			arrow.queue_free()
 		set_pitch_scale()
 		$PickUpSound.play()
 		print("Player got a chest")
 		PlayerObserver.player.find_child("Hud").setChest()
 		get_tree().set_pause(true)
-		await get_tree().create_timer(0.25).timeout	
+		await get_tree().create_timer(0.25).timeout
 		queue_free()
+		
 
 
 func set_pitch_scale() -> void:
@@ -45,4 +49,4 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	if not is_instance_valid(arrow_instance):
 		arrow_instance = arrow_scene.instantiate()
 		arrow_instance.set_target_node(self)
-	PlayerObserver.player.add_child(arrow_instance)
+		PlayerObserver.player.add_child(arrow_instance)
