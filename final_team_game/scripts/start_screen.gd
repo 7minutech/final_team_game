@@ -30,8 +30,8 @@ func on_play_pressed():
 
 func on_options_pressed():
 	click_sound.play()
-	options_open = !options_open
-	volume_slider.visible = options_open
+	await click_sound.finished
+	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
 
 func on_volume_changed(value):
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
