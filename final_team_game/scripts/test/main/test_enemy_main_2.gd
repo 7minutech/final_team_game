@@ -26,8 +26,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
 	var player_position = PlayerObserver.player.position
-	if player_is_off_map():
-		teleport_player(player_position)
+	var camRect: Rect2 = PlayerObserver.player.find_child("HeroCamera").get_viewport_rect()
+	if player_is_off_map(camRect):
+		teleport_player(player_position, camRect)
 	#spawner.spawn_ring_aliens(60)
 	pass
 
@@ -76,50 +77,51 @@ func _on_drone_boss_timeout() -> void:
 		spawner.spawn("blue_drone_boss")
 	pass # Replace with function body.
 
-func player_is_off_map() -> bool:
+func player_is_off_map(camRect: Rect2) -> bool:
 	var player = PlayerObserver.player
-	if abs(player.position.x) > 5000 or abs(player.position.y ) > 5000:
+	var center: Vector2 = camRect.get_center()
+	if abs(player.position.x) > 5000 -center.x or abs(player.position.y ) > 5000 - center.y:
 		return true
 	return false
 
-func player_is_off_map_right() -> bool:
+func player_is_off_map_right(x: int) -> bool:
 	var player = PlayerObserver.player
-	if player.position.x > 5000:
+	if player.position.x > 5000 - x:
 		return true
 	return false
 
-func player_is_off_map_left() -> bool:
+func player_is_off_map_left(x: int) -> bool:
 	var player = PlayerObserver.player
-	if player.position.x < -5000:
+	if player.position.x < -5000 + x:
 		return true
 	return false
 
-func player_is_off_map_bottom() -> bool:
+func player_is_off_map_bottom(y: int) -> bool:
 	var player = PlayerObserver.player
-	if player.position.y > 5000:
+	if player.position.y > 5000 - y:
 		return true
 	return false
 
-func player_is_off_map_top() -> bool:
+func player_is_off_map_top(y: int) -> bool:
 	var player = PlayerObserver.player
-	if player.position.y < -5000:
+	if player.position.y < -5000 + y:
 		return true
 	return false
 
 
-func teleport_player(player_position: Vector2) -> void:
-	var x_offset = 10
-	var y_offset = 10
+func teleport_player(player_position: Vector2, camRect: Rect2) -> void:
+	var x_offset = camRect.get_center().x
+	var y_offset = camRect.get_center().y
 	var new_position = player_position
 
-	if player_is_off_map_right():
+	if player_is_off_map_right(x_offset):
 		new_position.x = LEFT_MAP_LIMIT + x_offset
-	elif player_is_off_map_left():
+	elif player_is_off_map_left(x_offset):
 		new_position.x = RIGHT_MAP_LIMIT - x_offset
 
-	if player_is_off_map_bottom():
+	if player_is_off_map_bottom(y_offset):
 		new_position.y = TOP_MAP_LIMIT + y_offset
-	elif player_is_off_map_top():
+	elif player_is_off_map_top(y_offset):
 		new_position.y = BOTTOM_MAP_LIMIT - y_offset
 
 	PlayerObserver.player.position = new_position

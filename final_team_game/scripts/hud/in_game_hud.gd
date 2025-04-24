@@ -27,6 +27,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 	
+
 ### Functions to handle ability icon logic ###
 # Function to add ability images to the ability label
 func addAbility(ability: String) -> void:
