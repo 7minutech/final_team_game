@@ -19,13 +19,11 @@ scale = Vector2(1.16191, 1.12291)
 texture = ExtResource("3_ltxy6")
 
 [node name="BeamArea" type="Area2D" parent="Beam"]
-scale = Vector2(1, 1)
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Beam/BeamArea"]
 position = Vector2(-71.8569, 56.861)
 rotation = 2.522
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_swt3f")
 
 [connection signal="body_entered" from="Beam/BeamArea" to="." method="_on_beam_area_body_entered"]

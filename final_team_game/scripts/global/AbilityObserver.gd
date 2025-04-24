@@ -17,13 +17,13 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 	"orbital_beam": {
 		1: "Increase beam damage by 5",
 		2: "Increase orbit speed by 0.5",
-		3: "Increase beam scale by 25%",
-		4: "Increase orbit speed by 1.0",
-		5: "Increase beam damage by 10",
+		3: "Add an additional orbital beam",
+		4: "Increase orbit speed by 0.5",
+		5: "Add an additional orbital beam",
 		6: "Increase beam scale by 50%",
-		7: "Increase beam damage by 15",
-		8: "Increase orbit speed by 1.5",
-		9: "Increase beam damage by 20"
+		7: "Add an additional orbital beam",
+		8: "Increase orbit speed by 0.5",
+		9: "Increase beam damage by 15"
 	},
 	"plasma_gun": {
 		1: "Increase weapon damage by 5",
