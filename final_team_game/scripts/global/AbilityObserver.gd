@@ -129,7 +129,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"radiation": "Adds a damaging area around the player",
-	"plasma_gun": "Defulat plasma gun",
+	"plasma_gun": "Default plasma gun",
 	"test_gun": "Testing gun for testing...",
 	"orbital_beam": "Orbits player firing a beam",
 	"ooze": "Drops some toxic ooze on the ground",

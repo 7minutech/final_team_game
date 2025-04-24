@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://jos7dfgt1e75"]
+[gd_scene load_steps=41 format=3 uid="uid://jos7dfgt1e75"]
 
 [ext_resource type="Script" path="res://scripts/hud/chest_reward_screen.gd" id="1_8qhyi"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_k7vj5"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://c3a1s1sos2e6h" path="res://assets/hud/ability_icons/HeartWithGreenPlus.png" id="8_yrj4i"]
 [ext_resource type="Texture2D" uid="uid://dbxr4wai4omck" path="res://assets/hud/ability_icons/Shield.png" id="9_mjxxb"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
+[ext_resource type="Texture2D" uid="uid://cguio8ykpy5e3" path="res://assets/hud/ability_icons/ooze.png" id="11_4nuf2"]
+[ext_resource type="Texture2D" uid="uid://cp3e8pmxs1k7s" path="res://assets/enemy/turret/Bullet.png" id="12_8imqy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
 
@@ -94,6 +96,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5i7kt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4nuf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8imqy")
 }],
 "loop": true,
 "name": &"rotation",

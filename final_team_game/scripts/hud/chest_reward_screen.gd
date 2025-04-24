@@ -90,6 +90,10 @@ func setSprite(a_name: String) -> void:
 			$Reward.frame = 6
 		"movement_speed":
 			$Reward.frame = 3
+		"ooze":
+			$Reward.frame = 7
+		"orbital_beam":
+			$Reward.frame = 8
 		
 # Function to determine what name to add to the reward label
 func setLabel(a_name: String) -> void:
