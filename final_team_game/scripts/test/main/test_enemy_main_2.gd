@@ -1,5 +1,9 @@
 extends Node2D
 
+const LEFT_MAP_LIMIT: int = -5000
+const RIGHT_MAP_LIMIT: int = 5000
+const TOP_MAP_LIMIT: int = -5000
+const BOTTOM_MAP_LIMIT: int = 5000
 
 @onready var spawner: Spawner = $Spawner
 @export var spawn_robots: bool = true
@@ -21,6 +25,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
+	var player_position = PlayerObserver.player.position
+	if player_is_off_map():
+		teleport_player(player_position)
 	#spawner.spawn_ring_aliens(60)
 	pass
 
@@ -64,8 +71,55 @@ func _on_red_drone_timer_timeout() -> void:
 		spawner.spawn("red_drones")
 ##
 
-
 func _on_drone_boss_timeout() -> void:
 	if spwan_drone_boss:
 		spawner.spawn("blue_drone_boss")
 	pass # Replace with function body.
+
+func player_is_off_map() -> bool:
+	var player = PlayerObserver.player
+	if abs(player.position.x) > 5000 or abs(player.position.y ) > 5000:
+		return true
+	return false
+
+func player_is_off_map_right() -> bool:
+	var player = PlayerObserver.player
+	if player.position.x > 5000:
+		return true
+	return false
+
+func player_is_off_map_left() -> bool:
+	var player = PlayerObserver.player
+	if player.position.x < -5000:
+		return true
+	return false
+
+func player_is_off_map_bottom() -> bool:
+	var player = PlayerObserver.player
+	if player.position.y > 5000:
+		return true
+	return false
+
+func player_is_off_map_top() -> bool:
+	var player = PlayerObserver.player
+	if player.position.y < -5000:
+		return true
+	return false
+
+
+func teleport_player(player_position: Vector2) -> void:
+	var x_offset = 10
+	var y_offset = 10
+	var new_position = player_position
+
+	if player_is_off_map_right():
+		new_position.x = LEFT_MAP_LIMIT + x_offset
+	elif player_is_off_map_left():
+		new_position.x = RIGHT_MAP_LIMIT - x_offset
+
+	if player_is_off_map_bottom():
+		new_position.y = TOP_MAP_LIMIT + y_offset
+	elif player_is_off_map_top():
+		new_position.y = BOTTOM_MAP_LIMIT - y_offset
+
+	PlayerObserver.player.position = new_position

@@ -1,114 +1,99 @@
-extends Area2D
+extends Sprite2D
 
 class_name EMP
 
-var max_qty: float = 6
-const INITIAL_RADIUS = 50
-var radius: float
+const INITIAL_SCALE: Vector2 = Vector2(0.05,0.05)
+const INITIAL_FREEZE_TIME: float = 1.0
+const INITIAL_SCALE_MULTIPLIER: int = 2
+const PICK_UP_SCALE_MULTIPLIER: int = 20
+const PICK_UP_FREEZE_TIME: float = 10.0
+const INITIAL_CD: float = 3.0
+
+var max_qty: float = 8
 var expanded_radius: float
-var damage: int = 20
 var damage_targets = []
-var TICK_INTERVAL: float = 1.0
-var tick_timer: float = 0.0
-var active = true
-var freeze_time: float = 1.0
+var freeze_time = INITIAL_FREEZE_TIME
+var cd: float = INITIAL_CD
 var boost_flag = false
+var scale_multiplier = INITIAL_SCALE_MULTIPLIER
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite2D.hide()
-	radius = $CollisionShape2D.shape.radius
-	update_sprite_scale()
+	$ExpandTimer.wait_time = cd
+	self.hide()
 
-func update_sprite_scale():
-	var circle:CircleShape2D = $CollisionShape2D.shape 
-	var newRadius = circle.radius
+func update_stat(qty:int) -> void:
+	if not boost_flag:
+		match qty:
+			1:
+				set_freeze_time(INITIAL_FREEZE_TIME + 1.0)
+			2:
+				set_scale_multiplier(INITIAL_SCALE_MULTIPLIER + 1.0)
+			3:
+				set_cd(INITIAL_CD - 0.5)
+			4:
+				set_scale_multiplier(INITIAL_SCALE_MULTIPLIER + 2.0)
+			5:
+				set_freeze_time(INITIAL_FREEZE_TIME + 2.0)
+			6:
+				set_cd(INITIAL_CD - 0.5)
+			7:
+				set_freeze_time(INITIAL_FREEZE_TIME + 3.0)
+			8:
+				set_scale_multiplier(INITIAL_SCALE_MULTIPLIER + 4.0)
+			_:
+				print("Invalid level")
 
-	#size of sprite
-	var tex_size = $Sprite2D.texture.get_size()
-
-	#scale sprite to match circle's diameter
-	$Sprite2D.scale = Vector2(newRadius * 2, newRadius * 2) / tex_size
-
-func update_stat(qty:float) -> void:
-	# 1 -> 1.2
-	# 2 -> 1.4
-	var multiplier: float = 1 + (2 * (qty / 10))
-	expanded_radius = multiplier * INITIAL_RADIUS
-
-func expand() -> void:
-	$Sprite2D.show()
+func expand(multiplier: int) -> void:
+	self.show()
 	set_random_pitch()
 	$BangSound.play()
-	for i in range(radius, expanded_radius):
+	
+	var expanded_scale = INITIAL_SCALE * multiplier
+	var current_scale = INITIAL_SCALE
+	scale = current_scale
+	
+	while current_scale.x <= expanded_scale.x:
+		current_scale += Vector2(0.01, 0.01)
+		scale = current_scale
 		freeze_enemies()
-		$CollisionShape2D.shape.radius += 1
-		update_sprite_scale()
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.02).timeout
+
 	freeze_enemies()
 	remove_targets()
 	await get_tree().create_timer(0.1).timeout
-	for i in range(radius, expanded_radius):
-		$CollisionShape2D.shape.radius -= 1
-		update_sprite_scale()
-		await get_tree().create_timer(0.01).timeout
-	$Sprite2D.hide()
-	pass
+
+	while current_scale.x >= INITIAL_SCALE.x:
+		current_scale -= Vector2(0.01, 0.01)
+		scale = current_scale
+		freeze_enemies()
+		await get_tree().create_timer(0.02).timeout
+
+	self.hide()
 
 func expand_boost(new_radius) -> void:
-	set_freeze_time(10.0)
-	$Sprite2D.show()
-	set_random_pitch()
-	$BangSound.play()
-
-	while $CollisionShape2D.shape.radius < new_radius:
-		freeze_enemies()
-		$CollisionShape2D.shape.radius += 4
-		update_sprite_scale()
-		await get_tree().create_timer(0.005).timeout
-
-	freeze_enemies()
-	remove_targets()
-	await get_tree().create_timer(0.05).timeout
-
-	while $CollisionShape2D.shape.radius > radius:
-		$CollisionShape2D.shape.radius -= 4
-		update_sprite_scale()
-		await get_tree().create_timer(0.005).timeout
-
-	$Sprite2D.hide()
-
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		#body.loseHealth(damage)
-		damage_targets.append(body)
-	pass # Replace with function body.
-
-func _on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		#body.loseHealth(damage)
-		damage_targets.erase(body)
-	pass # Replace with function body.
+	expand(PICK_UP_SCALE_MULTIPLIER)
 
 func _on_expand_timer_timeout() -> void:
 	if not boost_flag:
-		expand()
+		expand(scale_multiplier)
 	pass # Replace with function body.
 
 func freeze_enemies() -> void:
 	for target in damage_targets:	
 		if is_instance_valid(target) and target.health > 0 and target.has_method("freeze"):
-			target.freeze(freeze_time)
+			if not boost_flag:
+				target.freeze(freeze_time)
+			else:
+				target.freeze(PICK_UP_FREEZE_TIME)
 	
 func remove_targets() -> void:
 	damage_targets.clear()
 
-func reset_circle() -> void:
-	$CollisionShape2D.shape.radius = INITIAL_RADIUS
-
 func set_freeze_time(new_time: float):
 	freeze_time = new_time
+
+func set_scale_multiplier(new_multiplier: int) -> void:
+	scale_multiplier = new_multiplier
 
 func set_random_pitch() -> void:
 	$BangSound.pitch_scale = randf_range(0.9,1.1)
@@ -116,4 +101,15 @@ func set_random_pitch() -> void:
 
 func set_boost(flag: bool) -> void:
 	boost_flag = flag
-	
+
+func set_cd(new_cd: float) -> void:
+	cd = new_cd
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		damage_targets.append(body)
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		damage_targets.erase(body)
+	pass # Replace with function body.

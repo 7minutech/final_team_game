@@ -5,19 +5,19 @@
 [ext_resource type="AudioStream" uid="uid://baa8k76s2rf60" path="res://assets/sound/ability/emp_sound.mp3" id="3_mjvwe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onv62"]
-radius = 50.0
+radius = 561.427
 
-[node name="EMP" type="Area2D"]
-collision_layer = 8
-collision_mask = 11
+[node name="EMP" type="Sprite2D"]
+modulate = Color(1, 0.529412, 1, 0.380392)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_6wdkv")
 script = ExtResource("1_rawx2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_onv62")
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 9
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.743697, 0.000272324, 0.702979, 0.341176)
-texture = ExtResource("2_6wdkv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_onv62")
 
 [node name="ExpandTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -27,6 +27,6 @@ autostart = true
 stream = ExtResource("3_mjvwe")
 volume_db = -15.0
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ExpandTimer" to="." method="_on_expand_timer_timeout"]

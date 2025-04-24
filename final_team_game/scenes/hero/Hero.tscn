@@ -123,6 +123,10 @@ shape = SubResource("CapsuleShape2D_qw7bj")
 shape = SubResource("CircleShape2D_jpcay")
 
 [node name="HeroCamera" type="Camera2D" parent="."]
+limit_left = -5000
+limit_top = -5000
+limit_right = 5000
+limit_bottom = 5000
 
 [node name="Hud" parent="." instance=ExtResource("2_jvuw6")]
 
@@ -178,11 +182,12 @@ volume_db = -7.5
 stream = ExtResource("10_wt6tw")
 volume_db = -5.0
 
-[node name="EMP" parent="." instance=ExtResource("11_lg1d2")]
-visible = false
-
 [node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_6q7qt")
+
+[node name="OozeTimer" type="Timer" parent="."]
+
+[node name="EMP" parent="." instance=ExtResource("11_lg1d2")]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
@@ -192,3 +197,4 @@ stream = ExtResource("12_6q7qt")
 [connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
 [connection signal="timeout" from="ShieldTimerCD" to="." method="_on_shield_timer_cd_timeout"]
 [connection signal="timeout" from="ShieldDuration" to="." method="_on_shield_duration_timeout"]
+[connection signal="timeout" from="OozeTimer" to="." method="_on_ooze_timer_timeout"]
