@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="4_enxk8"]
 [ext_resource type="Texture2D" uid="uid://bq0dp27jqosu3" path="res://assets/hud/health_and_exp_bar/healthBarFill.png" id="5_3krd2"]
 [ext_resource type="Texture2D" uid="uid://cjq5j6uekterg" path="res://assets/player/Sparks_animation.png" id="5_he4v0"]
-[ext_resource type="AudioStream" uid="uid://cciydgc7d8jui" path="res://assets/sound/background/Knights_of_neon_v2.mp3" id="8_gp6wx"]
+[ext_resource type="AudioStream" uid="uid://dsvffnr02y5yj" path="res://assets/sound/background/Endless_Voyager.mp3" id="8_5dghu"]
 [ext_resource type="AudioStream" uid="uid://dxvr1jpo6x0mm" path="res://assets/sound/player/electric-90746.mp3" id="9_k05xx"]
 [ext_resource type="AudioStream" uid="uid://b2usnsxocue6u" path="res://assets/sound/player/swing-whoosh-6-198499.mp3" id="10_wt6tw"]
 [ext_resource type="PackedScene" uid="uid://cmd37ik2jcobs" path="res://scenes/ability/passive/emp.tscn" id="11_lg1d2"]
@@ -157,7 +157,7 @@ texture_progress_offset = Vector2(-15, -60)
 [node name="XPGiver" type="Timer" parent="."]
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_gp6wx")
+stream = ExtResource("8_5dghu")
 volume_db = -10.0
 autoplay = true
 
