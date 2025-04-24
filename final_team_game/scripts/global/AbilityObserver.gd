@@ -74,9 +74,18 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		5: "Increase pickup range by 20%",
 		6: "Increase pickup range by 20%",
 		7: "Increase pickup range by 20%"
+	},
+	"ooze": {
+		1: "Increase damage by 5",
+		2: "Increase ooze size by 25%",
+		3: "Decrease damage interval by 0.25s",
+		4: "Double pulse limit",
+		5: "Reduce drop cooldown by 1.5s",
+		6: "Further decrease damage interval by 0.5s",
+		7: "Triple pulse limit",
+		8: "Increase ooze size by 75%",
+		9: "Increase damage by 20"
 	}
-
-
 }
 
 const ABILITY_SCENE_PATH:Dictionary = {
@@ -84,17 +93,19 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	"garlic": "res://scenes/ability/passive/garlic.tscn",
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
 	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
+	"ooze": "res://scenes/ability/passive/ooze.tscn",
 	# Non-damaging abilities
 	"emp" : "res://scenes/ability/passive/emp.tscn",
 	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn"
-	
 }
+
 const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
 	"garlic": "res://assets/hud/ability_icons/Heart.png",
 	"plasma_gun": "res://assets/weapon/blue_laser_gun.png",
 	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
 	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
+	"ooze" : "res://assets/hud/ability_icons/ooze.png",
 	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
@@ -104,12 +115,14 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	"shield": "res://assets/hud/ability_icons/Shield.png",
 	"movement_speed": "res://assets/hud/ability_icons/MovementSpeed.png"
 }
+
 const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"garlic": "Adds a damaging area around the player",
 	"plasma_gun": "Defulat plasma gun",
 	"test_gun": "Testing gun for testing...",
 	"orbital_beam": "Orbits player firing a beam",
+	"ooze": "Drops some toxic ooze on the ground",
 	
 	# Non-damaging abilities
 	"emp": "Stuns enemies that enter its area",
@@ -119,12 +132,14 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"shield": "Provides temporary invulnerability after taking damage",
 	"movement_speed": "Increases player movement speed"
 }
+
 const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
 	"garlic": 9,
 	"plasma_gun": 9,
 	"test_gun": 9,
 	"orbital_beam": 9,
+	"ooze": 9,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -138,8 +153,9 @@ const MAX_ABILITY_QTY: Dictionary = {
 const PASSIVE_ABILITIES_NAMES: Array = [
 	"max_health", "health_regen", "pick_up_range", "shield", "movement_speed"
 ]
+
 const ACTIVE_ABILITIES_NAMES: Array = [
-	"garlic", "plasma_gun", "test_gun", "emp", "orbital_beam"
+	"garlic", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze"
 ]
 	
 
@@ -174,7 +190,6 @@ func give_passive_ability(ability_key: String) -> void:
 		player.ability_qty[ability_key] = 1
 		hud.addAbility(ability_key)
 		give_passive_boost(ability_key, player.ability_qty[ability_key])
-
 	else:
 		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
 			player.ability_qty[ability_key] += 1
@@ -194,12 +209,12 @@ func give_passive_boost(ability_name: String, qty: int):
 		"shield":
 			upgrade_shield(qty)
 			
-
 func give_active_ability(ability_key: String) -> void:
 	if not player.abilities.has(ability_key) or not player.abilities[ability_key]:
 		var ability_scene: PackedScene = load(AbilityObserver.get_ability_path(ability_key))
 		var ability_instance = ability_scene.instantiate()
-		player.add_child(ability_instance)
+		if not ability_instance is Ooze:
+			player.add_child(ability_instance)
 		player.abilities[ability_key] = ability_instance
 		player.ability_qty[ability_key] = 1
 		hud.addAbility(ability_key)
@@ -209,9 +224,11 @@ func give_active_ability(ability_key: String) -> void:
 		if player.ability_qty[ability_key] < MAX_ABILITY_QTY[ability_key]:
 			player.ability_qty[ability_key] += 1
 			#hud.addAbility(ability_key)
-	var ability = player.abilities[ability_key]
-	if ability.has_method("update_stat"):
+	var ability = player.abilities[ability_key] 
+	if ability.has_method("update_stat") and not ability_key == "ooze":
 		ability.update_stat(player.ability_qty[ability_key])
+		
+
 
 func set_primary_weapon(ability_key: String) -> void:
 	if player.primary_weapon != null:
@@ -311,7 +328,11 @@ func give_shields() -> void:
 func give_default_gun() -> void:
 	for i in range(player.default_weapon_level):
 		AbilityObserver.give_active_ability("plasma_gun")
-	
+
+func give_oozes() -> void:
+	for i in range(player.ooze_level):
+		AbilityObserver.give_active_ability("ooze")
+
 func give_test_gun() -> void:
 	for i in range(player.test_gun_level):
 		AbilityObserver.give_active_ability("test_gun")
@@ -323,11 +344,11 @@ func give_init_abilities():
 	give_max_healths()
 	give_health_regens()
 	give_pick_up_ranges()
-	#give_shield_cds()
-	give_shield_durations()
+	give_shields()
 	give_emps()
 	give_test_gun()
 	give_oribital_beams()
+	give_oozes()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()

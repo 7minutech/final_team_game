@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=25 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://b2usnsxocue6u" path="res://assets/sound/player/swing-whoosh-6-198499.mp3" id="10_wt6tw"]
 [ext_resource type="PackedScene" uid="uid://cmd37ik2jcobs" path="res://scenes/ability/passive/emp.tscn" id="11_lg1d2"]
 [ext_resource type="AudioStream" uid="uid://w53ue0mxoi1a" path="res://assets/sound/player/cute-level-up-3-189853.mp3" id="12_6q7qt"]
-[ext_resource type="PackedScene" uid="uid://ybt8ceibx5eu" path="res://scenes/ability/passive/ooze.tscn" id="13_82o7n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
 radius = 17.0
@@ -189,7 +188,7 @@ visible = false
 [node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_6q7qt")
 
-[node name="Ooze" parent="." instance=ExtResource("13_82o7n")]
+[node name="OozeTimer" type="Timer" parent="."]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
@@ -199,3 +198,4 @@ stream = ExtResource("12_6q7qt")
 [connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
 [connection signal="timeout" from="ShieldTimerCD" to="." method="_on_shield_timer_cd_timeout"]
 [connection signal="timeout" from="ShieldDuration" to="." method="_on_shield_duration_timeout"]
+[connection signal="timeout" from="OozeTimer" to="." method="_on_ooze_timer_timeout"]

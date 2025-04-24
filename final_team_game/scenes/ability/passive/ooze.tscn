@@ -1,10 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://ybt8ceibx5eu"]
+[gd_scene load_steps=8 format=3 uid="uid://c6g75d167rsmn"]
 
 [ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="1_cri1c"]
 [ext_resource type="Script" path="res://scripts/ability/passive/ooze.gd" id="2_s18ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w6hyx"]
 radius = 544.235
+
+[sub_resource type="Animation" id="Animation_rh6kn"]
+resource_name = "glow"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.352941, 1, 0.4, 0.470588), Color(0.352941, 1, 0.4, 0.301961), Color(0.352941, 1, 0.4, 0.239216), Color(0.352941, 1, 0.4, 0.301961), Color(0.352941, 1, 0.4, 0.470588)]
+}
+
+[sub_resource type="Animation" id="Animation_jwuqd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.352941, 1, 0.4, 0.470588)]
+}
+
+[sub_resource type="Animation" id="Animation_ud674"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.352941, 1, 0.4, 0.470588), Color(0.352941, 1, 0.4, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpddn"]
+_data = {
+"RESET": SubResource("Animation_jwuqd"),
+"fade": SubResource("Animation_ud674"),
+"glow": SubResource("Animation_rh6kn")
+}
 
 [node name="Ooze" type="Sprite2D"]
 modulate = Color(0.352941, 1, 0.4, 0.470588)
@@ -13,9 +66,19 @@ texture = ExtResource("1_cri1c")
 script = ExtResource("2_s18ax")
 
 [node name="OozeArea" type="Area2D" parent="."]
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OozeArea"]
 shape = SubResource("CircleShape2D_w6hyx")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rpddn")
+}
+
+[node name="QueueTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="OozeArea" to="." method="_on_ooze_area_body_entered"]
 [connection signal="body_exited" from="OozeArea" to="." method="_on_ooze_area_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="QueueTimer" to="." method="_on_queue_timer_timeout"]

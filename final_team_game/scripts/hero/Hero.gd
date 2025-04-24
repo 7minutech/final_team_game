@@ -48,6 +48,9 @@ var shield_cd: float = INITIAL_SHIELD_CD
 var weapon_slots: Array
 var current_weapon_index: int = 0
 var primary_weapon: Weapon
+var can_drop_ooze: bool = true
+var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
+
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
 @export var garlic_level: int
@@ -60,6 +63,8 @@ var primary_weapon: Weapon
 @export var default_weapon_level: int = 1
 @export var test_gun_level: int
 @export var orbital_beam_level: int
+@export var ooze_level: int
+
 func _ready() -> void:
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
@@ -95,6 +100,15 @@ func _process(_delta: float) -> void:
 			current_weapon_index = right_index(weapon_slots, current_weapon_index)
 		var weapon_instance: Weapon = weapon_slots[current_weapon_index]
 		AbilityObserver.set_primary_weapon(weapon_instance.weapon_name)
+	if abilities.has("ooze") and can_drop_ooze:
+		var main = get_parent()
+		var ooze: Ooze = ooze_scene.instantiate()
+		can_drop_ooze = false
+		$OozeTimer.wait_time = ooze.drop_cd
+		$OozeTimer.start()
+		main.add_child(ooze)
+		ooze.update_stat(ability_qty["ooze"])
+		
 		
 func _physics_process(delta: float) -> void:
 	# Check to see if player died
@@ -372,3 +386,8 @@ func swap_pressed() -> bool:
 
 func set_arrow_target(chest: Node2D) -> void:
 	$Arrow.target_node = chest
+
+
+func _on_ooze_timer_timeout() -> void:
+	can_drop_ooze = true
+	pass # Replace with function body.
