@@ -70,7 +70,7 @@ func expand(multiplier: int) -> void:
 
 	self.hide()
 
-func expand_boost(new_radius) -> void:
+func expand_boost(_new_radius) -> void:
 	expand(PICK_UP_SCALE_MULTIPLIER)
 
 func _on_expand_timer_timeout() -> void:

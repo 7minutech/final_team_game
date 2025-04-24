@@ -1,17 +1,17 @@
 extends Node
 
 ### Constants ###
-# garlic level 1 would be ABILITY_UPGRADE_DESC["garlic"][1]
+# radiation level 1 would be ABILITY_UPGRADE_DESC["radiation"][1]
 const ABILITY_UPGRADE_DESC: Dictionary = {
-	"garlic": {
+	"radiation": {
 		1: "Increase damage by 5",
-		2: "Increase garlic area of effect by 25%",
+		2: "Increase radiation area of effect by 25%",
 		3: "Decrease damage cooldown to 0.75s",
-		4: "Increase garlic area of effect by 50%",
+		4: "Increase radiation area of effect by 50%",
 		5: "Increase damage by 10",
 		6: "Decrease damage cooldown to 0.5s",
 		7: "Increase damage by 15",
-		8: "Increase garlic area of effect by 75%",
+		8: "Increase radiation area of effect by 75%",
 		9: "Increase damage by 20"
 	},
 	"orbital_beam": {
@@ -165,7 +165,7 @@ const PASSIVE_ABILITIES_NAMES: Array = [
 ]
 
 const ACTIVE_ABILITIES_NAMES: Array = [
-	"garlic", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze"
+	"radiation", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze"
 ]
 	
 
@@ -298,7 +298,7 @@ func upgrade_shield(qty: int) -> void:
 func give_radiations() -> void:
 	for i in range(player.radiation_level):
 		AbilityObserver.give_active_ability("radiation")
-
+		
 func give_oribital_beams() -> void:
 	for i in range(player.orbital_beam_level):
 		AbilityObserver.give_active_ability("orbital_beam")

@@ -3,6 +3,7 @@ extends Node2D
 ### Variables ###
 var clickable: bool = false
 var rewardAvailable: bool = true
+var skippable: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,29 +19,37 @@ func _process(_delta: float) -> void:
 		$ChestAnimator.play("OpenChest")
 		$AnimationDelay.start()
 		await $AnimationDelay.timeout
-		if rewardAvailable:
+		if !rewardAvailable:
+			print("First pass")
+		else:
 			$Reward.play("rotation")
 			$RewardAnimator.play("Reward_Rise")
 			await $RewardAnimator.animation_finished
 			###
 			### ADD CODE TO STOP THE SPRITE ON THE CORRECT ABILITY
 			###
-			if rewardAvailable:
+			if !rewardAvailable:
+				print("Second pass")
+			else:
+				skippable = false
 				giveRandomUpgrade()
 				$AnimationDelay.start()
 				await $AnimationDelay.timeout
 				$ButtonAnimator.play("FadeInButton")
-		rewardAvailable = true
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("pause_game"):
+	if event.is_action("pause_game") && rewardAvailable && self.is_visible() && skippable:
 		rewardAvailable = false
-		if !$RewardAnimator.is_active():
-			$Reward.self_modulate = Color("WHITE", 100.0)
-			$RewardAnimator.play("End")
-			$ChestAnimator.play("End")
-			giveRandomUpgrade()
-			$ButtonAnimator.play("FadeInButton")
+		$RewardAnimator.stop()
+		$ChestAnimator.stop()
+		$ButtonAnimator.stop()
+		$Reward.play("rotation")
+		$RewardAnimator.play("End")
+		$ChestAnimator.play("End")
+		giveRandomUpgrade()
+		$Reward.show()
+		$RewardLabel.show()
+		$ButtonAnimator.play("FadeInButton")
 
 # Function to give the player a random upgrade for an ability they already have
 func giveRandomUpgrade() -> void:
@@ -87,9 +96,11 @@ func setLabel(a_name: String) -> void:
 	$RewardLabel.set_text("YOU GOT" + "\n" + a_name.replace("_", " ").to_upper())
 func _on_click_area_pressed() -> void:
 	if clickable:
-		self.hide()
 		clickable = false
+		rewardAvailable = true
+		skippable = true
 		get_parent().setChest()
+		self.hide()
 		get_tree().set_pause(false)
 
 

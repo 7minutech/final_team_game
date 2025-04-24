@@ -110,15 +110,15 @@ func _process(_delta: float) -> void:
 		ooze.update_stat(ability_qty["ooze"])
 		
 		
-func _physics_process(delta: float) -> void:
-		if primary_weapon.weapon_name == "plasma_gun" and abilities.has("test_gun"):
-			AbilityObserver.set_primary_weapon("test_gun")
-		elif primary_weapon.weapon_name == "test_gun":
-			AbilityObserver.set_primary_weapon("plasma_gun")
-		else:
-			print("Weapon name not in condition for swap hotkey")
-
 func _physics_process(_delta: float) -> void:
+	# Check for active weapon
+	if primary_weapon.weapon_name == "plasma_gun" and abilities.has("test_gun"):
+		AbilityObserver.set_primary_weapon("test_gun")
+	elif primary_weapon.weapon_name == "test_gun":
+		AbilityObserver.set_primary_weapon("plasma_gun")
+	else:
+		print("Weapon name not in condition for swap hotkey")
+
 	# Check to see if player died
 	if health <= 0:
 		canShoot = false
@@ -269,7 +269,7 @@ func updateAllStats() -> void:
 	PlayerObserver.current_level = player_level
 	
 func _on_ability_tester_timeout() -> void:
-	AbilityObserver.give_active_ability("garlic")
+	AbilityObserver.give_active_ability("radiation")
 	pass # Replace with function body.
 	
 func set_speed(new_speed: float) -> void:
