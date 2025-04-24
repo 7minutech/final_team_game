@@ -6,22 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_w6hyx"]
 radius = 544.235
 
-[sub_resource type="Animation" id="Animation_rh6kn"]
-resource_name = "glow"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.352941, 1, 0.4, 0.470588), Color(0.352941, 1, 0.4, 0.301961), Color(0.352941, 1, 0.4, 0.239216), Color(0.352941, 1, 0.4, 0.301961), Color(0.352941, 1, 0.4, 0.470588)]
-}
-
 [sub_resource type="Animation" id="Animation_jwuqd"]
 length = 0.001
 tracks/0/type = "value"
@@ -50,6 +34,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.352941, 1, 0.4, 0.470588), Color(0.352941, 1, 0.4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rh6kn"]
+resource_name = "glow"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.352941, 1, 0.4, 0.470588), Color(0.352941, 1, 0.4, 0.301961), Color(0.352941, 1, 0.4, 0.239216), Color(0.352941, 1, 0.4, 0.301961), Color(0.352941, 1, 0.4, 0.470588)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpddn"]

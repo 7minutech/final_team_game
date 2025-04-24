@@ -85,6 +85,16 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		7: "Triple pulse limit",
 		8: "Increase ooze size by 75%",
 		9: "Increase damage by 20"
+	},
+	"emp": {
+		1: "Increase freeze time by 1.0s",
+		2: "Increase effect area by 50%",
+		3: "Reduce cooldown by 0.5s",
+		4: "Increase effect area by 100%",
+		5: "Increase freeze time by 2.0s",
+		6: "Reduce cooldown by 0.5s",
+		7: "Increase freeze time by 3.0s",
+		8: "Increase effect area by 200%"
 	}
 }
 
