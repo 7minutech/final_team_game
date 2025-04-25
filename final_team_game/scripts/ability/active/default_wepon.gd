@@ -133,6 +133,5 @@ func _on_auto_shoot_cd_timeout() -> void:
 
 func _on_shoot_cd_timeout() -> void:
 	if not auto:
-		return
 		self.shoot(aim())
 	pass # Replace with function body.
