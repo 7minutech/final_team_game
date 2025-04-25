@@ -11,7 +11,7 @@ const INITIAL_FIRE_RATE: int = 1
 const INITIAL_SPEED: int = 300
 const INITIAL_HEALTH: int = 100
 const INITIAL_MAX_XP: int = 100
-const INITIAL_HEALTH_REGEN: int = 0 
+const INITIAL_HEALTH_REGEN: float = 0.0
 const INITIAL_PICK_UP_RANGE: float = 73.25
 const INITIAL_SHIELD_DURATION: float = 0
 const INITIAL_SHIELD_CD: float = 5
@@ -51,6 +51,7 @@ var current_weapon_index: int = 0
 var primary_weapon: Weapon
 var can_drop_ooze: bool = true
 var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
+var health_regen_counter: float = 0.0
 
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
@@ -66,6 +67,7 @@ var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
 @export var orbital_beam_level: int
 @export var ooze_level: int
 @export var shotgun_level: int
+
 
 func _ready() -> void:
 	$HurtAnimation.hide()
@@ -289,7 +291,7 @@ func set_speed(new_speed: float) -> void:
 func set_max_health(new_health: int) -> void:
 	max_health = new_health
 
-func set_health_regen(regen: int) -> void:
+func set_health_regen(regen: float) -> void:
 	health_regen = regen
 
 func set_pick_up_range(new_radius: float) -> void:
@@ -310,7 +312,10 @@ func set_primary_weapon(abilty_key: String) -> void:
 
 func _on_health_regen_timer_timeout() -> void:
 	if health < max_health:
-		health += health_regen
+		health_regen_counter += health_regen
+		if health_regen_counter >= 1.0:
+			health_regen_counter -= 1.0
+			health += 1
 		updateHealthBar()
 	pass # Replace with function body.
 

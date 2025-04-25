@@ -52,7 +52,8 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		1: "Increase health regeneration by 0.2 HP/s",
 		2: "Increase health regeneration by 0.2 HP/s",
 		3: "Increase health regeneration by 0.2 HP/s",
-		4: "Increase health regeneration by 0.2 HP/s"
+		4: "Increase health regeneration by 0.2 HP/s",
+		5: "Increase health regeneration by 0.2 HP/s"
 	},
 	"max_health": {
 		1: "Increase max health by 5%",
@@ -160,7 +161,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"pick_up_range": "Increases the radius that the player can pick up items",
 	"shield": "Provides temporary invulnerability after taking damage",
 	"movement_speed": "Increases player movement speed",
-	"shotgun": "A close-range weapon that fires multiple projectiles in quick bursts."
+	"shotgun": "fires multiple projectiles in quick bursts."
 }
 
 const MAX_ABILITY_QTY: Dictionary = {
@@ -175,7 +176,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	# Non-damaging abilities
 	"emp": 8,
 	"max_health": 9,
-	"health_regen": 4,
+	"health_regen": 5,
 	"pick_up_range": 7,
 	"shield": 5,
 	"movement_speed": 4
@@ -185,7 +186,7 @@ const PASSIVE_ABILITIES_NAMES: Array[String] = [
 	"max_health", "health_regen", "pick_up_range", "shield", "movement_speed"
 ]
 
-const ACTIVE_ABILITIES_NAMES: Array = [
+const ACTIVE_ABILITIES_NAMES: Array[String] = [
 	"radiation", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze",
 	"shotgun"
 ]
@@ -288,6 +289,7 @@ func set_max_health_buff() -> void:
 	player.set_max_health(new_health)
 
 func set_health_regen_buff() -> void:
+	#level 2 0.2 * 2 = 0.4
 	var flat_bonus = (health_regen_buff * player.ability_qty["health_regen"])
 	var new_health_regen = (player.INITIAL_HEALTH_REGEN + flat_bonus)
 	player.set_health_regen(new_health_regen)
