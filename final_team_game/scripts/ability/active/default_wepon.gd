@@ -11,7 +11,7 @@ var auto_shoot_cd: float = 1
 var weapon_dmg: int
 var projectile_speed: int
 var base_weapon_dmg: int = 20
-var base_project_speed: int = 5
+var base_project_speed: int = 8
 var base_shoot_cd: float = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
