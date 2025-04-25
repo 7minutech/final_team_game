@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dav1d12j6gk0o"
-path="res://.godot/imported/blue_laser_gun.png-710b6c371ba22638087f5b414bf2f6dc.ctex"
+uid="uid://drkihxgkeqgo1"
+path="res://.godot/imported/Boomerang.png-d1f0d51fe454b82e34c54fb51e187b89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapon/blue_laser_gun.png"
-dest_files=["res://.godot/imported/blue_laser_gun.png-710b6c371ba22638087f5b414bf2f6dc.ctex"]
+source_file="res://assets/weapons/boomerang/Boomerang.png"
+dest_files=["res://.godot/imported/Boomerang.png-d1f0d51fe454b82e34c54fb51e187b89.ctex"]
 
 [params]
 

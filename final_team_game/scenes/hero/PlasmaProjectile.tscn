@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://curr26f3cjpby"]
 
 [ext_resource type="Script" path="res://scripts/hero/plasma_projectile.gd" id="1_nso74"]
-[ext_resource type="Texture2D" uid="uid://b28ns6qil206b" path="res://assets/weapon/Orb.png" id="2_ncavl"]
+[ext_resource type="Texture2D" uid="uid://b28ns6qil206b" path="res://assets/weapons/Orb.png" id="2_ncavl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ympc6"]
 radius = 6.0

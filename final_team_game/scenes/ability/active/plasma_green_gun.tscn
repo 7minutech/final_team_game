@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ability/active/plasma_green_gun.gd" id="1_ak23i"]
 [ext_resource type="PackedScene" uid="uid://curr26f3cjpby" path="res://scenes/hero/PlasmaProjectile.tscn" id="2_rxd04"]
-[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="2_udf8m"]
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapons/aim_line.tres" id="2_udf8m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6njbh"]
 radius = 100.0

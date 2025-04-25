@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ability/passive/orbital_beam.gd" id="1_3wr2j"]
 [ext_resource type="Texture2D" uid="uid://cp3e8pmxs1k7s" path="res://assets/enemy/turret/Bullet.png" id="1_n0o4w"]
-[ext_resource type="Texture2D" uid="uid://yb4whrq18e55" path="res://assets/weapon/PizzaOrb.png" id="3_ltxy6"]
+[ext_resource type="Texture2D" uid="uid://yb4whrq18e55" path="res://assets/weapons/PizzaOrb.png" id="3_ltxy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swt3f"]
 size = Vector2(1358.1, 422.408)

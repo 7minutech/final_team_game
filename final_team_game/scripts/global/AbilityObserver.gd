@@ -112,6 +112,12 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		7: "Increase damage by 10",
 		8: "Increase projectile speed by 50%",  
 		9: "Increase projectile count by 2"
+	},
+	"boomerang": {
+		1: ""
+	},
+	"crossbow": {
+		1: ""
 	}
 }
 
@@ -124,18 +130,22 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	# Non-damaging abilities
 	"emp" : "res://scenes/ability/passive/emp.tscn",
 	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn",
-	"shotgun": "res://scenes/ability/passive/shotgun.tscn"
+	"shotgun": "res://scenes/ability/passive/shotgun.tscn",
+	"boomerang": "res://scenes/ability/active/boomerang.tscn",
+	"crossbow": ""
 	
 }
 
 const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
-	"radiation": "res://assets/hud/ability_icons/Heart.png",
-	"plasma_gun": "res://assets/weapon/blue_laser_gun.png",
-	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
+	"radiation": "res://assets/hud/ability_icons/Radiation.png",
+	"plasma_gun": "res://assets/weapons/blue_laser_gun.png",
+	"test_gun" : "res://assets/weapons/blue_laser_gun.png",
 	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
 	"ooze" : "res://assets/hud/ability_icons/ooze.png",
-	"shotgun": "res://assets/hud/ability_icons/shotgun.png",
+	"shotgun": "res://assets/weapons/shotgun/AdjustedShotgun.png",
+	"boomerang": "res://assets/weapons/boomerang/Boomerang.png",
+	"crossbow": "res://assets/weapons/crossbow/CrossbowLoaded.png",
 	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
@@ -161,7 +171,9 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"pick_up_range": "Increases the radius that the player can pick up items",
 	"shield": "Provides temporary invulnerability after taking damage",
 	"movement_speed": "Increases player movement speed",
-	"shotgun": "fires multiple projectiles in quick bursts."
+	"shotgun": "fires multiple projectiles in quick bursts.",
+	"boomerang": "Fires one projectile that returns after reaching its max distance",
+	"crossbow": ""
 }
 
 const MAX_ABILITY_QTY: Dictionary = {
@@ -172,6 +184,8 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"orbital_beam": 9,
 	"ooze": 9,
 	"shotgun": 9,
+	"boomerang": 5,
+	"crossbow": 7,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -188,7 +202,7 @@ const PASSIVE_ABILITIES_NAMES: Array[String] = [
 
 const ACTIVE_ABILITIES_NAMES: Array[String] = [
 	"radiation", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze",
-	"shotgun"
+	"shotgun", "boomerang", "crossbow"
 ]
 	
 

@@ -56,18 +56,20 @@ var health_regen_counter: float = 0.0
 
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
-@export var radiation_level: int
-@export var movement_speed_level: int
-@export var max_health_level: int
-@export var health_regen_level: int
-@export var pick_up_range_level: int
-@export var shield_level: int
-@export var emp_level: int
+@export var radiation_level: int = 0
+@export var movement_speed_level: int = 0
+@export var max_health_level: int = 0
+@export var health_regen_level: int = 0
+@export var pick_up_range_level: int = 0
+@export var shield_level: int = 0
+@export var emp_level: int = 0
 @export var default_weapon_level: int = 1
-@export var test_gun_level: int
-@export var orbital_beam_level: int
-@export var ooze_level: int
-@export var shotgun_level: int
+@export var test_gun_level: int = 0
+@export var orbital_beam_level: int = 0
+@export var ooze_level: int = 0
+@export var shotgun_level: int = 0
+@export var boomerang_level: int = 0
+@export var crossbow_level: int = 0
 
 
 func _ready() -> void:

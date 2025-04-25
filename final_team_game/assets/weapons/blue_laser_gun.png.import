@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yb4whrq18e55"
-path="res://.godot/imported/PizzaOrb.png-4ac734ee4dd26f4c13ddfab8afa14cbf.ctex"
+uid="uid://dav1d12j6gk0o"
+path="res://.godot/imported/blue_laser_gun.png-6695b9b2c696c9767874f3f3a85e1518.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapon/PizzaOrb.png"
-dest_files=["res://.godot/imported/PizzaOrb.png-4ac734ee4dd26f4c13ddfab8afa14cbf.ctex"]
+source_file="res://assets/weapons/blue_laser_gun.png"
+dest_files=["res://.godot/imported/blue_laser_gun.png-6695b9b2c696c9767874f3f3a85e1518.ctex"]
 
 [params]
 

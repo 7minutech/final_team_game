@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://vxfmsvms48q7"]
 
-[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapon/aim_line.tres" id="1_f6xjl"]
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapons/aim_line.tres" id="1_f6xjl"]
 [ext_resource type="Script" path="res://scripts/ability/active/plasma_gun.gd" id="1_p6moh"]
 [ext_resource type="PackedScene" uid="uid://curr26f3cjpby" path="res://scenes/hero/PlasmaProjectile.tscn" id="2_g74qo"]
 
