@@ -44,6 +44,16 @@ text = "Description:
 label_settings = SubResource("LabelSettings_uft8p")
 autowrap_mode = 3
 
+[node name="Upgrade_1" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -207.0
+offset_right = 165.0
+offset_bottom = -39.0
+text = "Next Upgrade:
+"
+label_settings = SubResource("LabelSettings_uft8p")
+autowrap_mode = 3
+
 [node name="Choice_2" type="Button" parent="."]
 offset_left = -219.0
 offset_top = -32.0
@@ -59,6 +69,16 @@ offset_top = 66.0
 offset_right = -35.0
 offset_bottom = 138.0
 text = "Description:
+"
+label_settings = SubResource("LabelSettings_uft8p")
+autowrap_mode = 3
+
+[node name="Upgrade_2" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -31.0
+offset_right = 165.0
+offset_bottom = 137.0
+text = "Next Upgrade:
 "
 label_settings = SubResource("LabelSettings_uft8p")
 autowrap_mode = 3
@@ -79,6 +99,16 @@ offset_top = 246.0
 offset_right = -35.0
 offset_bottom = 318.0
 text = "Description:
+"
+label_settings = SubResource("LabelSettings_uft8p")
+autowrap_mode = 3
+
+[node name="Upgrade_3" type="Label" parent="."]
+offset_left = -19.0
+offset_top = 153.0
+offset_right = 165.0
+offset_bottom = 321.0
+text = "Next Upgrade:
 "
 label_settings = SubResource("LabelSettings_uft8p")
 autowrap_mode = 3

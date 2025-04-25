@@ -36,6 +36,11 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		8: "Quadruple projectile speed",
 		9: "Increase weapon damage by 25"
 	},
+	"test_gun": {
+		1: "Placeholder Text",
+		2: "Placeholder Text",
+		3: "Placeholder Text"
+	},
 	"shield": {
 		1: "Increase shield duration by 0.2s",
 		2: "Reduce shield cooldown by 0.3s",
@@ -162,7 +167,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
 	"radiation": 9,
 	"plasma_gun": 9,
-	"test_gun": 9,
+	"test_gun": 3,
 	"orbital_beam": 9,
 	"ooze": 9,
 	"shotgun": 9,
@@ -189,6 +194,7 @@ const ACTIVE_ABILITIES_NAMES: Array = [
 const MINIMUM_SHIELD_CD: float = 0.5
 
 ### Variables ###
+var allMaxed = false
 var movement_speed_buff: float = 0.05
 var max_health_buff: float = 0.05
 var health_regen_buff: float = 0.2
@@ -197,6 +203,7 @@ var shield_duration_buff: float = 0.2
 var shield_cd_buff: float = 0.3
 var player: Player
 var hud: Hud 
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -400,5 +407,6 @@ func give_random_ability() -> void:
 		give_random_pasive_abiity()
 
 func give_ability_selection() -> void:
-	hud.setChoice()
-	get_tree().set_pause(true)
+	if player.abilities.size() < 8 || !allMaxed:
+		hud.setChoice()
+		get_tree().set_pause(true)

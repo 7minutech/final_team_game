@@ -248,7 +248,7 @@ func level_up() -> void:
 	PlayerObserver.current_xp = current_xp
 	PlayerObserver.max_xp = max_xp
 	AbilityObserver.give_ability_selection()
-	#AbilityObserver.give_random_ability()
+		#AbilityObserver.give_random_ability()
 ##
 # Function to raise the player's max xp
 func raise_player_max_xp() -> void:
