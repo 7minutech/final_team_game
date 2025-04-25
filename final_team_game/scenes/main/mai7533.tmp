@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://t74ch7mq5rfo"]
+
+[ext_resource type="Script" path="res://scripts/test/main/test_enemy_main_2.gd" id="1_80ju4"]
+[ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="2_qydrc"]
+[ext_resource type="PackedScene" uid="uid://bdyu27f5oox4s" path="res://scenes/enemy/Spawner.tscn" id="3_48dom"]
+[ext_resource type="Texture2D" uid="uid://c4nw2jwvbwp1u" path="res://assets/background/background.png" id="4_htu8x"]
+
+[node name="Main" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_80ju4")
+
+[node name="Hero" parent="." instance=ExtResource("2_qydrc")]
+position = Vector2(524, 276)
+
+[node name="Spawner" parent="." instance=ExtResource("3_48dom")]
+position = Vector2(1098, 206)
+
+[node name="BraizerSpawnTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="RobotBossTimer" type="Timer" parent="."]
+wait_time = 100.0
+autostart = true
+
+[node name="AlienTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="RingAlienTimer" type="Timer" parent="."]
+wait_time = 150.0
+autostart = true
+
+[node name="BlueDroneTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="RedDroneTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("4_htu8x")
+
+[node name="DroneBoss" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="RobotBossTimer" to="." method="_on_robot_boss_timer_timeout"]
+[connection signal="timeout" from="AlienTimer" to="." method="_on_alien_timer_timeout"]
+[connection signal="timeout" from="RingAlienTimer" to="." method="_on_ring_alien_timer_timeout"]
+[connection signal="timeout" from="BlueDroneTimer" to="." method="_on_blue_drone_timer_timeout"]
+[connection signal="timeout" from="RedDroneTimer" to="." method="_on_red_drone_timer_timeout"]
+[connection signal="timeout" from="DroneBoss" to="." method="_on_drone_boss_timeout"]

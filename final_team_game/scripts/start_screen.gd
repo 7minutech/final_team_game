@@ -21,7 +21,7 @@ func _ready():
 func on_play_pressed():
 	click_sound.play()
 	await click_sound.finished
-	get_tree().change_scene_to_file("res://scenes/test/TestEnemyMain2.tscn")
+	get_tree().change_scene_to_file("res://scenes/main/Main.tscn")
 	
 
 func on_options_pressed():

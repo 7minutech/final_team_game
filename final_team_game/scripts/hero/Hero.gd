@@ -396,7 +396,7 @@ func give_magnet_pickup(multiplier: float) -> void:
 	await shrink_tween.finished
 
 func give_emp_pickup(multiplier: float) -> void:
-	$EMP.expand_boost($EMP.radius * multiplier)
+	$EMP.expand_boost()
 	pass
 	
 func left_index(arr: Array, index: int) -> int:

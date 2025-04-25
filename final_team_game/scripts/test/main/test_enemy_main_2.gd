@@ -4,6 +4,8 @@ const LEFT_MAP_LIMIT: int = -5000
 const RIGHT_MAP_LIMIT: int = 5000
 const TOP_MAP_LIMIT: int = -5000
 const BOTTOM_MAP_LIMIT: int = 5000
+const INITIAL_DRONE_SPAWN_TIME = 2.0
+const INITIAL_ENEMY_SPAWN_TIME = 2.0
 
 @onready var spawner: Spawner = $Spawner
 @export var spawn_robots: bool = true
@@ -14,7 +16,8 @@ const BOTTOM_MAP_LIMIT: int = 5000
 @export var spawn_braizers: bool = true
 @export var spwan_drone_boss: bool = true
 var just_spawned := true
-
+var level: int = 0
+var level_delta: float = 0.0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,10 +28,29 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:	
+	level_delta += _delta
 	var player_position = PlayerObserver.player.position
 	var camRect: Rect2 = PlayerObserver.player.find_child("HeroCamera").get_viewport_rect()
+	if level_delta >= 15:
+		level += 1
+		level_delta = 0.0
 	if player_is_off_map(camRect):
 		teleport_player(player_position, camRect)
+	# Handle BlueDroneTimer and EnemySpawnTimer for levels 1–6
+	if level >= 1 and level <= 6:
+		$BlueDroneTimer.wait_time = INITIAL_DRONE_SPAWN_TIME - (level * 0.2)
+		$EnemySpawnTimer.wait_time = INITIAL_ENEMY_SPAWN_TIME - (level * 0.2)
+		if level == 1:
+			$EnemySpawnTimer.autostart = true
+
+# Handle RedDroneTimer autostart toggle
+	if level == 7:
+		$RedDroneTimer.autostart = true
+	elif level == 8:
+		$RedDroneTimer.autostart = false
+
+	
+		
 	#spawner.spawn_ring_aliens(60)
 	pass
 

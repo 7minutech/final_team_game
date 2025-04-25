@@ -55,4 +55,3 @@ pitch_scale = 2.03
 
 [node name="StartScreenMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_n516w")
-volume_db = 7.5
