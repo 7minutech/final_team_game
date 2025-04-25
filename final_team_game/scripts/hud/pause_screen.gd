@@ -91,8 +91,8 @@ func update_stats_label() -> void:
 
 
 func _on_resume_pressed() -> void:
-	self.hide()
 	get_parent().setPaused()
+	self.hide()
 	get_parent().find_child("AbilityIcons").show()
 	get_parent().find_child("AbilityIconsBG").show()
 	get_tree().set_pause(false)

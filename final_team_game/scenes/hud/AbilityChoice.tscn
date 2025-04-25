@@ -22,60 +22,66 @@ script = ExtResource("1_cyovb")
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.588235, 0.454902, 0.172549, 1)
 position = Vector2(-2.00001, 55)
-scale = Vector2(214, 560)
+scale = Vector2(466.338, 560)
 texture = SubResource("CanvasTexture_cj056")
 
 [node name="Choice_1" type="Button" parent="."]
-offset_left = -96.0
+offset_left = -219.0
 offset_top = -208.0
-offset_right = 91.0
+offset_right = -32.0
 offset_bottom = -117.0
 theme_override_fonts/font = ExtResource("10_noge5")
 text = "First Choice"
+expand_icon = true
 
 [node name="Description_1" type="Label" parent="."]
-offset_left = -94.0
+offset_left = -219.0
 offset_top = -111.0
-offset_right = 90.0
+offset_right = -35.0
 offset_bottom = -39.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")
+autowrap_mode = 3
 
 [node name="Choice_2" type="Button" parent="."]
-offset_left = -96.0
+offset_left = -219.0
 offset_top = -32.0
-offset_right = 91.0
+offset_right = -32.0
 offset_bottom = 59.0
 theme_override_fonts/font = ExtResource("10_noge5")
 text = "First Choice"
+expand_icon = true
 
 [node name="Description_2" type="Label" parent="."]
-offset_left = -94.0
+offset_left = -219.0
 offset_top = 66.0
-offset_right = 90.0
+offset_right = -35.0
 offset_bottom = 138.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")
+autowrap_mode = 3
 
 [node name="Choice_3" type="Button" parent="."]
 process_mode = 2
-offset_left = -96.0
+offset_left = -219.0
 offset_top = 147.0
-offset_right = 91.0
+offset_right = -32.0
 offset_bottom = 238.0
 theme_override_fonts/font = ExtResource("10_noge5")
 text = "First Choice"
+expand_icon = true
 
 [node name="Description_3" type="Label" parent="."]
-offset_left = -94.0
+offset_left = -219.0
 offset_top = 246.0
-offset_right = 90.0
+offset_right = -35.0
 offset_bottom = 318.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")
+autowrap_mode = 3
 
 [connection signal="pressed" from="Choice_1" to="." method="_on_choice_1_pressed"]
 [connection signal="pressed" from="Choice_2" to="." method="_on_choice_2_pressed"]

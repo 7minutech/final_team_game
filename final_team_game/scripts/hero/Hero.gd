@@ -237,7 +237,6 @@ func has_level_up() -> bool:
 func level_up() -> void:
 	set_random_pitch($LevelUpSound, 0.9, 1.1)
 	$LevelUpSound.play()
-	print(max_health)
 	raise_player_max_xp()
 	current_xp = 0
 	updateXpBar()
@@ -248,7 +247,8 @@ func level_up() -> void:
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	PlayerObserver.current_xp = current_xp
 	PlayerObserver.max_xp = max_xp
-	AbilityObserver.give_random_ability()
+	AbilityObserver.give_ability_selection()
+	#AbilityObserver.give_random_ability()
 ##
 # Function to raise the player's max xp
 func raise_player_max_xp() -> void:

@@ -84,7 +84,6 @@ offset_bottom = -142.0
 scroll_active = false
 
 [node name="PauseScreen" parent="." instance=ExtResource("5_p3jw4")]
-process_mode = 0
 visible = false
 
 [node name="ChestReward" parent="." instance=ExtResource("8_nj5f8")]

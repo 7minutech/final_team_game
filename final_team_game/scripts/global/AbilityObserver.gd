@@ -176,7 +176,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"movement_speed": 4
 }
 
-const PASSIVE_ABILITIES_NAMES: Array = [
+const PASSIVE_ABILITIES_NAMES: Array[String] = [
 	"max_health", "health_regen", "pick_up_range", "shield", "movement_speed"
 ]
 
@@ -398,3 +398,7 @@ func give_random_ability() -> void:
 		give_random_active_abiity()
 	else: 
 		give_random_pasive_abiity()
+
+func give_ability_selection() -> void:
+	hud.setChoice()
+	get_tree().set_pause(true)
