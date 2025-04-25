@@ -21,6 +21,7 @@ const DEFAULT_WEAPON_KEY = "plasma_gun"
 ### Variables ###
 # Variable for movement logic
 var canMove: bool = true
+var last_known_direction: String
 # Variables for shooting logic
 var time_tracker: float = 0.0
 var canShoot: bool = true
@@ -64,6 +65,7 @@ var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
 @export var test_gun_level: int
 @export var orbital_beam_level: int
 @export var ooze_level: int
+@export var shotgun_level: int
 
 func _ready() -> void:
 	$HurtAnimation.hide()
@@ -118,7 +120,8 @@ func _physics_process(_delta: float) -> void:
 	elif primary_weapon.weapon_name == "test_gun":
 		AbilityObserver.set_primary_weapon("plasma_gun")
 	else:
-		print("Weapon name not in condition for swap hotkey")
+		#print("Weapon name not in condition for swap hotkey")
+		pass
 
 	# Check to see if player died
 	if health <= 0:
@@ -171,16 +174,24 @@ func handleMovement() -> void:
 		$Skin.play("Walking")
 
 	# Determine left/right movement
+	
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
+	if direction != 0:
 		velocity.x = direction * speed
+		if direction > 0:
+			last_known_direction = "right"
+		else:
+			last_known_direction = "left"
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	
 	# Determine up/down movement
 	direction = Input.get_axis("move_up", "move_down")
-	if direction:
+	if direction != 0:
 		velocity.y = direction * speed
+		if direction < 0:
+			last_known_direction = "up"
+		else:
+			last_known_direction = "down"
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	setFacing()

@@ -95,6 +95,17 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		6: "Reduce cooldown by 0.5s",
 		7: "Increase freeze time by 3.0s",
 		8: "Increase effect area by 200%"
+	},
+	"shotgun": {
+		1: "Increase damage by 5",
+		2: "Increase projectile count by 2",
+		3: "Reduce shot interval by 0.25s",
+		4: "Increase projectile speed by 25%",  
+		5: "Increase projectile count by 2",
+		6: "Reduce shot interval by 0.5s",
+		7: "Increase damage by 10",
+		8: "Increase projectile speed by 50%",  
+		9: "Increase projectile count by 2"
 	}
 }
 
@@ -106,7 +117,9 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	"ooze": "res://scenes/ability/passive/ooze.tscn",
 	# Non-damaging abilities
 	"emp" : "res://scenes/ability/passive/emp.tscn",
-	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn"
+	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn",
+	"shotgun": "res://scenes/ability/passive/shotgun.tscn"
+	
 }
 
 const ABILITY_ASSET_PATH: Dictionary = {
@@ -116,6 +129,7 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	"test_gun" : "res://assets/weapon/blue_laser_gun.png",
 	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
 	"ooze" : "res://assets/hud/ability_icons/ooze.png",
+	"shotgun": "res://assets/hud/ability_icons/shotgun.png",
 	
 	# Non-damaging abilitites
 	"emp": "res://assets/hud/ability_icons/EMP.png",
@@ -140,7 +154,8 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"health_regen": "Provides health regen over time",
 	"pick_up_range": "Increases the radius that the player can pick up items",
 	"shield": "Provides temporary invulnerability after taking damage",
-	"movement_speed": "Increases player movement speed"
+	"movement_speed": "Increases player movement speed",
+	"shotgun": "A close-range weapon that fires multiple projectiles in quick bursts."
 }
 
 const MAX_ABILITY_QTY: Dictionary = {
@@ -150,6 +165,7 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"test_gun": 9,
 	"orbital_beam": 9,
 	"ooze": 9,
+	"shotgun": 9,
 	
 	# Non-damaging abilities
 	"emp": 8,
@@ -165,7 +181,8 @@ const PASSIVE_ABILITIES_NAMES: Array = [
 ]
 
 const ACTIVE_ABILITIES_NAMES: Array = [
-	"radiation", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze"
+	"radiation", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze",
+	"shotgun"
 ]
 	
 
@@ -343,6 +360,10 @@ func give_oozes() -> void:
 	for i in range(player.ooze_level):
 		AbilityObserver.give_active_ability("ooze")
 
+func give_shotguns() -> void:
+	for i in range(player.shotgun_level):
+		AbilityObserver.give_active_ability("shotgun")
+
 func give_test_gun() -> void:
 	for i in range(player.test_gun_level):
 		AbilityObserver.give_active_ability("test_gun")
@@ -359,6 +380,7 @@ func give_init_abilities():
 	give_test_gun()
 	give_oribital_beams()
 	give_oozes()
+	give_shotguns()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()
