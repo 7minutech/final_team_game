@@ -200,7 +200,7 @@ var movement_speed_buff: float = 0.05
 var max_health_buff: float = 0.05
 var health_regen_buff: float = 0.2
 var pick_up_buff: float = 0.2
-var shield_duration_buff: float = 0.2
+var shield_duration_buff: float = 1.0
 var shield_cd_buff: float = 0.3
 var player: Player
 var hud: Hud 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=28 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
 [ext_resource type="PackedScene" uid="uid://qb10brngodal" path="res://scenes/hud/In_Game_Hud.tscn" id="2_jvuw6"]
+[ext_resource type="Texture2D" uid="uid://yu2vlyroe5je" path="res://assets/item/Orb_ring.png" id="3_kxp31"]
 [ext_resource type="Texture2D" uid="uid://crshn8i2od14f" path="res://assets/player/heroWalking1-sheet.png" id="3_negf0"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="4_enxk8"]
 [ext_resource type="Texture2D" uid="uid://bq0dp27jqosu3" path="res://assets/hud/health_and_exp_bar/healthBarFill.png" id="5_3krd2"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cmd37ik2jcobs" path="res://scenes/ability/passive/emp.tscn" id="11_lg1d2"]
 [ext_resource type="AudioStream" uid="uid://w53ue0mxoi1a" path="res://assets/sound/player/cute-level-up-3-189853.mp3" id="12_6q7qt"]
 [ext_resource type="PackedScene" uid="uid://dnadck1l3arld" path="res://scenes/ability/passive/shotgun.tscn" id="13_13nsu"]
+[ext_resource type="AudioStream" uid="uid://b3xm5u14inv3p" path="res://assets/sound/ability/radio-103737.mp3" id="15_xajlg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qw7bj"]
 radius = 17.0
@@ -130,6 +132,12 @@ limit_bottom = 5000
 
 [node name="Hud" parent="." instance=ExtResource("2_jvuw6")]
 
+[node name="Shield" type="Sprite2D" parent="."]
+modulate = Color(100, 100, 100, 0.4)
+position = Vector2(-2, 2)
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("3_kxp31")
+
 [node name="Skin" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.0413232, 0.0529505)
 sprite_frames = SubResource("SpriteFrames_t4hh1")
@@ -169,7 +177,6 @@ autostart = true
 
 [node name="ShieldTimerCD" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="ShieldDuration" type="Timer" parent="."]
 wait_time = 2.0
@@ -190,6 +197,10 @@ stream = ExtResource("12_6q7qt")
 [node name="EMP" parent="." instance=ExtResource("11_lg1d2")]
 
 [node name="Shotgun" parent="." instance=ExtResource("13_13nsu")]
+
+[node name="ShieldSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_xajlg")
+volume_db = -10.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

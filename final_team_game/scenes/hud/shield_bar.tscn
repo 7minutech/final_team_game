@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://i20ihuo3td5n"]
+
+[ext_resource type="Texture2D" uid="uid://bq0dp27jqosu3" path="res://assets/hud/health_and_exp_bar/healthBarFill.png" id="1_4jc3w"]
+
+[node name="ShieldBar" type="Sprite2D"]
+self_modulate = Color(43.784, 35.676, 67.568, 1)
+texture = ExtResource("1_4jc3w")

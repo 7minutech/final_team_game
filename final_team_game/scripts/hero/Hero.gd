@@ -18,6 +18,7 @@ const INITIAL_SHIELD_CD: float = 5
 const ORIGINAL_COLOR: Color = Color("ffffff")
 const DEFAULT_WEAPON_KEY = "plasma_gun"
 
+
 ### Variables ###
 # Variable for movement logic
 var canMove: bool = true
@@ -70,6 +71,7 @@ var health_regen_counter: float = 0.0
 
 
 func _ready() -> void:
+	$Shield.hide()
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
 	$XPGiver.wait_time = xp_timer
@@ -299,6 +301,8 @@ func set_pick_up_range(new_radius: float) -> void:
 	$PickUpRange/CollisionShape2D.shape.radius = pick_up_range
 
 func set_shield_duration(time: float) -> void:
+	if ability_qty["shield"] == 1:
+		$ShieldTimerCD.start()
 	shield_duration = time
 	$ShieldDuration.wait_time = shield_duration
 
@@ -321,26 +325,30 @@ func _on_health_regen_timer_timeout() -> void:
 
 
 func _on_shield_timer_cd_timeout() -> void:
-	$ShieldTimerCD.stop()
 	if abilities.has("shield"):
 		shield_active = true
-	show_shield()
-	$ShieldDuration.start()
+		show_shield()
+		$ShieldTimerCD.stop()
+		$ShieldDuration.start()
 	pass # Replace with function body.
 
 
 func _on_shield_duration_timeout() -> void:
-	$ShieldDuration.stop()
-	shield_active = false
-	show_shield()
-	$ShieldTimerCD.start()
+	if abilities.has("shield"):
+		shield_active = false
+		show_shield()
+		$ShieldTimerCD.start()
+		$ShieldDuration.stop()
 	pass # Replace with function body.
 
 func show_shield() -> void:
 	if shield_active:
-		$Skin.modulate = Color("#4ad2ff")
+		set_random_pitch($ShieldSound,0.2,0.3)
+		$ShieldSound.play()
+		$Shield.show()
 	else:
-		$Skin.modulate = ORIGINAL_COLOR
+		$ShieldSound.stop()
+		$Shield.hide()
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
@@ -357,8 +365,8 @@ func show_sparks() -> void:
 	$HurtAnimation.hide()
 	$HurtSound.stop()
 
-func set_random_pitch(player: AudioStreamPlayer2D, minimum, maximum) -> void:
-	player.pitch_scale = randf_range(minimum,maximum)
+func set_random_pitch(auido_player: AudioStreamPlayer2D, minimum, maximum) -> void:
+	auido_player.pitch_scale = randf_range(minimum,maximum)
 
 func give_health_pickup() -> void:
 	var missing_health = max_health - health
