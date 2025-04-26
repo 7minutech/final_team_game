@@ -73,6 +73,7 @@ var health_regen_counter: float = 0.0
 
 
 func _ready() -> void:
+	$GameMusic.process_mode = Node.PROCESS_MODE_ALWAYS
 	$Shield.hide()
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
@@ -241,8 +242,6 @@ func has_level_up() -> bool:
 ##
 # Function to increase player's level by one and adjust stats/labels accordingly
 func level_up() -> void:
-	set_random_pitch($LevelUpSound, 0.9, 1.1)
-	$LevelUpSound.play()
 	raise_player_max_xp()
 	current_xp = 0
 	updateXpBar()

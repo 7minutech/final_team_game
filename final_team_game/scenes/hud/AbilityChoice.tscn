@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cok63k0oxpvfe"]
+[gd_scene load_steps=7 format=3 uid="uid://cok63k0oxpvfe"]
 
 [ext_resource type="Script" path="res://scripts/hud/ability_choice.gd" id="1_cyovb"]
+[ext_resource type="AudioStream" uid="uid://w53ue0mxoi1a" path="res://assets/sound/player/cute-level-up-3-189853.mp3" id="3_3fk54"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_noge5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cj056"]
@@ -112,6 +113,10 @@ text = "Next Upgrade:
 "
 label_settings = SubResource("LabelSettings_uft8p")
 autowrap_mode = 3
+
+[node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3fk54")
+volume_db = -5.0
 
 [connection signal="pressed" from="Choice_1" to="." method="_on_choice_1_pressed"]
 [connection signal="pressed" from="Choice_2" to="." method="_on_choice_2_pressed"]

@@ -25,7 +25,6 @@ func _on_area_entered(area: Area2D) -> void:
 		if arrow != null:
 			arrow.queue_free()
 		set_pitch_scale()
-		$PickUpSound.play()
 		print("Player got a chest")
 		PlayerObserver.player.find_child("Hud").setChest()
 		get_tree().set_pause(true)

@@ -12,13 +12,20 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if get_tree().paused && get_parent().chest && !self.is_visible():
+		pause_game_music()
+		$PickUpSound.pitch_scale = randf_range(0.9,1.1)
+		$PickUpSound.play()
+		
 		$ChestAnimator.play("RESET")
 		$RewardAnimator.play("RESET")
 		$ButtonAnimator.play("RESET")
 		self.show()
 		$ChestAnimator.play("OpenChest")
 		$AnimationDelay.start()
+		$RewardSound.pitch_scale = randf_range(1.1,1.2)
+		$RewardSound.play()
 		await $AnimationDelay.timeout
+		
 		if !rewardAvailable:
 			print("First pass")
 		else:
@@ -106,8 +113,31 @@ func _on_click_area_pressed() -> void:
 		get_parent().setChest()
 		self.hide()
 		get_tree().set_pause(false)
+		unpause_game_music()
 
 
 func _on_button_animator_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "FadeInButton":
 		clickable = true
+
+func pause_game_music() -> void:
+	var player: Player = PlayerObserver.player
+	var game_music: AudioStreamPlayer2D = player.get_node("GameMusic")
+	game_music.stream_paused = true
+	pass
+
+func unpause_game_music() -> void:
+	var player: Player = PlayerObserver.player
+	var game_music: AudioStreamPlayer2D = player.get_node("GameMusic")
+	game_music.stream_paused = false
+	pass
+
+
+func _on_reward_sound_finished() -> void:
+	$ItemRewardSound.play()
+	pass # Replace with function body.
+
+func _on_chest_shake_sound_finished() -> void:
+	$RewardSound.pitch_scale = randf_range(0.9,1.1)
+	$RewardSound.play()
+	pass # Replace with function body.

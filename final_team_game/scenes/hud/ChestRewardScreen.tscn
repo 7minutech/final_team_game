@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://jos7dfgt1e75"]
+[gd_scene load_steps=44 format=3 uid="uid://jos7dfgt1e75"]
 
 [ext_resource type="Script" path="res://scripts/hud/chest_reward_screen.gd" id="1_8qhyi"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_k7vj5"]
@@ -13,6 +13,9 @@
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
 [ext_resource type="Texture2D" uid="uid://cguio8ykpy5e3" path="res://assets/hud/ability_icons/ooze.png" id="11_4nuf2"]
 [ext_resource type="Texture2D" uid="uid://cp3e8pmxs1k7s" path="res://assets/enemy/turret/Bullet.png" id="12_8imqy"]
+[ext_resource type="AudioStream" uid="uid://bux664wiv47ik" path="res://assets/sound/item/coin_collet_short.mp3" id="14_2h1a4"]
+[ext_resource type="AudioStream" uid="uid://druon5s41fvsc" path="res://assets/sound/reward/payout_award_short.mp3" id="15_f41g6"]
+[ext_resource type="AudioStream" uid="uid://dqgrnsvvdwu88" path="res://assets/sound/reward/level-up-5-326133.mp3" id="16_8nyw5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
 
@@ -560,5 +563,18 @@ expand_icon = true
 wait_time = 1.5
 one_shot = true
 
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_2h1a4")
+volume_db = -10.0
+
+[node name="RewardSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_f41g6")
+volume_db = -7.5
+
+[node name="ItemRewardSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_8nyw5")
+
 [connection signal="animation_finished" from="ButtonAnimator" to="." method="_on_button_animator_animation_finished"]
 [connection signal="pressed" from="ClickArea" to="." method="_on_click_area_pressed"]
+[connection signal="finished" from="PickUpSound" to="." method="_on_pick_up_sound_finished"]
+[connection signal="finished" from="RewardSound" to="." method="_on_reward_sound_finished"]

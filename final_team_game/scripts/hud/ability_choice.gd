@@ -20,7 +20,8 @@ func _process(_delta: float) -> void:
 		setIcons(a_list)
 		setDescriptions(a_list)
 		self.show()
-
+		$LevelUpSound.pitch_scale = randf_range(0.9,1.1)
+		$LevelUpSound.play()
 
 ### Functions for setting up buttons ###
 func getOptions() -> void:
