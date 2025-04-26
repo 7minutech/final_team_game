@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="4_iglw5"]
 [ext_resource type="Texture2D" uid="uid://djbj10eic81jy" path="res://assets/hud/ability_icons/Magnet.png" id="5_twiub"]
 [ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="6_rfont"]
-[ext_resource type="Texture2D" uid="uid://cwi1icp4eqh8v" path="res://assets/hud/ability_icons/OrbWithGreenPlus.png" id="7_c2awc"]
+[ext_resource type="Texture2D" uid="uid://dav1d12j6gk0o" path="res://assets/weapons/blue_laser_gun.png" id="8_wpo30"]
 [ext_resource type="Texture2D" uid="uid://c3a1s1sos2e6h" path="res://assets/hud/ability_icons/HeartWithGreenPlus.png" id="8_yrj4i"]
 [ext_resource type="Texture2D" uid="uid://dbxr4wai4omck" path="res://assets/hud/ability_icons/Shield.png" id="9_mjxxb"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
@@ -16,6 +16,10 @@
 [ext_resource type="AudioStream" uid="uid://bux664wiv47ik" path="res://assets/sound/item/coin_collet_short.mp3" id="14_2h1a4"]
 [ext_resource type="AudioStream" uid="uid://druon5s41fvsc" path="res://assets/sound/reward/payout_award_short.mp3" id="15_f41g6"]
 [ext_resource type="AudioStream" uid="uid://dqgrnsvvdwu88" path="res://assets/sound/reward/level-up-5-326133.mp3" id="16_8nyw5"]
+[ext_resource type="Texture2D" uid="uid://7pvf6mdvib8y" path="res://assets/weapons/shotgun/AdjustedShotgun.png" id="13_tndkm"]
+[ext_resource type="Texture2D" uid="uid://do6cnffstfmsi" path="res://assets/weapons/crossbow/CrossbowLoaded.png" id="14_jmvt7"]
+[ext_resource type="Texture2D" uid="uid://drkihxgkeqgo1" path="res://assets/weapons/boomerang/Boomerang.png" id="15_4wfk3"]
+[ext_resource type="Texture2D" uid="uid://lkw3cgsijwfo" path="res://assets/hud/ability_icons/Radiation.png" id="16_pd3b7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
 
@@ -59,16 +63,12 @@ region = Rect2(0, 0, 1280, 1280)
 atlas = ExtResource("6_rfont")
 region = Rect2(0, 0, 1280, 1280)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4pbu6"]
-atlas = ExtResource("7_c2awc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i7kt"]
+atlas = ExtResource("9_mjxxb")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogxaa"]
 atlas = ExtResource("8_yrj4i")
-region = Rect2(0, 0, 1280, 1280)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i7kt"]
-atlas = ExtResource("9_mjxxb")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6l0q"]
@@ -92,10 +92,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_eh51e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4pbu6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ogxaa")
+"texture": ExtResource("8_wpo30")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5i7kt")
@@ -105,6 +102,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_8imqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogxaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_tndkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jmvt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4wfk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pd3b7")
 }],
 "loop": true,
 "name": &"rotation",

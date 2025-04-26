@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://du4rfhotor0pc"]
+[gd_scene load_steps=5 format=3 uid="uid://c3hm8c70ylvxn"]
+
+[ext_resource type="Script" path="res://scripts/ability/active/boomerang.gd" id="1_dhl63"]
+[ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapons/aim_line.tres" id="2_c7uav"]
+[ext_resource type="PackedScene" uid="uid://di7hxaoa0bdjh" path="res://scenes/ability/active/boomerang_projectile.tscn" id="2_htvtk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d02gt"]
+radius = 100.0
 
 [node name="Boomerang" type="Node2D"]
+script = ExtResource("1_dhl63")
+proj = ExtResource("2_htvtk")
+
+[node name="LineAsset" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.305882)
+position = Vector2(61.25, 0.25)
+scale = Vector2(117.5, 3.5)
+texture = ExtResource("2_c7uav")
+
+[node name="TargetArea" type="Area2D" parent="."]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("CircleShape2D_d02gt")
+
+[node name="AutoShootCd" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="ShootCd" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="TargetArea" to="." method="_on_target_area_body_entered"]
+[connection signal="body_exited" from="TargetArea" to="." method="_on_target_area_body_exited"]
+[connection signal="timeout" from="AutoShootCd" to="." method="_on_auto_shoot_cd_timeout"]
+[connection signal="timeout" from="ShootCd" to="." method="_on_shoot_cd_timeout"]

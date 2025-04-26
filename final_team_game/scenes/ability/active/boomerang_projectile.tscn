@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://di7hxaoa0bdjh"]
+
+[ext_resource type="Texture2D" uid="uid://dwlymwwggkfx8" path="res://assets/weapons/boomerang/Boomerang-sheet.png" id="1_60gkk"]
+[ext_resource type="Script" path="res://scripts/ability/active/boomerang_projectile.gd" id="1_b75vb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wru0k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfng4"]
+radius = 9.0
+height = 34.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akug3"]
+atlas = ExtResource("1_60gkk")
+region = Rect2(0, 0, 1280, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq8wa"]
+atlas = ExtResource("1_60gkk")
+region = Rect2(1280, 0, 1280, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbt22"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akug3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq8wa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpo0p"]
+radius = 53.2353
+
+[node name="BoomerangProjectile" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_b75vb")
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wru0k")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="DamageCollider" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(-2, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sfng4")
+
+[node name="Skin" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.04571, 0.0446061)
+sprite_frames = SubResource("SpriteFrames_dbt22")
+
+[node name="TargetFinder" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetFinder"]
+shape = SubResource("CircleShape2D_fpo0p")
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, -3)
+scale = Vector2(0.25, 0.2)
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_entered" from="TargetFinder" to="." method="_on_target_finder_body_entered"]
+[connection signal="body_exited" from="TargetFinder" to="." method="_on_target_finder_body_exited"]
+[connection signal="screen_exited" from="Visibility" to="." method="_on_visibility_screen_exited"]

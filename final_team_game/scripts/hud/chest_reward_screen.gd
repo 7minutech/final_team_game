@@ -1,5 +1,6 @@
 extends Node2D
 
+
 ### Variables ###
 var clickable: bool = false
 var rewardAvailable: bool = true
@@ -82,7 +83,7 @@ func setSprite(a_name: String) -> void:
 	$Reward.stop()
 	match a_name:
 		"radiation":
-			$Reward.frame = 1
+			$Reward.frame = 12
 		"plasma_gun":
 			$Reward.frame = 4
 		"emp":
@@ -90,17 +91,23 @@ func setSprite(a_name: String) -> void:
 		"max_health":
 			$Reward.frame = 1
 		"health_regen":
-			$Reward.frame = 5
+			$Reward.frame = 8
 		"pick_up_range":
 			$Reward.frame = 2
 		"shield":
-			$Reward.frame = 6
+			$Reward.frame = 5
 		"movement_speed":
 			$Reward.frame = 3
 		"ooze":
-			$Reward.frame = 7
+			$Reward.frame = 6
 		"orbital_beam":
-			$Reward.frame = 8
+			$Reward.frame = 7
+		"shotgun":
+			$Reward.frame = 9
+		"crossbow":
+			$Reward.frame = 10
+		"boomerang":
+			$Reward.frame = 11
 		
 # Function to determine what name to add to the reward label
 func setLabel(a_name: String) -> void:
