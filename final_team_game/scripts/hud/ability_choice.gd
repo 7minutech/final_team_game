@@ -32,7 +32,7 @@ func getOptions() -> void:
 ##
 func setIcons(list: Array[String]) -> void:
 	var num: int = 1
-	for a_name in a_list:
+	for a_name in list:
 		var icon = load(AbilityObserver.ABILITY_ASSET_PATH.get(a_name))
 		var button: Button = self.find_child("Choice_" + str(num))
 		button.set_text(a_name.capitalize())
@@ -41,7 +41,7 @@ func setIcons(list: Array[String]) -> void:
 ##
 func setDescriptions(list: Array[String]) -> void:
 	var num: int = 1
-	for a_name in a_list:
+	for a_name in list:
 		# Description Labels
 		var label: Label = self.find_child("Description_" + str(num))
 		label.set_text("Description: \n" + AbilityObserver.ABILITY_DESCRIPTIONS.get(a_name))

@@ -43,7 +43,7 @@ func aim() -> Vector2:
 	var mousePos: Vector2 = get_global_mouse_position()
 	self.look_at(mousePos)
 	return mousePos
-##F
+##
 func shoot(mousePos: Vector2) -> void:
 	var proj = projectile.instantiate()
 	proj.setDamage(weapon_dmg)

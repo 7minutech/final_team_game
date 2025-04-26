@@ -4,7 +4,6 @@ extends RigidBody2D
 
 ### Variables ###
 # Variables for targeting
-var canRicochet: bool = false
 var returning: bool = false
 var targetList: Array = []
 
@@ -18,15 +17,17 @@ var max_ricochets: int = 0
 var current_ricochets: int = 0
 
 # Variables for movement
-@export var SPEED_UP_MODIFIER: float = .02
+@export var SPEED_UP_MODIFIER: float = .1
 var direction: Vector2
 var endPoint: Vector2
 @onready var sprite: AnimatedSprite2D = $Skin
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	parent.numProj += 1
 	if get_tree().current_scene.find_child("Hero"):
 		self.position = get_tree().current_scene.find_child("Hero").position
+		print(str(parent.numProj))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		goToPlayer()
 		self.move_and_collide((direction * delta).normalized() * speed)
 	
-
+# Function for assigning this projectile a parent
 func setParent(p: Weapon) -> void:
 	parent = p
 
@@ -52,10 +53,14 @@ func setEndPoint(ep: Vector2) -> void:
 
 
 ## Functions for stats
+# Function for adjusting damage
+func setDamage(dmg: int) -> void:
+	damage = dmg
 # Function for adjusting speed
 func setSpeed(spd: int) -> void:
 	speed = spd
 ##
+# Function for set the max number of ricochets
 func setMaxRicochets(r: int ) -> void:
 	max_ricochets = r
 
@@ -72,12 +77,13 @@ func goToPlayer() -> void:
 	returning = true
 	endPoint = PlayerObserver.player.position
 	direction = endPoint - self.position
-	speed += (speed * SPEED_UP_MODIFIER)
+	speed = speed + (speed * SPEED_UP_MODIFIER)
 	
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.loseHealth(damage)
-		if canRicochet and !returning:
+		if current_ricochets < max_ricochets && !returning:
+			current_ricochets += 1
 			findTargets()
 		else:
 			goToPlayer()
@@ -89,7 +95,8 @@ func _on_target_finder_body_entered(body: Node2D) -> void:
 		body.is_inside_tree()
 	if body.is_in_group("Hero"):
 		if returning:
-			parent.canShoot = true
+			parent.numProj -= 1
+			print(str(parent.numProj))
 			self.queue_free()
 
 

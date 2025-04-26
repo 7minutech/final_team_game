@@ -109,7 +109,11 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		9: "Increase projectile count by 2"
 	},
 	"boomerang": {
-		1: ""
+		1: "Increase max number of boomerangs by one",
+		2: "Increase projectile speed by 4",
+		3: "Boomerangs now ricochet to two additional enemies before returning",
+		4: "Increase max number of boomerangs by one",
+		5: "Boomerangs now ricochet to four additional enemies before returning"
 	},
 	"crossbow": {
 	1: "Increase reflections by 1",
@@ -169,7 +173,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"shield": "Provides temporary invulnerability after taking damage",
 	"movement_speed": "Increases player movement speed",
 	"shotgun": "fires multiple projectiles in quick bursts.",
-	"boomerang": "Fires one projectile that returns after reaching its max distance",
+	"boomerang": "Fires one projectile that returns after reaching its destination",
 	"crossbow": "Fires bouncing disks that ricochet off walls"
 }
 

@@ -60,6 +60,9 @@ offset_bottom = -214.0
 text = "9999999999"
 label_settings = SubResource("LabelSettings_roxam")
 
+[node name="PausedTime" type="Timer" parent="."]
+process_mode = 2
+
 [node name="UpdateTimeLabel" type="Timer" parent="."]
 process_mode = 1
 autostart = true
