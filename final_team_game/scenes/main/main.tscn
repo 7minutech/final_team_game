@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://t74ch7mq5rfo"]
 
-[ext_resource type="Script" path="res://scripts/test/main/test_enemy_main_2.gd" id="1_80ju4"]
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="1_l6b2r"]
 [ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="2_qydrc"]
 [ext_resource type="PackedScene" uid="uid://bdyu27f5oox4s" path="res://scenes/enemy/Spawner.tscn" id="3_48dom"]
 [ext_resource type="Texture2D" uid="uid://c4nw2jwvbwp1u" path="res://assets/background/background.png" id="4_htu8x"]
 
 [node name="Main" type="Node2D"]
 process_mode = 1
-script = ExtResource("1_80ju4")
+script = ExtResource("1_l6b2r")
 
 [node name="Hero" parent="." instance=ExtResource("2_qydrc")]
 position = Vector2(524, 276)

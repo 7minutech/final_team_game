@@ -11,5 +11,5 @@ plasma_proj = ExtResource("2_fpf88")
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="ShotInterval" to="." method="_on_shoot_interval_timeout"]
 [connection signal="timeout" from="ShotInterval" to="." method="_on_shot_interval_timeout"]
+[connection signal="timeout" from="ShotInterval" to="." method="_on_shoot_interval_timeout"]

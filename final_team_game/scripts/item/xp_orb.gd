@@ -81,7 +81,7 @@ func set_color_xp_values() -> void:
 func scale_xp() -> void:
 	#xp value += minute * 5
 	#first minute is 1 then second is 5 thrid is 10
-	var adder: int = (TimeObserver.total_time / 60) * 5
+	var adder: int = (TimeObserver.total_time / 30) * 5
 	if adder <= 0:
 		adder = 1
 	#after first minute xp gets 15

@@ -78,7 +78,7 @@ func set_proj_num(new_proj_num: int) -> void:
 	projectiles = new_proj_num
 
 func set_shot_interval(new_time: float) -> void:
-	$ShootCd.wait_time = new_time
+	$ShotInterval.wait_time = new_time
 	pass
 
 func update_stat(qty: int) -> void:

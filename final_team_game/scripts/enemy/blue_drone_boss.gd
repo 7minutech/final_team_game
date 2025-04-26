@@ -27,7 +27,6 @@ var just_spawned := true
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	just_spawned = false
-	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_max_health()
 	health = max_health
 
