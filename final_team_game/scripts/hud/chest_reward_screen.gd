@@ -76,6 +76,10 @@ func giveRandomUpgrade() -> void:
 		setSprite(abilityName)
 		setLabel(abilityName)
 	else:
+		setSprite("coins")
+		setLabel("coins")
+		PlayerObserver.coins += 30
+		print("Number of coins = " + str(PlayerObserver.coins))
 		print("All available abilities are max upgraded")
 
 # Function to determine what sprite to show
@@ -108,7 +112,9 @@ func setSprite(a_name: String) -> void:
 			$Reward.frame = 10
 		"boomerang":
 			$Reward.frame = 11
-		
+		"coins":
+			$Reward.frame = 13
+
 # Function to determine what name to add to the reward label
 func setLabel(a_name: String) -> void:
 	$RewardLabel.set_text("YOU GOT" + "\n" + a_name.replace("_", " ").to_upper())

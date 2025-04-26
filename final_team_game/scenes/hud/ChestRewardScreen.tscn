@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://jos7dfgt1e75"]
+[gd_scene load_steps=48 format=3 uid="uid://jos7dfgt1e75"]
 
 [ext_resource type="Script" path="res://scripts/hud/chest_reward_screen.gd" id="1_8qhyi"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="1_k7vj5"]
@@ -13,13 +13,14 @@
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="10_eqe6y"]
 [ext_resource type="Texture2D" uid="uid://cguio8ykpy5e3" path="res://assets/hud/ability_icons/ooze.png" id="11_4nuf2"]
 [ext_resource type="Texture2D" uid="uid://cp3e8pmxs1k7s" path="res://assets/enemy/turret/Bullet.png" id="12_8imqy"]
-[ext_resource type="AudioStream" uid="uid://bux664wiv47ik" path="res://assets/sound/item/coin_collet_short.mp3" id="14_2h1a4"]
-[ext_resource type="AudioStream" uid="uid://druon5s41fvsc" path="res://assets/sound/reward/payout_award_short.mp3" id="15_f41g6"]
-[ext_resource type="AudioStream" uid="uid://dqgrnsvvdwu88" path="res://assets/sound/reward/level-up-5-326133.mp3" id="16_8nyw5"]
 [ext_resource type="Texture2D" uid="uid://7pvf6mdvib8y" path="res://assets/weapons/shotgun/AdjustedShotgun.png" id="13_tndkm"]
+[ext_resource type="AudioStream" uid="uid://bux664wiv47ik" path="res://assets/sound/item/coin_collet_short.mp3" id="14_2h1a4"]
 [ext_resource type="Texture2D" uid="uid://do6cnffstfmsi" path="res://assets/weapons/crossbow/CrossbowLoaded.png" id="14_jmvt7"]
 [ext_resource type="Texture2D" uid="uid://drkihxgkeqgo1" path="res://assets/weapons/boomerang/Boomerang.png" id="15_4wfk3"]
+[ext_resource type="AudioStream" uid="uid://druon5s41fvsc" path="res://assets/sound/reward/payout_award_short.mp3" id="15_f41g6"]
+[ext_resource type="AudioStream" uid="uid://dqgrnsvvdwu88" path="res://assets/sound/reward/level-up-5-326133.mp3" id="16_8nyw5"]
 [ext_resource type="Texture2D" uid="uid://lkw3cgsijwfo" path="res://assets/hud/ability_icons/Radiation.png" id="16_pd3b7"]
+[ext_resource type="Texture2D" uid="uid://dhl1fbs1hbvwe" path="res://assets/hud/Coins/CoinStack.png" id="17_y5vs1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_666j6"]
 
@@ -73,7 +74,10 @@ region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6l0q"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -117,6 +121,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_pd3b7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_y5vs1")
 }],
 "loop": true,
 "name": &"rotation",

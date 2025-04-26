@@ -34,7 +34,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	
-	clera_invalid_targets()
+	clear_invalid_targets()
 	aim()
 	pass
 ### Functions to handle shooting logic ###
@@ -97,7 +97,7 @@ func _on_target_area_body_exited(body: Node2D) -> void:
 		targets.erase(body)
 	pass # Replace with function body.
 
-func clera_invalid_targets() -> void:
+func clear_invalid_targets() -> void:
 	for target in targets:
 		if not is_instance_valid(target):
 			targets.erase(target)
