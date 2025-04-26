@@ -71,4 +71,3 @@ scale = Vector2(0.25, 0.2)
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="TargetFinder" to="." method="_on_target_finder_body_entered"]
 [connection signal="body_exited" from="TargetFinder" to="." method="_on_target_finder_body_exited"]
-[connection signal="screen_exited" from="Visibility" to="." method="_on_visibility_screen_exited"]

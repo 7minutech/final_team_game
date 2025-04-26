@@ -400,6 +400,14 @@ func give_test_gun() -> void:
 	for i in range(player.test_gun_level):
 		AbilityObserver.give_active_ability("test_gun")
 
+func giveBoomerangs() -> void:
+	for i in range(player.boomerang_level):
+		AbilityObserver.give_active_ability("boomerang")
+
+func giveCrossbows() -> void:
+	for i in range(player.crossbow_level):
+		AbilityObserver.give_active_ability("crossbow")
+
 func give_init_abilities():
 	give_default_gun()
 	give_radiations()
@@ -413,7 +421,8 @@ func give_init_abilities():
 	give_oribital_beams()
 	give_oozes()
 	give_shotguns()
-	give_crossbows()
+	giveBoomerangs()
+	giveCrossbows()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()

@@ -9,7 +9,7 @@ var returning: bool = false
 var targetList: Array = []
 
 # Variables for stats
-var speed: int = 10
+var speed: int = 2
 var damage: int = 25
 
 # Variables for shooting
@@ -18,10 +18,10 @@ var max_ricochets: int = 0
 var current_ricochets: int = 0
 
 # Variables for movement
-@export var SPEED_UP_MODIFIER: float = .3
+@export var SPEED_UP_MODIFIER: float = .02
 var direction: Vector2
 var endPoint: Vector2
-@onready var sprite: Sprite2D = $Skin
+@onready var sprite: AnimatedSprite2D = $Skin
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		self.move_and_collide((direction * delta).normalized() * speed)
 	else:
 		goToPlayer()
+		self.move_and_collide((direction * delta).normalized() * speed)
 	
 
 func setParent(p: Weapon) -> void:
@@ -71,6 +72,7 @@ func goToPlayer() -> void:
 	returning = true
 	endPoint = PlayerObserver.player.position
 	direction = endPoint - self.position
+	speed += (speed * SPEED_UP_MODIFIER)
 	
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
@@ -94,7 +96,3 @@ func _on_target_finder_body_entered(body: Node2D) -> void:
 func _on_target_finder_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		targetList.erase(body)
-
-
-func _on_visibility_screen_exited() -> void:
-	returning = true
