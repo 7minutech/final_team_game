@@ -11,10 +11,12 @@ radius = 14.8661
 script = ExtResource("1_nd6ac")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.52, 1, 0.536, 1)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_8mfdu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_se6xg")
 
 [node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]

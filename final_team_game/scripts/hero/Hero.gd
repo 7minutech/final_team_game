@@ -233,8 +233,9 @@ func has_level_up() -> bool:
 ##
 # Function to increase player's level by one and adjust stats/labels accordingly
 func level_up() -> void:
+	var left_over_xp = current_xp - max_xp
 	raise_player_max_xp()
-	current_xp = 0
+	current_xp = left_over_xp
 	updateXpBar()
 	raise_player_max_hp()
 	health = max_health

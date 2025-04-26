@@ -36,11 +36,6 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		8: "Quadruple projectile speed",
 		9: "Increase weapon damage by 25"
 	},
-	"test_gun": {
-		1: "Placeholder Text",
-		2: "Placeholder Text",
-		3: "Placeholder Text"
-	},
 	"shield": {
 		1: "Increase shield duration by 0.2s",
 		2: "Reduce shield cooldown by 0.3s",
@@ -131,7 +126,6 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	# Damaging abilities
 	"radiation": "res://scenes/ability/passive/radiation.tscn",
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
-	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
 	"ooze": "res://scenes/ability/passive/ooze.tscn",
 	"crossbow": "res://scenes/ability/active/crossbow.tscn",
 	# Non-damaging abilities
@@ -145,7 +139,6 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	# Damaging abilities
 	"radiation": "res://assets/hud/ability_icons/Radiation.png",
 	"plasma_gun": "res://assets/weapons/blue_laser_gun.png",
-	"test_gun" : "res://assets/weapons/blue_laser_gun.png",
 	"orbital_beam": "res://assets/enemy/turret/Bullet.png",
 	"ooze" : "res://assets/hud/ability_icons/ooze.png",
 	"shotgun": "res://assets/weapons/shotgun/AdjustedShotgun.png",
@@ -165,7 +158,6 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	# Damaging abilities
 	"radiation": "Adds a damaging area around the player",
 	"plasma_gun": "Default plasma gun",
-	"test_gun": "Testing gun for testing...",
 	"orbital_beam": "Orbits player firing a beam",
 	"ooze": "Drops some toxic ooze on the ground",
 	
@@ -185,7 +177,6 @@ const MAX_ABILITY_QTY: Dictionary = {
 	# Damaging abilities
 	"radiation": 9,
 	"plasma_gun": 9,
-	"test_gun": 3,
 	"orbital_beam": 9,
 	"ooze": 9,
 	"shotgun": 9,
@@ -206,7 +197,7 @@ const PASSIVE_ABILITIES_NAMES: Array[String] = [
 ]
 
 const ACTIVE_ABILITIES_NAMES: Array[String] = [
-	"radiation", "plasma_gun", "test_gun", "emp", "orbital_beam", "ooze",
+	"radiation", "plasma_gun", "emp", "orbital_beam", "ooze",
 	"shotgun", "boomerang", "crossbow"
 ]
 	
