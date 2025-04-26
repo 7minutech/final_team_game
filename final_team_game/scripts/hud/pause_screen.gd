@@ -55,7 +55,7 @@ func clearAbilities() -> void:
 	$AbilityIconBG_Bottom.clear()
 	var count = 1
 	for i: int in range(AbilityObserver.player.abilities.size()):
-		if count < 8:
+		if count < 9:
 			var empty: String = "EmptyPips_" + str(count)
 			var filled: String = "FilledPips_" + str(count)
 			self.find_child(empty).clear()
