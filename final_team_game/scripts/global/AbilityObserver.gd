@@ -117,8 +117,14 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		1: ""
 	},
 	"crossbow": {
-		1: ""
-	}
+	1: "Increase reflections by 1",
+	2: "Increase weapon damage by 5",
+	3: "Increase projectile speed by 50%",
+	4: "Increase reflections by 1",
+	5: "Reduce shoot cooldown by 0.25",
+	6: "Increase weapon damage by 10",
+	7: "Increase reflections by 1"
+}
 }
 
 const ABILITY_SCENE_PATH:Dictionary = {
@@ -127,13 +133,12 @@ const ABILITY_SCENE_PATH:Dictionary = {
 	"plasma_gun": "res://scenes/ability/active/plasma_gun.tscn",
 	"test_gun": "res://scenes/ability/active/plasma_green_gun.tscn",
 	"ooze": "res://scenes/ability/passive/ooze.tscn",
+	"crossbow": "res://scenes/ability/active/crossbow.tscn",
 	# Non-damaging abilities
 	"emp" : "res://scenes/ability/passive/emp.tscn",
 	"orbital_beam": "res://scenes/ability/passive/orbital_beam.tscn",
 	"shotgun": "res://scenes/ability/passive/shotgun.tscn",
-	"boomerang": "res://scenes/ability/active/boomerang.tscn",
-	"crossbow": ""
-	
+	"boomerang": "res://scenes/ability/active/boomerang.tscn",	
 }
 
 const ABILITY_ASSET_PATH: Dictionary = {
@@ -173,7 +178,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"movement_speed": "Increases player movement speed",
 	"shotgun": "fires multiple projectiles in quick bursts.",
 	"boomerang": "Fires one projectile that returns after reaching its max distance",
-	"crossbow": ""
+	"crossbow": "Fires bouncing disks that ricochet off walls"
 }
 
 const MAX_ABILITY_QTY: Dictionary = {
@@ -387,6 +392,10 @@ func give_shotguns() -> void:
 	for i in range(player.shotgun_level):
 		AbilityObserver.give_active_ability("shotgun")
 
+func give_crossbows() -> void:
+	for i in range(player.crossbow_level):
+		AbilityObserver.give_active_ability("crossbow")
+
 func give_test_gun() -> void:
 	for i in range(player.test_gun_level):
 		AbilityObserver.give_active_ability("test_gun")
@@ -404,6 +413,7 @@ func give_init_abilities():
 	give_oribital_beams()
 	give_oozes()
 	give_shotguns()
+	give_crossbows()
 
 func give_random_pasive_abiity() -> void:
 	var random_name = PASSIVE_ABILITIES_NAMES.pick_random()

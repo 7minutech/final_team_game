@@ -121,15 +121,6 @@ func _process(_delta: float) -> void:
 		
 		
 func _physics_process(_delta: float) -> void:
-	# Check for active weapon
-	if primary_weapon.weapon_name == "plasma_gun" and abilities.has("test_gun"):
-		AbilityObserver.set_primary_weapon("test_gun")
-	elif primary_weapon.weapon_name == "test_gun":
-		AbilityObserver.set_primary_weapon("plasma_gun")
-	else:
-		#print("Weapon name not in condition for swap hotkey")
-		pass
-
 	# Check to see if player died
 	if health <= 0:
 		canShoot = false

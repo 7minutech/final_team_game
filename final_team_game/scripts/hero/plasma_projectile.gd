@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-class_name PlasmaProjectile
+class_name 	PlasmaProjectile
 
 ## Constants
 

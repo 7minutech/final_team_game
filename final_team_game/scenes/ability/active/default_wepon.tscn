@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://be54r4hfa0fm"]
+[gd_scene load_steps=5 format=3 uid="uid://be54r4hfa0fm"]
 
 [ext_resource type="Script" path="res://scripts/ability/active/default_wepon.gd" id="1_pdqpd"]
+[ext_resource type="PackedScene" uid="uid://vxfmsvms48q7" path="res://scenes/ability/active/plasma_gun.tscn" id="2_hc8lj"]
 [ext_resource type="Texture2D" uid="uid://q7my0eietu0m" path="res://assets/weapons/aim_line.tres" id="2_ioawy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d02gt"]
@@ -8,6 +9,7 @@ radius = 100.0
 
 [node name="DefaultWepon" type="Node2D"]
 script = ExtResource("1_pdqpd")
+projectile = ExtResource("2_hc8lj")
 
 [node name="LineAsset" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.305882)
