@@ -89,10 +89,10 @@ func _on_show_hide_cheats_pressed() -> void:
 ##
 func _on_invincibility_pressed() -> void:
 	var player = PlayerObserver.player
-	if player.get_collision_layer_value(2):
-		player.set_collision_layer_value(2, false)
+	if player.invincible == false:
+		player.invincible = true
 	else:
-		player.set_collision_layer_value(2, true)
+		player.invincible = false
 
 
 func _on_level_up_pressed() -> void:

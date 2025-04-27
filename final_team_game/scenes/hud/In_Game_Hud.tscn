@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qb10brngodal"]
+[gd_scene load_steps=14 format=3 uid="uid://qb10brngodal"]
 
 [ext_resource type="Script" path="res://scripts/hud/in_game_hud.gd" id="1_i6a3x"]
 [ext_resource type="Texture2D" uid="uid://xyvej47t7wqm" path="res://assets/hud/health_and_exp_bar/barOutline.png" id="2_8uarb"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dx7yufxdxnh7m" path="res://scenes/hud/debug_and_cheats_menu.tscn" id="7_ogj2b"]
 [ext_resource type="PackedScene" uid="uid://jos7dfgt1e75" path="res://scenes/hud/ChestRewardScreen.tscn" id="8_nj5f8"]
 [ext_resource type="PackedScene" uid="uid://cok63k0oxpvfe" path="res://scenes/hud/AbilityChoice.tscn" id="9_vxu8t"]
+[ext_resource type="Texture2D" uid="uid://dl6vprj7mrc3y" path="res://assets/hud/skull.png" id="10_oicxv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ekby6"]
 font = ExtResource("4_ct54g")
@@ -69,6 +70,7 @@ process_mode = 1
 autostart = true
 
 [node name="DebugAndCheatsMenu" parent="." instance=ExtResource("7_ogj2b")]
+visible = false
 position = Vector2(411, -208)
 
 [node name="AbilityIconsBG" type="RichTextLabel" parent="."]
@@ -96,6 +98,11 @@ visible = false
 [node name="AbilityChoice" parent="." instance=ExtResource("9_vxu8t")]
 visible = false
 position = Vector2(0, -20)
+
+[node name="Skull" type="Sprite2D" parent="."]
+position = Vector2(386, -229)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("10_oicxv")
 
 [connection signal="timeout" from="PausedTime" to="." method="_on_paused_time_timeout"]
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

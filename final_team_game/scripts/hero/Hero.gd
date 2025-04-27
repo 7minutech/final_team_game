@@ -51,6 +51,7 @@ var weapon_slots: Array
 var current_weapon_index: int = 0
 var primary_weapon: Weapon
 var can_drop_ooze: bool = true
+var invincible: bool = false
 var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
 var health_regen_counter: float = 0.0
 
@@ -142,7 +143,7 @@ func raise_player_max_hp() -> void:
 	$HealthBar.set_max(max_health)
 # Function to lose health
 func loseHealth(dmg: int) -> void:
-	if not shield_active:
+	if not shield_active and not invincible:
 		show_sparks()
 		health -= dmg
 	updateHealthBar()
