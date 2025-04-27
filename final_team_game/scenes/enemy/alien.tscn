@@ -122,8 +122,6 @@ frame_progress = 0.621645
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_uri46")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-
 [node name="QueueFreeTimer" type="Timer" parent="."]
 wait_time = 60.0
 
@@ -154,9 +152,12 @@ libraries = {
 
 [node name="LostHeatlhSound" parent="." instance=ExtResource("4_v3rka")]
 
-[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(1, 1)
+
 [connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="area_shape_entered" from="DamageArea" to="." method="_on_damage_area_area_shape_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

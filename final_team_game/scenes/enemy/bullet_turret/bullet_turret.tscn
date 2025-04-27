@@ -134,10 +134,6 @@ texture = ExtResource("3_mspdg")
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_rhpsd")
 
-[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, 2.38419e-07)
-scale = Vector2(0.3, 0.3)
-
 [node name="DamageLabel" type="Label" parent="."]
 offset_left = -17.0
 offset_top = -49.0
@@ -152,3 +148,7 @@ libraries = {
 }
 
 [node name="LostHeatlhSound" parent="." instance=ExtResource("5_q65c7")]
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.3, 0.3)
