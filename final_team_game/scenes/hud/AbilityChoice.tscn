@@ -37,9 +37,9 @@ expand_icon = true
 
 [node name="Description_1" type="Label" parent="."]
 offset_left = -219.0
-offset_top = -111.0
+offset_top = -120.0
 offset_right = -35.0
-offset_bottom = -39.0
+offset_bottom = -48.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")
@@ -66,9 +66,9 @@ expand_icon = true
 
 [node name="Description_2" type="Label" parent="."]
 offset_left = -219.0
-offset_top = 66.0
+offset_top = 56.0
 offset_right = -35.0
-offset_bottom = 138.0
+offset_bottom = 128.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")
@@ -96,9 +96,9 @@ expand_icon = true
 
 [node name="Description_3" type="Label" parent="."]
 offset_left = -219.0
-offset_top = 246.0
+offset_top = 236.0
 offset_right = -35.0
-offset_bottom = 318.0
+offset_bottom = 308.0
 text = "Description:
 "
 label_settings = SubResource("LabelSettings_uft8p")

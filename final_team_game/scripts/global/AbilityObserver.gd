@@ -123,6 +123,10 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		5: "Reduce shoot cooldown by 0.25",
 		6: "Increase weapon damage by 10",
 		7: "Increase reflections by 1"
+	},
+	# miscellaneous
+	"coins": {
+		1: "Gain 30 coins"
 	}
 }
 
@@ -155,7 +159,10 @@ const ABILITY_ASSET_PATH: Dictionary = {
 	"health_regen": "res://assets/hud/ability_icons/HeartWithGreenPlus.png",
 	"pick_up_range": "res://assets/hud/ability_icons/Magnet.png",
 	"shield": "res://assets/hud/ability_icons/Shield.png",
-	"movement_speed": "res://assets/hud/ability_icons/MovementSpeed.png"
+	"movement_speed": "res://assets/hud/ability_icons/MovementSpeed.png",
+	
+	# miscellaneous
+	"coins": "res://assets/hud/Coins/CoinStack.png"
 }
 
 const ABILITY_DESCRIPTIONS: Dictionary = {
@@ -174,7 +181,10 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"movement_speed": "Increases player movement speed",
 	"shotgun": "fires multiple projectiles in quick bursts.",
 	"boomerang": "Fire projectiles that return after reaching their destination",
-	"crossbow": "Fires bouncing disks that ricochet off walls"
+	"crossbow": "Fires bouncing disks that ricochet off walls",
+	
+	# miscellaneous
+	"coins": "Coins that can be used to purchase permanent upgrades from the shop"
 }
 
 const MAX_ABILITY_QTY: Dictionary = {
@@ -193,7 +203,10 @@ const MAX_ABILITY_QTY: Dictionary = {
 	"health_regen": 5,
 	"pick_up_range": 7,
 	"shield": 5,
-	"movement_speed": 4
+	"movement_speed": 4,
+	
+	# miscellaneous
+	"coins": 1
 }
 
 const PASSIVE_ABILITIES_NAMES: Array[String] = [

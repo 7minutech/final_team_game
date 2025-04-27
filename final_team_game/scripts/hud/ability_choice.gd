@@ -93,13 +93,17 @@ func selectFrom(location) -> void:
 		for key in location.abilities.keys():
 			abilities.append(key)
 		abilities = removeMaxedAbilities(abilities)
-		for i in range(abilities.size()):
-			if i < 3:
-				var a = abilities.pick_random()
-				a_list.append(a)
-				abilities.erase(a)
-			else:
-				return
+		if abilities.is_empty():
+			for i in range(1, 4):
+				a_list.append("coins")
+		else:
+			for i in range(abilities.size()):
+				if i < 3:
+					var a = abilities.pick_random()
+					a_list.append(a)
+					abilities.erase(a)
+				else:
+					return
 ##
 
 
@@ -119,6 +123,9 @@ func nameValidation(a_name: String) -> bool:
 		return true
 	elif AbilityObserver.PASSIVE_ABILITIES_NAMES.has(a_name):
 		AbilityObserver.give_passive_ability(a_name)
+		return true
+	elif a_name == "coins":
+		PlayerObserver.coins += 30
 		return true
 	else:
 		clickable = true
