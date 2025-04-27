@@ -47,6 +47,7 @@ func loseHealth(dmg: int) -> void:
 	flash_white()
 	health -= dmg
 	if health <= 0 and not is_queued_for_deletion():
+		$CollisionShape2D.set_deferred("disabled",true)
 		drop_chest()
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
