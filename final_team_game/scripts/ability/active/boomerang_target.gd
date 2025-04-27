@@ -22,3 +22,7 @@ func _on_middle_spin_timeout() -> void:
 	$Middle.rotate(deg_to_rad(-90))
 	$Inner.rotate(deg_to_rad(-90))
 	$Smallest.rotate(deg_to_rad(-90))
+
+
+func _on_long_despawn_timeout() -> void:
+	self.call_deferred("queue_free")

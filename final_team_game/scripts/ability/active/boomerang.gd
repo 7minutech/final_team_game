@@ -53,8 +53,10 @@ func auto_shoot() -> void:
 	if auto and not targets.is_empty() and numProj < maxProj:
 		var proj = projectile.instantiate()
 		proj.setParent(self)
+		proj.setAuto(true)
 		proj.setDamage(weapon_dmg)
 		proj.setSpeed(projectile_speed)
+		proj.setMaxRicochets(maxRicochets)
 		get_tree().current_scene.add_child(proj)
 		if targets[0] != null:
 			var enemy_position: Vector2 = targets[0].global_position

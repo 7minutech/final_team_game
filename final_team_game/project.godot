@@ -95,3 +95,4 @@ swap_right={
 2d_physics/layer_3="FriendlyProjectiles"
 2d_physics/layer_4="EnemyBodies"
 2d_physics/layer_5="EnemyProjectiles"
+2d_physics/layer_8="Targets"
