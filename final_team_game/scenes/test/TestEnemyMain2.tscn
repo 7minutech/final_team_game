@@ -17,9 +17,7 @@ spawn_braizers = false
 
 [node name="Hero" parent="." instance=ExtResource("3_go7pr")]
 position = Vector2(524, 276)
-default_weapon_level = 9
 boomerang_level = 1
-crossbow_level = 9
 
 [node name="Spawner" parent="." instance=ExtResource("5_l4qc1")]
 position = Vector2(1098, 206)
