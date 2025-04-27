@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://drnlo0u0nbpq8"]
+[gd_scene load_steps=28 format=3 uid="uid://drnlo0u0nbpq8"]
 
 [ext_resource type="Script" path="res://scripts/hero/Hero.gd" id="1_ib4fp"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="1_loxkn"]
@@ -102,6 +102,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ql8uj"]
+radius = 15.0
+
 [node name="Hero" type="CharacterBody2D" groups=["Hero"]]
 process_mode = 1
 z_index = 1
@@ -199,6 +202,11 @@ stream = ExtResource("12_6q7qt")
 [node name="ShieldSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_xajlg")
 volume_db = -10.0
+
+[node name="ChestArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChestArea"]
+shape = SubResource("CircleShape2D_ql8uj")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

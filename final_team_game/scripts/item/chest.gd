@@ -19,17 +19,18 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
-	var arrow = parent.get_node("Arrow")
-	if parent is Player:
-		if arrow != null:
-			arrow.queue_free()
-		set_pitch_scale()
-		print("Player got a chest")
-		PlayerObserver.player.find_child("Hud").setChest()
-		get_tree().set_pause(true)
-		await get_tree().create_timer(0.25).timeout
-		queue_free()
+	if area.name == "ChestArea":
+		var parent = area.get_parent()
+		var arrow = parent.get_node("Arrow")
+		if parent is Player:
+			if arrow != null:
+				arrow.queue_free()
+			set_pitch_scale()
+			print("Player got a chest")
+			PlayerObserver.player.find_child("Hud").setChest()
+			get_tree().set_pause(true)
+			await get_tree().create_timer(0.25).timeout
+			queue_free()
 		
 
 
