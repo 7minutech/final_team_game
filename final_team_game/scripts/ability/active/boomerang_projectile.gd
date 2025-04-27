@@ -8,8 +8,8 @@ var returning: bool = false
 var targetList: Array = []
 
 # Variables for stats
-var speed: int = 2
-var damage: int = 25
+var speed: float
+var damage: int
 
 # Variables for shooting
 var parent: Weapon
@@ -17,7 +17,7 @@ var max_ricochets: int = 0
 var current_ricochets: int = 0
 
 # Variables for movement
-@export var SPEED_UP_MODIFIER: float = .1
+@export var SPEED_UP_MODIFIER: float = .01
 var direction: Vector2
 var endPoint: Vector2
 @onready var sprite: AnimatedSprite2D = $Skin
