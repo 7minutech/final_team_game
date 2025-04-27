@@ -5,7 +5,7 @@ extends RigidBody2D
 ### Variables ###
 # Variables for targeting
 var returning: bool = false
-var targetList: Array = []
+var enemyList: Array = []
 
 # Variables for stats
 var speed: float
@@ -19,6 +19,7 @@ var current_ricochets: int = 0
 # Variables for movement
 @export var SPEED_UP_MODIFIER: float = .01
 var direction: Vector2
+var targetPos: Vector2
 var playerPos: Vector2
 @onready var sprite: AnimatedSprite2D = $Skin
 
@@ -47,6 +48,8 @@ func setParent(p: Weapon) -> void:
 # Function to set direction of movement
 func setDirection(d: Vector2) -> void:
 	direction = d
+func setTargetPos(pos: Vector2) -> void:
+	targetPos = pos
 
 ## Functions for stats
 # Function for adjusting damage
@@ -61,13 +64,16 @@ func setMaxRicochets(r: int ) -> void:
 	max_ricochets = r
 
 ## Functions for targeting
-func findTargets() -> void:
-	var newList: Array = targetList.duplicate(true)
-	for target in newList:
-		if target.is_inside_tree():
-			
-			if current_ricochets < max_ricochets:
-				pass
+func findEnemies(body: Node2D) -> void:
+	var newList: Array = enemyList.duplicate(true)
+	for enemy in newList:
+		if enemy.is_inside_tree() and not enemy == body:
+			direction = enemy.global_position - self.position
+			print("Current: " + str(current_ricochets) + " || Max: " + str(max_ricochets))
+			print(str(direction))
+			speed += 1
+			return
+
 
 func goToPlayer() -> void:
 	if !returning:
@@ -80,9 +86,11 @@ func goToPlayer() -> void:
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.loseHealth(damage)
-		if current_ricochets < max_ricochets && !returning:
+		if current_ricochets < max_ricochets && !enemyList.is_empty() && !returning:
 			current_ricochets += 1
-			findTargets()
+			findEnemies(body)
+		elif !returning:
+			direction = targetPos - self.position
 	if body.is_in_group("Hero"):
 		if returning:
 			parent.numProj -= 1
@@ -97,11 +105,11 @@ func _on_damage_area_area_entered(area: Area2D) -> void:
 
 func _on_target_finder_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		targetList.append(body)
+		enemyList.append(body)
 
 func _on_target_finder_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		targetList.erase(body)
+		enemyList.erase(body)
 
 
 func _on_spin_timeout() -> void:

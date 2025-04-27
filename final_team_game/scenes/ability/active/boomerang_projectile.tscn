@@ -32,7 +32,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpo0p"]
-radius = 53.2353
+radius = 135.0
 
 [node name="BoomerangProjectile" type="RigidBody2D"]
 collision_layer = 0

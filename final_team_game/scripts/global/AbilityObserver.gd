@@ -110,8 +110,8 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 	},
 	"boomerang": {
 		1: "Increase max number of boomerangs by one",
-		2: "Double the projectile speed",
-		3: "Boomerangs now ricochet to two additional enemies before returning",
+		2: "Boomerangs now ricochet to two additional enemies before returning",
+		3: "Doubles the projectile speed",
 		4: "Increase max number of boomerangs by two",
 		5: "Boomerangs now ricochet to four additional enemies before returning"
 	},

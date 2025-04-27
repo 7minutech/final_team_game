@@ -19,7 +19,7 @@ spawn_braizers = false
 [node name="Hero" parent="." instance=ExtResource("3_go7pr")]
 position = Vector2(524, 276)
 default_weapon_level = 9
-boomerang_level = 1
+boomerang_level = 2
 
 [node name="Spawner" parent="." instance=ExtResource("5_l4qc1")]
 position = Vector2(1098, 206)
@@ -61,10 +61,10 @@ wait_time = 30.0
 autostart = true
 
 [node name="Chest" parent="." instance=ExtResource("5_tgsrd")]
-position = Vector2(93, 526)
+position = Vector2(294, 388)
 
 [node name="Chest2" parent="." instance=ExtResource("5_tgsrd")]
-position = Vector2(354, 541)
+position = Vector2(305, 416)
 
 [node name="Chest3" parent="." instance=ExtResource("5_tgsrd")]
 position = Vector2(610, 537)

@@ -39,9 +39,12 @@ func shoot(mousePos: Vector2) -> void:
 		proj.setParent(self)
 		proj.setDamage(weapon_dmg)
 		proj.setSpeed(projectile_speed)
+		proj.setMaxRicochets(maxRicochets)
 		get_tree().current_scene.add_child(proj)
 		var t = target.instantiate()
+		proj.setTargetPos(mousePos)
 		t.setLocation(mousePos)
+		t.setProj(proj)
 		get_tree().current_scene.add_child(t)
 		var direction: Vector2 = mousePos - global_position
 		proj.setDirection(direction)
@@ -72,11 +75,9 @@ func update_stat(qty: int) -> void:
 		1:
 			set_max_proj(1)
 		2:
-			print(str(projectile_speed))
-			set_projectile_speed(projectile_speed * 2)
-			print(str(projectile_speed))
-		3:
 			set_max_ricochets(2)
+		3:
+			set_projectile_speed(projectile_speed * 2)
 		4:
 			set_max_proj(maxProj + 2)
 		5:
