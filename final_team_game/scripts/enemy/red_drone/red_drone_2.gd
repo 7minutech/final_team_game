@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 # Function to lose health
 func loseHealth(dmg: int) -> void:
 	set_pitch_scale()
-	$LostHeatlhSound
+	$LostHeatlhSound.play()
 	flash_white()
 	health -= dmg
 	if health <= 0:
