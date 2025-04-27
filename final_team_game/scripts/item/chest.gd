@@ -22,7 +22,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.name == "ChestArea":
 		var parent = area.get_parent()
 		var arrow = parent.get_node("Arrow")
-		if parent is Player:
+		if parent is Player and not get_tree().paused:
 			if arrow != null:
 				arrow.queue_free()
 			set_pitch_scale()

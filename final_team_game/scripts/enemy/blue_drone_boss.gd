@@ -46,7 +46,7 @@ func loseHealth(dmg: int) -> void:
 	show_hit_number(dmg)
 	flash_white()
 	health -= dmg
-	if health <= 0:
+	if health <= 0 and not is_queued_for_deletion():
 		drop_chest()
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
