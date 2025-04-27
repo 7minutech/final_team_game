@@ -24,8 +24,8 @@ func _ready():
 		$UpgradeList/Upgrade6/PurchaseButton6.disabled = true
 
 func on_back_pressed():
-	click_sound.play()
-	await get_tree().create_timer(0.5)
+	$ClickSound.play()
+	await click_sound.finished
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 
 func on_hover():
@@ -33,54 +33,60 @@ func on_hover():
 
 
 func _on_purchase_button_1_pressed() -> void:
+	$ClickSound.play()
 	if PlayerObserver.coins >= 100:
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_1"] = true  # Update the dictionary
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins) 
+		PlayerObserver.permanent_upgrade["Upgrade_1"] = true
+		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 		$UpgradeList/Upgrade1/PurchaseButton1.disabled = true
 		$UpgradeList/Upgrade1/PurchaseButton1.text = "Purchased"
 
 
 func _on_purchase_button_2_pressed() -> void:
+	$ClickSound.play()
 	if PlayerObserver.coins >= 100:
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_2"] = true  # Update the dictionary
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins) 
+		PlayerObserver.permanent_upgrade["Upgrade_2"] = true
+		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 		$UpgradeList/Upgrade2/PurchaseButton2.disabled = true
 		$UpgradeList/Upgrade2/PurchaseButton2.text = "Purchased"
 
 
 func _on_purchase_button_3_pressed() -> void:
+	$ClickSound.play()
 	if PlayerObserver.coins >= 100:
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_3"] = true  # Update the dictionary
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins) 
+		PlayerObserver.permanent_upgrade["Upgrade_3"] = true
+		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 		$UpgradeList/Upgrade3/PurchaseButton3.disabled = true
 		$UpgradeList/Upgrade3/PurchaseButton3.text = "Purchased"
 
 
 func _on_purchase_button_4_pressed() -> void:
+	$ClickSound.play()
 	if PlayerObserver.coins >= 100:
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_4"] = true  # Update the dictionary
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins) 
+		PlayerObserver.permanent_upgrade["Upgrade_4"] = true
+		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 		$UpgradeList/Upgrade4/PurchaseButton4.disabled = true
 		$UpgradeList/Upgrade4/PurchaseButton4.text = "Purchased"
 
 
 func _on_purchase_button_5_pressed() -> void:
+	$ClickSound.play()
 	if PlayerObserver.coins >= 100:
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_5"] = true  # Update the dictionary
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins) 
+		PlayerObserver.permanent_upgrade["Upgrade_5"] = true
+		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 		$UpgradeList/Upgrade5/PurchaseButton5.disabled = true
 		$UpgradeList/Upgrade5/PurchaseButton5.text = "Purchased"
 
 
 func _on_purchase_button_6_pressed() -> void:
+	$ClickSound.play()
 	if PlayerObserver.coins >= 100:
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_6"] = true  # Update the dictionary
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins) 
+		PlayerObserver.permanent_upgrade["Upgrade_6"] = true
+		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 		$UpgradeList/Upgrade6/PurchaseButton6.disabled = true
 		$UpgradeList/Upgrade6/PurchaseButton6.text = "Purchased"
