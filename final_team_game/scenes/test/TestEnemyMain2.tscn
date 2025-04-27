@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="3_go7pr"]
 [ext_resource type="Texture2D" uid="uid://c4nw2jwvbwp1u" path="res://assets/background/background.png" id="4_8imot"]
 [ext_resource type="PackedScene" uid="uid://bdyu27f5oox4s" path="res://scenes/enemy/Spawner.tscn" id="5_l4qc1"]
-[ext_resource type="PackedScene" uid="uid://cwb1ilqg2li0s" path="res://scenes/item/chest.tscn" id="5_n0ovr"]
+[ext_resource type="PackedScene" uid="uid://cwb1ilqg2li0s" path="res://scenes/item/chest.tscn" id="5_tgsrd"]
 
 [node name="TestEnemyMain2" type="Node2D"]
 process_mode = 1
@@ -18,7 +18,8 @@ spawn_braizers = false
 
 [node name="Hero" parent="." instance=ExtResource("3_go7pr")]
 position = Vector2(524, 276)
-crossbow_level = 3
+default_weapon_level = 9
+boomerang_level = 1
 
 [node name="Spawner" parent="." instance=ExtResource("5_l4qc1")]
 position = Vector2(1098, 206)
@@ -59,11 +60,17 @@ texture = ExtResource("4_8imot")
 wait_time = 30.0
 autostart = true
 
-[node name="Chest2" parent="." instance=ExtResource("5_n0ovr")]
-position = Vector2(1021.03, 198.281)
+[node name="Chest" parent="." instance=ExtResource("5_tgsrd")]
+position = Vector2(93, 526)
 
-[node name="Chest" parent="." instance=ExtResource("5_n0ovr")]
-position = Vector2(153.334, 265.027)
+[node name="Chest2" parent="." instance=ExtResource("5_tgsrd")]
+position = Vector2(354, 541)
+
+[node name="Chest3" parent="." instance=ExtResource("5_tgsrd")]
+position = Vector2(610, 537)
+
+[node name="Chest4" parent="." instance=ExtResource("5_tgsrd")]
+position = Vector2(853, 533)
 
 [connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

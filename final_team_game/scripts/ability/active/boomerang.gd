@@ -72,11 +72,13 @@ func update_stat(qty: int) -> void:
 		1:
 			set_max_proj(1)
 		2:
-			set_projectile_speed(base_project_speed + 4)
+			print(str(projectile_speed))
+			set_projectile_speed(projectile_speed * 2)
+			print(str(projectile_speed))
 		3:
 			set_max_ricochets(2)
 		4:
-			set_max_proj(maxProj + 1)
+			set_max_proj(maxProj + 2)
 		5:
 			set_max_ricochets(4)
 		_:
