@@ -16,7 +16,7 @@ position = Vector2(524, 276)
 position = Vector2(1098, 206)
 
 [node name="BraizerSpawnTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 30.0
 autostart = true
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
