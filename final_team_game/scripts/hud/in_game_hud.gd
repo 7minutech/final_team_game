@@ -15,6 +15,7 @@ var isPaused: bool = false
 # Variables for time calculation
 var startTime: float
 var timeCheck: float
+var pausedTime: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -75,7 +76,7 @@ func getTime() -> void:
 ##
 # Function to determine the time since the start and convert it to usable text
 func convertTime() -> String:
-	var subtractedTime: float = timeCheck - startTime
+	var subtractedTime: float = (timeCheck - startTime) - pausedTime
 	var dict: Dictionary = Time.get_time_dict_from_unix_time(subtractedTime)
 	var minute = dict.get("minute")
 	var sec = dict.get("second")
@@ -99,3 +100,9 @@ func updateTime() -> void:
 func _on_update_time_label_timeout() -> void:
 	updateTime()
 	TimeObserver.addOneToTotalTime()
+
+
+func _on_paused_time_timeout() -> void:
+	if pausedTime == 0.0:
+		pausedTime += 2.0
+	pausedTime += 1.0

@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:	
+func _process(_delta: float) -> void:
 	level_delta += _delta
 	var player_position = PlayerObserver.player.position
 	var camRect: Rect2 = PlayerObserver.player.find_child("HeroCamera").get_viewport_rect()
@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 
 # Function that checks for input events
 func _input(event: InputEvent) -> void:
-	if event.is_action("pause_game"):
+	if event.is_action("pause_game") && !get_tree().paused:
 		PlayerObserver.player.updateAllStats()
 		PlayerObserver.player.find_child("Hud").setPaused()
 		get_tree().set_pause(true)

@@ -59,12 +59,10 @@ func set_auto(flag: bool) -> void:
 	auto = flag
 
 func hide_aim_line() -> void:	
-	return
 	if aim_line:
 		aim_line.hide()
 
 func show_aim_line() -> void:
-	return
 	if aim_line:
 		aim_line.show()
 

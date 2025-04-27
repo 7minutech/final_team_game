@@ -23,15 +23,7 @@ func _process(_delta: float) -> void:
 		clearAbilities()
 		addAbilities()
 		#print(PlayerObserver.toString())
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause_game") && get_tree().paused:
-		get_parent().setPaused()
-		self.hide()
-		get_parent().find_child("AbilityIcons").show()
-		get_parent().find_child("AbilityIconsBG").show()
-		get_tree().set_pause(false)
-
+		
 # Function to add ability images to the ability label
 func addAbilities() -> void:
 	var player = AbilityObserver.player

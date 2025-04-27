@@ -62,6 +62,7 @@ label_settings = SubResource("LabelSettings_roxam")
 
 [node name="PausedTime" type="Timer" parent="."]
 process_mode = 2
+autostart = true
 
 [node name="UpdateTimeLabel" type="Timer" parent="."]
 process_mode = 1
@@ -96,4 +97,5 @@ visible = false
 visible = false
 position = Vector2(0, -20)
 
+[connection signal="timeout" from="PausedTime" to="." method="_on_paused_time_timeout"]
 [connection signal="timeout" from="UpdateTimeLabel" to="." method="_on_update_time_label_timeout"]

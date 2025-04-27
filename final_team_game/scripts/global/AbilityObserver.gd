@@ -173,7 +173,7 @@ const ABILITY_DESCRIPTIONS: Dictionary = {
 	"shield": "Provides temporary invulnerability after taking damage",
 	"movement_speed": "Increases player movement speed",
 	"shotgun": "fires multiple projectiles in quick bursts.",
-	"boomerang": "Fires one projectile that returns after reaching its destination",
+	"boomerang": "Fire projectiles that return after reaching their destination",
 	"crossbow": "Fires bouncing disks that ricochet off walls"
 }
 
