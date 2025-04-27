@@ -3,14 +3,14 @@ extends Sprite2D
 class_name Garlic
 
 const INITIAL_SCALE: Vector2 = Vector2(0.2,0.2)
-const INITIAL_DAMAGE: int = 20
-const INITAIAL_TICK_INTERVAL: float = 1.0
+const INITIAL_DAMAGE: int = 5
+const INITAIAL_TICK_INTERVAL: float = 2.0
 
 var max_qty: float = 6
 var radius: float
-var damage: int = 20
+var damage: int = INITIAL_DAMAGE
 var damage_targets = []
-var tick_interval: float = 1.0
+var tick_interval: float = INITAIAL_TICK_INTERVAL
 var tick_timer: float = 0.0
 var garlic_scale = INITIAL_SCALE
 var active = true
@@ -34,15 +34,15 @@ func update_stat(qty: int) -> void:
 		4:
 			set_garlic_scale(INITIAL_SCALE * 1.50)
 		5:
-			set_damage(INITIAL_DAMAGE + 10)
+			set_damage_cd(INITAIAL_TICK_INTERVAL - 0.50)
 		6:
-			set_damage_cd(INITAIAL_TICK_INTERVAL - 0.5)
-		7:
-			set_damage(INITIAL_DAMAGE + 15)
-		8:
 			set_garlic_scale(INITIAL_SCALE * 1.75)
+		7:
+			set_damage(INITIAL_DAMAGE + 10)
+		8:
+			set_garlic_scale(INITIAL_SCALE * 2.0)
 		9:
-			set_damage(INITIAL_DAMAGE + 20)
+			set_damage(INITIAL_DAMAGE + 15)
 		_:
 			print("Invalid level")
 
