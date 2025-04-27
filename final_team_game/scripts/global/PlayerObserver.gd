@@ -11,7 +11,16 @@ var current_xp: int
 var current_level: int
 var max_hp: int
 var current_hp: int
-var coins: int = 100
+var coins: int = 1000
+var upgrade
+var permanent_upgrade: Dictionary = {
+	"Upgrade_1": false,
+	"Upgrade_2": false,
+	"Upgrade_3": false,
+	"Upgrade_4": false,
+	"Upgrade_5": false,
+	"Upgrade_6": false
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,8 +29,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("debug"):
+		for key in permanent_upgrade.keys():
+			print(key + ": " + str(permanent_upgrade[key]))
 	pass
-
 
 # Function to return all available info as a string
 func toString() -> String:
