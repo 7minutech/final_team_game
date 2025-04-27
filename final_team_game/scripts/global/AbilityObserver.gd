@@ -3,7 +3,7 @@ extends Node
 ### Constants ###
 # radiation level 1 would be ABILITY_UPGRADE_DESC["radiation"][1]
 const ABILITY_UPGRADE_DESC: Dictionary = {
-	"radiatiion" : {
+	"radiation" : {
 		1: "Increase damage by 5", 
 		2: "Increase radiation area of effect by 25%", 
 		3: "Decrease damage cooldown to 0.75s",  
