@@ -62,9 +62,6 @@ autostart = true
 [node name="Chest" parent="." instance=ExtResource("5_xftcb")]
 position = Vector2(241, 320)
 
-[node name="Chest2" parent="." instance=ExtResource("5_xftcb")]
-position = Vector2(1262.17, 347.276)
-
 [connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="RobotBossTimer" to="." method="_on_robot_boss_timer_timeout"]

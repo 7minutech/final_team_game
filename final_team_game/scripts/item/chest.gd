@@ -39,7 +39,8 @@ func set_pitch_scale() -> void:
 
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
-	if arrow_instance and arrow_instance.get_parent():
+
+	if arrow_instance and arrow_instance.get_parent() != null:
 		arrow_instance.queue_free()
 	pass # Replace with function body.
 
