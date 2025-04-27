@@ -126,7 +126,6 @@ func _physics_process(_delta: float) -> void:
 		canShoot = false
 		canMove = false
 		die()
-
 	# Handle the hero's movement.
 	handleMovement()
 	if canMove:
