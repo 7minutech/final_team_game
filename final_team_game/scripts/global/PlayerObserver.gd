@@ -13,7 +13,10 @@ var current_xp: int
 var current_level: int
 var max_hp: int
 var current_hp: int
-var coins: int = 1000
+var coins: int = 0
+var movement_speed: float 
+var health_regen: float = 0.0
+
 var upgrade
 var permanent_upgrade: Dictionary = {
 	"xp": upgrade_type.AVAILABLE,
@@ -40,4 +43,5 @@ func toString() -> String:
 	text += "\nPlayer Level: " + str(current_level)
 	text += "\nMax XP: " + str(max_xp)
 	text += "\nCurrent XP: " + str(current_xp)
+	text += "\nCurrent coins: " + str(current_xp)
 	return text

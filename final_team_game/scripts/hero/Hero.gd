@@ -290,12 +290,16 @@ func _on_ability_tester_timeout() -> void:
 	
 func set_speed(new_speed: float) -> void:
 	speed = new_speed
+	PlayerObserver.movement_speed = (speed / float	(INITIAL_SPEED)) - 1
+	var f = PlayerObserver.movement_speed
+	pass
 
 func set_max_health(new_health: int) -> void:
 	max_health = new_health
 
 func set_health_regen(regen: float) -> void:
 	health_regen = regen
+	PlayerObserver.health_regen = health_regen
 
 func set_pick_up_range(new_radius: float) -> void:
 	pick_up_range = new_radius
@@ -377,8 +381,10 @@ func give_speed_pickup(multiplier: float) -> void:
 	var original_speed: float = speed
 	var new_speed = speed * multiplier
 	speed = new_speed
+	PlayerObserver.movement_speed = (speed / INITIAL_SPEED) - 1
 	await  get_tree().create_timer(10.0).timeout
 	speed = original_speed 
+	PlayerObserver.movement_speed = (speed / INITIAL_SPEED) - 1
 	pass
 
 func give_magnet_pickup(multiplier: float) -> void:

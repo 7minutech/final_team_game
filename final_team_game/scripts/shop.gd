@@ -36,7 +36,7 @@ func on_hover():
 # Helper function to update the button text and color based on upgrade status
 func _update_button_status(button: Button, upgrade_status: int):
 	if upgrade_status == upgrade_type.AVAILABLE:
-		button.text = "Purchase"
+		button.text = "Purchase (30 coins)"
 		button.modulate = Color(1, 0.84, 0)  # Gold color for Available state
 	elif upgrade_status == upgrade_type.OFF:
 		button.text = "Off"  # Button text indicates what will happen when pressed
@@ -50,9 +50,9 @@ func _on_purchase_button_1_pressed() -> void:
 	var upgrade = PlayerObserver.permanent_upgrade["xp"]
 	$ClickSound.play()
 	
-	if PlayerObserver.coins >= 100 and upgrade == upgrade_type.AVAILABLE:
+	if PlayerObserver.coins >= 30 and upgrade == upgrade_type.AVAILABLE:
 		# Purchase the upgrade and set it to ON
-		PlayerObserver.coins -= 100
+		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.ON
 		# Since the upgrade is now ON, the button should say "Off" to indicate 
 		# clicking it will turn the upgrade off
@@ -79,9 +79,9 @@ func _on_purchase_button_1_pressed() -> void:
 func _on_purchase_button_2_pressed() -> void:
 	var upgrade = PlayerObserver.permanent_upgrade["pizza"]
 	$ClickSound.play()
-	if PlayerObserver.coins >= 100 and upgrade == upgrade_type.AVAILABLE:
+	if PlayerObserver.coins >= 30 and upgrade == upgrade_type.AVAILABLE:
 		# Purchase the upgrade and set it to ON
-		PlayerObserver.coins -= 100
+		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.ON
 		$UpgradeList/Upgrade2/PurchaseButton2.text = "On"
 		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(0, 1, 0)  # Green color for ON state
@@ -102,9 +102,9 @@ func _on_purchase_button_2_pressed() -> void:
 func _on_purchase_button_3_pressed() -> void:
 	var upgrade = PlayerObserver.permanent_upgrade["music"]
 	$ClickSound.play()
-	if PlayerObserver.coins >= 100 and upgrade == upgrade_type.AVAILABLE:
+	if PlayerObserver.coins >= 30 and upgrade == upgrade_type.AVAILABLE:
 		# Purchase the upgrade and set it to ON
-		PlayerObserver.coins -= 100
+		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["music"] = upgrade_type.ON
 		$UpgradeList/Upgrade3/PurchaseButton3.text = "On"
 		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(0, 1, 0)  # Green color for ON state

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cltujlk1ryjm1"]
+[gd_scene load_steps=6 format=3 uid="uid://cltujlk1ryjm1"]
 
 [ext_resource type="Script" path="res://scripts/hud/pause_screen.gd" id="1_cr7hm"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="2_al6gt"]
 [ext_resource type="PackedScene" uid="uid://btfiacqmket4q" path="res://scenes/hud/sliders.tscn" id="3_plpnn"]
+[ext_resource type="PackedScene" uid="uid://dhv0wwe5g6up3" path="res://scenes/sounds/ClickSound.tscn" id="4_lnu7j"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3c0f"]
 
@@ -204,6 +205,8 @@ scroll_active = false
 [node name="SldierScene" parent="." instance=ExtResource("3_plpnn")]
 visible = false
 position = Vector2(382, 53)
+
+[node name="ClickSound" parent="." instance=ExtResource("4_lnu7j")]
 
 [connection signal="pressed" from="ButtonHolder/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="ButtonHolder/Options" to="." method="_on_options_pressed"]

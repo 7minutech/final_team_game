@@ -84,12 +84,19 @@ func update_stats_label() -> void:
 	var text: String = "Max Health: " + str(PlayerObserver.max_hp)
 	text += "\nCurrent Health: " + str(PlayerObserver.current_hp)
 	text += "\nPlayer Level: " + str(PlayerObserver.current_level)
-	text += "\nMax XP: " + str(PlayerObserver.max_xp)
 	text += "\nCurrent XP: " + str(PlayerObserver.current_xp)
+	text += "\nMax XP: " + str(PlayerObserver.max_xp)
+	text += "\nCurrent Coins: " + str(PlayerObserver.coins)
+	text += "\nMovement Speed: " + str(PlayerObserver.movement_speed * 100) + "%"
+	
+	var regen = PlayerObserver.health_regen
+	text += "\nHealth Regen: %0.1f HP/s" % regen
 	$StatsLabel.set_text(text)
 
 
 func _on_resume_pressed() -> void:
+	$ClickSound.play()
+	await  $ClickSound.finished
 	# close the options menu if left open
 	$ButtonHolder/Options.modulate = Color.WHITE
 	$SldierScene.hide()
@@ -102,6 +109,7 @@ func _on_resume_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
+	$ClickSound.play()
 	var sliders: Node2D = $SldierScene
 	#var brightness: float = 0.9
 	if not sliders.visible:
