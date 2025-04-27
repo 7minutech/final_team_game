@@ -387,7 +387,7 @@ func give_magnet_pickup(multiplier: float) -> void:
 	shrink_tween.tween_property(shape, "radius", original_radius, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	await shrink_tween.finished
 
-func give_emp_pickup(multiplier: float) -> void:
+func give_emp_pickup(_multiplier: float) -> void:
 	$EMP.expand_boost()
 	pass
 	

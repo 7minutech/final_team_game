@@ -100,7 +100,8 @@ func loseHealth(dmg: int) -> void:
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
-		self.queue_free()
+		#self.queue_free()
+		self.call_deferred("queue_free")
 
 func set_pitch_scale() -> void:
 	var pitch := randf_range(1.2,1.5)

@@ -34,5 +34,6 @@ func shoot() -> void:
 
 
 func _on_queue_free_timer_timeout() -> void:
-	self.queue_free()
+	#self.queue_free()
+	self.call_deferred("queue_free")
 	#print("turret freed")

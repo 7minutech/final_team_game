@@ -77,13 +77,13 @@ func update_stat(qty: int) -> void:
 		1:
 			set_max_proj(1)
 		2:
-			set_max_ricochets(2)
+			set_max_ricochets(3)
 		3:
 			set_projectile_speed(projectile_speed * 2)
 		4:
 			set_max_proj(maxProj + 2)
 		5:
-			set_max_ricochets(4)
+			set_max_ricochets(5)
 		_:
 			print("Invalid level")
 

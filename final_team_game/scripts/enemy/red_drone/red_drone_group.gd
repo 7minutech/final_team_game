@@ -26,7 +26,8 @@ func _physics_process(delta: float) -> void:
 	move_and_collide((direction * delta).normalized() * speed)
 	if self.get_child_count() <= 1:
 		#print("drone_group freed")
-		self.queue_free()
+		#self.queue_free()
+		self.call_deferred("queue_free")
 
 ### Functions for spawn logic ###
 # Function to spawn red drones randomly around origin

@@ -14,7 +14,7 @@ func setLocation(l: Vector2):
 func setProj(proj: RigidBody2D) -> void:
 	projectile = proj
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !$Visibility.is_on_screen() and $Despawn.time_left <= 0:
 		self.call_deferred("queue_free")
 

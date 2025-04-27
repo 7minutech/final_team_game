@@ -2,7 +2,6 @@ extends Control
 
 @onready var play_button = $UI/PlayButton
 @onready var options_button = $UI/OptionsButton
-@onready var volume_slider = $UI/VolumeSlider
 @onready var hover_sound = $HoverSound
 @onready var click_sound = $ClickSound
 @onready var shop_button = $UI/ShopButton

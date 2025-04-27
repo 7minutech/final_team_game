@@ -68,7 +68,7 @@ func giveRandomUpgrade() -> void:
 			available.append(key)
 	if !available.is_empty():
 		var abilityName: String = available.pick_random()
-		var ability = PlayerObserver.player.abilities.get(abilityName)
+		#var ability = PlayerObserver.player.abilities.get(abilityName)
 		if AbilityObserver.ACTIVE_ABILITIES_NAMES.has(abilityName):
 			AbilityObserver.give_active_ability(abilityName)
 		else:

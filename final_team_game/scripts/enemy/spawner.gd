@@ -27,13 +27,15 @@ func _process(_delta: float) -> void:
 func spawn(entity_key: String):
 	var new_spawn_scene = load(entity_dict[entity_key])
 	var new_spawn = new_spawn_scene.instantiate()
-	get_tree().current_scene.add_child(new_spawn)
+	#get_tree().current_scene.add_child(new_spawn)
+	get_tree().current_scene.call_deferred("add_child", new_spawn)
 	new_spawn.global_position = CameraObserver.get_random_spawn_position()
 
 func spawn_with_position(entity_key: String, spawn_position: Vector2):
 	var new_spawn_scene = load(entity_dict[entity_key])
 	var new_spawn = new_spawn_scene.instantiate()
-	get_tree().current_scene.add_child(new_spawn)
+	#get_tree().current_scene.add_child(new_spawn)
+	get_tree().current_scene.call_deferred("add_child", new_spawn)
 	new_spawn.global_position = spawn_position
 
 func spawn_ring_aliens(num_aliens:int):
