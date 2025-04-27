@@ -77,16 +77,16 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		7: "Increase pickup range by 20%"
 	},
 	"ooze": {
-		1: "Increase damage by 5",
-		2: "Increase ooze size by 25%",
-		3: "Decrease damage interval by 0.25s",
-		4: "Double pulse limit",
-		5: "Reduce drop cooldown by 1.5s",
-		6: "Further decrease damage interval by 0.5s",
-		7: "Triple pulse limit",
-		8: "Increase ooze size by 75%",
-		9: "Increase damage by 20"
-	},
+	1: "Increase damage by 5",
+	2: "Increase ooze size by 25%",
+	3: "Decrease damage interval by 0.25s",
+	4: "Double the pulse limit",
+	5: "Reduce drop cooldown by 1.0s",
+	6: "Further decrease damage interval by 0.5s",
+	7: "Triple the pulse limit",
+	8: "Increase ooze size by 75%",
+	9: "Increase damage by 10"
+},
 	"emp": {
 		1: "Increase freeze time by 1.0s",
 		2: "Increase effect area by 50%",

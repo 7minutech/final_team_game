@@ -3,17 +3,17 @@ extends Sprite2D
 class_name Ooze
 
 const INITIAL_SCALE: Vector2 = Vector2(0.25,0.25)
-const INITIAL_DAMAGE: int = 20
-const INITAIAL_TICK_INTERVAL: float = 1.0
+const INITIAL_DAMAGE: int = 5
+const INITAIAL_TICK_INTERVAL: float = 2.5
 const INITIAL_QUEUE_TIMER: float = 2.5
 const INITIAL_PULSE_LIMIT: int = 2
 const INITIAL_DROP_CD: float = 3.0
 
 var max_qty: float = 9
 var radius: float
-var damage: int = 20
+var damage: int = INITIAL_DAMAGE
 var damage_targets = []
-var tick_interval: float = 1.0
+var tick_interval: float = INITAIAL_TICK_INTERVAL
 var tick_timer: float = 0.0
 var ooze_scale = INITIAL_SCALE
 var active = true
@@ -49,7 +49,7 @@ func update_stat(qty: int) -> void:
 			4:
 				set_ooze_pulse_limit(INITIAL_PULSE_LIMIT * 2)
 			5:
-				set_drop_cd(INITIAL_DROP_CD - 1.5)
+				set_drop_cd(INITIAL_DROP_CD - 1.0)
 			6:
 				set_damage_cd(INITAIAL_TICK_INTERVAL - 0.5)
 			7:
@@ -57,7 +57,7 @@ func update_stat(qty: int) -> void:
 			8:
 				set_ooze_scale(INITIAL_SCALE * 1.75)
 			9:
-				set_damage(INITIAL_DAMAGE + 20)
+				set_damage(INITIAL_DAMAGE + 10)
 			_:
 				print("Invalid level")
 
