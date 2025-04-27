@@ -4,89 +4,119 @@ extends Control
 @onready var click_sound = $ClickSound
 @onready var back_button = $BackButton
 
+enum upgrade_type { AVAILABLE, ON, OFF }
 
 func _ready():
 	var coins: int = PlayerObserver.coins
 	$CoinLabel.text = "Coins: " + str(coins)
+	
 	back_button.pressed.connect(on_back_pressed)
 	back_button.mouse_entered.connect(on_hover)
-	if PlayerObserver.permanent_upgrade["Upgrade_1"]:
-		$UpgradeList/Upgrade1/PurchaseButton1.disabled = true
-	if PlayerObserver.permanent_upgrade["Upgrade_2"]:
-		$UpgradeList/Upgrade2/PurchaseButton2.disabled = true
-	if PlayerObserver.permanent_upgrade["Upgrade_3"]:
-		$UpgradeList/Upgrade3/PurchaseButton3.disabled = true
-	if PlayerObserver.permanent_upgrade["Upgrade_4"]:
-		$UpgradeList/Upgrade4/PurchaseButton4.disabled = true
-	if PlayerObserver.permanent_upgrade["Upgrade_5"]:
-		$UpgradeList/Upgrade5/PurchaseButton5.disabled = true
-	if PlayerObserver.permanent_upgrade["Upgrade_6"]:
-		$UpgradeList/Upgrade6/PurchaseButton6.disabled = true
+
+	var upgrade_1 = PlayerObserver.permanent_upgrade["xp"]
+	var upgrade_2 = PlayerObserver.permanent_upgrade["pizza"]
+	var upgrade_3 = PlayerObserver.permanent_upgrade["music"]
+
+	_update_button_status($UpgradeList/Upgrade1/PurchaseButton1, upgrade_1)
+	_update_button_status($UpgradeList/Upgrade2/PurchaseButton2, upgrade_2)
+	_update_button_status($UpgradeList/Upgrade3/PurchaseButton3, upgrade_3)
+
 
 func on_back_pressed():
-	$ClickSound.play()
+	click_sound.play()
 	await click_sound.finished
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
+
 
 func on_hover():
 	hover_sound.play()
 
 
+# Helper function to update the button text and color based on upgrade status
+# Helper function to update the button text and color based on upgrade status
+func _update_button_status(button: Button, upgrade_status: int):
+	if upgrade_status == upgrade_type.AVAILABLE:
+		button.text = "Purchase"
+		button.modulate = Color(1, 0.84, 0)  # Gold color for Available state
+	elif upgrade_status == upgrade_type.OFF:
+		button.text = "Off"  # Button text indicates what will happen when pressed
+		button.modulate = Color(1, 0, 0)  # Red color for Off state
+	else:  # upgrade_type.ON
+		button.text = "On"  # Button text indicates what will happen when pressed
+		button.modulate = Color(0, 1, 0)  # Green color for On state
+
+# Handle purchase and toggling for Upgrade 1
 func _on_purchase_button_1_pressed() -> void:
+	var upgrade = PlayerObserver.permanent_upgrade["xp"]
 	$ClickSound.play()
-	if PlayerObserver.coins >= 100:
+	
+	if PlayerObserver.coins >= 100 and upgrade == upgrade_type.AVAILABLE:
+		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_1"] = true
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
-		$UpgradeList/Upgrade1/PurchaseButton1.disabled = true
-		$UpgradeList/Upgrade1/PurchaseButton1.text = "Purchased"
+		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.ON
+		# Since the upgrade is now ON, the button should say "Off" to indicate 
+		# clicking it will turn the upgrade off
+		$UpgradeList/Upgrade1/PurchaseButton1.text = "On"
+		$UpgradeList/Upgrade1/PurchaseButton1.modulate = Color(0, 1, 0)  # Green color for ON state
+	elif upgrade == upgrade_type.ON:
+		# If the upgrade is ON, toggle it to OFF
+		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.OFF
+		# Since the upgrade is now OFF, the button should say "On" to indicate 
+		# clicking it will turn the upgrade on
+		$UpgradeList/Upgrade1/PurchaseButton1.text = "Off"
+		$UpgradeList/Upgrade1/PurchaseButton1.modulate = Color(1, 0, 0)  # Red color for OFF state
+	elif upgrade == upgrade_type.OFF:
+		# If the upgrade is OFF, toggle it to ON
+		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.ON
+		# Since the upgrade is now ON, the button should say "Off" to indicate 
+		# clicking it will turn the upgrade off
+		$UpgradeList/Upgrade1/PurchaseButton1.text = "On"
+		$UpgradeList/Upgrade1/PurchaseButton1.modulate = Color(0, 1, 0)  # Green color for ON state
 
+	$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 
+# Handle purchase and toggling for Upgrade 2
 func _on_purchase_button_2_pressed() -> void:
+	var upgrade = PlayerObserver.permanent_upgrade["pizza"]
 	$ClickSound.play()
-	if PlayerObserver.coins >= 100:
+	if PlayerObserver.coins >= 100 and upgrade == upgrade_type.AVAILABLE:
+		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_2"] = true
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
-		$UpgradeList/Upgrade2/PurchaseButton2.disabled = true
-		$UpgradeList/Upgrade2/PurchaseButton2.text = "Purchased"
+		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.ON
+		$UpgradeList/Upgrade2/PurchaseButton2.text = "On"
+		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(0, 1, 0)  # Green color for ON state
+	elif upgrade == upgrade_type.ON:
+		# If the upgrade is ON, toggle it to OFF
+		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.OFF
+		$UpgradeList/Upgrade2/PurchaseButton2.text = "Off"
+		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(1, 0, 0)  # Red color for OFF state
+	elif upgrade == upgrade_type.OFF:
+		# If the upgrade is OFF, toggle it to ON
+		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.ON
+		$UpgradeList/Upgrade2/PurchaseButton2.text = "On"
+		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(0, 1, 0)  # Green color for ON state
 
+	$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
 
+# Handle purchase and toggling for Upgrade 3
 func _on_purchase_button_3_pressed() -> void:
+	var upgrade = PlayerObserver.permanent_upgrade["music"]
 	$ClickSound.play()
-	if PlayerObserver.coins >= 100:
+	if PlayerObserver.coins >= 100 and upgrade == upgrade_type.AVAILABLE:
+		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_3"] = true
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
-		$UpgradeList/Upgrade3/PurchaseButton3.disabled = true
-		$UpgradeList/Upgrade3/PurchaseButton3.text = "Purchased"
+		PlayerObserver.permanent_upgrade["music"] = upgrade_type.ON
+		$UpgradeList/Upgrade3/PurchaseButton3.text = "On"
+		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(0, 1, 0)  # Green color for ON state
+	elif upgrade == upgrade_type.ON:
+		# If the upgrade is ON, toggle it to OFF
+		PlayerObserver.permanent_upgrade["music"] = upgrade_type.OFF
+		$UpgradeList/Upgrade3/PurchaseButton3.text = "Off"
+		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(1, 0, 0)  # Red color for OFF state
+	elif upgrade == upgrade_type.OFF:
+		# If the upgrade is OFF, toggle it to ON
+		PlayerObserver.permanent_upgrade["music"] = upgrade_type.ON
+		$UpgradeList/Upgrade3/PurchaseButton3.text = "On"
+		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(0, 1, 0)  # Green color for ON state
 
-
-func _on_purchase_button_4_pressed() -> void:
-	$ClickSound.play()
-	if PlayerObserver.coins >= 100:
-		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_4"] = true
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
-		$UpgradeList/Upgrade4/PurchaseButton4.disabled = true
-		$UpgradeList/Upgrade4/PurchaseButton4.text = "Purchased"
-
-
-func _on_purchase_button_5_pressed() -> void:
-	$ClickSound.play()
-	if PlayerObserver.coins >= 100:
-		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_5"] = true
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
-		$UpgradeList/Upgrade5/PurchaseButton5.disabled = true
-		$UpgradeList/Upgrade5/PurchaseButton5.text = "Purchased"
-
-
-func _on_purchase_button_6_pressed() -> void:
-	$ClickSound.play()
-	if PlayerObserver.coins >= 100:
-		PlayerObserver.coins -= 100
-		PlayerObserver.permanent_upgrade["Upgrade_6"] = true
-		$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
-		$UpgradeList/Upgrade6/PurchaseButton6.disabled = true
-		$UpgradeList/Upgrade6/PurchaseButton6.text = "Purchased"
+	$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)

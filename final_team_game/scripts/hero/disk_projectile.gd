@@ -19,6 +19,9 @@ var speed_key: String = "disk_speed"
 @onready var sprite: Sprite2D = $Skin
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Skin.show()
+	$Pizza.show()
+	permanent_pizza()
 	DamageObserver.weapon_damage_dict[damage_key] = damage
 	DamageObserver.weapon_damage_dict[speed_key] = speed
 	if get_tree().current_scene.find_child("Hero"):
@@ -108,3 +111,10 @@ func update() -> void:
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.loseHealth(damage)
+
+func permanent_pizza() -> void:
+	if PlayerObserver.permanent_upgrade["pizza"] == PlayerObserver.upgrade_type.ON:
+		$Pizza.show()
+		$Skin.hide()
+	else:
+		$Pizza.hide()

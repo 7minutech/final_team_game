@@ -13,6 +13,7 @@ var green_color: Color = Color("96ed4e")
 var blue_green_color: Color = Color("85ff89")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	permanent_upgrade()
 	scale_xp()
 	set_color_xp_values()
 	pass # Replace with function body.
@@ -25,7 +26,12 @@ func _process(_delta: float) -> void:
 func set_xp_value(value: int) -> void:
 	self.xp_value = value
 
-
+func permanent_upgrade() -> void:
+	if PlayerObserver.permanent_upgrade["xp"] == PlayerObserver.upgrade_type.ON:
+		print("increase chance")
+		chance_of_red += 0.25
+		chance_of_green += 0.3
+	pass
 
 func _on_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()

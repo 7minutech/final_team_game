@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfmunyx4yf4tf"]
+[gd_scene load_steps=7 format=3 uid="uid://cfmunyx4yf4tf"]
 
 [ext_resource type="Script" path="res://scripts/hero/disk_projectile.gd" id="1_0cmff"]
 [ext_resource type="Texture2D" uid="uid://c7vwtk5bxxsy6" path="res://assets/weapons/crossbow/CrossbowProjectile.png" id="2_bkith"]
 [ext_resource type="AudioStream" uid="uid://shpg485bo2w2" path="res://assets/sound/ability/mixkit-game-ball-tap-2073.mp3" id="3_8ta5e"]
+[ext_resource type="Texture2D" uid="uid://340g2borks57" path="res://assets/weapons/crossbow/full_pizza.png" id="4_iv8ov"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ympc6"]
 radius = 6.0
@@ -31,7 +32,6 @@ shape = SubResource("CapsuleShape2D_ympc6")
 wait_time = 2.0
 
 [node name="DamageArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -47,6 +47,10 @@ offset_bottom = 23.0
 stream = ExtResource("3_8ta5e")
 volume_db = -10.0
 bus = &"SFX"
+
+[node name="Pizza" type="Sprite2D" parent="."]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("4_iv8ov")
 
 [connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

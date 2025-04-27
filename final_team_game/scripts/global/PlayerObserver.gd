@@ -1,6 +1,8 @@
 extends Node
 
 
+enum upgrade_type {AVAILABLE, ON, OFF}
+
 ### Variables ###
 var player: Player
 var player_camera: Camera2D
@@ -14,12 +16,9 @@ var current_hp: int
 var coins: int = 1000
 var upgrade
 var permanent_upgrade: Dictionary = {
-	"Upgrade_1": false,
-	"Upgrade_2": false,
-	"Upgrade_3": false,
-	"Upgrade_4": false,
-	"Upgrade_5": false,
-	"Upgrade_6": false
+	"xp": upgrade_type.AVAILABLE,
+	"pizza": upgrade_type.AVAILABLE,
+	"music": upgrade_type.AVAILABLE,
 }
 
 # Called when the node enters the scene tree for the first time.

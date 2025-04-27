@@ -42,13 +42,12 @@ size_flags_horizontal = 4
 
 [node name="UpgradeName1" type="Label" parent="UpgradeList/Upgrade1"]
 layout_mode = 2
-text = "Upgrade Name:  
+text = "XP Boost
 "
 
 [node name="UpgradeDesc1" type="Label" parent="UpgradeList/Upgrade1"]
 layout_mode = 2
-text = "Decription of the upgrade
-"
+text = "Higher chance of better xp orbs"
 
 [node name="PurchaseButton1" type="Button" parent="UpgradeList/Upgrade1"]
 layout_mode = 2
@@ -61,13 +60,11 @@ size_flags_horizontal = 4
 
 [node name="UpgradeName2" type="Label" parent="UpgradeList/Upgrade2"]
 layout_mode = 2
-text = "Upgrade Name:  
-"
+text = "Pizza Disk"
 
 [node name="UpgradeDesc2" type="Label" parent="UpgradeList/Upgrade2"]
 layout_mode = 2
-text = "Decription of the upgrade
-"
+text = "Turns the crossbow disk into a tasty pizza"
 
 [node name="PurchaseButton2" type="Button" parent="UpgradeList/Upgrade2"]
 layout_mode = 2
@@ -80,72 +77,13 @@ size_flags_horizontal = 4
 
 [node name="UpgradeName3" type="Label" parent="UpgradeList/Upgrade3"]
 layout_mode = 2
-text = "Upgrade Name:  
-"
+text = "New Music"
 
 [node name="UpgradeDesc3" type="Label" parent="UpgradeList/Upgrade3"]
 layout_mode = 2
-text = "Decription of the upgrade
-"
+text = "Change the game music"
 
 [node name="PurchaseButton3" type="Button" parent="UpgradeList/Upgrade3"]
-layout_mode = 2
-text = "Purchase
-"
-
-[node name="Upgrade4" type="HBoxContainer" parent="UpgradeList"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="UpgradeName4" type="Label" parent="UpgradeList/Upgrade4"]
-layout_mode = 2
-text = "Upgrade Name:  
-"
-
-[node name="UpgradeDesc4" type="Label" parent="UpgradeList/Upgrade4"]
-layout_mode = 2
-text = "Decription of the upgrade
-"
-
-[node name="PurchaseButton4" type="Button" parent="UpgradeList/Upgrade4"]
-layout_mode = 2
-text = "Purchase
-"
-
-[node name="Upgrade5" type="HBoxContainer" parent="UpgradeList"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="UpgradeName5" type="Label" parent="UpgradeList/Upgrade5"]
-layout_mode = 2
-text = "Upgrade Name:  
-"
-
-[node name="UpgradeDesc5" type="Label" parent="UpgradeList/Upgrade5"]
-layout_mode = 2
-text = "Decription of the upgrade
-"
-
-[node name="PurchaseButton5" type="Button" parent="UpgradeList/Upgrade5"]
-layout_mode = 2
-text = "Purchase
-"
-
-[node name="Upgrade6" type="HBoxContainer" parent="UpgradeList"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="UpgradeName6" type="Label" parent="UpgradeList/Upgrade6"]
-layout_mode = 2
-text = "Upgrade Name:  
-"
-
-[node name="UpgradeDesc6" type="Label" parent="UpgradeList/Upgrade6"]
-layout_mode = 2
-text = "Decription of the upgrade
-"
-
-[node name="PurchaseButton6" type="Button" parent="UpgradeList/Upgrade6"]
 layout_mode = 2
 text = "Purchase
 "
@@ -166,7 +104,4 @@ text = "Back
 [connection signal="pressed" from="UpgradeList/Upgrade1/PurchaseButton1" to="." method="_on_purchase_button_1_pressed"]
 [connection signal="pressed" from="UpgradeList/Upgrade2/PurchaseButton2" to="." method="_on_purchase_button_2_pressed"]
 [connection signal="pressed" from="UpgradeList/Upgrade3/PurchaseButton3" to="." method="_on_purchase_button_3_pressed"]
-[connection signal="pressed" from="UpgradeList/Upgrade4/PurchaseButton4" to="." method="_on_purchase_button_4_pressed"]
-[connection signal="pressed" from="UpgradeList/Upgrade5/PurchaseButton5" to="." method="_on_purchase_button_5_pressed"]
-[connection signal="pressed" from="UpgradeList/Upgrade6/PurchaseButton6" to="." method="_on_purchase_button_6_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

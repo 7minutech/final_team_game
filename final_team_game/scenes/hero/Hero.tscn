@@ -168,7 +168,7 @@ texture_progress_offset = Vector2(-15, -60)
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_5dghu")
-volume_db = -5.0
+volume_db = -7.5
 autoplay = true
 bus = &"Music"
 parameters/looping = true

@@ -73,7 +73,9 @@ var health_regen_counter: float = 0.0
 
 
 func _ready() -> void:
+	permanent_music()
 	$GameMusic.process_mode = Node.PROCESS_MODE_ALWAYS
+	$GameMusic.play()
 	$Shield.hide()
 	$HurtAnimation.hide()
 	$Hud/LevelLabel.text = "Level: " + str(player_level)
@@ -153,6 +155,12 @@ func updateHealthBar() -> void:
 	$HealthBar.set_value_no_signal(health)
 ##
 
+func permanent_music() -> void:
+	if PlayerObserver.permanent_upgrade["music"] == PlayerObserver.upgrade_type.ON:
+		$GameMusic.stream = load("res://assets/sound/background/permanent_song.mp3")
+	else:
+		$GameMusic.stream = load("res://assets/sound/background/Endless_Voyager.mp3")
+		
 
 ### Functions for movment based logic ###
 # Function to determine the direction that the hero should be facing based on movement
