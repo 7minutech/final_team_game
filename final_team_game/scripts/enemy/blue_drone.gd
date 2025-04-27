@@ -46,6 +46,7 @@ func loseHealth(dmg: int) -> void:
 	flash_white()
 	health -= dmg
 	if health <= 0:
+		$CollisionShape2D.set_deferred("disabled",true)
 		drop_xp_orb(20)
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
