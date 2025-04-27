@@ -2,12 +2,12 @@ extends Weapon
 
 const INITIAL_REFLECTIONS: int = 2
 const INITIAL_DMG: int = 5
-const INITIAL_SPEED: float = 2
+const INITIAL_SPEED: float = 10
 
 ## Variables
 var reflections = INITIAL_REFLECTIONS
 var remaining_reflections = INITIAL_REFLECTIONS
-var disk_speed: float = 2
+var disk_speed: float = INITIAL_SPEED
 var disk_dmg: int = INITIAL_DMG
 var disk_projectile: PackedScene = load("res://scenes/hero/DiskProjectile.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -32,11 +32,12 @@ func _ready() -> void:
 func shoot(mousePos: Vector2) -> void:
 	var proj: DiskProjectile = disk_projectile.instantiate()
 	proj.setDamage(disk_dmg)
-	proj.setSpeed(disk_speed)
-	proj.set_reflection(reflections)
-	get_tree().current_scene.add_child(proj)
 	var direction: Vector2 = mousePos - global_position
+	proj.setSpeed(disk_speed * 50) 
+	direction = direction.normalized()
+	proj.set_reflection(reflections)
 	proj.setDirection(direction)
+	get_tree().current_scene.add_child(proj)
 
 func auto_shoot() -> void:
 	if auto and not targets.is_empty():
@@ -60,7 +61,7 @@ func update_stat(qty: int) -> void:
 		2:
 			set_weapon_dmg(INITIAL_DMG + 5)
 		3:
-			set_projectile_speed(INITIAL_SPEED + 1)
+			set_projectile_speed(INITIAL_SPEED + 5)
 		4:
 			set_reflections(INITIAL_REFLECTIONS + 2)
 		5:

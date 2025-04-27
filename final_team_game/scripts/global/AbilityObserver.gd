@@ -116,14 +116,14 @@ const ABILITY_UPGRADE_DESC: Dictionary = {
 		5: "Boomerangs now ricochet to four additional enemies before returning"
 	},
 	"crossbow": {
-	1: "Increase reflections by 1",
-	2: "Increase weapon damage by 5",
-	3: "Increase projectile speed by 50%",
-	4: "Increase reflections by 1",
-	5: "Reduce shoot cooldown by 0.25",
-	6: "Increase weapon damage by 10",
-	7: "Increase reflections by 1"
-}
+		1: "Increase reflections by 1",
+		2: "Increase weapon damage by 5",
+		3: "Increase projectile speed by 50%",
+		4: "Increase reflections by 1",
+		5: "Reduce shoot cooldown by 0.25",
+		6: "Increase weapon damage by 10",
+		7: "Increase reflections by 1"
+	}
 }
 
 const ABILITY_SCENE_PATH:Dictionary = {
