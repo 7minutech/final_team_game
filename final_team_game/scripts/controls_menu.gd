@@ -11,7 +11,7 @@ func _ready():
 
 func on_back_pressed():
 	click_sound.play()
-	await get_tree().create_timer(0.5)
+	await click_sound.finished
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 
 func on_hover():

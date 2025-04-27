@@ -23,6 +23,7 @@ const MAX_DIFFICULTY_LEVEL = 10     # Cap the difficulty scaling at this level (
 @export var spawn_alien: bool = true
 @export var spawn_braizers: bool = true
 @export var spawn_drone_boss: bool = true
+@export var spawn_turrets: bool = true
 
 # Level tracking - much faster progression
 var level: int = 0
@@ -93,6 +94,7 @@ func update_game_state() -> void:
 			pass
 		1:  # 15 seconds in - introduce red drones
 			$RedDroneTimer.autostart = true
+			$RedDroneTimer.start()
 			$RedDroneTimer.wait_time = 2.5
 		2:  # 30 seconds in - first ring aliens guaranteed
 			spawner.spawn_ring_aliens(40)
@@ -104,6 +106,8 @@ func update_game_state() -> void:
 			$RobotBossTimer.autostart = true
 			$DroneBoss.autostart = true
 		5:  # 75 seconds in - even more enemies
+			$TurretTimer.start()
+			$TurretTimer.autostart = true
 			$EnemySpawnTimer.wait_time *= 0.7
 			$BlueDroneTimer.wait_time *= 0.7
 			$RedDroneTimer.wait_time *= 0.7
@@ -210,6 +214,11 @@ func _on_drone_boss_timeout() -> void:
 		# Spawn a ring of aliens with the boss
 		if level >= 2:
 			spawner.spawn_ring_aliens(40 + min(level * 2, 20))
+
+func _on_turret_timer_timeout() -> void:
+	if spawn_turrets:
+		spawner.spawn("bullet_turret")
+	pass # Replace with function body.
 
 # Map boundary functions
 func player_is_off_map(camRect: Rect2) -> bool:

@@ -41,6 +41,9 @@ autostart = true
 [node name="RedDroneTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="TurretTimer" type="Timer" parent="."]
+wait_time = 25.0
+
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4096
 scale = Vector2(5, 5)
@@ -62,4 +65,5 @@ autostart = true
 [connection signal="timeout" from="RingAlienTimer" to="." method="_on_ring_alien_timer_timeout"]
 [connection signal="timeout" from="BlueDroneTimer" to="." method="_on_blue_drone_timer_timeout"]
 [connection signal="timeout" from="RedDroneTimer" to="." method="_on_red_drone_timer_timeout"]
+[connection signal="timeout" from="TurretTimer" to="." method="_on_turret_timer_timeout"]
 [connection signal="timeout" from="DroneBoss" to="." method="_on_drone_boss_timeout"]

@@ -28,11 +28,11 @@ func _physics_process(_delta: float) -> void:
 # Function to lose health
 func loseHealth(dmg: int) -> void:
 	set_pitch_scale()
-	$LostHealthSound.play()
+	$LostHeatlhSound
 	flash_white()
 	health -= dmg
 	if health <= 0:
-		$CollisionShape2D.set_deferred("disabled",true)
+		$DamageArea2/CollisionShape2D.set_deferred("disabled",true)
 		drop_xp_orb(5)
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
@@ -52,7 +52,7 @@ func flash_white() -> void:
 
 func set_pitch_scale() -> void:
 	var pitch := randf_range(1.2,1.5)
-	$LostHealthSound.pitch_scale = pitch
+	$LostHeatlhSound.pitch_scale = pitch
 
 func drop_xp_orb(xp_value: int) -> void:
 	var xp_orb: PackedScene = preload("res://scenes/item/xp_orb.tscn")

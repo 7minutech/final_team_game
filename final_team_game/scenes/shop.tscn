@@ -159,9 +159,9 @@ theme_override_font_sizes/font_size = 30
 text = "Back
 "
 
-[node name="ClickSound" parent="." instance=ExtResource("2_46j7k")]
-
 [node name="HoverSound" parent="." instance=ExtResource("3_tvorp")]
+
+[node name="ClickSound" parent="." instance=ExtResource("2_46j7k")]
 
 [connection signal="pressed" from="UpgradeList/Upgrade1/PurchaseButton1" to="." method="_on_purchase_button_1_pressed"]
 [connection signal="pressed" from="UpgradeList/Upgrade2/PurchaseButton2" to="." method="_on_purchase_button_2_pressed"]
