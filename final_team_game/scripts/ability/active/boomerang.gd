@@ -1,5 +1,9 @@
 extends Weapon
 
+### Constants ###
+const target = preload("res://scenes/ability/active/boomerang_target.tscn")
+
+## Variables ##
 var maxRicochets: int = 0
 var maxProj: int = 0
 var numProj: int = 0
@@ -36,6 +40,9 @@ func shoot(mousePos: Vector2) -> void:
 		proj.setDamage(weapon_dmg)
 		proj.setSpeed(projectile_speed)
 		get_tree().current_scene.add_child(proj)
+		var t = target.instantiate()
+		t.setLocation(mousePos)
+		get_tree().current_scene.add_child(t)
 		var direction: Vector2 = mousePos - global_position
 		proj.setDirection(direction)
 ##

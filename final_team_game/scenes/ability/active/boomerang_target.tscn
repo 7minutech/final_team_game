@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dan2uqksu3mpv"]
+
+[ext_resource type="Script" path="res://scripts/ability/active/boomerang_target.gd" id="1_m546n"]
+[ext_resource type="Texture2D" uid="uid://bc88v07jw8seg" path="res://assets/hud/ability_icons/IconBG.png" id="2_2t4yq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m137e"]
+radius = 14.0357
+
+[node name="BoomerangTarget" type="Area2D" groups=["boomerang_target"]]
+z_index = 1
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_m546n")
+
+[node name="TargetCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m137e")
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Middle" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(0, 2)
+scale = Vector2(0.255769, 0.245264)
+texture = ExtResource("2_2t4yq")
+
+[node name="Inner" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 2)
+scale = Vector2(0.238184, 0.228763)
+texture = ExtResource("2_2t4yq")
+
+[node name="Smallest" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(0, 2)
+scale = Vector2(0.223231, 0.209127)
+texture = ExtResource("2_2t4yq")
+
+[node name="MiddleSpin" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Despawn" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="MiddleSpin" to="." method="_on_middle_spin_timeout"]

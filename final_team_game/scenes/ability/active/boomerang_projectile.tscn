@@ -46,7 +46,7 @@ shape = SubResource("CircleShape2D_wru0k")
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 10
 
 [node name="DamageCollider" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(-2, -3)
@@ -59,7 +59,7 @@ sprite_frames = SubResource("SpriteFrames_dbt22")
 
 [node name="TargetFinder" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 10
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetFinder"]
 shape = SubResource("CircleShape2D_fpo0p")
@@ -68,6 +68,12 @@ shape = SubResource("CircleShape2D_fpo0p")
 position = Vector2(-0.5, -3)
 scale = Vector2(0.25, 0.2)
 
+[node name="Spin" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="TargetFinder" to="." method="_on_target_finder_body_entered"]
 [connection signal="body_exited" from="TargetFinder" to="." method="_on_target_finder_body_exited"]
+[connection signal="timeout" from="Spin" to="." method="_on_spin_timeout"]

@@ -19,7 +19,7 @@ var current_ricochets: int = 0
 # Variables for movement
 @export var SPEED_UP_MODIFIER: float = .01
 var direction: Vector2
-var endPoint: Vector2
+var playerPos: Vector2
 @onready var sprite: AnimatedSprite2D = $Skin
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +27,6 @@ func _ready() -> void:
 	parent.numProj += 1
 	if get_tree().current_scene.find_child("Hero"):
 		self.position = get_tree().current_scene.find_child("Hero").position
-		print(str(parent.numProj))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,9 +47,6 @@ func setParent(p: Weapon) -> void:
 # Function to set direction of movement
 func setDirection(d: Vector2) -> void:
 	direction = d
-func setEndPoint(ep: Vector2) -> void:
-	endPoint = ep
-
 
 ## Functions for stats
 # Function for adjusting damage
@@ -75,8 +71,8 @@ func findTargets() -> void:
 
 func goToPlayer() -> void:
 	returning = true
-	endPoint = PlayerObserver.player.position
-	direction = endPoint - self.position
+	playerPos = PlayerObserver.player.position
+	direction = playerPos - self.position
 	speed = speed + (speed * SPEED_UP_MODIFIER)
 	
 func _on_damage_area_body_entered(body: Node2D) -> void:
@@ -85,21 +81,26 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		if current_ricochets < max_ricochets && !returning:
 			current_ricochets += 1
 			findTargets()
-		else:
+	if body.is_in_group("Hero"):
+		if returning:
+			parent.numProj -= 1
+			self.queue_free()
+
+func _on_damage_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("boomerang_target"):
+			area.call_deferred("queue_free")
 			goToPlayer()
+
 
 
 func _on_target_finder_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		targetList.append(body)
-		body.is_inside_tree()
-	if body.is_in_group("Hero"):
-		if returning:
-			parent.numProj -= 1
-			print(str(parent.numProj))
-			self.queue_free()
-
 
 func _on_target_finder_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		targetList.erase(body)
+
+
+func _on_spin_timeout() -> void:
+	$Skin.rotate(deg_to_rad(33))
