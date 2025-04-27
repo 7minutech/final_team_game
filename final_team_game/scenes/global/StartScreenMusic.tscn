@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://sr5raah0drgh"]
+
+[ext_resource type="AudioStream" uid="uid://blaqsypp1tn72" path="res://assets/sound/background/Lost signal main theme (WIP).mp3" id="1_tgp2q"]
+[ext_resource type="Script" path="res://scripts/global/start_screen_music.gd" id="2_nw8is"]
+
+[node name="StartScreenMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_tgp2q")
+volume_db = -10.0
+script = ExtResource("2_nw8is")

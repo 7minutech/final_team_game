@@ -37,11 +37,15 @@ layout_mode = 2
 text = "Options
 "
 
-[node name="VolumeSlider" type="HSlider" parent="UI"]
+[node name="ShopButton" type="Button" parent="UI"]
 layout_mode = 2
-max_value = 1.0
-step = 0.1
-value = 0.5
+text = "Shop
+"
+
+[node name="ControlsButton" type="Button" parent="UI"]
+layout_mode = 2
+text = "Controls
+"
 
 [node name="Hover" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_qad8o")
@@ -55,3 +59,6 @@ pitch_scale = 2.03
 
 [node name="StartScreenMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_n516w")
+
+[connection signal="pressed" from="UI/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="UI/ControlsButton" to="." method="_on_controls_button_pressed"]

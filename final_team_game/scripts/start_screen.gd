@@ -5,29 +5,33 @@ extends Control
 @onready var volume_slider = $UI/VolumeSlider
 @onready var hover_sound = $Hover
 @onready var click_sound = $ClickSound
+@onready var shop_button = $UI/ShopButton
+@onready var controls_button = $UI/ControlsButton
  
 var options_open = false
 
 func _ready():
-	$StartScreenMusic.play()
 	play_button.pressed.connect(on_play_pressed)
 	play_button.mouse_entered.connect(on_hover)
 	options_button.pressed.connect(on_options_pressed)
 	options_button.mouse_entered.connect(on_hover)
-	volume_slider.value_changed.connect(on_volume_changed)
-	volume_slider.visible = false
+	shop_button.pressed.connect(on_shop_pressed)
+	shop_button.mouse_entered.connect(on_hover)
+	controls_button.pressed.connect(on_controls_pressed)
+	controls_button.mouse_entered.connect(on_hover)
 	
 
 func on_play_pressed():
+	StartScreenMusic.stop()
 	click_sound.play()
 	await click_sound.finished
-	get_tree().change_scene_to_file("res://scenes/main/Main.tscn")
+	get_tree().change_scene_to_file("res://scenes/test/TestEnemyMain2.tscn")
 	
 
 func on_options_pressed():
 	click_sound.play()
-	options_open = !options_open
-	volume_slider.visible = options_open
+	await click_sound.finished
+	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
 
 func on_volume_changed(value):
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
@@ -35,3 +39,21 @@ func on_volume_changed(value):
 ## HoverSound func
 func on_hover():
 	hover_sound.play()
+
+func on_shop_pressed():
+	click_sound.play()
+	await click_sound.finished
+	get_tree().change_scene_to_file("res://scenes/shop.tscn")
+
+func on_controls_pressed():
+	click_sound.play()
+	await click_sound.finished
+	get_tree().change_scene_to_file("res://scenes/controls_menu.tscn")
+
+
+func _on_shop_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_controls_button_pressed() -> void:
+	pass # Replace with function body.

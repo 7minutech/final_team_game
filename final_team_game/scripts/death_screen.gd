@@ -26,7 +26,7 @@ func on_hover():
 func on_restart_pressed():
 	click_sound.play()
 	await click_sound.finished
-	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/test/TestEnemyMain2.tscn")
 
 func on_quit_pressed():
 	click_sound.play()
