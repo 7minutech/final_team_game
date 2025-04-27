@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6v60glumomfy"]
+[gd_scene load_steps=7 format=3 uid="uid://c6v60glumomfy"]
 
 [ext_resource type="Script" path="res://scripts/test/main/test_enemy_main_2.gd" id="1_ab874"]
 [ext_resource type="PackedScene" uid="uid://drnlo0u0nbpq8" path="res://scenes/hero/Hero.tscn" id="3_go7pr"]
 [ext_resource type="Texture2D" uid="uid://c4nw2jwvbwp1u" path="res://assets/background/background.png" id="4_8imot"]
 [ext_resource type="PackedScene" uid="uid://bdyu27f5oox4s" path="res://scenes/enemy/Spawner.tscn" id="5_l4qc1"]
-[ext_resource type="PackedScene" uid="uid://cwb1ilqg2li0s" path="res://scenes/item/chest.tscn" id="5_xftcb"]
+[ext_resource type="PackedScene" uid="uid://oor2qygi1vka" path="res://scenes/item/xp_orb.tscn" id="5_q17di"]
+[ext_resource type="PackedScene" uid="uid://cc4jj0uuapr7p" path="res://scenes/enemy/alien.tscn" id="6_vpx7i"]
 
 [node name="TestEnemyMain2" type="Node2D"]
 process_mode = 1
@@ -52,6 +53,7 @@ autostart = true
 autostart = true
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -4096
 scale = Vector2(5, 5)
 texture = ExtResource("4_8imot")
 
@@ -59,8 +61,12 @@ texture = ExtResource("4_8imot")
 wait_time = 30.0
 autostart = true
 
-[node name="Chest" parent="." instance=ExtResource("5_xftcb")]
-position = Vector2(982.156, 371.318)
+[node name="XpOrb2" parent="." instance=ExtResource("5_q17di")]
+z_index = -100
+position = Vector2(201, 175)
+
+[node name="Alien" parent="." instance=ExtResource("6_vpx7i")]
+position = Vector2(175, 166)
 
 [connection signal="timeout" from="BraizerSpawnTimer" to="." method="_on_braizer_spawn_timer_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

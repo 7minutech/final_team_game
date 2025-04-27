@@ -8,6 +8,7 @@
 radius = 14.8661
 
 [node name="XpOrb2" type="Area2D"]
+z_index = -4096
 script = ExtResource("1_nd6ac")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
