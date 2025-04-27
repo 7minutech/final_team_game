@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://12tkw3pf520q"]
+[gd_scene load_steps=6 format=3 uid="uid://12tkw3pf520q"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_jkuks"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="2_gy8hb"]
 [ext_resource type="PackedScene" uid="uid://dh1u7ldlbr31y" path="res://scenes/sounds/HoverSound.tscn" id="3_6i5g1"]
 [ext_resource type="PackedScene" uid="uid://dhv0wwe5g6up3" path="res://scenes/sounds/ClickSound.tscn" id="4_n008g"]
 [ext_resource type="AudioStream" uid="uid://c054icrgex6f0" path="res://assets/sound/background/magic space.mp3" id="4_n516w"]
@@ -21,6 +22,20 @@ layout_mode = 0
 offset_right = 1164.0
 offset_bottom = 661.0
 color = Color(0.194349, 0.194349, 0.194349, 1)
+
+[node name="Label" type="Label" parent="BackGround"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 100.0
+offset_right = 20.0
+offset_bottom = 123.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_gy8hb")
+theme_override_font_sizes/font_size = 48
+text = "Title of Game"
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 0
