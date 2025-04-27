@@ -117,6 +117,7 @@ autowrap_mode = 3
 [node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3fk54")
 volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="pressed" from="Choice_1" to="." method="_on_choice_1_pressed"]
 [connection signal="pressed" from="Choice_2" to="." method="_on_choice_2_pressed"]

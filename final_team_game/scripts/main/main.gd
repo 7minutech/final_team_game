@@ -31,6 +31,7 @@ var level_duration: float = 15.0  # Shorter level duration to progress faster
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	StartScreenMusic.stop()
 	# Initialize timers with base values
 	$BlueDroneTimer.wait_time = BASE_DRONE_SPAWN_TIME
 	$RedDroneTimer.wait_time = BASE_DRONE_SPAWN_TIME * 1.2  # Red drones start appearing earlier

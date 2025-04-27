@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://niojtu5447b8"]
+
+[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="1_8uo7w"]
+
+[node name="LostHeatlhSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_8uo7w")
+bus = &"SFX"

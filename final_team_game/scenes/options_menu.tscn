@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjsmhasptlwxr"]
+[gd_scene load_steps=5 format=3 uid="uid://bjsmhasptlwxr"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_f0txa"]
-[ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3" id="2_afjht"]
-[ext_resource type="AudioStream" uid="uid://k4crmxfxfc65" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_21.mp3" id="3_4lnti"]
+[ext_resource type="PackedScene" uid="uid://dhv0wwe5g6up3" path="res://scenes/sounds/ClickSound.tscn" id="2_48ujp"]
+[ext_resource type="PackedScene" uid="uid://djblu0pp15ge0" path="res://scenes/hud/volum_slider.tscn" id="2_iajkv"]
+[ext_resource type="PackedScene" uid="uid://dh1u7ldlbr31y" path="res://scenes/sounds/HoverSound.tscn" id="3_nn1bn"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -15,43 +16,43 @@ script = ExtResource("1_f0txa")
 layout_mode = 0
 offset_right = 1158.0
 offset_bottom = 650.0
-color = Color(0, 0, 0, 1)
+color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 1147.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 100.0
+offset_right = 240.0
+offset_bottom = 237.0
+grow_horizontal = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="MasterLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Master Volume"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="VBoxContainer"]
+[node name="VolumSlider" parent="VBoxContainer" instance=ExtResource("2_iajkv")]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
+bus_name = "Master"
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Music Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer"]
+[node name="VolumSlider2" parent="VBoxContainer" instance=ExtResource("2_iajkv")]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
+bus_name = "Music"
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="SFXLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "SFX Volume
 "
 
-[node name="SFXVolumeSlider" type="HSlider" parent="VBoxContainer"]
+[node name="VolumSlider3" parent="VBoxContainer" instance=ExtResource("2_iajkv")]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
+bus_name = "SFX"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
@@ -60,14 +61,8 @@ offset_right = 1156.0
 offset_bottom = 650.0
 text = "Back"
 
-[node name="HoverSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_afjht")
-volume_db = -10.0
-pitch_scale = 3.05
+[node name="ClickSound" parent="." instance=ExtResource("2_48ujp")]
 
-[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_4lnti")
-volume_db = -10.0
-pitch_scale = 2.03
+[node name="HoverSound" parent="." instance=ExtResource("3_nn1bn")]
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bpxn5661ud7lw" path="res://assets/item/xp_orb_sprite.png" id="1_8mfdu"]
 [ext_resource type="Script" path="res://scripts/item/xp_orb.gd" id="1_nd6ac"]
-[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/item/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_chlq0"]
+[ext_resource type="PackedScene" uid="uid://cuirhdskh4i0" path="res://scenes/sounds/PickUpSound.tscn" id="3_6bni7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_se6xg"]
 radius = 14.8661
 
 [node name="XpOrb2" type="Area2D"]
-z_index = -4096
+z_index = -100
 script = ExtResource("1_nd6ac")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,11 +17,8 @@ scale = Vector2(0.025, 0.025)
 texture = ExtResource("1_8mfdu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_se6xg")
 
-[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_chlq0")
-volume_db = 10.0
+[node name="PickUpSound" parent="." instance=ExtResource("3_6bni7")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/enemy/robot_boss.gd" id="1_160wv"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_pelfv"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_twx50"]
+[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="4_er4cr"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_tu7b1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
@@ -149,9 +149,6 @@ shape = SubResource("CircleShape2D_pw3hx")
 wait_time = 0.5
 one_shot = true
 
-[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_twx50")
-
 [node name="DamageLabel" type="Label" parent="."]
 offset_left = -17.0
 offset_top = -49.0
@@ -168,6 +165,8 @@ libraries = {
 [node name="OffScreenTimer" type="Timer" parent="."]
 process_mode = 3
 wait_time = 3.0
+
+[node name="LostHeatlhSound" parent="." instance=ExtResource("4_er4cr")]
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

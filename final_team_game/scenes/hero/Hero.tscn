@@ -168,8 +168,9 @@ texture_progress_offset = Vector2(-15, -60)
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_5dghu")
-volume_db = -10.0
+volume_db = -5.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="AbilityTester" type="Timer" parent="."]
@@ -187,13 +188,16 @@ wait_time = 2.0
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_k05xx")
 volume_db = -7.5
+bus = &"SFX"
 
 [node name="SwapWeaponSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_wt6tw")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_6q7qt")
+bus = &"SFX"
 
 [node name="OozeTimer" type="Timer" parent="."]
 
@@ -202,6 +206,7 @@ stream = ExtResource("12_6q7qt")
 [node name="ShieldSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_xajlg")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="ChestArea" type="Area2D" parent="."]
 

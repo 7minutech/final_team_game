@@ -20,7 +20,7 @@ script = ExtResource("1_jkuks")
 layout_mode = 0
 offset_right = 1164.0
 offset_bottom = 661.0
-color = Color(0.194349, 0.194349, 0.194349, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -51,6 +51,7 @@ text = "Controls
 stream = ExtResource("4_n516w")
 
 [node name="HoverSound" parent="." instance=ExtResource("3_6i5g1")]
+volume_db = -10.0
 
 [node name="ClickSound" parent="." instance=ExtResource("4_n008g")]
 

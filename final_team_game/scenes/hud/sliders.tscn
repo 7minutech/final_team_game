@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://btfiacqmket4q"]
+
+[ext_resource type="PackedScene" uid="uid://djblu0pp15ge0" path="res://scenes/hud/volum_slider.tscn" id="1_l0idr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_he3uo"]
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="SldierScene" type="Node2D"]
+
+[node name="Options" type="PanelContainer" parent="."]
+offset_right = 118.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_he3uo")
+
+[node name="Container" type="VBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Master Label" type="Label" parent="Options/Container"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="Master" parent="Options/Container" instance=ExtResource("1_l0idr")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Music Label" type="Label" parent="Options/Container"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="Music" parent="Options/Container" instance=ExtResource("1_l0idr")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SFX Label" type="Label" parent="Options/Container"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFX" parent="Options/Container" instance=ExtResource("1_l0idr")]
+layout_mode = 2
+bus_name = "SFX"

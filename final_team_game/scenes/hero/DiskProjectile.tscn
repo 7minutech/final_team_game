@@ -46,6 +46,7 @@ offset_bottom = 23.0
 [node name="BouceSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_8ta5e")
 volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

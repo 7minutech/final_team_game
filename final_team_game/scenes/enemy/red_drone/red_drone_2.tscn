@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/enemy/red_drone/red_drone_2.gd" id="1_xf7jx"]
 [ext_resource type="Texture2D" uid="uid://pxmtm3a424cp" path="res://assets/enemy/drone/Drones-sheet.png" id="2_24fo6"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_ll2rn"]
+[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="3_ffcsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5h3lt"]
 size = Vector2(14, 10)
@@ -76,9 +76,6 @@ collision_mask = 2
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_qrspi")
 
-[node name="LostHealthSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ll2rn")
-
 [node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0.499999, -3.5)
 scale = Vector2(2.05, 0.85)
@@ -87,5 +84,7 @@ scale = Vector2(2.05, 0.85)
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="LostHeatlhSound" parent="." instance=ExtResource("3_ffcsp")]
 
 [connection signal="body_entered" from="DamageArea2" to="." method="_on_damage_area_2_body_entered"]

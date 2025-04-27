@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du18vd0fy4t1l"]
+[gd_scene load_steps=14 format=3 uid="uid://du18vd0fy4t1l"]
 
 [ext_resource type="Script" path="res://scripts/item/braizer.gd" id="1_44e5v"]
 [ext_resource type="Texture2D" uid="uid://s5ivm5caeuan" path="res://assets/enemy/turret/TurretBody.png" id="2_fg08i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ffhwgjofgjr4" path="res://assets/hud/ability_icons/Heart.png" id="4_iidjf"]
 [ext_resource type="Texture2D" uid="uid://djbj10eic81jy" path="res://assets/hud/ability_icons/Magnet.png" id="5_3h53w"]
 [ext_resource type="Texture2D" uid="uid://cl1ux2nfrhffj" path="res://assets/hud/ability_icons/MovementSpeed.png" id="6_6cmf8"]
+[ext_resource type="PackedScene" uid="uid://cuirhdskh4i0" path="res://scenes/sounds/PickUpSound.tscn" id="7_tw6pa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_na130"]
 radius = 38.0132
@@ -70,6 +71,8 @@ scale = Vector2(0.0208715, 0.0222263)
 sprite_frames = SubResource("SpriteFrames_uabu2")
 animation = &"rotation"
 frame_progress = 0.678163
+
+[node name="PickUpSound" parent="." instance=ExtResource("7_tw6pa")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

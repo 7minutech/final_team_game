@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://djblu0pp15ge0"]
+
+[ext_resource type="Script" path="res://scripts/hud/h_slider.gd" id="1_khal6"]
+
+[node name="VolumSlider" type="HSlider"]
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_khal6")
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

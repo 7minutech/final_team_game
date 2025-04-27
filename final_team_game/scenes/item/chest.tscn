@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/item/chest.gd" id="1_78w1i"]
 [ext_resource type="Texture2D" uid="uid://diytmm47u7uob" path="res://assets/item/closed_chest.png" id="2_3tybd"]
-[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/item/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="3_iptpx"]
+[ext_resource type="PackedScene" uid="uid://cuirhdskh4i0" path="res://scenes/sounds/PickUpSound.tscn" id="3_sy080"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_se6xg"]
 radius = 17.0
@@ -17,11 +17,9 @@ texture = ExtResource("2_3tybd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_se6xg")
 
-[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_iptpx")
-volume_db = 10.0
-
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="PickUpSound" parent="." instance=ExtResource("3_sy080")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

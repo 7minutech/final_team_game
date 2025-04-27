@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/enemy/bullet_turret/bullet_turret.gd" id="1_084eo"]
 [ext_resource type="Texture2D" uid="uid://s5ivm5caeuan" path="res://assets/enemy/turret/TurretBody.png" id="2_f4oxk"]
 [ext_resource type="Texture2D" uid="uid://lk2e14jhttr3" path="res://assets/enemy/turret/TurretLaser.png" id="3_mspdg"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="4_pearo"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="5_4rsr5"]
+[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="5_q65c7"]
 
 [sub_resource type="Animation" id="Animation_574dt"]
 length = 0.001
@@ -138,9 +138,6 @@ shape = SubResource("RectangleShape2D_rhpsd")
 position = Vector2(0, 2.38419e-07)
 scale = Vector2(0.3, 0.3)
 
-[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_pearo")
-
 [node name="DamageLabel" type="Label" parent="."]
 offset_left = -17.0
 offset_top = -49.0
@@ -153,3 +150,5 @@ theme_override_font_sizes/font_size = 24
 libraries = {
 "": SubResource("AnimationLibrary_b31ty")
 }
+
+[node name="LostHeatlhSound" parent="." instance=ExtResource("5_q65c7")]

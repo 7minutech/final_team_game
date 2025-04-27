@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_rkxtx"]
 [ext_resource type="AudioStream" uid="uid://blaqsypp1tn72" path="res://assets/sound/background/Lost signal main theme (WIP).mp3" id="1_taw0p"]
-[ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3" id="3_g0b1w"]
-[ext_resource type="AudioStream" uid="uid://k4crmxfxfc65" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_21.mp3" id="4_tka1m"]
+[ext_resource type="PackedScene" uid="uid://dh1u7ldlbr31y" path="res://scenes/sounds/HoverSound.tscn" id="3_d5poc"]
+[ext_resource type="PackedScene" uid="uid://dhv0wwe5g6up3" path="res://scenes/sounds/ClickSound.tscn" id="4_sf6fg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,11 +13,15 @@ offset_bottom = 654.0
 script = ExtResource("1_rkxtx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 1156.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.5
+offset_right = 241.5
+offset_bottom = 650.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -31,17 +35,21 @@ layout_mode = 2
 text = "Restart
 "
 
+[node name="BackStartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Go Back to Start"
+
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "Quit Game"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_taw0p")
+volume_db = -10.0
+bus = &"Music"
 
-[node name="Hover" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_g0b1w")
-pitch_scale = 3.05
+[node name="HoverSound" parent="." instance=ExtResource("3_d5poc")]
 
-[node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_tka1m")
-pitch_scale = 2.03
+[node name="ClickSound" parent="." instance=ExtResource("4_sf6fg")]
+
+[connection signal="pressed" from="VBoxContainer/BackStartButton" to="." method="_on_back_start_button_pressed"]

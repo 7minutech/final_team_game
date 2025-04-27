@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh1u7ldlbr31y"]
+
+[ext_resource type="AudioStream" uid="uid://yox6h1qc3ec8" path="res://assets/sound/hud/MP3_Button Clicks & Beeps_15.mp3" id="1_7dyxa"]
+
+[node name="HoverSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_7dyxa")
+volume_db = -10.0

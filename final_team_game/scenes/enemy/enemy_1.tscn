@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_1.gd" id="1_2myvj"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_swn7e"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_ii3l0"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_cbs08"]
+[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="4_i48pm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
 radius = 15.1327
@@ -148,9 +148,6 @@ shape = SubResource("CircleShape2D_pw3hx")
 wait_time = 0.5
 one_shot = true
 
-[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ii3l0")
-
 [node name="DamageLabel" type="Label" parent="."]
 offset_left = -17.0
 offset_top = -49.0
@@ -163,6 +160,8 @@ theme_override_font_sizes/font_size = 24
 libraries = {
 "": SubResource("AnimationLibrary_b31ty")
 }
+
+[node name="LostHeatlhSound" parent="." instance=ExtResource("4_i48pm")]
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

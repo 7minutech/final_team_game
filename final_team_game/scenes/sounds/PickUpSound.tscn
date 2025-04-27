@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuirhdskh4i0"]
+
+[ext_resource type="AudioStream" uid="uid://c8sxrkd61hsnh" path="res://assets/sound/item/coin-collect-retro-8-bit-sound-effect-145251.mp3" id="1_xl8vm"]
+
+[node name="PickUpSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_xl8vm")
+bus = &"SFX"

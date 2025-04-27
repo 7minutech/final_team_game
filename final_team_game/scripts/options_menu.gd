@@ -9,7 +9,7 @@ func _ready():
 
 func _on_back_button_pressed() -> void:
 	click_sound.play()
-	await click_sound.finished
+	await get_tree().create_timer(0.5)
 	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 
 func on_hover():

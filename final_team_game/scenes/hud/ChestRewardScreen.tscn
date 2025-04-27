@@ -585,13 +585,16 @@ one_shot = true
 [node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_2h1a4")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="RewardSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_f41g6")
 volume_db = -7.5
+bus = &"SFX"
 
 [node name="ItemRewardSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_8nyw5")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="ButtonAnimator" to="." method="_on_button_animator_animation_finished"]
 [connection signal="pressed" from="ClickArea" to="." method="_on_click_area_pressed"]

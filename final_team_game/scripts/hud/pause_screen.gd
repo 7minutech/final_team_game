@@ -90,8 +90,24 @@ func update_stats_label() -> void:
 
 
 func _on_resume_pressed() -> void:
+	# close the options menu if left open
+	$ButtonHolder/Options.modulate = Color.WHITE
+	$SldierScene.hide()
+	
 	get_parent().setPaused()
 	self.hide()
 	get_parent().find_child("AbilityIcons").show()
 	get_parent().find_child("AbilityIconsBG").show()
 	get_tree().set_pause(false)
+
+
+func _on_options_pressed() -> void:
+	var sliders: Node2D = $SldierScene
+	var brightness: float = 0.9
+	if not sliders.visible:
+		$ButtonHolder/Options.modulate = Color(0.7,0.7,0.7)
+		sliders.show()
+	else:
+		$ButtonHolder/Options.modulate = Color.WHITE
+		sliders.hide()
+	pass # Replace with function body.

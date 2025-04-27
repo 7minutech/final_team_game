@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/enemy/alien.gd" id="1_26lnl"]
 [ext_resource type="Texture2D" uid="uid://krgpfr3scb2o" path="res://assets/enemy/Alien-sheet.png" id="3_106wd"]
-[ext_resource type="AudioStream" uid="uid://bd7wrs0n0m01n" path="res://assets/sound/enemy/mixkit-air-in-a-hit-2161.mp3" id="3_phs0u"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_lephc"]
+[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="4_v3rka"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14i5d"]
 atlas = ExtResource("3_106wd")
@@ -139,9 +139,6 @@ shape = SubResource("CircleShape2D_08i3j")
 wait_time = 0.5
 one_shot = true
 
-[node name="LostHeatlhSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_phs0u")
-
 [node name="DamageLabel" type="Label" parent="."]
 offset_left = -160.0
 offset_top = -750.0
@@ -154,6 +151,8 @@ theme_override_font_sizes/font_size = 379
 libraries = {
 "": SubResource("AnimationLibrary_e8i47")
 }
+
+[node name="LostHeatlhSound" parent="." instance=ExtResource("4_v3rka")]
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
