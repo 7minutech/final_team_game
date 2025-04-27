@@ -70,7 +70,9 @@ func findTargets() -> void:
 				pass
 
 func goToPlayer() -> void:
-	returning = true
+	if !returning:
+		returning = true
+		$DamageArea.set_collision_mask_value(2, true)
 	playerPos = PlayerObserver.player.position
 	direction = playerPos - self.position
 	speed = speed + (speed * SPEED_UP_MODIFIER)
