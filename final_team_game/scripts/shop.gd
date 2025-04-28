@@ -16,10 +16,12 @@ func _ready():
 	var upgrade_1 = PlayerObserver.permanent_upgrade["xp"]
 	var upgrade_2 = PlayerObserver.permanent_upgrade["pizza"]
 	var upgrade_3 = PlayerObserver.permanent_upgrade["music"]
+	var upgrade_4 = PlayerObserver.permanent_upgrade["twice"]
 
 	_update_button_status($UpgradeList/Upgrade1/PurchaseButton1, upgrade_1)
 	_update_button_status($UpgradeList/Upgrade2/PurchaseButton2, upgrade_2)
 	_update_button_status($UpgradeList/Upgrade3/PurchaseButton3, upgrade_3)
+	_update_button_status($UpgradeList/Upgrade4/PurchaseButton4, upgrade_4)
 
 
 func on_back_pressed():
@@ -118,5 +120,27 @@ func _on_purchase_button_3_pressed() -> void:
 		PlayerObserver.permanent_upgrade["music"] = upgrade_type.ON
 		$UpgradeList/Upgrade3/PurchaseButton3.text = "On"
 		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(0, 1, 0)  # Green color for ON state
+
+	$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)
+
+func _on_purchase_button_4_pressed() -> void:
+	var upgrade = PlayerObserver.permanent_upgrade["twice"]
+	$ClickSound.play()
+	if PlayerObserver.coins >= 30 and upgrade == upgrade_type.AVAILABLE:
+		# Purchase the upgrade and set it to ON
+		PlayerObserver.coins -= 30
+		PlayerObserver.permanent_upgrade["twice"] = upgrade_type.ON
+		$UpgradeList/Upgrade4/PurchaseButton4.text = "On"
+		$UpgradeList/Upgrade4/PurchaseButton4.modulate = Color(0, 1, 0)  # Green color for ON state
+	elif upgrade == upgrade_type.ON:
+		# If the upgrade is ON, toggle it to OFF
+		PlayerObserver.permanent_upgrade["twice"] = upgrade_type.OFF
+		$UpgradeList/Upgrade4/PurchaseButton4.text = "Off"
+		$UpgradeList/Upgrade4/PurchaseButton4.modulate = Color(1, 0, 0)  # Red color for OFF state
+	elif upgrade == upgrade_type.OFF:
+		# If the upgrade is OFF, toggle it to ON
+		PlayerObserver.permanent_upgrade["twice"] = upgrade_type.ON
+		$UpgradeList/Upgrade4/PurchaseButton4.text = "On"
+		$UpgradeList/Upgrade4/PurchaseButton4.modulate = Color(0, 1, 0)  # Green color for ON state
 
 	$CoinLabel.text = "Coins: " + str(PlayerObserver.coins)

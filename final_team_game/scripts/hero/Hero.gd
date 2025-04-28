@@ -54,6 +54,7 @@ var can_drop_ooze: bool = true
 var invincible: bool = false
 var ooze_scene = preload("res://scenes/ability/passive/ooze.tscn")
 var health_regen_counter: float = 0.0
+var dead: bool = false
 
 @onready var original_color: Color = $Skin.modulate
 @export var xp_timer: float
@@ -74,6 +75,7 @@ var health_regen_counter: float = 0.0
 
 
 func _ready() -> void:
+	self.show()
 	permanent_music()
 	$GameMusic.process_mode = Node.PROCESS_MODE_ALWAYS
 	$GameMusic.play()
@@ -356,9 +358,14 @@ func show_shield() -> void:
 		$Shield.hide()
 
 func die():
+	self.hide()
+	dead = true
+	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
 
 func show_sparks() -> void:
+	if dead:
+		return
 	set_random_pitch($HurtSound, 1.2,1.4)
 	$HurtSound.play()
 	$HurtAnimation.show()

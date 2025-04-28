@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 ## Constants
 # Constants for stats
-const INITIAL_HEALTH: int = 500.0
+const INITIAL_HEALTH: int = 2000.0
 const INITIAL_SPEED: float = 50.0
-const INITIAL_DAMAGE: int = 25
+const INITIAL_DAMAGE: int = 50
 
 ## Variables
 # Variables for stats
@@ -25,7 +25,6 @@ var damage_key: String = "robot_boss_damage"
 var just_spawned := true
 var player_in_range: bool = false
 
-
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	just_spawned = false
@@ -35,6 +34,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not frozen:
 		if PlayerObserver.player != null:
+			speed += 0.25
 			sprite_animation.play("walk")
 			var direction = PlayerObserver.player.global_position - global_position
 			velocity = direction.normalized() * speed	
@@ -87,6 +87,7 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	off_screen = true
 	$OffScreenTimer.start()
 	pass # Replace with function body.
+
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hero") and not frozen:

@@ -35,7 +35,7 @@ offset_bottom = 123.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_gy8hb")
 theme_override_font_sizes/font_size = 48
-text = "Title of Game"
+text = "Last Stand"
 
 [node name="UI" type="VBoxContainer" parent="."]
 layout_mode = 0

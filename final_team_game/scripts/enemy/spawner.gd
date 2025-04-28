@@ -11,7 +11,8 @@ var entity_dict: Dictionary = {
 	"alien": "res://scenes/enemy/alien.tscn",
 	"red_drones": "res://scenes/enemy/red_drone/drone_turret.tscn",
 	"bullet_turret": "res://scenes/enemy/bullet_turret/bullet_turret.tscn",
-	"blue_drone_boss": "res://scenes/enemy/blue_drone_boss.tscn"
+	"blue_drone_boss": "res://scenes/enemy/blue_drone_boss.tscn",
+	"alien_boss": "res://scenes/enemy/alien_boss.tscn"
 	}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

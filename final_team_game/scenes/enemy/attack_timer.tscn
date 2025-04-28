@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bfks66ubablwp"]
+
+[node name="AttackTimer" type="Timer"]
+wait_time = 0.5

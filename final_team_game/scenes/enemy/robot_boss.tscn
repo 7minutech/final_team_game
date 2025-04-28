@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://f8m0ntc5v12o"]
+[gd_scene load_steps=14 format=3 uid="uid://f8m0ntc5v12o"]
 
 [ext_resource type="Script" path="res://scripts/enemy/robot_boss.gd" id="1_160wv"]
 [ext_resource type="Texture2D" uid="uid://bcomfrhiqemfv" path="res://assets/player/player_sprite.png" id="2_pelfv"]
 [ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="4_er4cr"]
 [ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_tu7b1"]
+[ext_resource type="PackedScene" uid="uid://bfks66ubablwp" path="res://scenes/enemy/attack_timer.tscn" id="5_a51gk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvu14"]
 radius = 33.0606
@@ -143,10 +144,6 @@ collision_mask = 3
 [node name="DamageCollider" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_pw3hx")
 
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="DamageLabel" type="Label" parent="."]
 offset_left = -17.0
 offset_top = -49.0
@@ -168,10 +165,14 @@ wait_time = 3.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
+[node name="AttackTimer" parent="." instance=ExtResource("5_a51gk")]
+
 [connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="area_shape_entered" from="DamageArea" to="." method="_on_damage_area_area_shape_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
 [connection signal="timeout" from="OffScreenTimer" to="." method="_on_off_screen_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

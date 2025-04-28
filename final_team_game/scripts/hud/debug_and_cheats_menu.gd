@@ -110,3 +110,9 @@ func _on_spawn_drone_boss_pressed() -> void:
 func _on_give_coins_pressed() -> void:
 	$ClickSound.play()  # Play the click sound
 	PlayerObserver.coins += 30
+
+
+func _on_spawn_final_boss_pressed() -> void:
+	$ClickSound.play()  # Play the click sound
+	spawner.spawn("alien_boss")
+	pass # Replace with function body.

@@ -85,6 +85,8 @@ func convertTime() -> String:
 	var dict: Dictionary = Time.get_time_dict_from_unix_time(subtractedTime)
 	var minute = dict.get("minute")
 	var sec = dict.get("second")
+	if PlayerObserver.permanent_upgrade["twice"] == PlayerObserver.upgrade_type.ON:
+		sec += 2  # Add 2 seconds to make the timer seem faster
 	if minute < 10:
 		if sec < 10:
 			return str(0) + str(minute) + ":" + str(0) + str(sec)
@@ -104,6 +106,7 @@ func updateTime() -> void:
 # Function to update the TimeLabel every second
 func _on_update_time_label_timeout() -> void:
 	updateTime()
+	
 	TimeObserver.addOneToTotalTime()
 
 

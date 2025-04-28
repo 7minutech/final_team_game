@@ -42,8 +42,7 @@ size_flags_horizontal = 4
 
 [node name="UpgradeName1" type="Label" parent="UpgradeList/Upgrade1"]
 layout_mode = 2
-text = "XP Boost
-"
+text = "I'm just Lucky"
 
 [node name="UpgradeDesc1" type="Label" parent="UpgradeList/Upgrade1"]
 layout_mode = 2
@@ -60,7 +59,7 @@ size_flags_horizontal = 4
 
 [node name="UpgradeName2" type="Label" parent="UpgradeList/Upgrade2"]
 layout_mode = 2
-text = "Pizza Disk"
+text = "Who wants Pizza?"
 
 [node name="UpgradeDesc2" type="Label" parent="UpgradeList/Upgrade2"]
 layout_mode = 2
@@ -77,13 +76,30 @@ size_flags_horizontal = 4
 
 [node name="UpgradeName3" type="Label" parent="UpgradeList/Upgrade3"]
 layout_mode = 2
-text = "New Music"
+text = "Boring..."
 
 [node name="UpgradeDesc3" type="Label" parent="UpgradeList/Upgrade3"]
 layout_mode = 2
 text = "Change the game music"
 
 [node name="PurchaseButton3" type="Button" parent="UpgradeList/Upgrade3"]
+layout_mode = 2
+text = "Purchase
+"
+
+[node name="Upgrade4" type="HBoxContainer" parent="UpgradeList"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="UpgradeName4" type="Label" parent="UpgradeList/Upgrade4"]
+layout_mode = 2
+text = "Why wait?"
+
+[node name="UpgradeDesc4" type="Label" parent="UpgradeList/Upgrade4"]
+layout_mode = 2
+text = "Time progress twice as fast"
+
+[node name="PurchaseButton4" type="Button" parent="UpgradeList/Upgrade4"]
 layout_mode = 2
 text = "Purchase
 "
@@ -104,4 +120,5 @@ text = "Back
 [connection signal="pressed" from="UpgradeList/Upgrade1/PurchaseButton1" to="." method="_on_purchase_button_1_pressed"]
 [connection signal="pressed" from="UpgradeList/Upgrade2/PurchaseButton2" to="." method="_on_purchase_button_2_pressed"]
 [connection signal="pressed" from="UpgradeList/Upgrade3/PurchaseButton3" to="." method="_on_purchase_button_3_pressed"]
+[connection signal="pressed" from="UpgradeList/Upgrade4/PurchaseButton4" to="." method="_on_purchase_button_4_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -22,7 +22,7 @@ var damage_key: String = "alien_damage"
 @onready var original_color: Color = sprite.modulate
 var frozen: bool = false
 var just_spawned := true
-
+var player_in_range: bool = false
 
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
@@ -74,9 +74,22 @@ func _on_queue_free_timer_timeout() -> void:
 		queue_free()
 	pass # Replace with function body.
 
+	pass # Replace with function body.
+
+
 func _on_damage_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Hero") && $AttackTimer.is_stopped() and not frozen:
+	if body.is_in_group("Hero") and not frozen:
+		player_in_range = true
+		#attack(body)
+	while player_in_range:
 		attack(body)
+		$AttackTimer.start()
+		await $AttackTimer.timeout
+	
+	
+func _on_damage_area_body_exited(body: Node2D) -> void:
+	player_in_range = false
+	pass # Replace with function body.
 
 func flash_white() -> void:
 	#var original_color: Color = sprite.modulate
@@ -126,3 +139,7 @@ func freeze(freeze_time: float) -> void:
 func turn_blue() -> void:
 	var blue_color: Color = Color("#6699FF")
 	sprite.modulate = blue_color
+
+
+func _on_attack_timer_timeout() -> void:
+	pass # Replace with function body.

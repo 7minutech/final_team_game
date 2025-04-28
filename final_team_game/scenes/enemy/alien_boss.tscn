@@ -1,47 +1,35 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc4jj0uuapr7p"]
+[gd_scene load_steps=13 format=3 uid="uid://bsjxn47qdqqqy"]
 
-[ext_resource type="Script" path="res://scripts/enemy/alien.gd" id="1_26lnl"]
-[ext_resource type="Texture2D" uid="uid://krgpfr3scb2o" path="res://assets/enemy/Alien-sheet.png" id="3_106wd"]
-[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="4_lephc"]
-[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="4_v3rka"]
-[ext_resource type="PackedScene" uid="uid://bfks66ubablwp" path="res://scenes/enemy/attack_timer.tscn" id="5_0je5p"]
+[ext_resource type="Script" path="res://scripts/alien_boss.gd" id="1_kbpde"]
+[ext_resource type="SystemFont" uid="uid://dth5n6d8288l3" path="res://assets/In_Game_Hud.tres" id="3_c4rpq"]
+[ext_resource type="Texture2D" uid="uid://bf0gocf103cxg" path="res://assets/enemy/golden_robot_1.png" id="3_ksjij"]
+[ext_resource type="PackedScene" uid="uid://niojtu5447b8" path="res://scenes/sounds/LostHealthSound.tscn" id="4_apyae"]
+[ext_resource type="PackedScene" uid="uid://bfks66ubablwp" path="res://scenes/enemy/attack_timer.tscn" id="5_gfgua"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_14i5d"]
-atlas = ExtResource("3_106wd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_chnpa"]
+atlas = ExtResource("3_ksjij")
 region = Rect2(0, 0, 1280, 1280)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bmwt"]
-atlas = ExtResource("3_106wd")
-region = Rect2(1280, 0, 1280, 1280)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mjf8p"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_6au0s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_14i5d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_14i5d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1bmwt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1bmwt")
+"texture": SubResource("AtlasTexture_chnpa")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uri46"]
-radius = 200.0
-height = 1120.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6m3cu"]
+radius = 31.0
+height = 194.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_08i3j"]
-radius = 113.529
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jprrl"]
+radius = 34.0
+height = 198.0
 
-[sub_resource type="Animation" id="Animation_g8jts"]
+[sub_resource type="Animation" id="Animation_wehhc"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-160, -750)]
+"values": [Vector2(-17, -49)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -68,7 +56,7 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_8xpyd"]
+[sub_resource type="Animation" id="Animation_l74q6"]
 resource_name = "hit"
 length = 0.2
 tracks/0/type = "value"
@@ -81,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-240, -1180), Vector2(-240, -1400)]
+"values": [Vector2(-17, -49), Vector2(-17, -60)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -96,68 +84,70 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8i47"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b31ty"]
 _data = {
-"RESET": SubResource("Animation_g8jts"),
-"hit": SubResource("Animation_8xpyd")
+"RESET": SubResource("Animation_wehhc"),
+"hit": SubResource("Animation_l74q6")
 }
 
-[node name="Alien" type="CharacterBody2D" groups=["enemies"]]
-position = Vector2(503, 300)
-scale = Vector2(0.05, 0.05)
+[node name="AlienBoss" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(502, 301)
 collision_layer = 8
 collision_mask = 11
 floor_stop_on_slope = false
 floor_constant_speed = true
 floor_block_on_wall = false
 safe_margin = 0.1
-script = ExtResource("1_26lnl")
+script = ExtResource("1_kbpde")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.223529, 1, 0.0784314, 1)
-sprite_frames = SubResource("SpriteFrames_mjf8p")
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_6au0s")
 animation = &"walk"
-frame = 3
-frame_progress = 0.621645
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_uri46")
+shape = SubResource("CapsuleShape2D_6m3cu")
 
 [node name="QueueFreeTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 15.0
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 3
 
 [node name="DamageCollider" type="CollisionShape2D" parent="DamageArea"]
-scale = Vector2(3, 3)
-shape = SubResource("CircleShape2D_08i3j")
+shape = SubResource("CapsuleShape2D_jprrl")
 
 [node name="DamageLabel" type="Label" parent="."]
-offset_left = -160.0
-offset_top = -750.0
-offset_right = 1241.0
-offset_bottom = -148.0
-theme_override_fonts/font = ExtResource("4_lephc")
-theme_override_font_sizes/font_size = 379
+offset_left = -17.0
+offset_top = -49.0
+offset_right = 23.0
+offset_bottom = -20.0
+theme_override_fonts/font = ExtResource("3_c4rpq")
+theme_override_font_sizes/font_size = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DamageLabel"]
 libraries = {
-"": SubResource("AnimationLibrary_e8i47")
+"": SubResource("AnimationLibrary_b31ty")
 }
 
-[node name="LostHeatlhSound" parent="." instance=ExtResource("4_v3rka")]
+[node name="OffScreenTimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 3.0
+
+[node name="LostHeatlhSound" parent="." instance=ExtResource("4_apyae")]
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
-[node name="AttackTimer" parent="." instance=ExtResource("5_0je5p")]
+[node name="AttackTimer" parent="." instance=ExtResource("5_gfgua")]
 
 [connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="area_shape_entered" from="DamageArea" to="." method="_on_damage_area_area_shape_entered"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
+[connection signal="timeout" from="OffScreenTimer" to="." method="_on_off_screen_timer_timeout"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

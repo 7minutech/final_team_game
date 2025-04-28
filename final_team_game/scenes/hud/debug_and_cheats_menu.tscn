@@ -97,6 +97,15 @@ theme_override_fonts/font = ExtResource("1_m5r4p")
 text = "Spawn Drone Boss"
 metadata/_edit_use_anchors_ = true
 
+[node name="SpawnFinalBoss" type="Button" parent="SpawnerMenu"]
+offset_left = -145.0
+offset_top = 270.0
+offset_right = -2.0
+offset_bottom = 298.0
+theme_override_fonts/font = ExtResource("1_m5r4p")
+text = "Spawn Final Boss"
+metadata/_edit_use_anchors_ = true
+
 [node name="CheatsMenu" type="Node2D" parent="."]
 
 [node name="Invincibility" type="Button" parent="CheatsMenu"]
@@ -133,6 +142,7 @@ text = "Give 30 coins"
 [connection signal="pressed" from="SpawnerMenu/SpawnRedDroneGroup" to="." method="_on_spawn_red_drone_group_pressed"]
 [connection signal="pressed" from="SpawnerMenu/SpawnTurret" to="." method="_on_spawn_turret_pressed"]
 [connection signal="pressed" from="SpawnerMenu/SpawnDroneBoss" to="." method="_on_spawn_drone_boss_pressed"]
+[connection signal="pressed" from="SpawnerMenu/SpawnFinalBoss" to="." method="_on_spawn_final_boss_pressed"]
 [connection signal="pressed" from="CheatsMenu/Invincibility" to="." method="_on_invincibility_pressed"]
 [connection signal="pressed" from="CheatsMenu/LevelUp" to="." method="_on_level_up_pressed"]
 [connection signal="pressed" from="CheatsMenu/GiveCoins" to="." method="_on_give_coins_pressed"]

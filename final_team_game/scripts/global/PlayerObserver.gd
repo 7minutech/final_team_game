@@ -13,7 +13,7 @@ var current_xp: int
 var current_level: int
 var max_hp: int
 var current_hp: int
-var coins: int = 0
+var coins: int = 30
 var movement_speed: float 
 var health_regen: float = 0.0
 
@@ -22,6 +22,7 @@ var permanent_upgrade: Dictionary = {
 	"xp": upgrade_type.AVAILABLE,
 	"pizza": upgrade_type.AVAILABLE,
 	"music": upgrade_type.AVAILABLE,
+	"twice": upgrade_type.AVAILABLE
 }
 
 # Called when the node enters the scene tree for the first time.

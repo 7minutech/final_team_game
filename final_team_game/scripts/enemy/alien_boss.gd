@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 ## Constants
 # Constants for stats
-const INITIAL_HEALTH: int = 500.0
+const INITIAL_HEALTH: int = 200.0
 const INITIAL_SPEED: float = 50.0
 const INITIAL_DAMAGE: int = 25
 
@@ -13,8 +13,8 @@ var max_health: int = INITIAL_HEALTH
 @export var speed: float = INITIAL_SPEED
 var damage: int = INITIAL_DAMAGE
 var off_screen: bool = false
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite_animation: AnimationPlayer = $Sprite2D/AnimationPlayer
 @onready var hit_label: Label = $DamageLabel
 @onready var hit_label_animation: AnimationPlayer = $DamageLabel/AnimationPlayer
 @onready var original_color: Color = sprite.modulate
@@ -23,15 +23,13 @@ var screen_exited_at: String
 var health_key: String = "robot_boss_health"
 var damage_key: String = "robot_boss_damage"
 var just_spawned := true
-var player_in_range: bool = false
-
 
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	just_spawned = false
 	set_max_health()
 	health = max_health
-
+		
 func _physics_process(_delta: float) -> void:
 	if not frozen:
 		if PlayerObserver.player != null:
@@ -89,18 +87,8 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	pass # Replace with function body.
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Hero") and not frozen:
-		player_in_range = true
-		#attack(body)
-	while player_in_range:
+	if body.is_in_group("Hero") && $AttackTimer.is_stopped() and not frozen:
 		attack(body)
-		$AttackTimer.start()
-		await $AttackTimer.timeout
-	
-	
-func _on_damage_area_body_exited(body: Node2D) -> void:
-	player_in_range = false
-	pass # Replace with function body.
 
 func flash_white() -> void:
 	var white: Color = Color(1.5, 1.5, 1.5, 1)
@@ -174,7 +162,3 @@ func get_screen_exit() -> String:
 			screen_exited_at = key
 	return screen_exited_at
 	
-
-
-func _on_attack_timer_timeout() -> void:
-	pass # Replace with function body.
