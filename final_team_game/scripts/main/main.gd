@@ -35,8 +35,8 @@ var game_ended: bool = false
 # Game time tracking for final stage
 var total_game_time: float = 0.0
 var final_stage_started: bool = false
-const FINAL_STAGE_TIME: float = 60  # 6 minutes before final stage
-const TOTAL_GAME_DURATION: float = 120  # 7 minutes total
+const FINAL_STAGE_TIME: float = 360  # 6 minutes before final stage
+const TOTAL_GAME_DURATION: float = 420  # 7 minutes total
 
 # Swarm tracking for red drones
 var red_drone_swarm_active: bool = false

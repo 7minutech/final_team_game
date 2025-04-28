@@ -50,12 +50,15 @@ func loseHealth(dmg: int) -> void:
 	health -= dmg
 	if health <= 0 and not is_queued_for_deletion():
 		$CollisionShape2D.set_deferred("disabled",true)
-		drop_chest()
+		#drop_chest()
 		if PlayerObserver.player != null:
 			PlayerObserver.player.addOneToKillCounter()
 		await get_tree().create_timer(0.15).timeout
 		#self.queue_free()
+		PlayerObserver.coins += 60
+		get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 		self.call_deferred("queue_free")
+		await get_tree().create_timer(1.0).timeout
 
 # Function to attack player
 func attack(hero: CharacterBody2D) -> void:
