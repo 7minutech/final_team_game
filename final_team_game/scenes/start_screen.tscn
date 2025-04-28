@@ -66,6 +66,7 @@ text = "Controls
 stream = ExtResource("4_n516w")
 
 [node name="HoverSound" parent="." instance=ExtResource("3_6i5g1")]
+bus = &"SFX"
 
 [node name="ClickSound" parent="." instance=ExtResource("4_n008g")]
 

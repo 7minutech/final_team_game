@@ -24,6 +24,7 @@ var health_key: String = "robot_boss_health"
 var damage_key: String = "robot_boss_damage"
 var just_spawned := true
 var player_in_range: bool = false
+var dead := false
 
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
@@ -33,7 +34,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not frozen:
-		if PlayerObserver.player != null:
+		if PlayerObserver.player != null and not dead:
 			speed += 0.25
 			sprite_animation.play("walk")
 			var direction = PlayerObserver.player.global_position - global_position
@@ -48,7 +49,8 @@ func loseHealth(dmg: int) -> void:
 	show_hit_number(dmg)
 	flash_white()
 	health -= dmg
-	if health <= 0 and not is_queued_for_deletion():
+	if health <= 0 and not is_queued_for_deletion() and not dead:
+		dead = true
 		$CollisionShape2D.set_deferred("disabled",true)
 		#drop_chest()
 		if PlayerObserver.player != null:
@@ -56,9 +58,15 @@ func loseHealth(dmg: int) -> void:
 		await get_tree().create_timer(0.15).timeout
 		#self.queue_free()
 		PlayerObserver.coins += 60
+		speed = 0
+		velocity = Vector2.ZERO
+		$AnimatedSprite2D.stop()
+		$AnimationPlayer.play("die")
+		$DeathSound.play()
+		await $AnimationPlayer.animation_finished
 		get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
 		self.call_deferred("queue_free")
-		await get_tree().create_timer(1.0).timeout
+		
 
 # Function to attack player
 func attack(hero: CharacterBody2D) -> void:

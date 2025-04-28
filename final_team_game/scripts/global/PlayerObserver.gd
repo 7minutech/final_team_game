@@ -13,7 +13,7 @@ var current_xp: int
 var current_level: int
 var max_hp: int
 var current_hp: int
-var coins: int = 30
+var coins: int = 0
 var movement_speed: float 
 var health_regen: float = 0.0
 

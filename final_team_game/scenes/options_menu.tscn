@@ -64,5 +64,6 @@ text = "Back"
 [node name="ClickSound" parent="." instance=ExtResource("2_48ujp")]
 
 [node name="HoverSound" parent="." instance=ExtResource("3_nn1bn")]
+bus = &"SFX"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

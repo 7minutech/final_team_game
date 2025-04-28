@@ -66,7 +66,7 @@ func expand(multiplier: int) -> void:
 		current_scale -= Vector2(0.01, 0.01)
 		scale = current_scale
 		freeze_enemies()
-		await get_tree().create_timer(0.02).timeout
+		#await get_tree().create_timer(0.02).timeout
 
 	self.hide()
 

@@ -49,6 +49,7 @@ volume_db = -10.0
 bus = &"Music"
 
 [node name="HoverSound" parent="." instance=ExtResource("3_d5poc")]
+bus = &"SFX"
 
 [node name="ClickSound" parent="." instance=ExtResource("4_sf6fg")]
 

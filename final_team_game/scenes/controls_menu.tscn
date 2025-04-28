@@ -86,3 +86,4 @@ text = "Back"
 [node name="ClickSound" parent="." instance=ExtResource("2_1i4gr")]
 
 [node name="HoverSound" parent="." instance=ExtResource("3_cp6xi")]
+bus = &"SFX"
