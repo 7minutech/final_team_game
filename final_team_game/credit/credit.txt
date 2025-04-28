@@ -1,0 +1,71 @@
+Assets and Sources
+
+	EMP Sound:
+	https://pixabay.com/sound-effects/search/emp/
+
+	Hurt Sound:
+	https://pixabay.com/sound-effects/search/electric/
+
+	Weapon Swap Sound:
+	https://pixabay.com/sound-effects/search/weapon-swing/
+
+	Level Up Sound:
+	https://pixabay.com/sound-effects/search/level%20up/
+
+	Shield Sound:
+	https://pixabay.com/sound-effects/search/active/
+
+	Volume Sliders Tutorial:
+	https://www.youtube.com/watch?v=aFkRmtGiZCw
+
+	Pizza Disk Asset:
+	https://paranoidstudios.itch.io/full-pizza-2d/download/eyJleHBpcmVzIjoxNzQ1Nzg1OTExLCJpZCI6MzA0NTE2Nn0%3d%2e3owvQYk4GAYKcDZ7LdGLtK0jsBI%3d
+
+	Start Screen Music:
+	https://opengameart.org/content/magic-space
+
+	Permanent Song:
+	Suno AI - Endless Voyager
+
+Help from ChatGPT
+
+	Using inherited scripts
+
+	Tween for magnet boost
+
+	Arrow point logic
+
+	Name idea for "Orbital Beam"
+
+	Descriptions for upgrades/abilities
+
+	Rotation logic for laser beams
+
+Assets Jordan Modified (from Lydia’s work)
+
+	Combined almost every sprite sheet (Lydia made the original art)
+
+	Player sparking animation
+
+	Ability icon background on HUD and pause screen (white curved shapes behind icons)
+
+	Ability pip assets for filled pips
+
+	Shotgun ability sprite
+
+	Boomerang ability sprite
+
+Assets Jordan Created
+
+(No specific assets listed — leave blank or add later)
+
+Specific Coding Jordan Did
+
+	Turret enemy scene and logic
+
+	Red drone swarm enemy scene and logic
+
+	All HUD, pause screen, ability choice screen, and chest reward screen scenes and logic
+
+	Boomerang weapon/projectile logic
+	
