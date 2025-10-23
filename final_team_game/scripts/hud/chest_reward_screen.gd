@@ -1,6 +1,5 @@
 extends Node2D
 
-
 ### Variables ###
 var clickable: bool = false
 var rewardAvailable: bool = true
@@ -78,7 +77,7 @@ func giveRandomUpgrade() -> void:
 	else:
 		setSprite("coins")
 		setLabel("coins")
-		PlayerObserver.coins += 30
+		PlayerObserver.addCoins(PlayerObserver.CHEST_COIN_AMOUNT)
 		print("Number of coins = " + str(PlayerObserver.coins))
 		print("All available abilities are max upgraded")
 

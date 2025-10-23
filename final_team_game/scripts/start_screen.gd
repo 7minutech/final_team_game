@@ -10,6 +10,8 @@ extends Control
 var options_open = false
 
 func _ready():
+	create_save_file(PlayerObserver.SAVE_FILE_PATH	)
+	PlayerObserver.coins = load_coins(PlayerObserver.SAVE_FILE_PATH)
 	play_button.pressed.connect(on_play_pressed)
 	play_button.mouse_entered.connect(on_hover)
 	#options_button.pressed.connect(on_options_pressed)
@@ -51,3 +53,44 @@ func _on_options_button_pressed() -> void:
 	await click_sound.finished
 	get_tree().change_scene_to_file("res://scenes/options_menu.tscn")
 	pass # Replace with function body.
+	
+func create_save_file(save_path: String):
+	if not FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_string('{"coins":0}')
+		file.close()
+		print("Save file created at:", save_path)
+	else:
+		print("Save file already exists at:", save_path)
+	print("Resolved user:// path:", ProjectSettings.globalize_path(save_path))
+
+func load_coins(save_path: String) -> int:
+	print("Loading coins from:", save_path)
+
+	if not FileAccess.file_exists(save_path):
+		print("Save file not found. Returning 0.")
+		return 0
+
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	if file == null:
+		print("Failed to open save file. Returning 0.")
+		return 0
+
+	var content = file.get_as_text()
+	file.close()
+	print("File content:", content)
+
+	var parse_result = JSON.parse_string(content)
+	if typeof(parse_result) != TYPE_DICTIONARY:
+		print("JSON parse failed or content is not a dictionary. Returning 0.")
+		return 0
+
+	var data: Dictionary = parse_result
+
+	if not data.has("coins"):
+		print("'coins' key missing in JSON. Returning 0.")
+		return 0
+
+	var saved_coins: int = data["coins"]
+	print("Loaded coins:", saved_coins)
+	return saved_coins

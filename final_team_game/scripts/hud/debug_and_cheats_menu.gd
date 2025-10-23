@@ -109,7 +109,7 @@ func _on_spawn_drone_boss_pressed() -> void:
 
 func _on_give_coins_pressed() -> void:
 	$ClickSound.play()  # Play the click sound
-	PlayerObserver.coins += 30
+	PlayerObserver.add_coins(PlayerObserver.CHEST_COIN_AMOUNT)
 
 
 func _on_spawn_final_boss_pressed() -> void:
