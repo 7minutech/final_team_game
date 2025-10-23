@@ -44,5 +44,5 @@ func toString() -> String:
 	text += "\nPlayer Level: " + str(current_level)
 	text += "\nMax XP: " + str(max_xp)
 	text += "\nCurrent XP: " + str(current_xp)
-	text += "\nCurrent coins: " + str(current_xp)
+	text += "\nCurrent coins: " + str(coins)
 	return text
