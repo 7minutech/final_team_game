@@ -31,7 +31,6 @@ func on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
 
-
 func on_volume_changed(value):
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
 

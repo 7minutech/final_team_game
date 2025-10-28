@@ -5,10 +5,13 @@ const CHEST_COIN_AMOUNT: int = 30
 const SAVE_FILE_PATH = "user://savegame.json"
 const DEFAULT_SAVE_VALUES = '{
 	"coins": 0,
-	"music": "AVAILABLE",
-	"pizza": "AVAILABLE",
-	"twice": "AVAILABLE",
-	"xp": "AVAILABLE",
+	"permanent_upgrades": 
+		{
+			"music": "AVAILABLE",
+			"pizza": "AVAILABLE",
+			"twice": "AVAILABLE",
+			"xp": "AVAILABLE",
+		}
 }'
 
 enum upgrade_type {AVAILABLE, ON, OFF}
@@ -62,8 +65,8 @@ func add_coins(extra_coins: int) -> void:
 	update_coins(coins, SAVE_FILE_PATH)
 
 func update_coins(new_val: int, save_path):
-	print("updating...")
-
+	print("updating coins to %d" % [new_val])
+	
 	if not FileAccess.file_exists(save_path):
 		push_error("Save file not found!")
 		return
@@ -85,8 +88,8 @@ func update_coins(new_val: int, save_path):
 
 	print("Coins updated to:", new_val)
 
-func update_upgrades(save_path):
-	print("updating...")
+func update_upgrade(upgrade: String, value: String, save_path):
+	print("updating upgrade %s:%s" % [upgrade, value])
 
 	if not FileAccess.file_exists(save_path):
 		push_error("Save file not found!")
@@ -100,8 +103,9 @@ func update_upgrades(save_path):
 	if typeof(data) != TYPE_DICTIONARY:
 		push_error("Invalid JSON format!")
 		return
-
-
+		
+	data.permanent_upgrades.upgrade = value
+	
 	file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data, "\t"))  # "\t" adds indentation
 	file.close()
