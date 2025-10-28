@@ -3,6 +3,13 @@ extends Node
 ### Constants ###
 const CHEST_COIN_AMOUNT: int = 30
 const SAVE_FILE_PATH = "user://savegame.json"
+const DEFAULT_SAVE_VALUES = '{
+	"coins": 0,
+	"music": "AVAILABLE",
+	"pizza": "AVAILABLE",
+	"twice": "AVAILABLE",
+	"xp": "AVAILABLE",
+}'
 
 enum upgrade_type {AVAILABLE, ON, OFF}
 
@@ -77,3 +84,24 @@ func update_coins(new_val: int, save_path):
 	file.close()
 
 	print("Coins updated to:", new_val)
+
+func update_upgrades(save_path):
+	print("updating...")
+
+	if not FileAccess.file_exists(save_path):
+		push_error("Save file not found!")
+		return
+
+	var file = FileAccess.open(save_path, FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+
+	var data = JSON.parse_string(content)
+	if typeof(data) != TYPE_DICTIONARY:
+		push_error("Invalid JSON format!")
+		return
+
+
+	file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_string(JSON.stringify(data, "\t"))  # "\t" adds indentation
+	file.close()
