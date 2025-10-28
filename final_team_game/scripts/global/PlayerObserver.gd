@@ -10,7 +10,7 @@ const DEFAULT_SAVE_VALUES = '{
 			"music": "AVAILABLE",
 			"pizza": "AVAILABLE",
 			"twice": "AVAILABLE",
-			"xp": "AVAILABLE",
+			"xp": "AVAILABLE"
 		}
 }'
 
@@ -63,6 +63,9 @@ func toString() -> String:
 func add_coins(extra_coins: int) -> void:
 	coins += extra_coins 
 	update_coins(coins, SAVE_FILE_PATH)
+	
+func set_upgrade(upgrade: String, value):
+	permanent_upgrade.upgrade = value
 
 func update_coins(new_val: int, save_path):
 	print("updating coins to %d" % [new_val])
@@ -88,7 +91,7 @@ func update_coins(new_val: int, save_path):
 
 	print("Coins updated to:", new_val)
 
-func update_upgrade(upgrade: String, value: String, save_path):
+func update_upgrade(upgrade: String, value: upgrade_type, save_path):
 	print("updating upgrade %s:%s" % [upgrade, value])
 
 	if not FileAccess.file_exists(save_path):

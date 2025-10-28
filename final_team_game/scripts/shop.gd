@@ -56,6 +56,7 @@ func _on_purchase_button_1_pressed() -> void:
 		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("xp", upgrade_type.ON)
 		# Since the upgrade is now ON, the button should say "Off" to indicate 
 		# clicking it will turn the upgrade off
 		$UpgradeList/Upgrade1/PurchaseButton1.text = "On"
@@ -63,6 +64,7 @@ func _on_purchase_button_1_pressed() -> void:
 	elif upgrade == upgrade_type.ON:
 		# If the upgrade is ON, toggle it to OFF
 		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.OFF
+		PlayerObserver.set_upgrade("xp", upgrade_type.OFF)
 		# Since the upgrade is now OFF, the button should say "On" to indicate 
 		# clicking it will turn the upgrade on
 		$UpgradeList/Upgrade1/PurchaseButton1.text = "Off"
@@ -70,6 +72,7 @@ func _on_purchase_button_1_pressed() -> void:
 	elif upgrade == upgrade_type.OFF:
 		# If the upgrade is OFF, toggle it to ON
 		PlayerObserver.permanent_upgrade["xp"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("xp", upgrade_type.ON)
 		# Since the upgrade is now ON, the button should say "Off" to indicate 
 		# clicking it will turn the upgrade off
 		$UpgradeList/Upgrade1/PurchaseButton1.text = "On"
@@ -85,16 +88,19 @@ func _on_purchase_button_2_pressed() -> void:
 		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("pszza", upgrade_type.ON)
 		$UpgradeList/Upgrade2/PurchaseButton2.text = "On"
 		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(0, 1, 0)  # Green color for ON state
 	elif upgrade == upgrade_type.ON:
 		# If the upgrade is ON, toggle it to OFF
 		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.OFF
+		PlayerObserver.set_upgrade("pizaa", upgrade_type.OFF)
 		$UpgradeList/Upgrade2/PurchaseButton2.text = "Off"
 		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(1, 0, 0)  # Red color for OFF state
 	elif upgrade == upgrade_type.OFF:
 		# If the upgrade is OFF, toggle it to ON
 		PlayerObserver.permanent_upgrade["pizza"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("pizaa", upgrade_type.ON)
 		$UpgradeList/Upgrade2/PurchaseButton2.text = "On"
 		$UpgradeList/Upgrade2/PurchaseButton2.modulate = Color(0, 1, 0)  # Green color for ON state
 
@@ -108,16 +114,19 @@ func _on_purchase_button_3_pressed() -> void:
 		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["music"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("music", upgrade_type.ON)
 		$UpgradeList/Upgrade3/PurchaseButton3.text = "On"
 		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(0, 1, 0)  # Green color for ON state
 	elif upgrade == upgrade_type.ON:
 		# If the upgrade is ON, toggle it to OFF
 		PlayerObserver.permanent_upgrade["music"] = upgrade_type.OFF
+		PlayerObserver.set_upgrade("music", upgrade_type.OFF)
 		$UpgradeList/Upgrade3/PurchaseButton3.text = "Off"
 		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(1, 0, 0)  # Red color for OFF state
 	elif upgrade == upgrade_type.OFF:
 		# If the upgrade is OFF, toggle it to ON
 		PlayerObserver.permanent_upgrade["music"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("music", upgrade_type.ON)
 		$UpgradeList/Upgrade3/PurchaseButton3.text = "On"
 		$UpgradeList/Upgrade3/PurchaseButton3.modulate = Color(0, 1, 0)  # Green color for ON state
 
@@ -130,16 +139,19 @@ func _on_purchase_button_4_pressed() -> void:
 		# Purchase the upgrade and set it to ON
 		PlayerObserver.coins -= 30
 		PlayerObserver.permanent_upgrade["twice"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("twice", upgrade_type.ON)
 		$UpgradeList/Upgrade4/PurchaseButton4.text = "On"
 		$UpgradeList/Upgrade4/PurchaseButton4.modulate = Color(0, 1, 0)  # Green color for ON state
 	elif upgrade == upgrade_type.ON:
 		# If the upgrade is ON, toggle it to OFF
 		PlayerObserver.permanent_upgrade["twice"] = upgrade_type.OFF
+		PlayerObserver.set_upgrade("twice", upgrade_type.OFF)
 		$UpgradeList/Upgrade4/PurchaseButton4.text = "Off"
 		$UpgradeList/Upgrade4/PurchaseButton4.modulate = Color(1, 0, 0)  # Red color for OFF state
 	elif upgrade == upgrade_type.OFF:
 		# If the upgrade is OFF, toggle it to ON
 		PlayerObserver.permanent_upgrade["twice"] = upgrade_type.ON
+		PlayerObserver.set_upgrade("twice", upgrade_type.ON)
 		$UpgradeList/Upgrade4/PurchaseButton4.text = "On"
 		$UpgradeList/Upgrade4/PurchaseButton4.modulate = Color(0, 1, 0)  # Green color for ON state
 
